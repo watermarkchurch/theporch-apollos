@@ -36,12 +36,7 @@ const UserAvatarHeader = ({
 }) => (
   <Container>
     <PaddedView horizontal={false}>
-      <UserAvatarConnected
-        size={size}
-        buttonIcon={buttonIcon}
-        onPressIcon={() => navigation.navigate('UserSettings')}
-        {...props}
-      />
+      <UserAvatarConnected size={size} buttonIcon={buttonIcon} {...props} />
     </PaddedView>
     <GetUserProfile>
       {({ firstName }) => (
