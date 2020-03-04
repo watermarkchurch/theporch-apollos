@@ -10,7 +10,7 @@ const FullScreenImage = styled({
 
 const LandingScreen = ({ navigation }) => (
   <ApollosLandingScreen
-    onPressPrimary={() => navigation.push('Auth')}
+    onPressPrimary={() => navigation.push('Onboarding')}
     textColor={'white'}
     BackgroundComponent={
       <FullScreenImage source={'https://picsum.photos/375/812/?random'} />

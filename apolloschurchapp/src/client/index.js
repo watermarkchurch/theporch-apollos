@@ -5,29 +5,24 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { getVersion, getApplicationName } from 'react-native-device-info';
 
-import { authLink, buildErrorLink } from '@apollosproject/ui-auth';
 import { resolvers, schema, defaults } from '../store';
 import NavigationService from '../NavigationService';
 import httpLink from './httpLink';
 import cache, { ensureCacheHydration, MARK_CACHE_LOADED } from './cache';
 
-const goToAuth = () => NavigationService.resetToAuth();
 const wipeData = () => cache.writeData({ data: defaults });
 
 let clearStore;
 let storeIsResetting = false;
-const onAuthError = async () => {
-  if (!storeIsResetting) {
-    storeIsResetting = true;
-    await clearStore();
-  }
-  storeIsResetting = false;
-  goToAuth();
-};
 
-const errorLink = buildErrorLink(onAuthError);
+const logLink = new ApolloLink((operation, forward) => {
+  return forward(operation).map((data) => {
+    console.log('logging');
+    return forward(operation);
+  });
+});
 
-const link = ApolloLink.from([authLink, errorLink, httpLink]);
+const link = ApolloLink.from([logLink, httpLink]);
 
 export const client = new ApolloClient({
   link,
