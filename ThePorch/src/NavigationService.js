@@ -29,15 +29,6 @@ export const resetAction = ({ navigatorName, routeName }) =>
     ],
   });
 
-const resetToAuth = () => {
-  _navigator.dispatch(
-    resetAction({
-      navigatorName: 'Auth',
-      routeName: 'AuthSMSPhoneEntryConnected',
-    })
-  );
-};
-
 const goBack = (from) => {
   let key;
   if (from) {
@@ -52,5 +43,4 @@ export default {
   navigate,
   resetAction,
   goBack,
-  resetToAuth,
 };

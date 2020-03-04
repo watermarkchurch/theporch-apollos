@@ -27,12 +27,6 @@ export const defaults = {
   cacheLoaded: false,
 };
 
-const GET_LOGGED_IN = gql`
-  query {
-    isLoggedIn @client
-  }
-`;
-
 export const resolvers = {
   Mutation: {
     cacheMarkLoaded: async (root, args, { cache, client }) => {
@@ -41,9 +35,6 @@ export const resolvers = {
         data: {
           cacheLoaded: true,
         },
-      });
-      const { data: { isLoggedIn } = {} } = await client.query({
-        query: GET_LOGGED_IN,
       });
 
       const { pushId } = cache.readQuery({
@@ -54,7 +45,7 @@ export const resolvers = {
         `,
       });
 
-      if (isLoggedIn && pushId) {
+      if (pushId) {
         updatePushId({ pushId, client });
       }
       return null;
