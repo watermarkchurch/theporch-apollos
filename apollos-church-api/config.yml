@@ -10,7 +10,7 @@
 APP:
   # This variable is used for generating deep links.
   # It should match whatver is in your Info.plist `CFBundleURLTypes`
-  DEEP_LINK_HOST: apolloschurchapp
+  DEEP_LINK_HOST: ThePorch
   ROOT_API_URL: ${ROOT_URL}
   JOBS_USERNAME: ${JOBS_USERNAME}
   JOBS_PASSWORD: ${JOBS_PASSWORD}
@@ -42,11 +42,11 @@ ALGOLIA:
       - title
       - unordered(summary)
     #customRankings:
-      # NOT CURRENTLY INCLUDED
-      # This just demonstrates what's possible
-      # To include likedCount (or any other field) override search package
-      # and add field to config below
-      #- desc(likedCount)
+    # NOT CURRENTLY INCLUDED
+    # This just demonstrates what's possible
+    # To include likedCount (or any other field) override search package
+    # and add field to config below
+    #- desc(likedCount)
 TWILIO:
   ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
   AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
@@ -151,7 +151,6 @@ HOME_FEATURES:
         arguments:
           contentChannelId: 13
       - type: UPCOMING_EVENTS
-
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:
