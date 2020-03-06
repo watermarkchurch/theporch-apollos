@@ -6,6 +6,9 @@ import { get } from 'lodash';
 
 import { H3, styled, PaddedView } from '@apollosproject/ui-kit';
 import { UserAvatarConnected } from '@apollosproject/ui-connected';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import { useOnboardDispatch, showOnboarding } from '../../../OnboardProvider';
 import GET_USER_PROFILE from './getUserProfile';
 
 const GetUserProfile = ({ children }) => (
@@ -33,21 +36,34 @@ const UserAvatarHeader = ({
   onPressIcon,
   size,
   ...props
-}) => (
-  <Container>
-    <PaddedView horizontal={false}>
-      <UserAvatarConnected size={size} buttonIcon={buttonIcon} {...props} />
-    </PaddedView>
-    <GetUserProfile>
-      {({ firstName }) => (
-        <H3>
-          {message}
-          {firstName ? ` ${firstName}` : ''}!
-        </H3>
-      )}
-    </GetUserProfile>
-  </Container>
-);
+}) => {
+  const dispatch = useOnboardDispatch();
+  const handleResetOnboarding = () => {
+    AsyncStorage.setItem('hideOnboard', 'false');
+    dispatch(showOnboarding());
+  };
+
+  return (
+    <Container>
+      <PaddedView horizontal={false}>
+        <UserAvatarConnected
+          size={size}
+          buttonIcon={buttonIcon}
+          {...props}
+          onPressIcon={() => handleResetOnboarding()}
+        />
+      </PaddedView>
+      <GetUserProfile>
+        {({ firstName }) => (
+          <H3>
+            {message}
+            {firstName ? ` ${firstName}` : ''}!
+          </H3>
+        )}
+      </GetUserProfile>
+    </Container>
+  );
+};
 
 UserAvatarHeader.propTypes = {
   buttonIcon: PropTypes.string,
