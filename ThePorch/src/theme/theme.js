@@ -7,7 +7,27 @@
  * elements are colored, go there. The next level of control comes
  * on a per-component basis with "overrides"
  */
-// const colors = {};
+const colors = {
+  primary: '#F76F5F',
+  secondary: '#644AA1',
+
+  tertiary: '#8AA7C5',
+  screen: '#17B582',
+  paper: '#FFFFFF',
+  alert: '#AB3C30',
+
+  // Dark shades
+  darkPrimary: '#1F1F22',
+  darkSecondary: '#4D4D4F',
+  darkTertiary: '#A5A5A5',
+
+  // Light shades
+  lightPrimary: '#F2F2F2',
+  lightSecondary: '#CDCDCD',
+  lightTertiary: '#A5A5A5',
+  // Statics
+  wordOfChrist: '#8B0000', // only used in Scripture.
+};
 
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
@@ -43,4 +63,4 @@
  */
 // const overrides = {};
 
-export default {};
+export default { colors };
