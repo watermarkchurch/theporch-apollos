@@ -27,13 +27,12 @@ const AppStatusBar = withTheme(({ theme }) => ({
   backgroundColor: theme.colors.paper,
 }))(StatusBar);
 
-const App = () => {
+const AppContainer = () => {
   const dispatch = useOnboardDispatch();
 
   useEffect(() => {
     async function isOnboarded() {
       const token = await AsyncStorage.getItem('hideOnboard');
-      console.log('token', token);
       dispatch(readOnboardingFromStorage(token));
     }
     isOnboarded();
@@ -42,6 +41,8 @@ const App = () => {
   const { onboarded } = useOnboardState();
 
   // This setup flashes because it is waiting on props possible solution `isLoading`
+  if (isNil(onboarded)) return null; // TODO: should we show a loading state or something?
+
   const AppNavigator = createStackNavigator(
     {
       Tabs,
@@ -60,23 +61,25 @@ const App = () => {
     }
   );
 
-  const AppContainer = createAppContainer(AppNavigator);
+  const Container = createAppContainer(AppNavigator);
 
   return (
-    <Providers>
-      <BackgroundView>
-        <AppStatusBar barStyle="dark-content" />
-        {!isNil(onboarded) && (
-          <AppContainer
-            ref={(navigatorRef) => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-          />
-        )}
-        <MediaPlayer />
-      </BackgroundView>
-    </Providers>
+    <Container
+      ref={(navigatorRef) => {
+        NavigationService.setTopLevelNavigator(navigatorRef);
+      }}
+    />
   );
 };
+
+const App = () => (
+  <Providers>
+    <BackgroundView>
+      <AppStatusBar barStyle="dark-content" />
+      <AppContainer />
+      <MediaPlayer />
+    </BackgroundView>
+  </Providers>
+);
 
 export default App;
