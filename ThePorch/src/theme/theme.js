@@ -12,7 +12,7 @@ const colors = {
   secondary: '#644AA1',
 
   tertiary: '#8AA7C5',
-  screen: '#17B582',
+  screen: '#F8F7F4',
   paper: '#FFFFFF',
   alert: '#AB3C30',
 
@@ -61,6 +61,13 @@ const colors = {
  *   },
  * }
  */
-// const overrides = {};
+const overrides = {
+  'ui-kit.inputs.Search.InputWrapper': {
+    backgroundColor: '#F8F7F4',
+  },
+  'ui-kit.inputs.Search.ClearSearchButtonBackground': {
+    backgroundColor: '#F8F7F4',
+  },
+};
 
-export default { colors };
+export default { colors, overrides };
