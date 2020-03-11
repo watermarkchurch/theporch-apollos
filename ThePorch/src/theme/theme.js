@@ -63,10 +63,10 @@ const colors = {
  */
 const overrides = {
   'ui-kit.inputs.Search.InputWrapper': {
-    backgroundColor: '#F8F7F4',
+    backgroundColor: colors.screen,
   },
   'ui-kit.inputs.Search.ClearSearchButtonBackground': {
-    backgroundColor: '#F8F7F4',
+    backgroundColor: colors.screen,
   },
 };
 
