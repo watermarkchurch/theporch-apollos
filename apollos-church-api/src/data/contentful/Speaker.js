@@ -23,11 +23,16 @@ export class dataSource extends ContentfulDataSource {
 export const schema = gql`
   type Speaker implements Node & ContentItem {
     id: ID!
-    title: String
     coverImage: ImageMedia
 
     htmlContent: String
     summary: String
+
+    title(hyphenated: Boolean): String
+    images: [ImageMedia]
+    videos: [VideoMedia]
+    audios: [AudioMedia]
+    theme: Theme
 
     childContentItemsConnection(
       first: Int

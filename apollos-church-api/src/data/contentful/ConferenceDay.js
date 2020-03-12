@@ -5,7 +5,7 @@ import ContentfulDataSource from './ContentfulDataSource';
 export class dataSource extends ContentfulDataSource {}
 
 export const schema = gql`
-  type ConferenceDay implements ContentChannel & Node {
+  type ConferenceDay implements Node {
     id: ID!
     title: String
     childContentItemsConnection(

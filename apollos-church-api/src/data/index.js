@@ -12,7 +12,7 @@ import * as Pass from '@apollosproject/data-connector-passes';
 import * as Cache from '@apollosproject/data-connector-redis-cache';
 import * as Sms from '@apollosproject/data-connector-twilio';
 import {
-  Followings,
+  // Followings,
   Interactions,
   RockConstants,
   Person,
@@ -37,7 +37,7 @@ import * as ContentfulData from './contentful';
 import * as OneSignalWithRock from './oneSignalWithRock';
 
 const data = {
-  Followings,
+  // Followings,
   // ContentChannel,
   // ContentItem,
   ...ContentfulData,

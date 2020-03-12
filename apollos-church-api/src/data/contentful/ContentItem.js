@@ -5,6 +5,7 @@ import sanitizeHtmlNode from 'sanitize-html';
 import marked from 'marked';
 import withCloudinary from '@apollosproject/data-connector-cloudinary/lib/cloudinary';
 import { ContentItem } from '@apollosproject/data-connector-rock';
+import { contentItemSchema } from '@apollosproject/data-schema'
 
 import ContentfulDataSource from './ContentfulDataSource';
 
@@ -33,49 +34,8 @@ export class dataSource extends ContentfulDataSource {
   };
 }
 
-const { schema: contentItemSchema } = ContentItem;
-
 export const schema = gql`
-  {contentItemSchema}
-
-  interface ContentItem {
-    id: ID!
-    title: String
-    coverImage: ImageMedia
-
-    htmlContent: String
-    summary: String
-
-    media: VideoMediaSource
-
-    childContentItemsConnection(
-      first: Int
-      after: String
-    ): ContentItemsConnection
-    siblingContentItemsConnection(
-      first: Int
-      after: String
-    ): ContentItemsConnection
-
-    parentChannel: ContentChannel
-  }
-
-  input ContentItemsConnectionInput {
-    first: Int
-    after: String
-  }
-
-  type ContentItemsConnection {
-    edges: [ContentItemsConnectionEdge]
-    # TODO totalCount: Int
-    pageInfo: PaginationInfo
-  }
-
-  type ContentItemsConnectionEdge {
-    node: ContentItem
-    cursor: String
-  }
-
+  ${contentItemSchema}
   type ContentfulAsset implements Media {
     name: String
     description: String

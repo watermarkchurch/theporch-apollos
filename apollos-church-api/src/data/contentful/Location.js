@@ -7,11 +7,16 @@ export class dataSource extends ContentfulDataSource {}
 export const schema = gql`
   type Location implements Node & ContentItem {
     id: ID!
-    title: String
     summary: String
     map: ImageMedia
 
     coverImage: ImageMedia
+
+    title(hyphenated: Boolean): String
+    images: [ImageMedia]
+    videos: [VideoMedia]
+    audios: [AudioMedia]
+    theme: Theme
 
     htmlContent: String
 
