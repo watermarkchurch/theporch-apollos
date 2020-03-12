@@ -80,75 +80,65 @@ ENGINE:
   SCHEMA_TAG: ${ENGINE_SCHEMA_TAG}
 
 # This key holds various properties that allow our GraphQL server to map to your Rock Instance
-ROCK_MAPPINGS:
-  INTERACTIONS:
-    # Name of the InteractionChannel that will be created
-    CHANNEL_NAME: Apollos App
-    # Name of the InteractionComponent that will be created for Content Items
-    COMPONENT_NAME: Apollos Content Item
-    # 512 is "Mobile App"
-    CHANNEL_MEDIUM_TYPE_ID: 512
+# ROCK_MAPPINGS:
+#   INTERACTIONS:
+#     # Name of the InteractionChannel that will be created
+#     CHANNEL_NAME: Apollos App
+#     # Name of the InteractionComponent that will be created for Content Items
+#     COMPONENT_NAME: Apollos Content Item
+#     # 512 is "Mobile App"
+#     CHANNEL_MEDIUM_TYPE_ID: 512
 
-  CONTENT_ITEM:
-    ContentSeriesContentItem:
-      # When resolving "ContentSeriesContentItem" look in rock for a "ContentChannelItem"
-      EntityType: ContentChannelItem
-      # Used to define the subset of content channels types that use this specific type.
-      ContentChannelTypeId: [6, 7]
-    DevotionalContentItem:
-      EntityType: ContentChannelItem
-      ContentChannelTypeId: [1]
-    MediaContentItem:
-      EntityType: ContentChannelItem
-    UniversalContentItem:
-      EntityType: ContentChannelItem
-    WeekendContentItem:
-      ContentChannelId: [5]
-      EntityType: ContentChannelItem
-    ConferenceTrack:
-      EntityType: Contentful
-    Location:
-      EntityType: Contentful
-    Announcement:
-      EntityType: Contentful
-    Speaker:
-      EntityType: Contentful
-    Breakouts:
-      EntityType: Contentful
-    ContentItem:
-      EntityType: Contentful
+#   CONTENT_ITEM:
+#     ContentSeriesContentItem:
+#       # When resolving "ContentSeriesContentItem" look in rock for a "ContentChannelItem"
+#       EntityType: ContentChannelItem
+#       # Used to define the subset of content channels types that use this specific type.
+#       ContentChannelTypeId: [6, 7]
+#     DevotionalContentItem:
+#       EntityType: ContentChannelItem
+#       ContentChannelTypeId: [1]
+#     MediaContentItem:
+#       EntityType: ContentChannelItem
+#     UniversalContentItem:
+#       EntityType: ContentChannelItem
+#     WeekendContentItem:
+#       ContentChannelId: [5]
+#       EntityType: ContentChannelItem
+#     ContentItem:
+#       EntityType: ContentChannelItem
 
-  DATAVIEW_CATEGORIES:
-    # Id of the category used to store all persona dataviews
-    PersonaId: 210
+#   DATAVIEW_CATEGORIES:
+#     # Id of the category used to store all persona dataviews
+#     PersonaId: 210
 
-  # Apollos will pull these content channels and expose them in the app on the discover screen.
-  DISCOVER_CONTENT_CHANNEL_IDS:
-    - 2
-    - 3
-    - 4
-    - 6
-    - 8
-  # Apollos will pull content items from these channels and expose them on the user feed
-  # However, it will not expose the channel itself.
-  # These channels are also pulled when indexing searchable content.
-  FEED_CONTENT_CHANNEL_IDS:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 8
+#   # Apollos will pull these content channels and expose them in the app on the discover screen.
+#   DISCOVER_CONTENT_CHANNEL_IDS:
+#     - 2
+#     - 3
+#     - 4
+#     - 6
+#     - 8
+#   # Apollos will pull content items from these channels and expose them on the user feed
+#   # However, it will not expose the channel itself.
+#   # These channels are also pulled when indexing searchable content.
+#   FEED_CONTENT_CHANNEL_IDS:
+#     - 1
+#     - 2
+#     - 3
+#     - 4
+#     - 5
+#     - 6
+#     - 8
 
-  CAMPAIGN_CHANNEL_IDS:
-    - 11
+#   CAMPAIGN_CHANNEL_IDS:
+#     - 11
 
-  SERMON_CHANNEL_ID: 5
+#   SERMON_CHANNEL_ID: 5
 
-  SERVING_GROUP_TYPE_ID: 23
-  COMMUNITY_GROUP_TYPE_ID: 25
-  FAMILY_GROUP_TYPE_ID: 10
+#   SERVING_GROUP_TYPE_ID: 23
+#   COMMUNITY_GROUP_TYPE_ID: 25
+#   FAMILY_GROUP_TYPE_ID: 10
 
 HOME_FEATURES:
   - title: FOR YOU
