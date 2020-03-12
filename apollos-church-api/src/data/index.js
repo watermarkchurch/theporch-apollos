@@ -30,6 +30,7 @@ import {
   Event,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
+import * as ContentfulData from './contentful';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
@@ -37,8 +38,9 @@ import * as OneSignalWithRock from './oneSignalWithRock';
 
 const data = {
   Followings,
-  ContentChannel,
-  ContentItem,
+  // ContentChannel,
+  // ContentItem,
+  ...ContentfulData,
   Person,
   Cloudinary,
   Auth,
