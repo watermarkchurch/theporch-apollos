@@ -45,6 +45,10 @@ export const schema = gql`
     media: VideoMediaSource
 
     parentChannel: ContentChannel
+
+    sharing: SharableContentItem
+    isLiked: Boolean @cacheControl(maxAge: 0)
+    likedCount: Int @cacheControl(maxAge: 0)
   }
 
   extend type Query {
