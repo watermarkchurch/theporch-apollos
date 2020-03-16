@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { StatusBar } from 'react-native';
 import {
   BackgroundView,
@@ -16,6 +15,7 @@ import { TabView } from 'react-native-tab-view';
 import SearchInputHeader, {
   ReactNavigationStyleReset,
 } from '../../ui/SearchInputHeader';
+import GET_DAYS from './getDays';
 
 import moment from 'moment';
 import ThemedBottomTabBar from '../tabBar';
@@ -23,19 +23,6 @@ import headerOptions from '../headerOptions';
 import AppStateRefetch from '../../ui/AppStateRefetch';
 
 import Day from './Day';
-
-const getDays = gql`
-  query {
-    conference {
-      id
-      days {
-        id
-        title
-        date
-      }
-    }
-  }
-`;
 
 class Schedule extends PureComponent {
   static navigationOptions = ({ screenProps }) => ({
@@ -67,7 +54,7 @@ class Schedule extends PureComponent {
   render() {
     return (
       <BackgroundView>
-        <Query query={getDays} fetchPolicy="cache-and-network">
+        <Query query={GET_DAYS} fetchPolicy="cache-and-network">
           {({
             loading,
             data: { conference: { days = [] } = {} } = {},
