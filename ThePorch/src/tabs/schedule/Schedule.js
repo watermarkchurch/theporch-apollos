@@ -27,6 +27,7 @@ import Day from './Day';
 const getDays = gql`
   query {
     conference {
+      id
       days {
         id
         title
@@ -100,12 +101,6 @@ class Schedule extends PureComponent {
                   }}
                   renderScene={({ route }) => <Day id={route.key} />}
                   onIndexChange={(index) => this.setState({ index })}
-                  renderTabBar={(props) => (
-                    <ThemedBottomTabBar
-                      {...props}
-                      renderLabel={({ route }) => <H6>{route.title}</H6>}
-                    />
-                  )}
                 />
               </>
             );
