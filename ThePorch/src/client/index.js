@@ -15,14 +15,7 @@ const wipeData = () => cache.writeData({ data: defaults });
 let clearStore;
 let storeIsResetting = false;
 
-const logLink = new ApolloLink((operation, forward) => {
-  return forward(operation).map((data) => {
-    console.log('logging');
-    return forward(operation);
-  });
-});
-
-const link = ApolloLink.from([logLink, httpLink]);
+const link = ApolloLink.from([httpLink]);
 
 export const client = new ApolloClient({
   link,
