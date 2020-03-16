@@ -59,23 +59,6 @@ input AnalyticsTrackInput {
 
 scalar AnalyticsValue
 
-type Announcement implements ContentItem & Node {
-  id: ID!
-  coverImage: ImageMedia
-  htmlContent: String
-  summary: String
-  media: VideoMediaSource
-  title(hyphenated: Boolean): String
-  images: [ImageMedia]
-  videos: [VideoMedia]
-  audios: [AudioMedia]
-  theme: Theme
-  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
-  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
-  parentChannel: ContentChannel
-  sharing: SharableContentItem
-}
-
 type AudioMedia implements Media {
   name: String
   key: String
@@ -114,6 +97,8 @@ type Breakouts implements ContentItem & Node {
   parentChannel: ContentChannel
   startTime: String
   endTime: String
+  isLiked: Boolean
+  likedCount: Int
   sharing: SharableContentItem
 }
 
@@ -134,7 +119,6 @@ type Campus implements Node {
   longitude: Float
   image: ImageMediaSource
   distanceFromLocation(location: CampusLocationInput): Float
-  events: [Event]
 }
 
 input CampusLocationInput {
@@ -150,11 +134,8 @@ type Conference implements Node {
   title: String
   code: String
   days: [ConferenceDay]
-  announcements: ContentItemsConnection
-  tracks: [ConferenceTrack]
   maps: [Location]
   upNext(likedIds: [ID]): ContentItem
-  resources: [Resource]
 }
 
 type ConferenceDay implements Node {
@@ -162,23 +143,6 @@ type ConferenceDay implements Node {
   title: String
   childContentItemsConnection(first: Int, after: String): ContentItemsConnection
   date: String!
-}
-
-type ConferenceTrack implements ContentItem & Node {
-  id: ID!
-  coverImage: ImageMedia
-  htmlContent: String
-  summary: String
-  title(hyphenated: Boolean): String
-  images: [ImageMedia]
-  videos: [VideoMedia]
-  audios: [AudioMedia]
-  theme: Theme
-  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
-  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
-  media: VideoMediaSource
-  parentChannel: ContentChannel
-  sharing: SharableContentItem
 }
 
 type ContentChannel implements Node {
@@ -269,14 +233,28 @@ type DevotionalContentItem implements ContentItem & Node {
   sharing: SharableContentItem
 }
 
-type Event implements Node {
+type Event implements ContentItem & Node {
   id: ID!
-  name: String
-  description: String
-  location: String
-  start: String
-  end: String
-  image: ImageMedia
+  title(hyphenated: Boolean): String
+  coverImage: ImageMedia
+  htmlContent: String
+  summary: String
+  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  images: [ImageMedia]
+  videos: [VideoMedia]
+  audios: [AudioMedia]
+  parentChannel: ContentChannel
+  speakers: [Speaker]
+  location: Location
+  startTime: String
+  endTime: String
+  downloads: [ContentfulAsset]
+  label: String
+  theme: Theme
+  isLiked: Boolean
+  likedCount: Int
+  sharing: SharableContentItem
 }
 
 interface Feature {
@@ -344,6 +322,8 @@ type Location implements Node & ContentItem {
   siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
   media: VideoMediaSource
   parentChannel: ContentChannel
+  isLiked: Boolean
+  likedCount: Int
   sharing: SharableContentItem
 }
 
@@ -479,8 +459,6 @@ type Query {
   userFeedFeatures: [Feature]
 }
 
-union Resource = Announcement | Link
-
 type RockPersonDetails {
   authToken: String
   authCookie: String
@@ -551,6 +529,8 @@ type Speaker implements Node & ContentItem {
   siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
   media: VideoMediaSource
   parentChannel: ContentChannel
+  isLiked: Boolean
+  likedCount: Int
   sharing: SharableContentItem
 }
 

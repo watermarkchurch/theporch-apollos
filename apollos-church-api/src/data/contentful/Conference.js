@@ -25,14 +25,9 @@ export const schema = gql`
     title: String @cacheControl(maxAge: 3600)
     code: String @cacheControl(maxAge: 3600)
     days: [ConferenceDay] @cacheControl(maxAge: 1800)
-    announcements: ContentItemsConnection @cacheControl(maxAge: 900)
-    tracks: [ConferenceTrack] @cacheControl(maxAge: 1800)
     maps: [Location] @cacheControl(maxAge: 1800)
     upNext(likedIds: [ID]): ContentItem @cacheControl(maxAge: 300)
-    resources: [Resource] @cacheControl(maxAge: 1800)
   }
-
-  union Resource = Announcement | Link
 
   extend type Query {
     conference(code: String): Conference
@@ -44,22 +39,13 @@ export const resolver = {
     conference: (_, { code = CONFERENCE_CODE }, { dataSources }) =>
       dataSources.Conference.getFromCode(code),
   },
-  Resource: {
-    __resolveType: ({ sys }) => {
-      const type = sys.contentType.sys.id || '';
-      return type.charAt(0).toUpperCase() + type.slice(1);
-    },
-  },
   Conference: {
     id: ({ sys }, args, context, { parentType }) =>
       createGlobalId(sys.id, parentType.name),
     title: ({ fields }) => fields.title,
     code: ({ fields }) => fields.code,
     days: ({ fields }) => fields.days,
-    announcements: ({ fields }) => fields.announcements,
-    tracks: ({ fields }) => fields.tracks,
     maps: ({ fields }) => fields.maps,
-    resources: ({ fields }) => fields.resources,
     upNext: ({ fields }, { likedIds = [] }) => {
       const currentTime = moment();
 

@@ -105,15 +105,13 @@ ROCK_MAPPINGS:
     WeekendContentItem:
       ContentChannelId: [5]
       EntityType: ContentChannelItem
-    ConferenceTrack:
+    Event:
+      EntityType: Contentful
+    Breakouts:
       EntityType: Contentful
     Location:
       EntityType: Contentful
-    Announcement:
-      EntityType: Contentful
     Speaker:
-      EntityType: Contentful
-    Breakouts:
       EntityType: Contentful
     ContentItem:
       EntityType: Contentful
