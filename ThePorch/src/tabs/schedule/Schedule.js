@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import {
   BackgroundView,
   // TabView,
@@ -43,7 +43,9 @@ class Schedule extends PureComponent {
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('light-content');
-      StatusBar.setBackgroundColor('#EF5E24'); // todo: don't hard-code color value
+      Platform.OS === 'android'
+        ? StatusBar.setBackgroundColor('#EF5E24')
+        : null; // todo: don't hard-code color value
     });
   }
 
