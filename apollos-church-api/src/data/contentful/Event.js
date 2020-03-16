@@ -8,7 +8,7 @@ export class dataSource extends ContentfulDataSource {}
 export const schema = gql`
   type Event implements ContentItem & Node {
     id: ID!
-    title: String
+    title(hyphenated: Boolean): String
     coverImage: ImageMedia
 
     htmlContent: String
@@ -23,8 +23,11 @@ export const schema = gql`
       after: String
     ): ContentItemsConnection
 
+    images: [ImageMedia]
+    videos: [VideoMedia]
+    audios: [AudioMedia]
+
     parentChannel: ContentChannel
-    media: VideoMediaSource
 
     speakers: [Speaker]
     location: Location
@@ -32,6 +35,12 @@ export const schema = gql`
     endTime: String
     downloads: [ContentfulAsset]
     label: String
+
+    theme: Theme
+
+    sharing: SharableContentItem
+    isLiked: Boolean @cacheControl(maxAge: 0)
+    likedCount: Int @cacheControl(maxAge: 0)
   }
 `;
 

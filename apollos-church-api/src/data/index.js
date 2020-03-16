@@ -63,7 +63,7 @@ const data = {
   Group,
   BinaryFiles,
   Features,
-  Event,
+  // Event,
   Cache,
 };
 
