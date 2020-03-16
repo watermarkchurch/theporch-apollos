@@ -20,13 +20,11 @@ const AppProviders = (props) => (
       >
         <MediaPlayerProvider>
           <AnalyticsProvider>
-            <LiveProvider>
               <Providers
                 themeInput={customTheme}
                 iconInput={customIcons}
                 {...props}
               />
-            </LiveProvider>
           </AnalyticsProvider>
         </MediaPlayerProvider>
       </NotificationsProvider>
