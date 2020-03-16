@@ -51,7 +51,7 @@ const Actions = styled({
 export const Caret = styled(({ theme }) => ({
   alignSelf: 'center',
   marginTop: 9,
-  marginRight: -theme.sizing.baseUnit * 0.5,
+  marginRight: theme.sizing.baseUnit * 0.5,
   opacity: 0.5,
 }))((props) => <Icon name="arrow-next" size={20} {...props} />);
 
