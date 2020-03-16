@@ -53,7 +53,7 @@ export const Caret = styled(({ theme }) => ({
   marginTop: 9,
   marginRight: -theme.sizing.baseUnit * 0.5,
   opacity: 0.5,
-}))((props) => <Icon name="arrow-right" size={20} {...props} />);
+}))((props) => <Icon name="arrow-next" size={20} {...props} />);
 
 const SecondaryText = styled({ opacity: 0.6 })(UIText);
 
