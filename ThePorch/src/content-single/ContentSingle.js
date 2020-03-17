@@ -16,6 +16,8 @@ import WeekendContentItem from './WeekendContentItem';
 
 import NavigationHeader from './NavigationHeader';
 
+import Location from './Location';
+
 class ContentSingle extends PureComponent {
   static propTypes = {
     navigation: PropTypes.shape({
@@ -99,7 +101,9 @@ class ContentSingle extends PureComponent {
           }}
         />
         {this.renderContent({ content, loading, error })}
-        {/* TODO: <ActionContainer itemId={id} />*/}
+        {content.__typename !== 'Location' ? (
+          <ActionContainer {...this.queryVariables} />
+        ) : null}
       </ThemeMixin>
     );
   };
