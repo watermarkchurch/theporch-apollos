@@ -386,6 +386,7 @@ type Query {
   search(query: String!, first: Int, after: String): SearchResultsConnection
   campuses(location: CampusLocationInput): [Campus]
   userFeedFeatures: [Feature]
+  messages(first: Int, after: String): ContentItemsConnection
 }
 
 type RockPersonDetails {
