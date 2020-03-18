@@ -73,7 +73,7 @@ export class dataSource extends RESTDataSource {
       node: this.createNode(node),
       cursor: createCursor({
         ...paginationPartsForCursors,
-        offset: paginationPartsForCursors.offset + i,
+        offset: paginationPartsForCursors.offset + i + 1,
       }),
     }));
 
