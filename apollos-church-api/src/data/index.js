@@ -16,8 +16,8 @@ import {
   Interactions,
   RockConstants,
   Person,
-  ContentItem,
-  ContentChannel,
+  // ContentItem,
+  // ContentChannel,
   Sharable,
   Auth,
   PersonalDevice,
@@ -30,6 +30,10 @@ import {
   Event,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
+
+import * as WCCMedia from './wcc-media';
+import * as ContentItem from './ContentItem';
+import * as ContentChannel from './ContentChannel';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
@@ -63,6 +67,7 @@ const data = {
   Features,
   Event,
   Cache,
+  ...WCCMedia,
 };
 
 const {
