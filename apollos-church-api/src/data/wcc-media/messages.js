@@ -28,7 +28,7 @@ export class dataSource extends RESTDataSource {
     return this.createNode(result.message);
   }
 
-  async paginate({ filters = {}, pagination: { after, first = 20 } = {} }) {
+  async paginate({ filters = {}, pagination: { after, first = 20 } = {} } = {}) {
     // used to build the params sent to /messages endpoint
     let requestParams = { ...filters };
     requestParams.limit = first;
