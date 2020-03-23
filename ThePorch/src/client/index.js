@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
+import { onError } from 'apollo-link-error';
 import { getVersion, getApplicationName } from 'react-native-device-info';
 
 import { resolvers, schema, defaults } from '../store';
@@ -15,7 +16,21 @@ const wipeData = () => cache.writeData({ data: defaults });
 let clearStore;
 let storeIsResetting = false;
 
-const link = ApolloLink.from([httpLink]);
+const errorLink = onError(({ networkError, graphQLErrors }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+      ),
+    );
+  }
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
+
+const link = ApolloLink.from([
+  errorLink,
+  httpLink,
+]);
 
 export const client = new ApolloClient({
   link,
