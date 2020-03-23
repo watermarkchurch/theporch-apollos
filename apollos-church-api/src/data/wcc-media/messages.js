@@ -6,6 +6,8 @@ import { createCursor, parseCursor } from '@apollosproject/server-core';
 // that includes some core resolver mapping functionality (like ContentItem.title hyphenation)
 import { ContentItem } from '@apollosproject/data-connector-rock';
 
+import marked from 'marked';
+
 import { ApolloError } from 'apollo-server'
 import gql from 'graphql-tag';
 import { createGlobalId } from '@apollosproject/server-core';
@@ -21,7 +23,7 @@ export class dataSource extends RESTDataSource {
 
   async getFromId(id) {
     const result = await this.get(id);
-    if (!result || !Object.isObject(result) || result.error || !result.message)
+    if (!result || typeof result !== 'object' || result.error || !result.message)
       throw new ApolloError(result?.error?.message, result?.error?.code);
     return this.createNode(result.message);
   }
@@ -137,10 +139,20 @@ export const resolver = {
     },
     summary: ({ subtitle }) => subtitle,
     images: ({ images }) => Object.keys(images).map((key) => ({ uri: images[key].url, name: images[key].type_name, key })),
-    videos: ({ assets: { streaming_video } = {} }) => [{ uri: streaming_video.url, name: streaming_video.type_name, key: 'streaming_video' }],
-    audios: ({ assets: { audio } = {} }) => [{ uri: audio.url, name: audio.type_name, key: 'audio' }],
-    parentChannel: () => null, // TODO
+    videos: ({ assets: { streaming_video } = {} }) => streaming_video.url ? [{ sources: [{ uri: streaming_video.url }], name: streaming_video.type_name, key: 'streaming_video' }] : null,
+    audios: ({ assets: { audio } = {} }) => audio.url ? [{ sources: [{ uri: audio.url }], name: audio.type_name, key: 'audio' }] : null,
+    parentChannel: (input, args, { dataSources}) => dataSources.ContentChannel.getMessagesChannel(), // TODO
     theme: () => null, // TODO
+    childContentItemsConnection: () => ({
+      pageInfo: () => null,
+      totalCount: () => 0,
+      edges: () => ([]),
+    }),
+    siblingContentItemsConnection: () => ({
+      pageInfo: () => null,
+      totalCount: () => 0,
+      edges: () => ([]),
+    }),
   },
   Query: {
     messages: (_, pagination, { dataSources }) => dataSources.WCCMessage.paginate({
