@@ -1,8 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 
-import Message from './Message';
-
 import { ApolloError } from 'apollo-server'
 
 

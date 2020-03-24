@@ -8,9 +8,8 @@ import { createGlobalId } from '@apollosproject/server-core';
 
 const resolver = {
   WCCBlog: {
-    __isTypeOf: ({ id, digest }) => typeof id === 'string' && digest,
-    id: ({ id }, args, context, { parentType }) =>
-      createGlobalId(`${id}`, parentType.name),
+    id: ({ slug }, args, context, { parentType }) =>
+      createGlobalId(`${slug}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
     coverImage: ({ heroImage, thumbnailImage }) => {
       let uri;

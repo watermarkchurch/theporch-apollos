@@ -31,10 +31,10 @@ CHURCH_ONLINE:
   MEDIA_URLS: []
   WEB_VIEW_URL: https://apollos.churchonline.org/
 ALGOLIA:
-  APPLICATION_ID: ${ALGOLIA_APP_ID}
+  APPLICATION_ID: FPTWE3M1PT
   API_KEY: ${ALGOLIA_API_KEY}
   # TODO: should we support multiple indices? how
-  SEARCH_INDEX: test_ContentItem
+  SEARCH_INDEX: papyrus_heroku-production_blogs
   # Configure Algolia custom settings here
   # https://www.algolia.com/doc/api-reference/settings-api-parameters/
   CONFIGURATION:
