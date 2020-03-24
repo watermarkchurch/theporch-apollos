@@ -31,7 +31,7 @@ import {
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
 
-import * as WCCMedia from './wcc-media';
+import * as WCCMessage from './wcc-media';
 import * as WCCBlog from './wcc-blog';
 import * as ContentItem from './ContentItem';
 import * as ContentChannel from './ContentChannel';
@@ -68,8 +68,8 @@ const data = {
   Features,
   Event,
   Cache,
-  ...WCCMedia,
-  ...WCCBlog,
+  WCCMessage,
+  WCCBlog,
 };
 
 const {
