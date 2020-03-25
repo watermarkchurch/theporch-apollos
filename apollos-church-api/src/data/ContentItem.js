@@ -8,8 +8,9 @@ export const schema = ContentItem.schema;
 export const resolver = resolverMerge({
   ContentItem: {
     __resolveType: (node, ...args) => {
-      if (node.__resolveType) return node.__resolveType(node, ...args);
-      return ContentItem.resolver.ContentItem.__resolveType(node, ...args);
+      if (typeof node.messages_count === 'number') return 'WCCSeries';
+      if (typeof node.id === 'number' || !isNaN(node.objectID)) return 'WCCMessage';
+      return 'WCCBlog';
     },
   },
   Query: {
