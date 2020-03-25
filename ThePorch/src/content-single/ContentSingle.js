@@ -101,9 +101,7 @@ class ContentSingle extends PureComponent {
           }}
         />
         {this.renderContent({ content, loading, error })}
-        {content.__typename !== 'Location' ? (
-          <ActionContainer {...this.queryVariables} />
-        ) : null}
+        {/*<ActionContainer itemId={id} />*/}
       </ThemeMixin>
     );
   };

@@ -50,7 +50,9 @@ class Home extends PureComponent {
   render() {
     return (
       <BackgroundView>
-        <SafeAreaView>
+        <SafeAreaView
+          style={{ flex: 1 }}
+        >
           <Query
             query={GET_USER_FEED}
             variables={{
@@ -77,7 +79,7 @@ class Home extends PureComponent {
                 ListHeaderComponent={
                   <>
                     <LogoTitle source={require('./wordmark.png')} />
-                    <Query
+                    {/*<Query
                       query={GET_CAMPAIGN_CONTENT_ITEM}
                       fetchPolicy="cache-and-network"
                     >
@@ -109,7 +111,7 @@ class Home extends PureComponent {
                         );
                       }}
                     </Query>
-                    <Features navigation={this.props.navigation} />
+                    <Features navigation={this.props.navigation} />*/}
                   </>
                 }
                 onPressItem={this.handleOnPress}
