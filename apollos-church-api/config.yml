@@ -104,6 +104,8 @@ ROCK_MAPPINGS:
       EntityType: ContentChannelItem
     WCCBlog:
       EntityType: ContentChannelItem
+    WCCSeries:
+      EntityType: ContentChannelItem
     UniversalContentItem:
       EntityType: ContentChannelItem
     WeekendContentItem:

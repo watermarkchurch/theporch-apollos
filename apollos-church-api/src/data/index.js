@@ -31,6 +31,7 @@ import {
 import * as Theme from './theme';
 
 import * as WCCMessage from './wcc-media';
+import * as WCCSeries from './wcc-series';
 import * as WCCBlog from './wcc-blog';
 import * as ContentItem from './ContentItem';
 import * as ContentChannel from './ContentChannel';
@@ -70,6 +71,7 @@ const data = {
   Cache,
   WCCMessage,
   WCCBlog,
+  WCCSeries,
 };
 
 const {

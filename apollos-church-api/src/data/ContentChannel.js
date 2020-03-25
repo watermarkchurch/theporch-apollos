@@ -18,8 +18,10 @@ export class dataSource extends RESTDataSource {
 
   getMessagesChannel = () => this.getFromId('https://media.watermark.org/api/v1/messages'); // todo
   getBlogChannel = () => this.getFromId('https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'); // todo
+  getSeriesChannel = () => this.getFromId('https://media.watermark.org/api/v1/series?filter[tag_id][]=4'); // todo
 
   getRootChannels = () => ([
+    this.getSeriesChannel(),
     this.getMessagesChannel(),
     this.getBlogChannel(),
   ]);
@@ -49,12 +51,14 @@ export const resolver = {
     id: ({ id }, args, context, { parentType }) =>
       createGlobalId(id, parentType.name),
     name: (node) => {
+      if (node.series) return 'Series';
       if (node.messages) return 'Messages';
       return 'Blog';
     },
     description: () => null,
     childContentChannels: () => ([]),
     childContentItemsConnection: (node, pagination, { dataSources }) => {
+      if (node.series) return dataSources.WCCSeries.paginate({ pagination });
       if (node.messages) return dataSources.WCCMessage.paginate({ pagination });
       return dataSources.WCCBlog.paginate({ pagination });
     },

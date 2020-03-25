@@ -28,7 +28,7 @@ const resolver = {
       return htmlContent;
     },
     summary: ({ subtitle }) => subtitle,
-    images: ({ images }) => Object.keys(images).map((key) => ({ uri: images[key].url, name: images[key].type_name, key })),
+    images: ({ images }) => Object.keys(images).map((key) => ({ sources: [{ uri: images[key].url }], name: images[key].type_name, key })),
     videos: ({ assets: { streaming_video } = {} }) => streaming_video.url ? [{ sources: [{ uri: streaming_video.url }], name: streaming_video.type_name, key: 'streaming_video' }] : null,
     audios: ({ assets: { audio } = {} }) => audio.url ? [{ sources: [{ uri: audio.url }], name: audio.type_name, key: 'audio' }] : null,
     parentChannel: (input, args, { dataSources}) => dataSources.ContentChannel.getMessagesChannel(), // TODO
@@ -38,10 +38,10 @@ const resolver = {
       totalCount: () => 0,
       edges: () => ([]),
     }),
-    siblingContentItemsConnection: () => ({
-      pageInfo: () => null,
-      totalCount: () => 0,
-      edges: () => ([]),
+    siblingContentItemsConnection: ({ series: { id } = {} } = {}, pagination, { dataSources }) =>
+    dataSources.WCCMessage.paginate({
+      filters: { filter: { series_id: id } },
+      pagination,
     }),
   },
   Query: {

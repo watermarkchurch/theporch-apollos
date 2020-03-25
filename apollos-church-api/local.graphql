@@ -564,6 +564,24 @@ type WCCMessage implements ContentItem & Node {
   sharing: SharableContentItem
 }
 
+type WCCSeries implements ContentItem & Node {
+  id: ID!
+  title(hyphenated: Boolean): String
+  coverImage: ImageMedia
+  htmlContent: String
+  summary: String
+  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  images: [ImageMedia]
+  videos: [VideoMedia]
+  audios: [AudioMedia]
+  parentChannel: ContentChannel
+  theme: Theme
+  isLiked: Boolean
+  likedCount: Int
+  sharing: SharableContentItem
+}
+
 type WeekendContentItem implements ContentItem & Node {
   id: ID!
   title(hyphenated: Boolean): String
