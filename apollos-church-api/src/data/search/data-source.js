@@ -29,11 +29,21 @@ export default class Search {
     }
   }
 
+  indices = {};
+
   initialize({ context }) {
     this.context = context;
   }
 
-  async byPaginatedQuery({ query, after, first = 20 }) {
+  indice(indice) {
+    if (!indice) return this.index;
+    if (!this.indices[indice]) {
+      this.indices[indice] = this.client.initIndex(indice);
+    }
+    return this.indices[indice];
+  }
+
+  async byPaginatedQuery({ index, query = '', after, first = 20, ...filters }) {
     const length = first;
     let offset = 0;
     if (after) {
@@ -44,8 +54,9 @@ export default class Search {
         throw new Error(`An invalid 'after' cursor was provided: ${after}`);
       }
     }
-    const { hits } = await this.index.search({
-      filters: 'publishedProperties.key:theporch-app',
+    const indice = this.indice(index);
+    const { hits, ...other } = await indice.search({
+      ...filters,
       query,
       length,
       offset,
