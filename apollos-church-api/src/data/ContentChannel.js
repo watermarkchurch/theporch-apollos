@@ -20,7 +20,6 @@ export class dataSource extends RESTDataSource {
         result = parsed;
       }
     }
-    console.log({ result });
     return ({
       ...result,
       id,
@@ -34,9 +33,9 @@ export class dataSource extends RESTDataSource {
 
   getRootChannels = () => ([
     this.getPopularChannel(),
-    // this.getSeriesChannel(),
-    // this.getMessagesChannel(),
-    // this.getBlogChannel(),
+    this.getSeriesChannel(),
+    this.getMessagesChannel(),
+    this.getBlogChannel(),
   ]);
 }
 
@@ -72,15 +71,14 @@ export const resolver = {
     },
     description: () => null,
     childContentChannels: () => ([]),
-    childContentItemsConnection: async (node, { after, first }, { dataSources }) => {
+    childContentItemsConnection: async (node, pagination, { dataSources }) => {
       if (node.search) {
         const results = await dataSources.Search.byPaginatedQuery({
-          after,
-          first,
+          ...pagination,
           index: node.search,
           filters: node.filters,
         });
-        return results.hits;
+        return { edges: results.map(({ cursor, ...node }) => ({ node, cursor })) };
       }
       if (node.series) return dataSources.WCCSeries.paginate({ pagination });
       if (node.messages) return dataSources.WCCMessage.paginate({ pagination });

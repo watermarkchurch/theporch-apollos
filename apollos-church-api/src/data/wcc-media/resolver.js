@@ -2,16 +2,17 @@
 // almost like there should be like a @apollosproject/data-connector-core
 // that includes some core resolver mapping functionality (like ContentItem.title hyphenation)
 import { ContentItem } from '@apollosproject/data-connector-rock';
+import { get } from 'lodash';
 
 import marked from 'marked';
 import { createGlobalId } from '@apollosproject/server-core';
 
 const resolver = {
   WCCMessage: {
-    id: ({ id }, args, context, { parentType }) =>
-      createGlobalId(`${id}`, parentType.name),
+    id: ({ id, objectID }, args, context, { parentType }) =>
+      createGlobalId(`${id || objectID}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ images }) => ({ sources: [{ uri: images.square.url }] }),
+    coverImage: ({ images, thumbnail_url }) => ({ sources: [{ uri: get(images, 'square.url') || thumbnail_url }] }),
     htmlContent: ({ description, sermon_guide, transcript }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
@@ -28,9 +29,9 @@ const resolver = {
       return htmlContent;
     },
     summary: ({ subtitle }) => subtitle,
-    images: ({ images }) => Object.keys(images).map((key) => ({ sources: [{ uri: images[key].url }], name: images[key].type_name, key })),
-    videos: ({ assets: { streaming_video } = {} }) => streaming_video.url ? [{ sources: [{ uri: streaming_video.url }], name: streaming_video.type_name, key: 'streaming_video' }] : null,
-    audios: ({ assets: { audio } = {} }) => audio.url ? [{ sources: [{ uri: audio.url }], name: audio.type_name, key: 'audio' }] : null,
+    images: ({ images }) => Object.keys(images | []).map((key) => ({ sources: [{ uri: images[key].url }], name: images[key].type_name, key })),
+    videos: ({ assets: { streaming_video = {} } = {} }) => streaming_video.url ? [{ sources: [{ uri: streaming_video.url }], name: streaming_video.type_name, key: 'streaming_video' }] : null,
+    audios: ({ assets: { audio = {} } = {} }) => audio.url ? [{ sources: [{ uri: audio.url }], name: audio.type_name, key: 'audio' }] : null,
     parentChannel: (input, args, { dataSources}) => dataSources.ContentChannel.getMessagesChannel(), // TODO
     theme: () => null, // TODO
     childContentItemsConnection: () => ({

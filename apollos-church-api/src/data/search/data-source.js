@@ -65,7 +65,6 @@ export default class Search {
     return hits.map((node, i) => ({
       ...node,
       __resolver: WCCBlog.resolver.WCCBlog,
-      __typename: 'WCCBlog',
       cursor: createCursor({ position: i + offset }),
     }));
   }
