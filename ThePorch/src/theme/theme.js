@@ -29,6 +29,10 @@ const colors = {
   wordOfChrist: '#8B0000', // only used in Scripture.
 };
 
+// App theme type.
+
+export const type = 'dark';
+
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
@@ -70,4 +74,4 @@ const overrides = {
   },
 };
 
-export default { colors, overrides };
+export default { colors, overrides, type };
