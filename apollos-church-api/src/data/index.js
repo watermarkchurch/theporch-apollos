@@ -5,9 +5,8 @@ import { createApolloServerConfig } from '@apollosproject/server-core';
 import * as Analytics from '@apollosproject/data-connector-analytics';
 import * as Scripture from '@apollosproject/data-connector-bible';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
-import * as Cloudinary from '@apollosproject/data-connector-cloudinary';
+// import * as Cloudinary from '@apollosproject/data-connector-cloudinary';
 import * as OneSignal from '@apollosproject/data-connector-onesignal';
-import * as Search from '@apollosproject/data-connector-algolia-search';
 import * as Pass from '@apollosproject/data-connector-passes';
 import * as Cache from '@apollosproject/data-connector-redis-cache';
 import * as Sms from '@apollosproject/data-connector-twilio';
@@ -16,8 +15,8 @@ import {
   Interactions,
   RockConstants,
   Person,
-  ContentItem,
-  ContentChannel,
+  // ContentItem,
+  // ContentChannel,
   Sharable,
   Auth,
   PersonalDevice,
@@ -31,6 +30,13 @@ import {
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
 
+import * as WCCMessage from './wcc-media';
+import * as WCCSeries from './wcc-series';
+import * as WCCBlog from './wcc-blog';
+import * as ContentItem from './ContentItem';
+import * as ContentChannel from './ContentChannel';
+import * as Search from './Search';
+
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
 import * as OneSignalWithRock from './oneSignalWithRock';
@@ -40,7 +46,7 @@ const data = {
   ContentChannel,
   ContentItem,
   Person,
-  Cloudinary,
+  // Cloudinary,
   Auth,
   AuthSms,
   Sms,
@@ -63,6 +69,9 @@ const data = {
   Features,
   Event,
   Cache,
+  WCCMessage,
+  WCCBlog,
+  WCCSeries,
 };
 
 const {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   checkNotifications,
   openSettings,
@@ -18,7 +18,10 @@ import {
   LocationFinderConnected,
   OnboardingSwiper,
 } from '@apollosproject/ui-onboarding';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { resetAction } from '../../NavigationService';
+import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
 
 const FullscreenBackgroundView = styled({
   position: 'absolute',
@@ -31,6 +34,13 @@ const StyledGradient = styled({
 })(GradientOverlayImage);
 
 function Onboarding({ navigation }) {
+  const dispatch = useOnboardDispatch();
+
+  useEffect(() => {
+    AsyncStorage.setItem('hideOnboard', 'true');
+    dispatch(hideOnboarding());
+  }, []);
+
   return (
     <>
       <FullscreenBackgroundView />

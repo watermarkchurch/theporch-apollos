@@ -6,6 +6,7 @@ import { get } from 'lodash';
 
 import { H3, styled, PaddedView } from '@apollosproject/ui-kit';
 import { UserAvatarConnected } from '@apollosproject/ui-connected';
+
 import GET_USER_PROFILE from './getUserProfile';
 
 const GetUserProfile = ({ children }) => (
