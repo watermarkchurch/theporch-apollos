@@ -107,6 +107,7 @@ class ContentSingle extends PureComponent {
   };
 
   render() {
+    console.log(GET_CONTENT_ITEM)
     return (
       <Query query={GET_CONTENT_ITEM} variables={this.queryVariables}>
         {this.renderWithData}

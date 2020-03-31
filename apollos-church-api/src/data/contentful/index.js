@@ -1,5 +1,4 @@
-export * as ContentItem from './ContentItem';
-export * as ContentChannel from './ContentChannel';
+export * as ContentfulContentItem from './ContentfulContentItem';
 export * as Conference from './Conference';
 export * as ConferenceDay from './ConferenceDay';
 export * as Event from './Event';

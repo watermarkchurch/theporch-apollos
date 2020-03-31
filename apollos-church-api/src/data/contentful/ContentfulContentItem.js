@@ -32,10 +32,13 @@ export class dataSource extends ContentfulDataSource {
     const firstSentence = tokenizer.tokenize(raw)[0];
     return firstSentence;
   };
+
+  createImageField = (field) => {
+    return field?.fields?.file?.url ? ({ sources: [{ uri: field.fields.file.url }]}) : null;
+  }
 }
 
 export const schema = gql`
-  ${contentItemSchema}
   type ContentfulAsset implements Media {
     name: String
     description: String
@@ -50,42 +53,29 @@ export const schema = gql`
 `;
 
 export const resolver = {
-  ContentItem: {
-    __resolveType: ({ sys }) => {
-      const contentfulType = sys.contentType.sys.id;
-      return upperFirst(camelCase(contentfulType));
-    },
-  },
   ContentfulAsset: {
     name: ({ fields }) => fields.name,
     description: ({ fields }) => fields.description,
     key: ({ fields }) => fields.name,
     sources: ({ fields }) => [fields.file],
   },
-  ImageMedia: {
-    name: ({ fields }) => fields.name,
-    key: ({ fields }) => fields.name,
-    sources: ({ fields }) => [fields.file],
-  },
+  // ImageMedia: {
+  //   name: ({ fields }) => fields.name,
+  //   key: ({ fields }) => fields.name,
+  //   sources: ({ fields }) => [fields.file],
+  // },
   ContentfulMediaSource: {
     uri: ({ url }) => enforceProtocol(url),
   },
-  ImageMediaSource: {
-    uri: ({ url }) =>
-      withCloudinary(`https:${url}`, {
-        // https://cloudinary.com/documentation/node_image_manipulation#apply_common_image_transformations
-        width: 'auto',
-        quality: '60',
-        dpr: 'auto',
-        fetch_format: 'auto',
-        crop: 'limit',
-      }),
-  },
-  ContentItemsConnection: {
-    edges: (items) =>
-      items.map((node) => ({
-        node,
-        cursor: null,
-      })),
-  },
+  // ImageMediaSource: {
+  //   uri: ({ url }) =>
+  //     withCloudinary(`https:${url}`, {
+  //       // https://cloudinary.com/documentation/node_image_manipulation#apply_common_image_transformations
+  //       width: 'auto',
+  //       quality: '60',
+  //       dpr: 'auto',
+  //       fetch_format: 'auto',
+  //       crop: 'limit',
+  //     }),
+  // },
 };

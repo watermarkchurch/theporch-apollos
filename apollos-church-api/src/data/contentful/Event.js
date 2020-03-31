@@ -49,7 +49,7 @@ export const resolver = {
       createGlobalId(sys.id, parentType.name),
     title: ({ fields }) => fields.title,
     summary: (node, args, { dataSources }) =>
-      dataSources.ContentItem.createSummary(node),
+      dataSources.ContentfulContentItem.createSummary(node),
     htmlContent: ({ fields }) =>
       fields.description ? marked(fields.description) : null,
     speakers: ({ fields }) => fields.speakers,
@@ -75,7 +75,7 @@ export const resolver = {
       }
     },
     downloads: ({ fields }) => fields.downloads,
-    coverImage: ({ fields }) => fields.art,
+    coverImage: ({ fields }, args, { dataSources }) => dataSources.ContentfulContentItem.createImageField(fields.art),
     label: ({ fields }) => fields.eventType,
   },
 };

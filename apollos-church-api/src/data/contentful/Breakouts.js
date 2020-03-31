@@ -55,12 +55,12 @@ export const resolver = {
       createGlobalId(sys.id, parentType.name),
     title: ({ fields }) => fields.title,
     summary: (node, args, { dataSources }) =>
-      dataSources.ContentItem.createSummary(node),
+      dataSources.ContentfulContentItem.createSummary(node),
     htmlContent: ({ fields }) =>
       fields.description ? marked(fields.description) : null,
-    childContentItemsConnection: ({ fields }) => fields.breakouts,
+    childContentItemsConnection: ({ fields }) => ({ edges: fields.breakouts.map(node => ({ node })) }),
     startTime: ({ fields }) => fields.startTime,
     endTime: ({ fields }) => fields.endTime,
-    coverImage: ({ fields }) => fields.art,
+    coverImage: ({ fields }, args, { dataSources }) => dataSources.ContentfulContentItem.createImageField(fields.art),
   },
 };

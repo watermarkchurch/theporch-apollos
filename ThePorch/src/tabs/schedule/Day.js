@@ -66,27 +66,17 @@ class Day extends PureComponent {
           fetchPolicy="cache-and-network"
         >
           {({ loading, data, error, refetch }) => (
-            <FeedView
-              renderItem={({ item }) => (
-                <ScheduleItem
-                  {...item}
+            (get(
+                data,
+                'node.childContentItemsConnection.edges'
+              ) || []).map(({ node }) =>                 <ScheduleItem
+                  {...node}
                   onPress={
-                    item.childContentItemsConnection || item.htmlContent
-                      ? () => this.handleOnPress(item)
+                    node.childContentItemsConnection || node.htmlContent
+                      ? () => this.handleOnPress(node)
                       : null
                   }
-                />
-              )}
-              content={get(
-                data,
-                'node.childContentItemsConnection.edges',
-                []
-              ).map((edge) => edge.node)}
-              isLoading={loading}
-              error={error}
-              refetch={refetch}
-              onPressItem={this.handleOnPress}
-            />
+                />)
           )}
         </Query>
       </BackgroundView>

@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { Platform, StatusBar } from 'react-native';
+import { Platform, StatusBar, ScrollView } from 'react-native';
 import {
   BackgroundView,
   // TabView,
   ActivityIndicator,
   H6,
+  H2,
   ThemeMixin,
   withThemeMixin,
   ErrorCard,
@@ -80,17 +81,25 @@ class Schedule extends PureComponent {
             return (
               <>
                 <AppStateRefetch refetch={refetch} />
-                <TabView
-                  navigationState={{
-                    index: this.state.index,
-                    routes: days.map((day) => ({
-                      key: day.id,
-                      title: day.title,
-                    })),
-                  }}
-                  renderScene={({ route }) => <Day id={route.key} />}
-                  onIndexChange={(index) => this.setState({ index })}
-                />
+                <ScrollView>
+                {days.map(day => (
+                  <>
+                    <H2>{day.title}</H2>
+                    <Day id={day.id} />
+                  </>
+                ))}
+                </ScrollView>
+                {/* <TabView */}
+                {/*   navigationState={{ */}
+                {/*     index: this.state.index, */}
+                {/*     routes: days.map((day) => ({ */}
+                {/*       key: day.id, */}
+                {/*       title: day.title, */}
+                {/*     })), */}
+                {/*   }} */}
+                {/*   renderScene={({ route }) => <Day id={route.key} />} */}
+                {/*   onIndexChange={(index) => this.setState({ index })} */}
+                {/* /> */}
               </>
             );
           }}

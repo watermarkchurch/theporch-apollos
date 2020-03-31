@@ -44,8 +44,8 @@ import * as OneSignalWithRock from './oneSignalWithRock';
 
 const data = {
   // Followings,
-  // ContentChannel,
-  // ContentItem,
+  ContentChannel,
+  ContentItem,
   ...ContentfulData,
   Person,
   // Cloudinary,

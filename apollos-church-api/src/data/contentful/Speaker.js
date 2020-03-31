@@ -64,7 +64,7 @@ export const resolver = {
       createGlobalId(sys.id, parentType.name),
     title: ({ fields }) => fields.name,
     summary: (node, args, { dataSources }) =>
-      dataSources.ContentItem.createSummary(node),
+      dataSources.ContentfulContentItem.createSummary(node),
     htmlContent: ({ fields }) =>
       fields.biography ? marked(fields.biography) : '',
     coverImage: ({ fields }) => fields.photo,

@@ -23,8 +23,6 @@ export const resolver = {
     title: ({ fields }) => fields.title,
     date: ({ fields }) => fields.date,
     childContentItemsConnection: ({ fields: { scheduleItem = [] } = {} }) =>
-      scheduleItem.sort(
-        (a, b) => new Date(a.fields.startTime) - new Date(b.fields.startTime)
-      ),
+      ({ edges: scheduleItem.sort((a, b) => new Date(a.fields.startTime) - new Date(b.fields.startTime)).map(node => ({ node })) }),
   },
 };
