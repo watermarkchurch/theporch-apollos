@@ -36,7 +36,7 @@ import * as WCCSeries from './wcc-series';
 import * as WCCBlog from './wcc-blog';
 import * as ContentItem from './ContentItem';
 import * as ContentChannel from './ContentChannel';
-import * as Search from './Search';
+import * as Search from './search';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
