@@ -44,6 +44,6 @@ export const resolver = {
     title: ({ fields }) => fields.title,
     summary: ({ fields }) => fields.summary,
     map: ({ fields }) => fields.map,
-    coverImage: ({ fields }) => fields.map,
+    coverImage: ({ fields }, args, { dataSources }) => dataSources.ContentfulContentItem.createImageField(fields.map),
   },
 };

@@ -67,8 +67,8 @@ export const resolver = {
       dataSources.ContentfulContentItem.createSummary(node),
     htmlContent: ({ fields }) =>
       fields.biography ? marked(fields.biography) : '',
-    coverImage: ({ fields }) => fields.photo,
-    childContentItemsConnection: (node, args, { dataSources }) =>
-      dataSources.Speaker.getLinkedEntries(node),
+    coverImage: ({ fields }, args, { dataSources }) => dataSources.ContentfulContentItem.createImageField(fields.photo),
+    childContentItemsConnection: async (node, args, { dataSources }) =>
+      ({ edges: (await dataSources.Speaker.getLinkedEntries(node)).map((node) => ({ node })) }),
   },
 };

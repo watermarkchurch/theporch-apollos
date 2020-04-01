@@ -441,10 +441,10 @@ input PushSettingsInput {
 type Query {
   _placeholder: Boolean
   node(id: ID!): Node
+  contentChannels: [ContentChannel]
   campaigns: ContentItemsConnection
   userFeed(first: Int, after: String): ContentItemsConnection
   personaFeed(first: Int, after: String): ContentItemsConnection
-  contentChannels: [ContentChannel]
   conference(code: String): Conference
   speakers: [Speaker]
   currentUser: AuthenticatedUser
