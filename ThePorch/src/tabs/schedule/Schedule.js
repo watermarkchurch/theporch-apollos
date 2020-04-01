@@ -19,6 +19,7 @@ import SearchInputHeader, {
 import GET_DAYS from './getDays';
 
 import moment from 'moment';
+import UpNext from './UpNext'
 import ThemedBottomTabBar from '../tabBar';
 import headerOptions from '../headerOptions';
 import AppStateRefetch from '../../ui/AppStateRefetch';
@@ -82,12 +83,13 @@ class Schedule extends PureComponent {
               <>
                 <AppStateRefetch refetch={refetch} />
                 <ScrollView>
-                {days.map(day => (
-                  <>
-                    <H2>{day.title}</H2>
-                    <Day id={day.id} />
-                  </>
-                ))}
+                  <UpNext />
+                  {days.map(day => (
+                    <>
+                      <H2>{day.title}</H2>
+                      <Day id={day.id} />
+                    </>
+                  ))}
                 </ScrollView>
                 {/* <TabView */}
                 {/*   navigationState={{ */}

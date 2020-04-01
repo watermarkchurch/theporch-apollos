@@ -80,6 +80,12 @@ export const resolver = {
         })
       );
 
+      // If the event is over
+      if (!upNext){
+        const lastDay = days[days.length -1];
+        return lastDay.fields.scheduleItem[lastDay.fields.scheduleItem.length -1];
+      }
+
       if (likedIds) {
         const parsedLikedIds = likedIds.map((id) => parseGlobalId(id).id);
         const childNodes = upNext.fields.breakouts || [];
