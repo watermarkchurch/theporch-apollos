@@ -23,6 +23,7 @@ import UpNext from './UpNext'
 import ThemedBottomTabBar from '../tabBar';
 import headerOptions from '../headerOptions';
 import AppStateRefetch from '../../ui/AppStateRefetch';
+import ConferenceCard from './ConferenceCard'
 
 import Day from './Day';
 
@@ -83,6 +84,7 @@ class Schedule extends PureComponent {
               <>
                 <AppStateRefetch refetch={refetch} />
                 <ScrollView>
+                  <ConferenceCard />
                   <UpNext />
                   {days.map(day => (
                     <>
