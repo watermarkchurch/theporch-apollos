@@ -11,7 +11,7 @@ import * as Pass from '@apollosproject/data-connector-passes';
 import * as Cache from '@apollosproject/data-connector-redis-cache';
 import * as Sms from '@apollosproject/data-connector-twilio';
 import {
-  Followings,
+  // Followings,
   Interactions,
   RockConstants,
   Person,
@@ -29,6 +29,7 @@ import {
   Event,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
+import * as ContentfulData from './contentful';
 
 import * as WCCMessage from './wcc-media';
 import * as WCCSeries from './wcc-series';
@@ -42,9 +43,10 @@ import * as Search from './search';
 import * as OneSignalWithRock from './oneSignalWithRock';
 
 const data = {
-  Followings,
+  // Followings,
   ContentChannel,
   ContentItem,
+  ...ContentfulData,
   Person,
   // Cloudinary,
   Auth,
@@ -67,7 +69,7 @@ const data = {
   Group,
   BinaryFiles,
   Features,
-  Event,
+  // Event,
   Cache,
   WCCMessage,
   WCCBlog,

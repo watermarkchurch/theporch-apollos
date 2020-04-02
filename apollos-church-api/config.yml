@@ -112,8 +112,16 @@ ROCK_MAPPINGS:
     WeekendContentItem:
       ContentChannelId: [5]
       EntityType: ContentChannelItem
+    Event:
+      EntityType: Contentful
+    Breakouts:
+      EntityType: Contentful
+    Location:
+      EntityType: Contentful
+    Speaker:
+      EntityType: Contentful
     ContentItem:
-      EntityType: ContentChannelItem
+      EntityType: Contentful
 
   DATAVIEW_CATEGORIES:
     # Id of the category used to store all persona dataviews

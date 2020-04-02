@@ -16,6 +16,8 @@ import WeekendContentItem from './WeekendContentItem';
 
 import NavigationHeader from './NavigationHeader';
 
+import Location from './Location';
+
 class ContentSingle extends PureComponent {
   static propTypes = {
     navigation: PropTypes.shape({
@@ -105,6 +107,7 @@ class ContentSingle extends PureComponent {
   };
 
   render() {
+
     return (
       <Query query={GET_CONTENT_ITEM} variables={this.queryVariables}>
         {this.renderWithData}
