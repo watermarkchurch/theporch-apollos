@@ -5,12 +5,14 @@ import { ErrorCard, H3, PaddedView } from '@apollosproject/ui-kit';
 import { get } from 'lodash';
 import TextFeature from './TextFeature';
 import ScriptureFeature from './ScriptureFeature';
+import SpeakerFeature from './SpeakerFeature';
 
 import GET_CONTENT_ITEM_FEATURES from './getContentItemFeatures';
 
 const FEATURE_MAP = {
   TextFeature,
   ScriptureFeature,
+  SpeakerFeature,
 };
 
 const Features = ({ contentId }) => {
