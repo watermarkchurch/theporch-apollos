@@ -2,17 +2,21 @@
 // almost like there should be like a @apollosproject/data-connector-core
 // that includes some core resolver mapping functionality (like ContentItem.title hyphenation)
 import { ContentItem } from '@apollosproject/data-connector-rock';
-import { get } from 'lodash';
+import { get, values } from 'lodash';
 
 import marked from 'marked';
 import { createGlobalId } from '@apollosproject/server-core';
+
+import { resolver as seriesResolver } from '../wcc-series';
 
 const resolver = {
   WCCMessage: {
     id: ({ id, objectID }, args, context, { parentType }) =>
       createGlobalId(`${id || objectID}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ images, thumbnail_url }) => ({ sources: [{ uri: get(images, 'square.url') || thumbnail_url }] }),
+    coverImage: ({ images, thumbnail_url, series = {} }) => console.log({ images, thumbnail_url, series }) || ({
+      sources: [{ uri: get(images, 'square.url') || values(images).find(({ url } = {}) => url)?.url || thumbnail_url || seriesResolver.WCCSeries.coverImage(series) }],
+    }),
     htmlContent: ({ description, sermon_guide, transcript }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
