@@ -69,17 +69,6 @@ class Schedule extends PureComponent {
             if (loading && !days.length) return <ActivityIndicator />;
             if (error) return <ErrorCard error={error} />;
 
-            let initialIndex = days.findIndex(
-              (day) => moment(day.date) > new Date()
-            ); // find the first day that falls after today
-            if (initialIndex === -1) {
-              initialIndex = days.length - 1;
-            } else {
-              initialIndex -= 1;
-            }
-            initialIndex = Math.max(initialIndex, 0);
-            initialIndex = Math.min(initialIndex, days.length - 1);
-
             return (
               <>
                 <AppStateRefetch refetch={refetch} />
@@ -93,17 +82,6 @@ class Schedule extends PureComponent {
                     </>
                   ))}
                 </ScrollView>
-                {/* <TabView */}
-                {/*   navigationState={{ */}
-                {/*     index: this.state.index, */}
-                {/*     routes: days.map((day) => ({ */}
-                {/*       key: day.id, */}
-                {/*       title: day.title, */}
-                {/*     })), */}
-                {/*   }} */}
-                {/*   renderScene={({ route }) => <Day id={route.key} />} */}
-                {/*   onIndexChange={(index) => this.setState({ index })} */}
-                {/* /> */}
               </>
             );
           }}

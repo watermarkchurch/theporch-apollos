@@ -59,23 +59,7 @@ export const resolver = {
     key: ({ fields }) => fields.name,
     sources: ({ fields }) => [fields.file],
   },
-  // ImageMedia: {
-  //   name: ({ fields }) => fields.name,
-  //   key: ({ fields }) => fields.name,
-  //   sources: ({ fields }) => [fields.file],
-  // },
   ContentfulMediaSource: {
     uri: ({ url }) => enforceProtocol(url),
   },
-  // ImageMediaSource: {
-  //   uri: ({ url }) =>
-  //     withCloudinary(`https:${url}`, {
-  //       // https://cloudinary.com/documentation/node_image_manipulation#apply_common_image_transformations
-  //       width: 'auto',
-  //       quality: '60',
-  //       dpr: 'auto',
-  //       fetch_format: 'auto',
-  //       crop: 'limit',
-  //     }),
-  // },
 };
