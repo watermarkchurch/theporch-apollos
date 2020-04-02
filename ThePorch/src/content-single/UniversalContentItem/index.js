@@ -48,6 +48,7 @@ const UniversalContentItem = ({ content, loading }) => {
             />
           ) : null}
           <SafeAreaView forceInset={{ bottom: 'always', top: 'always' }}>
+            <MediaControlsConnected contentId={content.id} />
             <ContentContainer
               hasCoverImage={coverImageSources && coverImageSources.length}
             >
@@ -65,7 +66,6 @@ const UniversalContentItem = ({ content, loading }) => {
           <PaddedView />
         </FlexedScrollView>
       </BackgroundView>
-      <MediaControlsConnected contentId={content.id} />
     </>
   );
 };
