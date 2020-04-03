@@ -8,7 +8,7 @@ class WCCFeatures extends baseFeatures.dataSource {
   // eslint-disable-next-line class-methods-use-this
   getFeatures(root) {
     const speakerFeatures = root.speakers.map(this.createSpeakerFeature)
-    console.log(speakerFeatures);
+
     return [...speakerFeatures]
   }
 
@@ -19,6 +19,18 @@ class WCCFeatures extends baseFeatures.dataSource {
       id: createGlobalId(id, 'SpeakerFeature'),
       __typename: 'SpeakerFeature',
     };
+  }
+}
+
+const resolver = {
+  SpeakerFeature: {
+    profileImage: async ({ name }, args, { dataSources }) => {
+      const speaker = await dataSources.WCCMessage.getSpeakerByName({ name })
+      if (speaker?.image) {
+        return { sources: [{ uri: speaker.image }]}
+      }
+      return null
+    }
   }
 }
 
@@ -35,4 +47,5 @@ const schema = gql`
 export {
   WCCFeatures as dataSource,
   schema,
+  resolver,
 }

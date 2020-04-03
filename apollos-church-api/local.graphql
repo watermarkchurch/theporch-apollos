@@ -81,13 +81,6 @@ type Authentication {
   token: String
 }
 
-type AuthorFeature implements Feature & Node {
-  id: ID!
-  order: Int
-  name: String
-  profileImage: ImageMedia
-}
-
 type Breakouts implements ContentItem & Node {
   id: ID!
   coverImage: ImageMedia
@@ -541,6 +534,13 @@ type Speaker implements Node & ContentItem {
   isLiked: Boolean
   likedCount: Int
   sharing: SharableContentItem
+}
+
+type SpeakerFeature implements Feature & Node {
+  id: ID!
+  order: Int
+  name: String
+  profileImage: ImageMedia
 }
 
 type TextFeature implements Feature & Node {

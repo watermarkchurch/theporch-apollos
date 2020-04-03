@@ -23,7 +23,7 @@ const resolver = {
     }),
     childContentItemsConnection: ({ id }, pagination, { dataSources }) =>
       dataSources.WCCMessage.paginate({
-        filters: { filter: { series_id: id } },
+        restrictSearchableAttributes: 'Person.full_name',
         pagination,
       }),
   },

@@ -35,6 +35,7 @@ ALGOLIA:
   API_KEY: ${ALGOLIA_API_KEY}
   # TODO: should we support multiple indices? how
   BLOG_INDEX: papyrus_heroku-production_blogs
+  PEOPLE_INDEX: people_production
   MESSAGES_INDEX: Messages_production_rev_chron
   # Configure Algolia custom settings here
   # https://www.algolia.com/doc/api-reference/settings-api-parameters/
