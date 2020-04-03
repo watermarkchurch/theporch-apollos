@@ -17,16 +17,16 @@ const resolver = {
     coverImage: ({ images, thumbnail_url, series = {} }) => ({
       sources: [{ uri: get(images, 'square.url') || values(images).find(({ url } = {}) => url)?.url || thumbnail_url || seriesResolver.WCCSeries.coverImage(series) }],
     }),
-    htmlContent: ({ description, sermon_guide, transcript, ...args }) => {
+    htmlContent: ({ description, sermon_guide, transcript, date, ...args }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
-      let htmlContent = `<p>${description}</p>`;
+      let htmlContent = '';
 
-      console.log(args);
+      if (date) {
+        htmlContent += `<strong>${date}</strong>`;
+      }
 
-      // if (sermon_guide && sermon_guide.markdown) {
-      //   htmlContent += marked(sermon_guide.markdown);
-      // }
+      htmlContent += `<p>${description}</p>`;
 
       if (sermon_guide && sermon_guide.markdown) {
         htmlContent += marked(sermon_guide.markdown);
