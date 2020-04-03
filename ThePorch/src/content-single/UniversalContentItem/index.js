@@ -1,72 +1,57 @@
 import React from 'react';
-import { ScrollView, Platform } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
+import { Animated } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import {
+  ContentHTMLViewConnected,
+  HorizontalContentSeriesFeedConnected,
+  MediaControlsConnected,
+} from '@apollosproject/ui-connected';
 import {
   styled,
   GradientOverlayImage,
   BackgroundView,
   PaddedView,
   H2,
-  H6,
+  StretchyView,
 } from '@apollosproject/ui-kit';
-import HTMLContent from '../HTMLContent';
-import ChildContentFeed from '../ChildContentFeed';
-import { MediaControlsConnected } from '@apollosproject/ui-connected';
-import Location from './Location';
-import Speakers from './Speakers';
-import Time from './Time';
+import Features from '../Features';
 
-const FlexedScrollView = styled({ flex: 1 })(ScrollView);
+const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
-const ContentContainer = styled(({ hasCoverImage, theme }) => ({
-  paddingTop: hasCoverImage ? 0 : theme.sizing.baseUnit,
-  paddingBottom: 0,
-}))(PaddedView);
-
-const LabelText = styled(({ theme }) => ({
-  color: theme.colors.primary,
-  ...(Platform.OS === 'android'
-    ? {
-        paddingTop: 5,
-      }
-    : {}),
-}))(H6);
+const StyledMediaControlsConnected = styled(({ theme }) => ({
+  marginTop: -(theme.sizing.baseUnit * 2.5),
+}))(MediaControlsConnected);
 
 const UniversalContentItem = ({ content, loading }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
-    <>
-      <BackgroundView>
-        <FlexedScrollView>
-          {coverImageSources.length ||
-          (loading && get(content, 'coverImage') !== null) ? (
-            <GradientOverlayImage
-              isLoading={!coverImageSources.length && loading}
-              source={coverImageSources}
-            />
-          ) : null}
-          <SafeAreaView forceInset={{ bottom: 'always', top: 'always' }}>
-            <MediaControlsConnected contentId={content.id} />
-            <ContentContainer
-              hasCoverImage={coverImageSources && coverImageSources.length}
-            >
-              <PaddedView horizontal={false}>
-                {content.label ? <LabelText>{content.label}</LabelText> : null}
-                <H2 isLoading={!content.title && loading}>{content.title}</H2>
-              </PaddedView>
-              <HTMLContent contentId={content.id} />
-            </ContentContainer>
-            <Time contentId={content.id} />
-            <Location contentId={content.id} />
-            <ChildContentFeed contentId={content.id} />
-            <Speakers contentId={content.id} />
-          </SafeAreaView>
-          <PaddedView />
-        </FlexedScrollView>
-      </BackgroundView>
-    </>
+    <BackgroundView>
+      <StretchyView>
+        {({ Stretchy, ...scrollViewProps }) => (
+          <FlexedScrollView {...scrollViewProps}>
+            {coverImageSources.length || loading ? (
+              <Stretchy>
+                <GradientOverlayImage
+                  isLoading={!coverImageSources.length && loading}
+                  source={coverImageSources}
+                />
+              </Stretchy>
+            ) : null}
+            <StyledMediaControlsConnected contentId={content.id} />
+            {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+            <PaddedView vertical={!coverImageSources.length}>
+              <H2 padded isLoading={!content.title && loading}>
+                {content.title}
+              </H2>
+              <ContentHTMLViewConnected contentId={content.id} />
+            </PaddedView>
+            <Features contentId={content.id} />
+            <HorizontalContentSeriesFeedConnected contentId={content.id} />
+          </FlexedScrollView>
+        )}
+      </StretchyView>
+    </BackgroundView>
   );
 };
 

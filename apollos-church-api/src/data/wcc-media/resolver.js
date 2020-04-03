@@ -14,13 +14,19 @@ const resolver = {
     id: ({ id, objectID }, args, context, { parentType }) =>
       createGlobalId(`${id || objectID}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ images, thumbnail_url, series = {} }) => console.log({ images, thumbnail_url, series }) || ({
+    coverImage: ({ images, thumbnail_url, series = {} }) => ({
       sources: [{ uri: get(images, 'square.url') || values(images).find(({ url } = {}) => url)?.url || thumbnail_url || seriesResolver.WCCSeries.coverImage(series) }],
     }),
-    htmlContent: ({ description, sermon_guide, transcript }) => {
+    htmlContent: ({ description, sermon_guide, transcript, ...args }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
       let htmlContent = `<p>${description}</p>`;
+
+      console.log(args);
+
+      // if (sermon_guide && sermon_guide.markdown) {
+      //   htmlContent += marked(sermon_guide.markdown);
+      // }
 
       if (sermon_guide && sermon_guide.markdown) {
         htmlContent += marked(sermon_guide.markdown);
@@ -44,10 +50,11 @@ const resolver = {
       edges: () => ([]),
     }),
     siblingContentItemsConnection: ({ series: { id } = {} } = {}, pagination, { dataSources }) =>
-    dataSources.WCCMessage.paginate({
-      filters: { filter: { series_id: id } },
-      pagination,
-    }),
+      dataSources.WCCMessage.paginate({
+        filters: { filter: { series_id: id } },
+        pagination,
+      }),
+    features: (root, args, { dataSources }) => dataSources.WCCFeatures.getFeatures(root),
   },
   Query: {
     messages: (_, pagination, { dataSources }) => dataSources.WCCMessage.paginate({

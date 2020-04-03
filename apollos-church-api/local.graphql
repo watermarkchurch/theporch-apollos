@@ -536,6 +536,13 @@ type Speaker implements Node & ContentItem {
   sharing: SharableContentItem
 }
 
+type SpeakerFeature implements Feature & Node {
+  id: ID!
+  order: Int
+  name: String
+  profileImage: ImageMedia
+}
+
 type TextFeature implements Feature & Node {
   id: ID!
   order: Int
@@ -645,6 +652,7 @@ type WCCMessage implements ContentItem & Node {
   audios: [AudioMedia]
   parentChannel: ContentChannel
   theme: Theme
+  features: [Feature]
   sharing: SharableContentItem
 }
 

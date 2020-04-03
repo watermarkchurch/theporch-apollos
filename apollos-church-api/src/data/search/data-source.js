@@ -30,6 +30,7 @@ export default class Search {
 
   messagesIndex = ApollosConfig.ALGOLIA.MESSAGES_INDEX;
   blogIndex = ApollosConfig.ALGOLIA.BLOG_INDEX;
+  peopleIndex = ApollosConfig.ALGOLIA.PEOPLE_INDEX;
 
   indices = {};
 

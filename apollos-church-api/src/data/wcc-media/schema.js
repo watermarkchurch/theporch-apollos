@@ -20,6 +20,7 @@ const schema =  gql`
     audios: [AudioMedia]
     parentChannel: ContentChannel
     theme: Theme
+    features: [Feature]
   }
 
   extend type Query {

@@ -14,6 +14,16 @@ class dataSource extends RESTDataSource {
     return result.message;
   }
 
+  async getSpeakerByName ({name}) {
+    const { Search } = this.context.dataSources;
+    const results = await Search.byPaginatedQuery({
+      index: Search.peopleIndex,
+      query: name,
+      facets: ["*"]
+    });
+    return results[0];
+  }
+
   async paginate({ filters = {}, pagination: { after, first = 20 } = {} } = {}) {
     // used to build the params sent to /messages endpoint
     let requestParams = { ...filters };
