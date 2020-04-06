@@ -31,6 +31,10 @@ const BrandIcon = withTheme(({ theme }) => ({
   },
 }))(Image);
 
+const BackgroundImage = styled({
+  position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+})(Image);
+
 const SubHeading = styled({
   textAlign: 'center',
 })(BodyText);
@@ -39,7 +43,7 @@ const LandingScreen = ({ navigation }) => (
   <ThemeMixin mixin={{ type: 'dark' }}>
     <BackgroundView>
       <Slide primaryNavText={"Come On In!"} onPressPrimary={() => navigation.push('Onboarding')} scrollEnabled={false}>
-        <Image source={require('./splash.png')} style={StyleSheet.absoluteFill} />
+        <BackgroundImage source={require('./splash.png')} resizeMode="cover" />
         <Content>
           <BrandIcon />
           <SubHeading>
