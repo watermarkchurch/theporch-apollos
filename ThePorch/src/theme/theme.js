@@ -27,6 +27,15 @@ const colors = {
   lightTertiary: '#A5A5A5',
   // Statics
   wordOfChrist: '#8B0000', // only used in Scripture.
+  icons: {
+    AwakenAlt: '#6755B3',
+    ConnectAlt: '#EBA938',
+    DiscoverAlt: '#01859A',
+    FavoriteAlt: '#EBA938',
+    HomeAlt: '#F76E5E',
+    LocationAlt: '#6755B3',
+    TimeAlt: '#6755B3',
+  },
 };
 
 // App theme type.
