@@ -7,13 +7,13 @@ import { styled, withTheme } from '@apollosproject/ui-kit';
 const ThemedBottomTabBar = compose(
   withTheme(({ theme }) => ({
     showLabel: false,
-    activeTintColor: theme.colors.primary,
+    activeTintColor: theme.colors.screen,
     inactiveTintColor: theme.colors.lightTertiary,
     safeAreaInset: { bottom: 0 },
   })),
   styled(({ theme }) => ({
     borderTopWidth: 0,
-    backgroundColor: theme.colors.transparent,
+    backgroundColor: theme.colors.background.paper,
   })),
   withTabBarMediaSpacer
 )(BottomTabBar);
