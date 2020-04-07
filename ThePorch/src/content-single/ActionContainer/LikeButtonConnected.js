@@ -43,8 +43,8 @@ const GET_LIKED_CONTENT_ITEM = gql`
   query getLikedContentItem($itemId: ID!) {
     node(id: $itemId) {
       ... on ContentItem {
-        id @client
-        isLiked @client
+        id
+        isLiked @client(always: true)
       }
     }
   }
@@ -54,7 +54,7 @@ const UPDATE_LIKE_ENTITY = gql`
   mutation updateLikeEntity($itemId: ID!, $operation: LIKE_OPERATION!) {
     updateLikeEntity(input: { nodeId: $itemId, operation: $operation }) @client {
       id @client
-      isLiked @client
+      isLiked @client(always: true)
     }
   }
 `;

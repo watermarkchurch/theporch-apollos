@@ -60,6 +60,7 @@ const resolveIsLiked = (root, args, { cache }) => {
     ({ likedContent } = cache.readQuery({ query }));
   } catch (e) {
     // Use default.
+    console.log(e);
   }
 
   return !!likedContent.find((content) => content.id === root.id);
