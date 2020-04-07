@@ -23,7 +23,7 @@ const resolver = {
       let htmlContent = '';
 
       if (date) {
-        htmlContent += `<strong>${date}</strong>`;
+        htmlContent += `<p><strong>Posted on ${date}</strong></p>`;
       }
 
       htmlContent += `<p>${description}</p>`;
