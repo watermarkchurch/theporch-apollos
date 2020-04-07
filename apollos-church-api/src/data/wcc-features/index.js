@@ -13,7 +13,6 @@ class WCCFeatures extends baseFeatures.dataSource {
   }
 
   createSpeakerFeature({ name, id }) {
-    console.log(name, id);
     return {
       name,
       id: createGlobalId(id, 'SpeakerFeature'),
