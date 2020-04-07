@@ -33,9 +33,6 @@ const AppStatusBar = withTheme(({ theme }) => ({
 const AppContainer = () => {
   const dispatch = useOnboardDispatch();
 
-const ProtectedRouteWithSplashScreen = (props) => {
-  const handleOnRouteChange = () => RNBootSplash.hide({ duration: 250 });
-
   useEffect(() => {
     async function isOnboarded() {
       const token = await AsyncStorage.getItem('hideOnboard');
@@ -49,7 +46,7 @@ const ProtectedRouteWithSplashScreen = (props) => {
   // This setup flashes because it is waiting on props possible solution `isLoading`
   if (isNil(onboarded)) return null; // TODO: should we show a loading state or something?
 
-  SplashScreen.hide();
+  RNBootSplash.hide({ duration: 250 });
 
   const AppNavigator = createStackNavigator(
     {
@@ -84,11 +81,7 @@ const App = () => (
   <Providers>
     <BackgroundView>
       <AppStatusBar />
-      <AppContainer
-        ref={(navigatorRef) => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }}
-      />
+      <AppContainer />
       <MediaPlayer />
     </BackgroundView>
   </Providers>

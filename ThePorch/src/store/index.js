@@ -9,7 +9,7 @@ import CACHE_LOADED from '../client/getCacheLoaded'; // eslint-disable-line
 
 export const schema = `
   type Query {
-    devicePushId: String
+    pushId: String
     cacheLoaded: Boolean
     notificationsEnabled: Boolean
   }
@@ -37,17 +37,17 @@ export const resolvers = {
         },
       });
 
-      const { pushId } = cache.readQuery({
-        query: gql`
-          query {
-            pushId @client
-          }
-        `,
-      });
+      // const { pushId } = cache.readQuery({
+      //   query: gql`
+      //     query {
+      //       pushId @client
+      //     }
+      //   `,
+      // });
+      // if (pushId) {
+      //   updatePushId({ pushId, client });
+      // }
 
-      if (pushId) {
-        updatePushId({ pushId, client });
-      }
       return null;
     },
   },

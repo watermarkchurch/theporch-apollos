@@ -15,7 +15,7 @@ import MARK_CACHE_LOADED from './markCacheLoaded';
 const wipeData = () => cache.writeData({ data: defaults });
 
 let clearStore;
-let storeIsResetting = false;
+const storeIsResetting = false;
 
 const link = ApolloLink.from([httpLink]);
 
@@ -35,6 +35,7 @@ export const client = new ApolloClient({
 clearStore = client.clearStore;
 
 wipeData();
+
 // Ensure that media player still works after logout.
 client.onClearStore(() => wipeData());
 

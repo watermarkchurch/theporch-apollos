@@ -14,20 +14,20 @@ import customTheme, { customIcons } from './theme';
 const AppProviders = (props) => (
   <ClientProvider {...props}>
     <OnboardProvider>
-      <NotificationsProvider
-        oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY}
-        navigate={NavigationService.navigate}
-      >
-        <MediaPlayerProvider>
-          <AnalyticsProvider>
-              <Providers
-                themeInput={customTheme}
-                iconInput={customIcons}
-                {...props}
-              />
-          </AnalyticsProvider>
-        </MediaPlayerProvider>
-      </NotificationsProvider>
+      {/* <NotificationsProvider */}
+      {/*   oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY} */}
+      {/*   navigate={NavigationService.navigate} */}
+      {/* > */}
+      <MediaPlayerProvider>
+        <AnalyticsProvider>
+          <Providers
+            themeInput={customTheme}
+            iconInput={customIcons}
+            {...props}
+          />
+        </AnalyticsProvider>
+      </MediaPlayerProvider>
+      {/* </NotificationsProvider> */}
     </OnboardProvider>
   </ClientProvider>
 );
