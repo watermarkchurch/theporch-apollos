@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
 
 import { TrackEventWhenLoaded } from '@apollosproject/ui-analytics';
+import { InteractWhenLoadedConnected } from '@apollosproject/ui-connected';
 
 import ActionContainer from './ActionContainer';
 import GET_CONTENT_ITEM from './getContentItem';
@@ -27,12 +28,6 @@ class ContentSingle extends PureComponent {
     }),
   };
 
-  static navigationOptions = {
-    header: NavigationHeader,
-    headerTransparent: true,
-    headerMode: 'float',
-  };
-
   get itemId() {
     return this.props.navigation.getParam('itemId', []);
   }
@@ -40,6 +35,12 @@ class ContentSingle extends PureComponent {
   get queryVariables() {
     return { itemId: this.itemId };
   }
+
+  static navigationOptions = {
+    header: NavigationHeader,
+    headerTransparent: true,
+    headerMode: 'float',
+  };
 
   renderContent = ({ content, loading, error }) => {
     let { __typename } = content;
@@ -100,13 +101,18 @@ class ContentSingle extends PureComponent {
     return (
       <ThemeMixin
         mixin={{
-          type: get(theme, 'type', 'light').toLowerCase(),
+          type: get(theme, 'type'),
           colors: get(theme, 'colors'),
         }}
       >
+        <InteractWhenLoadedConnected
+          isLoading={loading}
+          nodeId={this.itemId}
+          action={'COMPLETE'}
+        />
         <TrackEventWhenLoaded
-          loaded={!!(!loading && content.title)}
-          eventName={'View Contentx'}
+          isLoading={loading}
+          eventName={'View Content'}
           properties={{
             title: content.title,
             itemId: this.itemId,

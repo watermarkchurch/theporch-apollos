@@ -7,8 +7,10 @@ import { getVersion, getApplicationName } from 'react-native-device-info';
 
 import { resolvers, schema, defaults } from '../store';
 import NavigationService from '../NavigationService';
+
 import httpLink from './httpLink';
-import cache, { ensureCacheHydration, MARK_CACHE_LOADED } from './cache';
+import cache, { ensureCacheHydration } from './cache';
+import MARK_CACHE_LOADED from './markCacheLoaded';
 
 const wipeData = () => cache.writeData({ data: defaults });
 

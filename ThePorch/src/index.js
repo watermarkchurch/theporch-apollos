@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { isNil } from 'lodash';
+import RNBootSplash from 'react-native-bootsplash';
+
 import { BackgroundView, withTheme } from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
 import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
@@ -24,12 +26,15 @@ import {
 } from './OnboardProvider';
 
 const AppStatusBar = withTheme(({ theme }) => ({
-  barStyle: 'dark-content',
+  barStyle: theme.barStyle,
   backgroundColor: theme.colors.paper,
 }))(StatusBar);
 
 const AppContainer = () => {
   const dispatch = useOnboardDispatch();
+
+const ProtectedRouteWithSplashScreen = (props) => {
+  const handleOnRouteChange = () => RNBootSplash.hide({ duration: 250 });
 
   useEffect(() => {
     async function isOnboarded() {
@@ -78,8 +83,12 @@ const AppContainer = () => {
 const App = () => (
   <Providers>
     <BackgroundView>
-      <AppStatusBar barStyle="dark-content" />
-      <AppContainer />
+      <AppStatusBar />
+      <AppContainer
+        ref={(navigatorRef) => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
       <MediaPlayer />
     </BackgroundView>
   </Providers>
