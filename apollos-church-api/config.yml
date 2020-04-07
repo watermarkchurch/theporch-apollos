@@ -34,7 +34,9 @@ ALGOLIA:
   APPLICATION_ID: FPTWE3M1PT
   API_KEY: ${ALGOLIA_API_KEY}
   # TODO: should we support multiple indices? how
-  SEARCH_INDEX: papyrus_heroku-production_blogs
+  BLOG_INDEX: papyrus_heroku-production_blogs
+  PEOPLE_INDEX: people_production
+  MESSAGES_INDEX: Messages_production_rev_chron
   # Configure Algolia custom settings here
   # https://www.algolia.com/doc/api-reference/settings-api-parameters/
   CONFIGURATION:
@@ -111,8 +113,16 @@ ROCK_MAPPINGS:
     WeekendContentItem:
       ContentChannelId: [5]
       EntityType: ContentChannelItem
+    Event:
+      EntityType: Contentful
+    Breakouts:
+      EntityType: Contentful
+    Location:
+      EntityType: Contentful
+    Speaker:
+      EntityType: Contentful
     ContentItem:
-      EntityType: ContentChannelItem
+      EntityType: Contentful
 
   DATAVIEW_CATEGORIES:
     # Id of the category used to store all persona dataviews

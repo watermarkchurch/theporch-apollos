@@ -1,6 +1,8 @@
 import gql from 'graphql-tag';
 import ApollosConfig from '@apollosproject/config';
 
+import { SPEAKER_FEATURE_FRAGMENT } from './SpeakerFeature';
+
 const {
   TEXT_FEATURE_FRAGMENT,
   SCRIPTURE_FEATURE_FRAGMENT,
@@ -11,9 +13,11 @@ const FEATURES_FRAGMENT = gql`
     id
     ...TextFeatureFragment
     ...ScriptureFeatureFragment
+    ...SpeakerFeatureFragment
   }
   ${TEXT_FEATURE_FRAGMENT}
   ${SCRIPTURE_FEATURE_FRAGMENT}
+  ${SPEAKER_FEATURE_FRAGMENT}
 `;
 
 export default gql`
@@ -26,6 +30,11 @@ export default gql`
         }
       }
       ... on WeekendContentItem {
+        features {
+          ...FeaturesFragment
+        }
+      }
+      ... on WCCMessage {
         features {
           ...FeaturesFragment
         }

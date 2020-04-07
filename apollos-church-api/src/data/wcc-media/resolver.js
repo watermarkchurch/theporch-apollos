@@ -2,21 +2,31 @@
 // almost like there should be like a @apollosproject/data-connector-core
 // that includes some core resolver mapping functionality (like ContentItem.title hyphenation)
 import { ContentItem } from '@apollosproject/data-connector-rock';
-import { get } from 'lodash';
+import { get, values } from 'lodash';
 
 import marked from 'marked';
 import { createGlobalId } from '@apollosproject/server-core';
+
+import { resolver as seriesResolver } from '../wcc-series';
 
 const resolver = {
   WCCMessage: {
     id: ({ id, objectID }, args, context, { parentType }) =>
       createGlobalId(`${id || objectID}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ images, thumbnail_url }) => ({ sources: [{ uri: get(images, 'square.url') || thumbnail_url }] }),
-    htmlContent: ({ description, sermon_guide, transcript }) => {
+    coverImage: ({ images, thumbnail_url, series = {} }) => ({
+      sources: [{ uri: get(images, 'square.url') || values(images).find(({ url } = {}) => url)?.url || thumbnail_url || seriesResolver.WCCSeries.coverImage(series) }],
+    }),
+    htmlContent: ({ description, sermon_guide, transcript, date, ...args }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
-      let htmlContent = `<p>${description}</p>`;
+      let htmlContent = '';
+
+      if (date) {
+        htmlContent += `<p><strong>Posted on ${date}</strong></p>`;
+      }
+
+      htmlContent += `<p>${description}</p>`;
 
       if (sermon_guide && sermon_guide.markdown) {
         htmlContent += marked(sermon_guide.markdown);
@@ -40,10 +50,11 @@ const resolver = {
       edges: () => ([]),
     }),
     siblingContentItemsConnection: ({ series: { id } = {} } = {}, pagination, { dataSources }) =>
-    dataSources.WCCMessage.paginate({
-      filters: { filter: { series_id: id } },
-      pagination,
-    }),
+      dataSources.WCCMessage.paginate({
+        filters: { filter: { series_id: id } },
+        pagination,
+      }),
+    features: (root, args, { dataSources }) => dataSources.WCCFeatures.getFeatures(root),
   },
   Query: {
     messages: (_, pagination, { dataSources }) => dataSources.WCCMessage.paginate({

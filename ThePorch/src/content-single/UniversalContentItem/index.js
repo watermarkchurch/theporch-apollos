@@ -15,7 +15,6 @@ import {
   H2,
   StretchyView,
 } from '@apollosproject/ui-kit';
-
 import Features from '../Features';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);

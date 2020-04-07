@@ -15,8 +15,7 @@ export default class Search {
         ApollosConfig.ALGOLIA.APPLICATION_ID,
         ApollosConfig.ALGOLIA.API_KEY
       );
-      this.index = this.client.initIndex(ApollosConfig.ALGOLIA.SEARCH_INDEX);
-      // this.index.setSettings(ApollosConfig.ALGOLIA.CONFIGURATION);
+      this.index = this.client.initIndex(this.blogIndex);
     } else {
       console.warn(
         'You are using the Algolia Search datasource without Algolia credentials. To avoid issues, add Algolia credentials to your config.yml or remove the Algolia datasource'
@@ -28,6 +27,10 @@ export default class Search {
       };
     }
   }
+
+  messagesIndex = ApollosConfig.ALGOLIA.MESSAGES_INDEX;
+  blogIndex = ApollosConfig.ALGOLIA.BLOG_INDEX;
+  peopleIndex = ApollosConfig.ALGOLIA.PEOPLE_INDEX;
 
   indices = {};
 
