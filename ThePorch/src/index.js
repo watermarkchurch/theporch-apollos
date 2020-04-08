@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { isNil } from 'lodash';
+import RNBootSplash from 'react-native-bootsplash';
+
 import { BackgroundView, withTheme } from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
 import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
@@ -24,7 +26,7 @@ import {
 } from './OnboardProvider';
 
 const AppStatusBar = withTheme(({ theme }) => ({
-  barStyle: 'dark-content',
+  barStyle: theme.barStyle,
   backgroundColor: theme.colors.paper,
 }))(StatusBar);
 
@@ -44,7 +46,7 @@ const AppContainer = () => {
   // This setup flashes because it is waiting on props possible solution `isLoading`
   if (isNil(onboarded)) return null; // TODO: should we show a loading state or something?
 
-  SplashScreen.hide();
+  RNBootSplash.hide({ duration: 250 });
 
   const AppNavigator = createStackNavigator(
     {
@@ -78,7 +80,7 @@ const AppContainer = () => {
 const App = () => (
   <Providers>
     <BackgroundView>
-      <AppStatusBar barStyle="dark-content" />
+      <AppStatusBar />
       <AppContainer />
       <MediaPlayer />
     </BackgroundView>
