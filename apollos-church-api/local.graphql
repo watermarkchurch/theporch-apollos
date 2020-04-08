@@ -121,6 +121,12 @@ type Campus implements Node {
   distanceFromLocation(location: CampusLocationInput): Float
 }
 
+enum CAMPUS_RESOURCE_STYLE {
+  LIST_ITEM
+  BAR_ITEM
+  EXTERNAL_BAR_ITEM
+}
+
 input CampusLocationInput {
   latitude: Float
   longitude: Float
@@ -155,6 +161,17 @@ type ConferenceDay implements Node {
   title: String
   childContentItemsConnection(first: Int, after: String): ContentItemsConnection
   date: String!
+}
+
+type ConnectResource {
+  url: String
+  title: String
+  icon: String
+}
+
+type ConnectScreen {
+  barItems: [ConnectResource]
+  listItems: [ConnectResource]
 }
 
 type ContentChannel implements Node {
@@ -499,6 +516,7 @@ type Query {
   userFeedFeatures: [Feature]
   messages(first: Int, after: String): ContentItemsConnection
   blogs(first: Int, after: String): ContentItemsConnection
+  connectScreen(persona: String): ConnectScreen
 }
 
 type RockPersonDetails {

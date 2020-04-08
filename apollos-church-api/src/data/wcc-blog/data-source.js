@@ -1,7 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 
-import { ApolloError } from 'apollo-server'
+import { ApolloError } from 'apollo-server';
 
 class dataSource extends RESTDataSource {
   baseURL = 'https://di0v2frwtdqnv.cloudfront.net';
@@ -9,6 +9,7 @@ class dataSource extends RESTDataSource {
   // api/v1 is copied in this path names instead of in the baseUrl as certain _links
   // within requests assume a different base then api/v1
   channelPath = 'api/v1/property/theporch-app/blog';
+
   nodePath = 'api/v1/blog';
 
   async getFromId(id) {
@@ -33,7 +34,7 @@ class dataSource extends RESTDataSource {
 
     const result = await this.get(requestPath);
     if (!result || result.error)
-      throw new ApollosError(result?.error?.message, result?.error?.code)
+      throw new ApollosError(result?.error?.message, result?.error?.code);
 
     const getTotalCount = () => null;
 
@@ -43,12 +44,14 @@ class dataSource extends RESTDataSource {
       cursor: null,
     }));
 
-    edges[edges.length - 1].cursor = result._links.previous ? createCursor({ requestPath: result._links.previous }) : null;
+    edges[edges.length - 1].cursor = result._links.previous
+      ? createCursor({ requestPath: result._links.previous })
+      : null;
 
     return {
       edges,
       getTotalCount,
-    }
+    };
   }
 }
 
