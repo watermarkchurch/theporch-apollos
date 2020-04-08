@@ -16,6 +16,7 @@ import {
   PaddedView,
   H2,
   StretchyView,
+  HorizontalTileFeed,
 } from '@apollosproject/ui-kit';
 import Features from '../Features';
 
@@ -49,7 +50,7 @@ const UniversalContentItem = ({ content, loading }) => {
               <ContentHTMLViewConnected contentId={content.id} />
             </PaddedView>
             <ContentSingleFeaturesConnected contentId={content.id} />
-            <UpNextButtonConnected contentId={content.id} />
+            {/* <UpNextButtonConnected contentId={content.id} /> */}
             <HorizontalContentSeriesFeedConnected contentId={content.id} />
           </FlexedScrollView>
         )}

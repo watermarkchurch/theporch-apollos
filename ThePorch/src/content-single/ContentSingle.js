@@ -14,7 +14,7 @@ import GET_CONTENT_ITEM from './getContentItem';
 import DevotionalContentItem from './DevotionalContentItem';
 import UniversalContentItem from './UniversalContentItem';
 import WeekendContentItem from './WeekendContentItem';
-import ConferenceContentItem from './ConferenceContentItem'
+import ConferenceContentItem from './ConferenceContentItem';
 
 import NavigationHeader from './NavigationHeader';
 
@@ -105,11 +105,11 @@ class ContentSingle extends PureComponent {
           colors: get(theme, 'colors'),
         }}
       >
-        <InteractWhenLoadedConnected
-          isLoading={loading}
-          nodeId={this.itemId}
-          action={'COMPLETE'}
-        />
+        {/* <InteractWhenLoadedConnected */}
+        {/*   isLoading={loading} */}
+        {/*   nodeId={this.itemId} */}
+        {/*   action={'COMPLETE'} */}
+        {/* /> */}
         <TrackEventWhenLoaded
           isLoading={loading}
           eventName={'View Content'}
@@ -119,13 +119,12 @@ class ContentSingle extends PureComponent {
           }}
         />
         {this.renderContent({ content, loading, error })}
-        {/*<ActionContainer itemId={id} />*/}
+        {/* <ActionContainer itemId={id} /> */}
       </ThemeMixin>
     );
   };
 
   render() {
-
     return (
       <Query query={GET_CONTENT_ITEM} variables={this.queryVariables}>
         {this.renderWithData}
