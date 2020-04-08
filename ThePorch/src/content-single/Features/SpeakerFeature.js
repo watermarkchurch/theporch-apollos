@@ -14,7 +14,7 @@ fragment SpeakerFeatureFragment on SpeakerFeature {
 
 `
 
-const SpeakerFeature = ({ name, ...args }) => console.warn(args) || (
+const SpeakerFeature = ({ name, ...args }) => (
   <ActionCard>
     <BodyText>{`Speaker: ${name}`}</BodyText>
   </ActionCard>

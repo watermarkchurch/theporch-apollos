@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { SideBySideView, styled } from '@apollosproject/ui-kit';
 import { MediaPlayerSpacer } from '@apollosproject/ui-media-player';
 import {
-  LikeButtonConnected,
   ShareButtonConnected,
 } from '@apollosproject/ui-connected';
+
+import LikeButtonConnected from './LikeButtonConnected'
 
 const PositioningView = styled(({ theme }) => ({
   justifyContent: 'space-around',
@@ -15,7 +16,7 @@ const PositioningView = styled(({ theme }) => ({
 }))(SideBySideView);
 
 const Container = styled(({ theme }) => ({
-  backgroundColor: theme.colors.paper,
+  backgroundColor: theme.colors.background.paper,
   ...Platform.select(theme.shadows.default),
 }))(View);
 

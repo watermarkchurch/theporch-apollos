@@ -7,13 +7,15 @@ import { getVersion, getApplicationName } from 'react-native-device-info';
 
 import { resolvers, schema, defaults } from '../store';
 import NavigationService from '../NavigationService';
+
 import httpLink from './httpLink';
-import cache, { ensureCacheHydration, MARK_CACHE_LOADED } from './cache';
+import cache, { ensureCacheHydration } from './cache';
+import MARK_CACHE_LOADED from './markCacheLoaded';
 
 const wipeData = () => cache.writeData({ data: defaults });
 
 let clearStore;
-let storeIsResetting = false;
+const storeIsResetting = false;
 
 const link = ApolloLink.from([httpLink]);
 
@@ -33,6 +35,7 @@ export const client = new ApolloClient({
 clearStore = client.clearStore;
 
 wipeData();
+
 // Ensure that media player still works after logout.
 client.onClearStore(() => wipeData());
 
