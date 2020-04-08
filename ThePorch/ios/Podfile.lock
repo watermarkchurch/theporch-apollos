@@ -14,9 +14,9 @@ PODS:
     - glog
   - glog (0.3.5)
   - OneSignal (2.10.1)
-  - Permission-Notifications (2.0.9):
+  - Permission-Notifications (2.0.10):
     - RNPermissions
-  - Permission-PhotoLibrary (2.0.9):
+  - Permission-PhotoLibrary (2.0.10):
     - RNPermissions
   - React (0.60.5):
     - React-Core (= 0.60.5)
@@ -89,7 +89,7 @@ PODS:
     - react-native-video/Video (= 5.0.2)
   - react-native-video/Video (5.0.2):
     - React
-  - react-native-webview (5.12.1):
+  - react-native-webview (7.6.0):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -118,15 +118,17 @@ PODS:
     - React-Core
   - RNAirplay (1.0.0):
     - React
-  - RNCAsyncStorage (1.8.1):
+  - RNBootSplash (2.1.0):
+    - React
+  - RNCAsyncStorage (1.9.0):
     - React
   - RNDeviceInfo (4.0.1):
     - React
-  - RNGestureHandler (1.6.0):
+  - RNGestureHandler (1.6.1):
     - React
   - RNInAppBrowser (3.3.4):
     - React
-  - RNPermissions (2.0.9):
+  - RNPermissions (2.0.10):
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
@@ -172,6 +174,7 @@ DEPENDENCIES:
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNAirplay (from `../node_modules/@apollosproject/react-native-airplay-btn`)"
+  - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
@@ -182,7 +185,7 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - boost-for-react-native
     - OneSignal
 
@@ -261,6 +264,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/rn-fetch-blob"
   RNAirplay:
     :path: "../node_modules/@apollosproject/react-native-airplay-btn"
+  RNBootSplash:
+    :path: "../node_modules/react-native-bootsplash"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNDeviceInfo:
@@ -285,8 +290,8 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   OneSignal: 8fb749fa07f88006403c9b659a570fb7fb74519a
-  Permission-Notifications: 1e03f5c43612ac4f9cdcaf6504695fc4e15f33d9
-  Permission-PhotoLibrary: 42d41b53adefcfa94f42fb628f143d97136120bd
+  Permission-Notifications: c9eb3a2da68dc0f37a8dc67d37bd28d150c5041d
+  Permission-PhotoLibrary: e59a7a687e002e8c8c46946c26520934ba85a688
   React: 53c53c4d99097af47cf60594b8706b4e3321e722
   React-Core: ba421f6b4f4cbe2fb17c0b6fc675f87622e78a64
   React-cxxreact: 8384287780c4999351ad9b6e7a149d9ed10a2395
@@ -305,7 +310,7 @@ SPEC CHECKSUMS:
   react-native-safe-area-context: e380a6f783ccaec848e2f3cc8eb205a62362950d
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-video: d01ed7ff1e38fa7dcc6c15c94cf505e661b7bfd0
-  react-native-webview: 5036ed4a973ad1deeeff118262d2df7b60b3419d
+  react-native-webview: db4682f1698ab4b17a5e88f951031d203ff8aea8
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
@@ -318,11 +323,12 @@ SPEC CHECKSUMS:
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNAirplay: 75777dd55dafbd3687703c3eb9c290ea6cc43248
-  RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
+  RNBootSplash: fbf76a4bf1c03e9acd1dd08ce064847f26d6d8bf
+  RNCAsyncStorage: 453cd7c335ec9ba3b877e27d02238956b76f3268
   RNDeviceInfo: 687c1b2ab6d86ff1ca1208783320cd144138c7f2
-  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNInAppBrowser: 9936b2e23ab7ed9b6ac938eb1c4a656b95292e11
-  RNPermissions: 2f74237e97b08beda01e914301e12524ddddf5b8
+  RNPermissions: 1008d3511fee0e25739cf81c4af0d1b2248f1053
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411

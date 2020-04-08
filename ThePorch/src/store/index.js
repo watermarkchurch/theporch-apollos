@@ -2,14 +2,14 @@ import gql from 'graphql-tag';
 
 import { schema as mediaPlayerSchema } from '@apollosproject/ui-media-player';
 import { updatePushId } from '@apollosproject/ui-notifications';
-import { CACHE_LOADED } from '../client/cache'; // eslint-disable-line
+import CACHE_LOADED from '../client/getCacheLoaded'; // eslint-disable-line
 
 // TODO: this will require more organization...ie...not keeping everything in one file.
 // But this is simple while our needs our small.
 
 export const schema = `
   type Query {
-    devicePushId: String
+    pushId: String
     cacheLoaded: Boolean
     notificationsEnabled: Boolean
   }
@@ -88,17 +88,17 @@ export const resolvers = {
         },
       });
 
-      const { pushId } = cache.readQuery({
-        query: gql`
-          query {
-            pushId @client
-          }
-        `,
-      });
+      // const { pushId } = cache.readQuery({
+      //   query: gql`
+      //     query {
+      //       pushId @client
+      //     }
+      //   `,
+      // });
+      // if (pushId) {
+      //   updatePushId({ pushId, client });
+      // }
 
-      if (pushId) {
-        updatePushId({ pushId, client });
-      }
       return null;
     },
     updateLikeEntity: (root, { input }, { cache }) => {
