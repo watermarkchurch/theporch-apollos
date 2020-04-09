@@ -3,12 +3,11 @@ import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
 import { BackgroundView } from '@apollosproject/ui-kit';
 
 import ActionTable from './ActionTable';
-import ActionBar from './ActionBar';
-import UserAvatarHeader from './UserAvatarHeader';
+
+const flex = { flex: 1 };
 
 class Connect extends PureComponent {
   static navigationOptions = () => ({
@@ -25,12 +24,9 @@ class Connect extends PureComponent {
 
   render() {
     return (
-      <BackgroundView>
-        <SafeAreaView>
-          <ScrollView>
-            <UserAvatarHeader />
-            <ActionBar />
-            <HorizontalLikedContentFeedConnected />
+      <BackgroundView style={flex}>
+        <SafeAreaView style={flex}>
+          <ScrollView style={flex}>
             <ActionTable />
           </ScrollView>
         </SafeAreaView>

@@ -75,7 +75,8 @@ export const resolver = {
       }
     },
     downloads: ({ fields }) => fields.downloads,
-    coverImage: ({ fields }, args, { dataSources }) => dataSources.ContentfulContentItem.createImageField(fields.art),
+    coverImage: ({ fields }, args, { dataSources }) =>
+      dataSources.ContentfulContentItem.createImageField(fields.art),
     label: ({ fields }) => fields.eventType,
   },
 };
