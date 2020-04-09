@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const schema =  gql`
+const schema = gql`
   type WCCBlog implements ContentItem & Node {
     id: ID!
     title(hyphenated: Boolean): String
@@ -23,10 +23,7 @@ const schema =  gql`
   }
 
   extend type Query {
-    blogs(
-      first: Int
-      after: String
-    ): ContentItemsConnection
+    blogs(first: Int, after: String): ContentItemsConnection
   }
 `;
 

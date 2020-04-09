@@ -1,11 +1,7 @@
 import gql from 'graphql-tag';
-import { camelCase, upperFirst } from 'lodash';
 import natural from 'natural';
 import sanitizeHtmlNode from 'sanitize-html';
 import marked from 'marked';
-import withCloudinary from '@apollosproject/data-connector-cloudinary/lib/cloudinary';
-import { ContentItem } from '@apollosproject/data-connector-rock';
-import { contentItemSchema } from '@apollosproject/data-schema'
 
 import ContentfulDataSource from './ContentfulDataSource';
 
@@ -33,9 +29,10 @@ export class dataSource extends ContentfulDataSource {
     return firstSentence;
   };
 
-  createImageField = (field) => {
-    return field?.fields?.file?.url ? ({ sources: [{ uri: field.fields.file.url }]}) : null;
-  }
+  createImageField = (field) =>
+    field?.fields?.file?.url
+      ? { sources: [{ uri: field.fields.file.url }] }
+      : null;
 }
 
 export const schema = gql`

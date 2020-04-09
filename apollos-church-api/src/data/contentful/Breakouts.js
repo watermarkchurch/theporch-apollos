@@ -58,9 +58,12 @@ export const resolver = {
       dataSources.ContentfulContentItem.createSummary(node),
     htmlContent: ({ fields }) =>
       fields.description ? marked(fields.description) : null,
-    childContentItemsConnection: ({ fields }) => ({ edges: fields.breakouts.map(node => ({ node })) }),
+    childContentItemsConnection: ({ fields }) => ({
+      edges: fields.breakouts.map((node) => ({ node })),
+    }),
     startTime: ({ fields }) => fields.startTime,
     endTime: ({ fields }) => fields.endTime,
-    coverImage: ({ fields }, args, { dataSources }) => dataSources.ContentfulContentItem.createImageField(fields.art),
+    coverImage: ({ fields }, args, { dataSources }) =>
+      dataSources.ContentfulContentItem.createImageField(fields.art),
   },
 };

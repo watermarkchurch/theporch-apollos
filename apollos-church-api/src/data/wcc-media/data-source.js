@@ -1,30 +1,37 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 
-import { ApolloError } from 'apollo-server'
-
+import { ApolloError } from 'apollo-server';
 
 class dataSource extends RESTDataSource {
   baseURL = 'https://media.watermark.org/api/v1/messages';
 
   async getFromId(id) {
     const result = await this.get(id);
-    if (!result || typeof result !== 'object' || result.error || !result.message)
+    if (
+      !result ||
+      typeof result !== 'object' ||
+      result.error ||
+      !result.message
+    )
       throw new ApolloError(result?.error?.message, result?.error?.code);
     return result.message;
   }
 
-  async getSpeakerByName ({name}) {
+  async getSpeakerByName({ name }) {
     const { Search } = this.context.dataSources;
     const results = await Search.byPaginatedQuery({
       index: Search.peopleIndex,
       query: name,
-      facets: ["*"]
+      facets: ['*'],
     });
     return results[0];
   }
 
-  async paginate({ filters = {}, pagination: { after, first = 20 } = {} } = {}) {
+  async paginate({
+    filters = {},
+    pagination: { after, first = 20 } = {},
+  } = {}) {
     // used to build the params sent to /messages endpoint
     let requestParams = { ...filters };
     requestParams.limit = first;
@@ -53,7 +60,7 @@ class dataSource extends RESTDataSource {
 
     const result = await this.get('', requestParams);
     if (!result || result.error)
-      throw new ApollosError(result?.error?.message, result?.error?.code)
+      throw new ApolloError(result?.error?.message, result?.error?.code);
 
     // All pagination cursors below inherit these fields
     const paginationPartsForCursors = {
@@ -78,7 +85,7 @@ class dataSource extends RESTDataSource {
     return {
       edges,
       getTotalCount,
-    }
+    };
   }
 }
 

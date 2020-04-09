@@ -26,7 +26,6 @@ import {
   Group,
   BinaryFiles,
   Features,
-  Event,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
 import * as ContentfulData from './contentful';
