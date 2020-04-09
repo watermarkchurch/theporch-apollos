@@ -6,19 +6,18 @@ import {
   ContentHTMLViewConnected,
   HorizontalContentSeriesFeedConnected,
   MediaControlsConnected,
-  ContentSingleFeaturesConnected,
-  UpNextButtonConnected,
 } from '@apollosproject/ui-connected';
 import {
   styled,
   GradientOverlayImage,
-  BackgroundView,
   PaddedView,
   H2,
   StretchyView,
-  HorizontalTileFeed,
 } from '@apollosproject/ui-kit';
+
 import Features from '../Features';
+
+import BackgroundView from '../../ui/BackgroundTexture';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
@@ -27,12 +26,21 @@ const StyledMediaControlsConnected = styled(({ theme }) => ({
 }))(MediaControlsConnected);
 
 const UniversalContentItem = ({ content, loading }) => {
+  const scrollY = new Animated.Value(0);
+
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
-    <BackgroundView>
+    <BackgroundView animatedScrollPos={scrollY}>
       <StretchyView>
         {({ Stretchy, ...scrollViewProps }) => (
-          <FlexedScrollView {...scrollViewProps}>
+          <FlexedScrollView
+            {...scrollViewProps}
+            onScroll={(...args) =>
+              Animated.event([
+                { nativeEvent: { contentOffset: { y: scrollY } } },
+              ])(...args) && scrollViewProps.onScroll(...args)
+            }
+          >
             {coverImageSources.length || loading ? (
               <Stretchy>
                 <GradientOverlayImage
@@ -49,8 +57,8 @@ const UniversalContentItem = ({ content, loading }) => {
               </H2>
               <ContentHTMLViewConnected contentId={content.id} />
             </PaddedView>
-            <ContentSingleFeaturesConnected contentId={content.id} />
             {/* <UpNextButtonConnected contentId={content.id} /> */}
+            <Features contentId={content.id} />
             <HorizontalContentSeriesFeedConnected contentId={content.id} />
           </FlexedScrollView>
         )}
