@@ -120,7 +120,10 @@ export const resolver = {
           ...(node.facetFilters ? { facetFilters: node.facetFilters } : {}),
         });
         return {
-          edges: results.map(({ cursor, ...node }) => ({ node, cursor })),
+          edges: results.map(({ cursor, ...result }) => ({
+            node: result,
+            cursor,
+          })),
         };
       }
       if (node.series) return dataSources.WCCSeries.paginate({ pagination });

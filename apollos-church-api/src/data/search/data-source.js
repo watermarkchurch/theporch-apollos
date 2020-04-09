@@ -1,12 +1,8 @@
 import ApollosConfig from '@apollosproject/config';
 import algoliasearch from 'algoliasearch';
-import {
-  parseCursor,
-  createCursor,
-} from '@apollosproject/server-core';
+import { parseCursor, createCursor } from '@apollosproject/server-core';
 
 import * as WCCBlog from '../wcc-blog';
-import * as WCCMessage from '../wcc-media';
 
 export default class Search {
   constructor() {
@@ -29,7 +25,9 @@ export default class Search {
   }
 
   messagesIndex = ApollosConfig.ALGOLIA.MESSAGES_INDEX;
+
   blogIndex = ApollosConfig.ALGOLIA.BLOG_INDEX;
+
   peopleIndex = ApollosConfig.ALGOLIA.PEOPLE_INDEX;
 
   indices = {};
@@ -58,7 +56,7 @@ export default class Search {
       }
     }
     const indice = this.indice(index);
-    const { hits, ...other } = await indice.search({
+    const { hits } = await indice.search({
       ...filters,
       query,
       length,

@@ -3,7 +3,6 @@
 // that includes some core resolver mapping functionality (like ContentItem.title hyphenation)
 import { ContentItem } from '@apollosproject/data-connector-rock';
 
-import marked from 'marked';
 import { createGlobalId } from '@apollosproject/server-core';
 
 const resolver = {
@@ -16,36 +15,47 @@ const resolver = {
       if (thumbnailImage) uri = `https:${thumbnailImage.file.url}`;
       if (heroImage) uri = `https:${heroImage.file.url}`;
 
-      return uri ? (({ sources: [{ uri }] })) : null;
+      return uri ? { sources: [{ uri }] } : null;
     },
-    htmlContent: ({ _links: { fragment } = {} }, _, { dataSources }) => dataSources.WCCBlog.get(fragment),
+    htmlContent: ({ _links: { fragment } = {} }, _, { dataSources }) =>
+      dataSources.WCCBlog.get(fragment),
     summary: ({ subtitle }) => subtitle,
     images: ({ thumbnailImage, heroImage }) => {
       const images = [];
-      if (thumbnailImage) images.push(({ key: 'thumbnailImage', sources: [{ uri: `https:${thumbnailImage.file.url}` }]}));
-      if (heroImage) images.push(({ key: 'heroImage', sources: [{ uri: `https:${heroImage.file.url}` }]}));
+      if (thumbnailImage)
+        images.push({
+          key: 'thumbnailImage',
+          sources: [{ uri: `https:${thumbnailImage.file.url}` }],
+        });
+      if (heroImage)
+        images.push({
+          key: 'heroImage',
+          sources: [{ uri: `https:${heroImage.file.url}` }],
+        });
       return images;
     },
     videos: () => null,
     audios: () => null,
-    parentChannel: (input, args, { dataSources }) => dataSources.ContentChannel.getBlogChannel(), // TODO
+    parentChannel: (input, args, { dataSources }) =>
+      dataSources.ContentChannel.getBlogChannel(), // TODO
     theme: () => null, // TODO
     childContentItemsConnection: () => ({
       pageInfo: () => null,
       totalCount: () => 0,
-      edges: () => ([]),
+      edges: () => [],
     }),
     siblingContentItemsConnection: () => ({
       pageInfo: () => null,
       totalCount: () => 0,
-      edges: () => ([]),
+      edges: () => [],
     }),
   },
   Query: {
-    blogs: (_, pagination, { dataSources }) => dataSources.WCCBlog.paginate({
-      pagination,
-    }),
+    blogs: (_, pagination, { dataSources }) =>
+      dataSources.WCCBlog.paginate({
+        pagination,
+      }),
   },
-}
+};
 
 export default resolver;
