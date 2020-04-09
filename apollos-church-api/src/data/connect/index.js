@@ -1,12 +1,21 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import gql from 'graphql-tag';
+import { snakeCase, upperCase } from 'lodash';
 import ApollosConfig from '@apollosproject/config';
 import resolveResponse from 'contentful-resolve-response';
 
 const schema = gql`
+  enum CONNECT_ACTION_INTENT {
+    OPEN_URL
+    OPEN_CONTENT
+    OPEN_URL_EXTERNALLY
+    OPEN_APP_SCREEN
+  }
+
   type ConnectResource {
     id: ID
-    url: String
+    actionTarget: String
+    actionIntent: CONNECT_ACTION_INTENT
     title: String
     icon: String
   }
@@ -54,7 +63,6 @@ class dataSource extends RESTDataSource {
       'fields.persona': persona,
     });
     if (result.length === 0) return this.getDefaultPage();
-    console.log(result[0]);
     return result[0];
   };
 }
@@ -71,9 +79,13 @@ const resolver = {
   },
   ConnectResource: {
     id: ({ sys: { id } }) => id,
-    url: ({ fields: { url } }) => url,
+    actionTarget: ({ fields: { actionTarget } }) => actionTarget,
+    actionIntent: ({ fields: { actionIntent } }) =>
+      upperCase(actionIntent)
+        .split(' ')
+        .join('_'),
     title: ({ fields: { title } }) => title,
-    icon: ({ fields: { icon } }) => icon,
+    icon: ({ fields: { icon } }) => snakeCase(icon).replace('_', '-'),
   },
 };
 

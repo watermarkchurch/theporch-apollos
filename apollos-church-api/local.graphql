@@ -121,12 +121,6 @@ type Campus implements Node {
   distanceFromLocation(location: CampusLocationInput): Float
 }
 
-enum CAMPUS_RESOURCE_STYLE {
-  LIST_ITEM
-  BAR_ITEM
-  EXTERNAL_BAR_ITEM
-}
-
 input CampusLocationInput {
   latitude: Float
   longitude: Float
@@ -164,12 +158,14 @@ type ConferenceDay implements Node {
 }
 
 type ConnectResource {
+  id: ID
   url: String
   title: String
   icon: String
 }
 
 type ConnectScreen {
+  id: ID
   barItems: [ConnectResource]
   listItems: [ConnectResource]
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import {
   TableView,
@@ -15,6 +16,8 @@ import {
 import { RockAuthedWebBrowser } from '@apollosproject/ui-connected';
 import NavigationActions from '../../../NavigationService';
 
+import handleActionPress from '../handleActionPress';
+
 const RowHeader = styled(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -26,7 +29,7 @@ const Name = styled({
   flexGrow: 1,
 })(View);
 
-const ActionTable = () => (
+const ActionTable = ({ items, navigation }) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
       <View>
@@ -36,32 +39,21 @@ const ActionTable = () => (
           </Name>
         </RowHeader>
         <TableView>
-          <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/235')}
-          >
-            <Cell>
-              <CellText>Find a serving opportunity</CellText>
-              <CellIcon name="arrow-next" />
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/236')}
-          >
-            <Cell>
-              <CellText>Join a small group</CellText>
-              <CellIcon name="arrow-next" />
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/233')}
-          >
-            <Cell>
-              <CellText>I need prayer</CellText>
-              <CellIcon name="arrow-next" />
-            </Cell>
-          </Touchable>
+          {items.map((item, index) => (
+            <>
+              {index != 0 && <Divider />}
+              <Touchable
+                onPress={() =>
+                  handleActionPress({ ...item, navigation, openUrl })
+                }
+              >
+                <Cell>
+                  <CellText>{item.title}</CellText>
+                  <CellIcon name={'arrow-next'} />
+                </Cell>
+              </Touchable>
+            </>
+          ))}
         </TableView>
         <TableView>
           <Touchable
@@ -81,6 +73,6 @@ const ActionTable = () => (
 
 const StyledActionTable = styled(({ theme }) => ({
   paddingBottom: theme.sizing.baseUnit * 100,
-}))(ActionTable);
+}))(withNavigation(ActionTable));
 
 export default StyledActionTable;
