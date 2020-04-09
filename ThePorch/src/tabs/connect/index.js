@@ -20,7 +20,7 @@ const ConnectNavigator = createStackNavigator(
       headerTintColor: screenProps.headerTintColor,
       headerTitleStyle: screenProps.headerTitleStyle,
     }),
-    navigationOptions: { tabBarIcon: tabBarIcon('profile') },
+    navigationOptions: { tabBarIcon: tabBarIcon('ConnectAlt') },
   }
 );
 

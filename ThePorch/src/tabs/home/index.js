@@ -14,7 +14,7 @@ export const HomeNavigator = createStackNavigator(
 );
 
 HomeNavigator.navigationOptions = {
-  tabBarIcon: tabBarIcon('home'),
+  tabBarIcon: tabBarIcon('HomeAlt'),
 };
 
 export default HomeNavigator;
