@@ -1,11 +1,16 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import resolveResponse from 'contentful-resolve-response';
+import ApollosConfig from '@apollosproject/config';
 
 class ContentfulDataSource extends RESTDataSource {
-  baseURL = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE}`;
+  baseURL = `https://cdn.contentful.com/spaces/${
+    ApollosConfig.CONTENTFUL.CONFERENCE.SPACE
+  }`;
+
+  apiKey = ApollosConfig.CONTENTFUL.CONFERENCE.API_KEY;
 
   willSendRequest = (request) => {
-    request.params.set('access_token', process.env.CONTENTFUL_REST_KEY);
+    request.params.set('access_token', this.apiKey);
     request.params.set('include', 9); // TODO: Set dynamically based on query
   };
 

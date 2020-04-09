@@ -157,9 +157,17 @@ type ConferenceDay implements Node {
   date: String!
 }
 
+enum CONNECT_ACTION_INTENT {
+  OPEN_URL
+  OPEN_CONTENT
+  OPEN_URL_EXTERNALLY
+  OPEN_APP_SCREEN
+}
+
 type ConnectResource {
   id: ID
-  url: String
+  actionTarget: String
+  actionIntent: CONNECT_ACTION_INTENT
   title: String
   icon: String
 }
@@ -500,6 +508,7 @@ type Query {
   personaFeed(first: Int, after: String): ContentItemsConnection
   conference(code: String): Conference
   speakers: [Speaker]
+  connectScreen(persona: String): ConnectScreen
   currentUser: AuthenticatedUser
   userExists(identity: String): USER_AUTH_STATUS
   liveStream: LiveStream @deprecated(reason: "Use liveStreams, there may be multiple.")
@@ -512,7 +521,6 @@ type Query {
   userFeedFeatures: [Feature]
   messages(first: Int, after: String): ContentItemsConnection
   blogs(first: Int, after: String): ContentItemsConnection
-  connectScreen(persona: String): ConnectScreen
 }
 
 type RockPersonDetails {

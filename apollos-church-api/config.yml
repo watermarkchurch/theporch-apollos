@@ -19,6 +19,9 @@ CONTENTFUL:
   PORCH:
     SPACE: 3ewlji0hjgzj
     API_KEY: ${CONTENTFUL_PORCH_KEY}
+  CONFERENCE:
+    SPACE: vsbnbtnlrnnr
+    API_KEY: ${CONTENTFUL_REST_KEY}
 
 ROCK:
   API_URL: https://apollosrock.newspring.cc/api

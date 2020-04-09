@@ -1,8 +1,7 @@
-import { RESTDataSource } from 'apollo-datasource-rest';
 import gql from 'graphql-tag';
 import { snakeCase, upperCase } from 'lodash';
 import ApollosConfig from '@apollosproject/config';
-import resolveResponse from 'contentful-resolve-response';
+import ContentfulDataSource from './ContentfulDataSource';
 
 const schema = gql`
   enum CONNECT_ACTION_INTENT {
@@ -31,23 +30,12 @@ const schema = gql`
   }
 `;
 
-class dataSource extends RESTDataSource {
+class dataSource extends ContentfulDataSource {
   baseURL = `https://cdn.contentful.com/spaces/${
     ApollosConfig.CONTENTFUL.PORCH.SPACE
   }`;
 
-  willSendRequest = (request) => {
-    request.params.set('access_token', ApollosConfig.CONTENTFUL.PORCH.API_KEY);
-    request.params.set('include', 9); // TODO: Set dynamically based on query
-  };
-
-  parseBody = async (request) => {
-    const json = await request.json();
-    return resolveResponse(json, {
-      removeUnresolved: true,
-      itemEntryPoints: ['fields'],
-    });
-  };
+  apiKey = ApollosConfig.CONTENTFUL.PORCH.API_KEY;
 
   getDefaultPage = async () => {
     const result = await this.get(`entries`, {
