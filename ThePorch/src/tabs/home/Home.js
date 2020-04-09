@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { Image } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
+import { Image, Animated } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -12,11 +12,12 @@ import {
 import {
   styled,
   FeedView,
-  BackgroundView,
   TouchableScale,
   FeaturedCard,
+  StretchyView,
 } from '@apollosproject/ui-kit';
 
+import BackgroundTexture from '../../ui/BackgroundTexture';
 import Features from './Features';
 import GET_USER_FEED from './getUserFeed';
 import GET_CAMPAIGN_CONTENT_ITEM from './getCampaignContentItem';
@@ -41,6 +42,8 @@ class Home extends PureComponent {
     }),
   };
 
+  scrollY = new Animated.Value(0);
+
   handleOnPress = (item) =>
     this.props.navigation.navigate('ContentSingle', {
       itemId: item.id,
@@ -49,37 +52,36 @@ class Home extends PureComponent {
 
   render() {
     return (
-      <BackgroundView>
-        <SafeAreaView
-          style={{ flex: 1 }}
+      <BackgroundTexture animatedScrollPos={this.scrollY}>
+        <Query
+          query={GET_USER_FEED}
+          variables={{
+            first: 10,
+            after: null,
+          }}
+          fetchPolicy="cache-and-network"
         >
-          <Query
-            query={GET_USER_FEED}
-            variables={{
-              first: 10,
-              after: null,
-            }}
-            fetchPolicy="cache-and-network"
-          >
-            {({ loading, error, data, refetch, fetchMore, variables }) => (
-              <FeedView
-                ListItemComponent={ContentCardConnected}
-                content={get(data, 'userFeed.edges', []).map(
-                  (edge) => edge.node
-                )}
-                fetchMore={fetchMoreResolver({
-                  collectionName: 'userFeed',
-                  fetchMore,
-                  variables,
-                  data,
-                })}
-                isLoading={loading}
-                error={error}
-                refetch={refetch}
-                ListHeaderComponent={
-                  <>
-                    <LogoTitle source={require('./wordmark.png')} />
-                    {/*<Query
+          {({ loading, error, data, refetch, fetchMore, variables }) => (
+            <FeedView
+              onScroll={Animated.event([
+                { nativeEvent: { contentOffset: { y: this.scrollY } } },
+              ])}
+              ListItemComponent={ContentCardConnected}
+              content={get(data, 'userFeed.edges', []).map((edge) => edge.node)}
+              fetchMore={fetchMoreResolver({
+                collectionName: 'userFeed',
+                fetchMore,
+                variables,
+                data,
+              })}
+              isLoading={loading}
+              error={error}
+              refetch={refetch}
+              ContentContainer
+              ListHeaderComponent={
+                <SafeAreaView forceInset={{ top: 'always' }}>
+                  <LogoTitle source={require('./wordmark.png')} />
+                  {/* <Query
                       query={GET_CAMPAIGN_CONTENT_ITEM}
                       fetchPolicy="cache-and-network"
                     >
@@ -111,15 +113,14 @@ class Home extends PureComponent {
                         );
                       }}
                     </Query>
-                    <Features navigation={this.props.navigation} />*/}
-                  </>
-                }
-                onPressItem={this.handleOnPress}
-              />
-            )}
-          </Query>
-        </SafeAreaView>
-      </BackgroundView>
+                    <Features navigation={this.props.navigation} /> */}
+                </SafeAreaView>
+              }
+              onPressItem={this.handleOnPress}
+            />
+          )}
+        </Query>
+      </BackgroundTexture>
     );
   }
 }

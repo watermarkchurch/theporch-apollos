@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Animated } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-import { BackgroundView } from '@apollosproject/ui-kit';
+import BackgroundView from '../../ui/BackgroundTexture';
 
 import ActionTable from './ActionTable';
 
@@ -22,14 +22,21 @@ class Connect extends PureComponent {
     }),
   };
 
+  scrollY = new Animated.Value(0);
+
   render() {
     return (
       <BackgroundView style={flex}>
-        <SafeAreaView style={flex}>
-          <ScrollView style={flex}>
+        <ScrollView
+          onScroll={Animated.event([
+            { nativeEvent: { contentOffset: { y: this.scrollY } } },
+          ])}
+          style={flex}
+        >
+          <SafeAreaView style={flex}>
             <ActionTable />
-          </ScrollView>
-        </SafeAreaView>
+          </SafeAreaView>
+        </ScrollView>
       </BackgroundView>
     );
   }
