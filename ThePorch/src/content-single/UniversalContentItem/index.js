@@ -9,15 +9,16 @@ import {
 } from '@apollosproject/ui-connected';
 import {
   styled,
-  GradientOverlayImage,
+  ConnectedImage,
   PaddedView,
   H2,
-  StretchyView,
+  BackgroundView,
 } from '@apollosproject/ui-kit';
 
 import Features from '../Features';
 
-import BackgroundView from '../../ui/BackgroundTexture';
+import BackgroundTextureAngled from '../../ui/BackgroundTextureAngled';
+import StretchyView from '../../ui/StretchyView';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
@@ -26,40 +27,35 @@ const StyledMediaControlsConnected = styled(({ theme }) => ({
 }))(MediaControlsConnected);
 
 const UniversalContentItem = ({ content, loading }) => {
-  const scrollY = new Animated.Value(0);
-
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
-    <BackgroundView animatedScrollPos={scrollY}>
+    <BackgroundView>
       <StretchyView>
         {({ Stretchy, ...scrollViewProps }) => (
-          <FlexedScrollView
-            {...scrollViewProps}
-            onScroll={(...args) =>
-              Animated.event([
-                { nativeEvent: { contentOffset: { y: scrollY } } },
-              ])(...args) && scrollViewProps.onScroll(...args)
-            }
-          >
+          <FlexedScrollView {...scrollViewProps}>
             {coverImageSources.length || loading ? (
-              <Stretchy>
-                <GradientOverlayImage
+              <Stretchy background>
+                <ConnectedImage
+                  forceRatio={1}
+                  style={{ aspectRatio: 1 }}
                   isLoading={!coverImageSources.length && loading}
                   source={coverImageSources}
                 />
               </Stretchy>
             ) : null}
-            <StyledMediaControlsConnected contentId={content.id} />
-            {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
-            <PaddedView vertical={!coverImageSources.length}>
-              <H2 padded isLoading={!content.title && loading}>
-                {content.title}
-              </H2>
-              <ContentHTMLViewConnected contentId={content.id} />
-            </PaddedView>
-            {/* <UpNextButtonConnected contentId={content.id} /> */}
-            <Features contentId={content.id} />
-            <HorizontalContentSeriesFeedConnected contentId={content.id} />
+            <BackgroundTextureAngled>
+              <StyledMediaControlsConnected contentId={content.id} />
+              {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+              <PaddedView vertical={!coverImageSources.length}>
+                <H2 padded isLoading={!content.title && loading}>
+                  {content.title}
+                </H2>
+                <ContentHTMLViewConnected contentId={content.id} />
+              </PaddedView>
+              {/* <UpNextButtonConnected contentId={content.id} /> */}
+              <Features contentId={content.id} />
+              <HorizontalContentSeriesFeedConnected contentId={content.id} />
+            </BackgroundTextureAngled>
           </FlexedScrollView>
         )}
       </StretchyView>
