@@ -5,10 +5,7 @@ import {
   requestNotifications,
   RESULTS,
 } from 'react-native-permissions';
-import {
-  styled,
-  ThemeMixin,
-} from '@apollosproject/ui-kit';
+import { styled, ThemeMixin, PaddedView, Button } from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
   OnboardingSwiper,
@@ -20,8 +17,7 @@ import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
 
 import BackgroundTexture from '../BackgroundTexture';
 
-import AskNotifications from './AskNotifications'
-
+import AskNotifications from './AskNotifications';
 
 function Onboarding({ navigation }) {
   const dispatch = useOnboardDispatch();
@@ -50,13 +46,18 @@ function Onboarding({ navigation }) {
                     }
                   });
                 }}
-                onPressPrimary={() => dispatch(hideOnboarding())}
                 Component={AskNotifications}
-                primaryNavText={'Finish'}
               />
             </>
           )}
         </OnboardingSwiper>
+        <PaddedView>
+          <Button
+            title={'Finish'}
+            onPress={() => dispatch(hideOnboarding())}
+            pill={false}
+          />
+        </PaddedView>
       </BackgroundTexture>
     </ThemeMixin>
   );
