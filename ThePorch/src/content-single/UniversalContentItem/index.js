@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, View } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
@@ -12,19 +12,34 @@ import {
   ConnectedImage,
   PaddedView,
   H2,
+  H3,
   BackgroundView,
+  StretchyView,
 } from '@apollosproject/ui-kit';
 
 import Features from '../Features';
+import MediaControls from '../MediaControls';
 
 import BackgroundTextureAngled from '../../ui/BackgroundTextureAngled';
-import StretchyView from '../../ui/StretchyView';
+// import StretchyView from '../../ui/StretchyView';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
-const StyledMediaControlsConnected = styled(({ theme }) => ({
-  marginTop: -(theme.sizing.baseUnit * 2.5),
-}))(MediaControlsConnected);
+const Content = styled(({ theme }) => ({
+  marginTop: -(theme.sizing.baseUnit * 3),
+}))(View);
+
+const Header = styled({
+  width: '80%',
+})(View);
+
+const stretchyStyle = {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
+  aspectRatio: 1,
+};
 
 const UniversalContentItem = ({ content, loading }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
@@ -34,27 +49,42 @@ const UniversalContentItem = ({ content, loading }) => {
         {({ Stretchy, ...scrollViewProps }) => (
           <FlexedScrollView {...scrollViewProps}>
             {coverImageSources.length || loading ? (
-              <Stretchy background>
+              <Stretchy style={stretchyStyle}>
                 <ConnectedImage
                   forceRatio={1}
-                  style={{ aspectRatio: 1 }}
+                  style={stretchyStyle}
                   isLoading={!coverImageSources.length && loading}
                   source={coverImageSources}
                 />
               </Stretchy>
             ) : null}
             <BackgroundTextureAngled>
-              <StyledMediaControlsConnected contentId={content.id} />
-              {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
-              <PaddedView vertical={!coverImageSources.length}>
-                <H2 padded isLoading={!content.title && loading}>
-                  {content.title}
-                </H2>
-                <ContentHTMLViewConnected contentId={content.id} />
-              </PaddedView>
-              {/* <UpNextButtonConnected contentId={content.id} /> */}
-              <Features contentId={content.id} />
-              <HorizontalContentSeriesFeedConnected contentId={content.id} />
+              <Content>
+                <MediaControlsConnected
+                  Component={MediaControls}
+                  contentId={content.id}
+                />
+                {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+                <PaddedView vertical={!coverImageSources.length}>
+                  <Header>
+                    <H2 padded isLoading={!content.title && loading}>
+                      {content.title}
+                    </H2>
+                  </Header>
+                  <ContentHTMLViewConnected contentId={content.id} />
+                </PaddedView>
+                {/* <UpNextButtonConnected contentId={content.id} /> */}
+                <Features contentId={content.id} />
+
+                <PaddedView horizontal={false}>
+                  <PaddedView vertical={false}>
+                    <H3>Also check out</H3>
+                  </PaddedView>
+                  <HorizontalContentSeriesFeedConnected
+                    contentId={content.id}
+                  />
+                </PaddedView>
+              </Content>
             </BackgroundTextureAngled>
           </FlexedScrollView>
         )}
