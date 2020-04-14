@@ -11,6 +11,7 @@ import {
   OnboardingSwiper,
 } from '@apollosproject/ui-onboarding';
 import AsyncStorage from '@react-native-community/async-storage';
+import { SafeAreaView } from 'react-navigation';
 
 import { resetAction } from '../../NavigationService';
 import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
@@ -51,13 +52,15 @@ function Onboarding({ navigation }) {
             </>
           )}
         </OnboardingSwiper>
-        <PaddedView>
-          <Button
-            title={'Finish'}
-            onPress={() => dispatch(hideOnboarding())}
-            pill={false}
-          />
-        </PaddedView>
+        <SafeAreaView>
+          <PaddedView>
+            <Button
+              title={'Finish'}
+              onPress={() => dispatch(hideOnboarding())}
+              pill={false}
+            />
+          </PaddedView>
+        </SafeAreaView>
       </BackgroundTexture>
     </ThemeMixin>
   );

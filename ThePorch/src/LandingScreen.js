@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 import {
   styled,
@@ -54,13 +55,15 @@ const LandingScreen = ({ navigation }) => (
           </SubHeading>
         </Content>
       </Slide>
-      <PaddedView>
-        <Button
-          title={'Come On In!'}
-          onPress={() => navigation.push('Onboarding')}
-          pill={false}
-        />
-      </PaddedView>
+      <SafeAreaView>
+        <PaddedView>
+          <Button
+            title={'Come On In!'}
+            onPress={() => navigation.push('Onboarding')}
+            pill={false}
+          />
+        </PaddedView>
+      </SafeAreaView>
     </BackgroundView>
   </ThemeMixin>
 );
