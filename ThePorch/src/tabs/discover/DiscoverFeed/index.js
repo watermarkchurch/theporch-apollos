@@ -20,6 +20,7 @@ const childContentItemLoadingState = {
 const feedItemLoadingState = {
   name: '',
   isLoading: true,
+  id: 1,
 };
 
 const renderItem = (
@@ -29,12 +30,12 @@ const renderItem = (
     item
   ) : (
     <TileContentFeed
-      id={item.id}
-      name={item.name}
+      id={item?.id}
+      name={item?.loading}
       content={get(item, 'childContentItemsConnection.edges', []).map(
         (edge) => edge.node
       )}
-      isLoading={item.isLoading}
+      isLoading={item?.isLoading}
       loadingStateObject={childContentItemLoadingState}
     />
   );
