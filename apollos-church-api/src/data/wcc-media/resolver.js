@@ -5,6 +5,7 @@ import { ContentItem } from '@apollosproject/data-connector-rock';
 import { get, values } from 'lodash';
 
 import marked from 'marked';
+import moment from 'moment';
 import { createGlobalId } from '@apollosproject/server-core';
 
 import { resolver as seriesResolver } from '../wcc-series';
@@ -31,7 +32,7 @@ const resolver = {
       let htmlContent = '';
 
       if (date) {
-        htmlContent += `<p><strong>Posted on ${date}</strong></p>`;
+        htmlContent += `<H6>${moment(date).format('MM/DD/YYYY')}</H6>`;
       }
 
       htmlContent += `<p>${description}</p>`;
@@ -53,7 +54,22 @@ const resolver = {
         name: images[key].type_name,
         key,
       })),
-    videos: ({ assets: { streaming_video = {} } = {} }) =>
+    videoThumbnailImage: (
+      { external_urls: { youtube } = {}, ...other },
+      args,
+      { dataSources, ...otherContext }
+    ) =>
+      youtube
+        ? {
+            sources: [
+              { uri: dataSources.WCCMessage.getVideoThumbnailUrl(youtube) },
+            ],
+          }
+        : resolver.WCCMessage.coverImage(other, args, {
+            dataSources,
+            ...otherContext,
+          }),
+    videos: ({ assets: { streaming_video = {} } = {} }, _, { dataSources }) =>
       streaming_video.url
         ? [
             {
@@ -97,6 +113,7 @@ const resolver = {
     messages: (_, pagination, { dataSources }) =>
       dataSources.WCCMessage.paginate({
         pagination,
+        filters: { target: 'the_porch' },
       }),
   },
 };

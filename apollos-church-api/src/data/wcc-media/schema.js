@@ -5,6 +5,7 @@ const schema = gql`
     id: ID!
     title(hyphenated: Boolean): String
     coverImage: ImageMedia
+    videoThumbnailImage: ImageMedia
     htmlContent: String
     summary: String
     childContentItemsConnection(

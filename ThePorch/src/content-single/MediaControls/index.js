@@ -1,64 +1,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
-import PlayButtonConnected from '@apollosproject/ui-connected/src/MediaControlsConnected/PlayButtonConnected';
-import PlayButton from './PlayButton';
+import { LiveConsumer } from '@apollosproject/ui-connected';
+import GET_CONTENT_MEDIA from '@apollosproject/ui-connected/src/MediaControlsConnected/getContentMedia';
 
-const MediaControls = ({
-  coverImageSources,
-  error,
-  liveStreamSource,
-  loading,
-  parentChannelName,
-  title,
-  videoSource,
-  webViewUrl,
-  ...props
-}) => {
-  if (loading || error) return null;
+import MediaControls from './MediaControls';
 
-  let Control = null;
+const MediaControlsConnected = ({ Component, contentId, ...props }) => {
+  if (!contentId) return null;
+  return (
+    <LiveConsumer contentId={contentId}>
+      {(liveStream) => (
+        <Query
+          query={GET_CONTENT_MEDIA}
+          fetchPolicy="cache-and-network"
+          variables={{ contentId }}
+        >
+          {({
+            data: {
+              node: {
+                videos,
+                audios,
+                title,
+                parentChannel = {},
+                coverImage = {},
+              } = {},
+            } = {},
+            loading,
+            error,
+          }) => {
+            const coverImageSources = (coverImage && coverImage.sources) || [];
+            const liveStreamSource = get(liveStream, 'media.sources[0]');
+            const videoSource = get(videos, '[0].sources[0]', null);
+            const audioSource = get(audios, '[0].sources[0]', null);
+            const webViewUrl = get(liveStream, 'webViewUrl');
 
-  //  We have a `liveStreamSource` so content is live!
-  if (get(liveStreamSource, 'uri', false)) {
-    Control = (
-      <PlayButtonConnected
-        Component={PlayButton}
-        coverImageSources={coverImageSources}
-        parentChannelName={parentChannelName}
-        title={title}
-        videoSource={liveStreamSource}
-        {...props}
-      />
-    );
-  }
-  // Default case, normal media.
-  else {
-    Control = (
-      <PlayButtonConnected
-        Component={PlayButton}
-        coverImageSources={coverImageSources}
-        parentChannelName={parentChannelName}
-        title={title}
-        videoSource={videoSource}
-        {...props}
-      />
-    );
-  }
+            // if we don't have a media source don't render
+            if (!(webViewUrl || liveStreamSource || videoSource || audioSource))
+              return null;
 
-  return Control;
+            return (
+              <Component
+                coverImage={coverImage}
+                coverImageSources={coverImageSources}
+                error={error}
+                liveStreamSource={liveStreamSource}
+                loading={loading}
+                parentChannelName={parentChannel.name}
+                title={title}
+                videoSource={videoSource}
+                audioSource={audioSource}
+                webViewUrl={webViewUrl}
+                {...props}
+              />
+            );
+          }}
+        </Query>
+      )}
+    </LiveConsumer>
+  );
 };
 
-MediaControls.propTypes = {
-  coverImageSources: PropTypes.arrayOf(PropTypes.shape({})),
-  error: PropTypes.string,
-  liveStreamSource: PropTypes.string,
-  loading: PropTypes.bool,
-  parentChannelName: PropTypes.string,
-  title: PropTypes.string,
-  videoSource: PropTypes.shape({}),
-  webViewUrl: PropTypes.string,
+MediaControlsConnected.propTypes = {
+  Component: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+    PropTypes.object, // type check for React fragments
+  ]),
+  contentId: PropTypes.string,
 };
 
-export default MediaControls;
+MediaControlsConnected.defaultProps = {
+  Component: MediaControls,
+};
+
+export default MediaControlsConnected;

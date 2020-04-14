@@ -665,6 +665,7 @@ type VideoMedia implements Media {
   key: String
   sources: [VideoMediaSource]
   embedHtml: String
+  thumbnailImage: ImageMedia
 }
 
 type VideoMediaSource implements MediaSource {

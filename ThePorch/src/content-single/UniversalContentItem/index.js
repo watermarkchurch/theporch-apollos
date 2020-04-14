@@ -5,20 +5,21 @@ import PropTypes from 'prop-types';
 import {
   ContentHTMLViewConnected,
   HorizontalContentSeriesFeedConnected,
-  MediaControlsConnected,
 } from '@apollosproject/ui-connected';
 import {
   styled,
-  ConnectedImage,
+  GradientOverlayImage,
   PaddedView,
   H2,
   H3,
   BackgroundView,
   StretchyView,
+  withTheme,
 } from '@apollosproject/ui-kit';
+import Color from 'color';
 
 import Features from '../Features';
-import MediaControls from '../MediaControls';
+import MediaControlsConnected from '../MediaControls';
 
 import BackgroundTextureAngled from '../../ui/BackgroundTextureAngled';
 // import StretchyView from '../../ui/StretchyView';
@@ -26,7 +27,7 @@ import BackgroundTextureAngled from '../../ui/BackgroundTextureAngled';
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
 const Content = styled(({ theme }) => ({
-  marginTop: -(theme.sizing.baseUnit * 3),
+  marginTop: -(theme.sizing.baseUnit * 3.25),
 }))(View);
 
 const Header = styled({
@@ -41,6 +42,15 @@ const stretchyStyle = {
   aspectRatio: 1,
 };
 
+const HeaderImage = withTheme(({ theme }) => ({
+  overlayType: 'featured',
+  overlayColor: Color(theme.colors.darkPrimary)
+    .alpha(theme.alpha.low)
+    .string(),
+  style: stretchyStyle,
+  imageStyle: stretchyStyle,
+}))(GradientOverlayImage);
+
 const UniversalContentItem = ({ content, loading }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
@@ -50,20 +60,17 @@ const UniversalContentItem = ({ content, loading }) => {
           <FlexedScrollView {...scrollViewProps}>
             {coverImageSources.length || loading ? (
               <Stretchy style={stretchyStyle}>
-                <ConnectedImage
+                <HeaderImage
                   forceRatio={1}
-                  style={stretchyStyle}
                   isLoading={!coverImageSources.length && loading}
                   source={coverImageSources}
+                  maintainAspectRatio={false}
                 />
               </Stretchy>
             ) : null}
             <BackgroundTextureAngled>
               <Content>
-                <MediaControlsConnected
-                  Component={MediaControls}
-                  contentId={content.id}
-                />
+                <MediaControlsConnected contentId={content.id} />
                 {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
                 <PaddedView vertical={!coverImageSources.length}>
                   <Header>
