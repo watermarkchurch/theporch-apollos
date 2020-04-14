@@ -51,7 +51,7 @@ const HeaderImage = withTheme(({ theme }) => ({
   imageStyle: stretchyStyle,
 }))(GradientOverlayImage);
 
-const UniversalContentItem = ({ content, loading }) => {
+const UniversalContentItem = ({ id, content, loading }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
     <BackgroundView>
@@ -70,7 +70,7 @@ const UniversalContentItem = ({ content, loading }) => {
             ) : null}
             <BackgroundTextureAngled>
               <Content>
-                <MediaControlsConnected contentId={content.id} />
+                <MediaControlsConnected contentId={id} />
                 {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
                 <PaddedView vertical={!coverImageSources.length}>
                   <Header>
@@ -78,18 +78,16 @@ const UniversalContentItem = ({ content, loading }) => {
                       {content.title}
                     </H2>
                   </Header>
-                  <ContentHTMLViewConnected contentId={content.id} />
+                  <ContentHTMLViewConnected contentId={id} />
                 </PaddedView>
                 {/* <UpNextButtonConnected contentId={content.id} /> */}
-                <Features contentId={content.id} />
+                <Features contentId={id} />
 
                 <PaddedView horizontal={false}>
                   <PaddedView vertical={false}>
                     <H3>Also check out</H3>
                   </PaddedView>
-                  <HorizontalContentSeriesFeedConnected
-                    contentId={content.id}
-                  />
+                  <HorizontalContentSeriesFeedConnected contentId={id} />
                 </PaddedView>
               </Content>
             </BackgroundTextureAngled>

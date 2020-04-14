@@ -665,7 +665,6 @@ type VideoMedia implements Media {
   key: String
   sources: [VideoMediaSource]
   embedHtml: String
-  thumbnailImage: ImageMedia
 }
 
 type VideoMediaSource implements MediaSource {
@@ -692,6 +691,7 @@ type WCCMessage implements ContentItem & Node {
   id: ID!
   title(hyphenated: Boolean): String
   coverImage: ImageMedia
+  videoThumbnailImage: ImageMedia
   htmlContent: String
   summary: String
   childContentItemsConnection(first: Int, after: String): ContentItemsConnection
