@@ -3,11 +3,9 @@ import { Platform, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { SideBySideView, styled } from '@apollosproject/ui-kit';
 import { MediaPlayerSpacer } from '@apollosproject/ui-media-player';
-import {
-  ShareButtonConnected,
-} from '@apollosproject/ui-connected';
+import { ShareButtonConnected } from '@apollosproject/ui-connected';
 
-import LikeButtonConnected from './LikeButtonConnected'
+import LikeButtonConnected from './LikeButtonConnected';
 
 const PositioningView = styled(({ theme }) => ({
   justifyContent: 'space-around',

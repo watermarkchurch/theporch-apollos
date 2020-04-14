@@ -18,6 +18,15 @@ class dataSource extends RESTDataSource {
     return result.message;
   }
 
+  getVideoThumbnailUrl = (youtube) => {
+    // first, Watermark's Youtube URLs seem to be misformatted. Fix that:
+    const fixedUrl = youtube.replace('?rel=0', '');
+    const url = new URL(fixedUrl);
+    const videoId = url.searchParams.get('v');
+    if (!videoId) return null;
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  };
+
   async getSpeakerByName({ name }) {
     const { Search } = this.context.dataSources;
     const results = await Search.byPaginatedQuery({

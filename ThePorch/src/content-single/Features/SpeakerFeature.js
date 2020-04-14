@@ -2,27 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import gql from 'graphql-tag';
-import { ActionCard, BodyText } from '@apollosproject/ui-kit';
-import { ShareButtonConnected } from '@apollosproject/ui-connected';
+import { Cell, CellText, Divider } from '@apollosproject/ui-kit';
 
 export const SPEAKER_FEATURE_FRAGMENT = gql`
-fragment SpeakerFeatureFragment on SpeakerFeature {
-  id
-  name
-  profileImage { sources { uri } }
-}
+  fragment SpeakerFeatureFragment on SpeakerFeature {
+    id
+    name
+    profileImage {
+      sources {
+        uri
+      }
+    }
+  }
+`;
 
-`
-
-const SpeakerFeature = ({ name, ...args }) => (
-  <ActionCard>
-    <BodyText>{`Speaker: ${name}`}</BodyText>
-  </ActionCard>
+const SpeakerFeature = ({ name }) => (
+  <>
+    <Cell>
+      <CellText>{name}</CellText>
+    </Cell>
+    <Divider />
+  </>
 );
 
 SpeakerFeature.propTypes = {
   name: PropTypes.string.isRequired,
-  contentId: PropTypes.string.isRequired,
 };
 
 export default SpeakerFeature;

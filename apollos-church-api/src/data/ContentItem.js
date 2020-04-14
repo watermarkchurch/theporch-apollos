@@ -10,6 +10,7 @@ export const resolver = resolverMerge(
       userFeed: (root, pagination, { dataSources }) =>
         dataSources.WCCMessage.paginate({
           pagination,
+          filters: { target: 'the_porch' },
         }),
     },
     // ContentItemsConnection: {
