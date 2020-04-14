@@ -1,10 +1,16 @@
 import { ContentChannel } from '@apollosproject/data-connector-rock';
-import { ApolloError, createGlobalId } from '@apollosproject/server-core';
+import { createGlobalId } from '@apollosproject/server-core';
+import { ApolloError } from 'apollo-server';
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 // export const dataSource = ContentChannel.dataSource;
 
 export class dataSource extends RESTDataSource {
+  // didReceiveResponse(response, request) {
+  //   console.log(response.body.toString());
+  //   console.log('didReceiveResponse', { response, request });
+  // }
+
   async getFromId(id) {
     let result;
 
@@ -34,20 +40,20 @@ export class dataSource extends RESTDataSource {
       })
     );
 
-  getMessagesChannel = () =>
-    this.getFromId('https://media.watermark.org/api/v1/messages');
-
   // todo
   getBlogChannel = () =>
     this.getFromId(
       'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
     );
 
+  getMessagesChannel = () =>
+    this.getFromId('https://media.watermark.org/api/v1/messages');
+
   // todo
   getSeriesChannel = () =>
     this.getFromId(
       'https://media.watermark.org/api/v1/series?filter[tag_id]=4'
-    ); // todo
+    );
 
   getTopicsChannels = async () => {
     const indice = this.context.dataSources.Search.indice(
@@ -73,7 +79,6 @@ export class dataSource extends RESTDataSource {
   getRootChannels = async () => [
     this.getPopularChannel(),
     this.getSeriesChannel(),
-    // this.getMessagesChannel(),
     this.getBlogChannel(),
     ...(await this.getTopicsChannels()),
   ];
@@ -126,9 +131,19 @@ export const resolver = {
           })),
         };
       }
-      if (node.series) return dataSources.WCCSeries.paginate({ pagination });
-      if (node.messages) return dataSources.WCCMessage.paginate({ pagination });
-      return dataSources.WCCBlog.paginate({ pagination });
+      if (node.series) {
+        return dataSources.WCCSeries.paginate({
+          pagination,
+          filters: { filter: node.pagination.filter },
+        });
+      }
+      if (node.messages)
+        return dataSources.WCCMessage.paginate({
+          pagination,
+        });
+      return dataSources.WCCBlog.paginate({
+        pagination,
+      });
     },
     iconName: () => 'text', // TODO
   },

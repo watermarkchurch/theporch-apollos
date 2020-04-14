@@ -21,6 +21,7 @@ const resolver = {
       ],
     }),
     summary: ({ subtitle }) => subtitle,
+    htmlContent: ({ subtitle }) => subtitle,
     images: ({ images }) =>
       Object.keys(images).map((key) => ({
         sources: [{ uri: images[key].url }],
@@ -35,9 +36,9 @@ const resolver = {
       totalCount: () => 0,
       edges: () => [],
     }),
-    childContentItemsConnection: (_, pagination, { dataSources }) =>
+    childContentItemsConnection: ({ id }, pagination, { dataSources }) =>
       dataSources.WCCMessage.paginate({
-        restrictSearchableAttributes: 'Person.full_name',
+        filters: { filter: { series_id: id } },
         pagination,
       }),
   },
