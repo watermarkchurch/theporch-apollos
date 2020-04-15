@@ -9,7 +9,6 @@ class Discover extends PureComponent {
 }
 
 Discover.navigationOptions = {
-  title: 'Discover',
   header: null,
 };
 export default Discover;
