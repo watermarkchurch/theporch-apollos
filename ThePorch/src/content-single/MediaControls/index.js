@@ -37,9 +37,14 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
             const audioSource = get(audios, '[0].sources[0]', null);
             const webViewUrl = get(liveStream, 'webViewUrl');
 
+            const hasMedia =
+              webViewUrl || liveStreamSource || videoSource || audioSource;
+
+            const shouldShowLoadingState =
+              loading && !hasMedia && contentId.includes('WCCMessage');
+
             // if we don't have a media source don't render
-            if (!(webViewUrl || liveStreamSource || videoSource || audioSource))
-              return null;
+            if (!hasMedia && !shouldShowLoadingState) return null;
 
             return (
               <Component

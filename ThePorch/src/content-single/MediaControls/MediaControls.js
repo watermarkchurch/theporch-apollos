@@ -18,14 +18,18 @@ const MediaControls = ({
   webViewUrl,
   ...props
 }) => {
-  if (loading || error) return null;
+  if (error) return null;
 
   let Control = null;
+
+  const showLoadingState =
+    loading && !(videoSource || audioSource || liveStreamSource || webViewUrl);
 
   //  We have a `liveStreamSource` so content is live!
   if (get(liveStreamSource, 'uri', false)) {
     Control = (
       <PlayButtonConnected
+        isLoading={showLoadingState}
         Component={PlayButton}
         coverImageSources={coverImageSources}
         parentChannelName={parentChannelName}
@@ -37,6 +41,7 @@ const MediaControls = ({
   } else if (get(audioSource, 'uri') && !get(videoSource, 'uri')) {
     Control = (
       <PlayButtonConnected
+        isLoading={showLoadingState}
         Component={AudioPlayButton}
         coverImageSources={coverImageSources}
         parentChannelName={parentChannelName}
@@ -51,6 +56,7 @@ const MediaControls = ({
   else {
     Control = (
       <PlayButtonConnected
+        isLoading={showLoadingState}
         Component={PlayButton}
         coverImageSources={coverImageSources}
         parentChannelName={parentChannelName}

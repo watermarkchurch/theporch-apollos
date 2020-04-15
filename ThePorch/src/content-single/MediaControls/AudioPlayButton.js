@@ -31,13 +31,20 @@ const MediaThumbnailIcon = withTheme(({ theme }) => ({
   size: theme.sizing.baseUnit * 1.5,
 }))(Icon);
 
-const PlayButton = ({ coverImageSources, icon, onPress, title, ...props }) => (
+const PlayButton = ({
+  coverImageSources,
+  icon,
+  onPress,
+  isLoading,
+  title,
+  ...props
+}) => (
   <Container {...props}>
     <TouchableScale onPress={onPress}>
       <PaddedView vertical={false}>
-        <StyledCard forceRatio={1}>
+        <StyledCard forceRatio={1} isLoading={isLoading}>
           <MediaThumbnailItem centered>
-            <MediaThumbnailIcon name={icon} />
+            <MediaThumbnailIcon name={icon} isLoading={isLoading} />
             <H6>{title}</H6>
           </MediaThumbnailItem>
         </StyledCard>
@@ -51,6 +58,7 @@ PlayButton.propTypes = {
   icon: PropTypes.string,
   onPress: PropTypes.func,
   title: PropTypes.string,
+  isLoading: PropTypes.bool,
 };
 
 PlayButton.defaultProps = {
