@@ -28,11 +28,11 @@ const useComponentLayout = () => {
 const BackgroundTexture = ({ children, animatedScrollPos, ...otherProps }) => {
   const [layout, onLayout] = useComponentLayout();
 
-  let opacity = 1;
+  let opacity = 0.5;
   if (animatedScrollPos) {
     opacity = animatedScrollPos.interpolate({
       inputRange: [0, layout.height],
-      outputRange: [1, 0],
+      outputRange: [0.5, 0],
       extrapolateLeft: 'clamp',
     });
   }

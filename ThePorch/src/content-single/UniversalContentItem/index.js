@@ -51,6 +51,16 @@ const HeaderImage = withTheme(({ theme }) => ({
   imageStyle: stretchyStyle,
 }))(GradientOverlayImage);
 
+const getChildrenLabel = (typename) => {
+  switch (typename) {
+    case 'WCCMessage':
+    case 'WCCSeries':
+      return 'In this series';
+    default:
+      return 'Also check out';
+  }
+};
+
 const UniversalContentItem = ({ id, content, loading }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
@@ -85,7 +95,7 @@ const UniversalContentItem = ({ id, content, loading }) => {
 
                 <PaddedView horizontal={false}>
                   <PaddedView vertical={false}>
-                    <H3>Also check out</H3>
+                    <H3>{getChildrenLabel(content.__typename)}</H3>
                   </PaddedView>
                   <HorizontalContentSeriesFeedConnected contentId={id} />
                 </PaddedView>

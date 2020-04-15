@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
 
 import { FeedView } from '@apollosproject/ui-kit';
-import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
 import { SafeAreaView } from 'react-navigation';
 
 import BackgroundView from '../../../ui/BackgroundTexture';
@@ -31,7 +30,7 @@ const renderItem = (
   ) : (
     <TileContentFeed
       id={item?.id}
-      name={item?.loading}
+      name={item?.name}
       content={get(item, 'childContentItemsConnection.edges', []).map(
         (edge) => edge.node
       )}
@@ -53,32 +52,25 @@ const DiscoverFeed = memo(() => {
 
   return (
     <Query query={GET_CONTENT_CHANNELS} fetchPolicy="cache-and-network">
-      {({ error, loading, data: { contentChannels = [] } = {}, refetch }) => {
-        const [trending, ...otherChannels] = contentChannels;
-        return (
-          <BackgroundView animatedScrollPos={scrollY}>
-            <FeedView
-              onScroll={Animated.event([
-                { nativeEvent: { contentOffset: { y: scrollY } } },
-              ])}
-              error={error}
-              content={[
-                trending,
-                <HorizontalLikedContentFeedConnected key="liked" />,
-                ...otherChannels,
-              ]}
-              ListHeaderComponent={
-                <SafeAreaView forceInset={{ top: 'always' }} />
-              }
-              isLoading={loading && !contentChannels.length}
-              refetch={refetch}
-              renderItem={renderItem}
-              loadingStateObject={feedItemLoadingState}
-              numColumns={1}
-            />
-          </BackgroundView>
-        );
-      }}
+      {({ error, loading, data: { contentChannels = [] } = {}, refetch }) => (
+        <BackgroundView animatedScrollPos={scrollY}>
+          <FeedView
+            onScroll={Animated.event([
+              { nativeEvent: { contentOffset: { y: scrollY } } },
+            ])}
+            error={error}
+            content={contentChannels}
+            ListHeaderComponent={
+              <SafeAreaView forceInset={{ top: 'always' }} />
+            }
+            isLoading={loading && !contentChannels.length}
+            refetch={refetch}
+            renderItem={renderItem}
+            loadingStateObject={feedItemLoadingState}
+            numColumns={1}
+          />
+        </BackgroundView>
+      )}
     </Query>
   );
 });
