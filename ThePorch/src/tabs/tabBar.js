@@ -6,7 +6,7 @@ import { styled, withTheme } from '@apollosproject/ui-kit';
 
 const ThemedBottomTabBar = compose(
   withTheme(({ theme }) => ({
-    showLabel: false,
+    showLabel: true,
     activeTintColor: theme.colors.screen,
     inactiveTintColor: theme.colors.lightTertiary,
     safeAreaInset: { bottom: 0 },
