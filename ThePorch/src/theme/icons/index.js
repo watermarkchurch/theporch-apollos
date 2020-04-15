@@ -5,3 +5,4 @@ export FavoriteAlt from './FavoriteAlt';
 export HomeAlt from './HomeAlt';
 export LocationAlt from './LocationAlt';
 export TimeAlt from './TimeAlt';
+export BrandIconAlt from './BrandIconAlt';

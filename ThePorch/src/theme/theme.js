@@ -11,7 +11,7 @@
  * on a per-component basis with "overrides"
  */
 const colors = {
-  primary: '#F76F5F',
+  primary: '#F76E5E',
   secondary: '#644AA1',
 
   tertiary: '#8AA7C5',
@@ -90,6 +90,22 @@ const overrides = {
   },
   'ui-kit.inputs.Search.ClearSearchButtonBackground': {
     backgroundColor: colors.screen,
+  },
+  'Onboarding.SlideContent.Title': ({
+    colors: themeColors,
+    sizing: themeSizing,
+  }) => ({
+    textAlign: 'center',
+    color: themeColors.paper,
+    marginBottom: themeSizing.baseUnit,
+  }),
+  'Onboarding.SlideContent.Description': ({ sizing: themeSizing }) => ({
+    textAlign: 'center',
+    maxWidth: '80%',
+    lineHeight: themeSizing.baseUnit * 1.5,
+  }),
+  'Onboarding.SlideContent.BrandIcon': {
+    alignSelf: 'center',
   },
 };
 // const overrides = {

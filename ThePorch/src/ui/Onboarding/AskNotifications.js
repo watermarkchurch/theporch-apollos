@@ -25,7 +25,11 @@ const AskNotifications = memo(
   }) => (
     <Slide {...props}>
       {BackgroundComponent}
-      <StyledSlideContent icon={'brand-icon'} title={slideTitle} description={description}>
+      <StyledSlideContent
+        icon={'brand-icon-alt'}
+        title={slideTitle}
+        description={description}
+      >
         {buttonDisabled || onPressButton ? (
           <PaddedView horizontal={false}>
             <Button
@@ -62,7 +66,7 @@ AskNotifications.propTypes = {
 AskNotifications.defaultProps = {
   slideTitle: 'Can we keep you informed?',
   description:
-    "The porch used to be a place to look out into the neighborhood. Our Porch is a place where we can look out into the city, see the needs, and meet them.",
+    'The porch used to be a place to look out into the neighborhood. Our Porch is a place where we can look out into the city, see the needs, and meet them.',
   buttonText: 'Yes, enable notifications',
   buttonDisabled: false,
 };
