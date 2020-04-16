@@ -18,7 +18,10 @@ const DiscoverNavigator = createStackNavigator(
       headerTintColor: screenProps.headerTintColor,
       headerTitleStyle: screenProps.headerTitleStyle,
     }),
-    navigationOptions: { tabBarIcon: tabBarIcon('DiscoverAlt') },
+    navigationOptions: {
+      tabBarIcon: tabBarIcon('DiscoverAlt'),
+      tabBarLabel: 'DISCOVER',
+    },
   }
 );
 

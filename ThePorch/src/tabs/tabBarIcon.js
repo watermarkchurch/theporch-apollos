@@ -18,6 +18,7 @@ const tabBarIcon = (name) => {
   }
   TabBarIcon.propTypes = {
     tintColor: PropTypes.string,
+    focused: PropTypes.bool,
   };
   return TabBarIcon;
 };

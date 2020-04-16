@@ -11,7 +11,6 @@ const flex = { flex: 1 };
 
 class Connect extends PureComponent {
   static navigationOptions = () => ({
-    title: 'Connect',
     header: null,
   });
 
