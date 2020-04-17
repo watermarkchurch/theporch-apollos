@@ -23,7 +23,7 @@ import GET_USER_FEED from './getUserFeed';
 import GET_CAMPAIGN_CONTENT_ITEM from './getCampaignContentItem';
 
 const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
+  height: theme.sizing.baseUnit * 2,
   margin: theme.sizing.baseUnit,
   alignSelf: 'center',
   resizeMode: 'contain',
