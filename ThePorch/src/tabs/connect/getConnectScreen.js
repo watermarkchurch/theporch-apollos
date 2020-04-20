@@ -1,19 +1,21 @@
 import gql from 'graphql-tag';
+import ApollosConfig from '@apollosproject/config';
 
 export default gql`
   query getConnectScreen {
     connectScreen {
-      barItems {
-        title
-        icon
-        actionTarget
-        actionIntent
-      }
-      listItems {
-        title
-        actionTarget
-        actionIntent
+      features {
+        ...ActionListFeatureFragment
+        ... on SocialIconsFeature {
+          title
+          id
+          socialIcons {
+            icon
+            url
+          }
+        }
       }
     }
   }
+  ${ApollosConfig.FRAGMENTS.ACTION_LIST_FEATURE_FRAGMENT}
 `;

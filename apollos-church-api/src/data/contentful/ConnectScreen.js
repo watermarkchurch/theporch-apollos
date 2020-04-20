@@ -38,7 +38,7 @@ class dataSource extends ContentfulDataSource {
 
   getDefaultPage = async () => {
     const result = await this.get(`entries`, {
-      content_type: 'connectScreenAction',
+      content_type: 'connectPage',
       'fields.persona': 'default',
     });
     return result[0];
@@ -61,6 +61,16 @@ const resolver = {
   },
   ConnectScreen: {
     id: ({ sys: { id } }) => id,
+    features: async (data, args, { dataSources }) => {
+      const listItems = await dataSources.Feature.createActionListFeature({
+        algorithms: ['CONNECT_SCREEN'],
+        subtitle: 'About the Porch',
+      });
+      const socialFeatures = await dataSources.Feature.createSocialIconsFeature(
+        { title: 'Join the Conversation ' }
+      );
+      return [listItems, socialFeatures];
+    },
   },
 };
 

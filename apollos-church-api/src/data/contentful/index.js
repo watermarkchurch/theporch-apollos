@@ -1,3 +1,4 @@
+export * as Announcement from './Announcement';
 export * as ContentfulContentItem from './ContentfulContentItem';
 export * as Conference from './Conference';
 export * as ConferenceDay from './ConferenceDay';

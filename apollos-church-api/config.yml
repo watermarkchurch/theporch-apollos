@@ -130,6 +130,8 @@ ROCK_MAPPINGS:
       EntityType: Contentful
     Speaker:
       EntityType: Contentful
+    Announcement:
+      EntityType: Contentful
     ContentItem:
       EntityType: Contentful
 

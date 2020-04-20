@@ -1,14 +1,33 @@
 import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
 import gql from 'graphql-tag';
+import { startCase } from 'lodash';
 
 class WCCFeatures extends baseFeatures.dataSource {
   // eslint-disable-next-line class-methods-use-this
+
+  ACTION_ALGORITHIMS = {
+    // We need to make sure `this` refers to the class, not the `ACTION_ALGORITHIMS` object.
+    ...this.ACTION_ALGORITHIMS,
+    CONNECT_SCREEN: this.connectScreenAlgorithm.bind(this),
+  };
 
   createSpeakerFeature = ({ name, id }) => ({
     name,
     id: createGlobalId(id, 'SpeakerFeature'),
     __typename: 'SpeakerFeature',
+  });
+
+  createSocialIconsFeature = ({ title }) => ({
+    id: createGlobalId('SocialIconsFeature', 'SocialIconsFeature'),
+    socialIcons: [
+      { icon: 'instagram', url: 'https://example.com' },
+      { icon: 'facebook', url: 'https://example.com' },
+      { icon: 'twitter', url: 'https://example.com' },
+      { icon: 'instagram', url: 'https://example.com' },
+    ],
+    title,
+    __typename: 'SocialIconsFeature',
   });
 
   async userFeedAlgorithm({ limit = 20 } = {}) {
@@ -27,6 +46,26 @@ class WCCFeatures extends baseFeatures.dataSource {
       image: WCCMessage.getCoverImage(item),
       action: 'READ_CONTENT',
       summary: WCCMessage.subtitle,
+    }));
+  }
+
+  async connectScreenAlgorithm() {
+    const { ConnectScreen } = this.context.dataSources;
+    const screen = await ConnectScreen.getDefaultPage();
+
+    return screen.fields.listItems.map((item, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      title: item.fields.title,
+      subtitle: item.fields.summary,
+      relatedNode: {
+        ...item,
+        id: item.sys.id,
+        __type: startCase(item.sys.contentType.sys.id),
+      },
+      image: item.fields.mediaUrl
+        ? { sources: [{ uri: item.fields.mediaUrl }] }
+        : null,
+      action: 'READ_CONTENT',
     }));
   }
 }
@@ -64,6 +103,19 @@ const schema = gql`
 
     name: String
     profileImage: ImageMedia
+  }
+
+  type SocialIconsItem {
+    icon: String
+    url: String
+  }
+
+  type SocialIconsFeature implements Feature & Node {
+    id: ID!
+    order: Int
+
+    title: String
+    socialIcons: [SocialIconsItem]
   }
 `;
 
