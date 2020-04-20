@@ -47,6 +47,18 @@ const resolver = {
       return null;
     },
   },
+  CardListItem: {
+    coverImage: async (root, args, { dataSources: { WCCMessage } }) =>
+      await root.image,
+    hasAction: (root, args, { dataSources: { ContentItem } }) => {
+      try {
+        const type = ContentItem.resolveType(root.relatedNode);
+        if (type === 'WCCMedia') return true;
+      } finally {
+        return false;
+      }
+    },
+  },
 };
 
 const schema = gql`
