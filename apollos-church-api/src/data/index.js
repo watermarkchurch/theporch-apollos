@@ -25,7 +25,7 @@ import {
   Campus,
   Group,
   BinaryFiles,
-  Features,
+  // Feature,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
 import * as ContentfulData from './contentful';
@@ -33,7 +33,7 @@ import * as ContentfulData from './contentful';
 import * as WCCMessage from './wcc-media';
 import * as WCCSeries from './wcc-series';
 import * as WCCBlog from './wcc-blog';
-import * as WCCFeatures from './wcc-features';
+import * as Feature from './wcc-features';
 import * as ContentItem from './ContentItem';
 import * as ContentChannel from './ContentChannel';
 import * as Search from './search';
@@ -68,9 +68,9 @@ const data = {
   Campus,
   Group,
   BinaryFiles,
-  Features,
-  WCCFeatures,
+  // WCCFeatures,
   // Event,
+  Feature,
   Cache,
   WCCMessage,
   WCCBlog,
