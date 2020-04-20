@@ -1,3 +1,4 @@
+import fontStack from './fontStack';
 // import styleOverrides from './styleOverrides';
 // import propOverrides from './propOverrides';
 
@@ -48,7 +49,9 @@ export const type = 'dark';
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
-// const typography = {};
+export const typography = {
+  ...fontStack,
+};
 
 /* Responsive breakpoints */
 // export const breakpoints = {};
@@ -84,13 +87,41 @@ export const type = 'dark';
  * }
  * ```
  */
+
 const overrides = {
+  // Typography
+  H1: {
+    fontFamily: typography.sans.montserrat.default,
+  },
+  H2: {
+    fontFamily: typography.sans.bebas.default,
+    fontWeight: '700',
+  },
+  H3: {
+    fontFamily: typography.sans.montserrat.default,
+  },
+  H4: {
+    fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
+  },
+  H5: {
+    fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
+  },
+  H6: {
+    fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
+  },
+
+  // UI-Kit
   'ui-kit.inputs.Search.InputWrapper': {
     backgroundColor: colors.screen,
   },
   'ui-kit.inputs.Search.ClearSearchButtonBackground': {
     backgroundColor: colors.screen,
   },
+
+  // Onboarding
   'Onboarding.SlideContent.Title': ({
     colors: themeColors,
     sizing: themeSizing,
