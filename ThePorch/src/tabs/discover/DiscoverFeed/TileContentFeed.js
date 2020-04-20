@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {
   styled,
   withTheme,
-  H5,
+  H2,
   H6,
   HorizontalTileFeed,
   ButtonLink,
@@ -29,6 +29,10 @@ const RowHeader = styled(({ theme }) => ({
 const Name = styled({
   flexGrow: 2,
 })(View);
+
+const StyledH2 = styled(({ theme }) => ({
+  fontSize: theme.sizing.baseUnit * 1.75,
+}))(H2);
 
 const AndroidTouchableFix = withTheme(({ theme }) => ({
   borderRadius: theme.sizing.baseBorderRadius / 2,
@@ -59,7 +63,7 @@ const TileContentFeed = ({ isLoading, id, name, navigation, content = [] }) =>
     <>
       <RowHeader>
         <Name>
-          <H5>{name}</H5>
+          <StyledH2>{name}</StyledH2>
         </Name>
         <AndroidTouchableFix
           onPress={() => {
