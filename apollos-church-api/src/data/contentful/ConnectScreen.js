@@ -21,8 +21,7 @@ const schema = gql`
 
   type ConnectScreen {
     id: ID
-    barItems: [ConnectResource]
-    listItems: [ConnectResource]
+    features: [Feature]
   }
 
   extend type Query {
@@ -62,18 +61,6 @@ const resolver = {
   },
   ConnectScreen: {
     id: ({ sys: { id } }) => id,
-    barItems: ({ fields: { barItems } }) => barItems,
-    listItems: ({ fields: { listItems } }) => listItems,
-  },
-  ConnectResource: {
-    id: ({ sys: { id } }) => id,
-    actionTarget: ({ fields: { actionTarget } }) => actionTarget,
-    actionIntent: ({ fields: { actionIntent } }) =>
-      upperCase(actionIntent)
-        .split(' ')
-        .join('_'),
-    title: ({ fields: { title } }) => title,
-    icon: ({ fields: { icon } }) => snakeCase(icon).replace('_', '-'),
   },
 };
 
