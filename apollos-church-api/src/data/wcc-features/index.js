@@ -4,11 +4,6 @@ import gql from 'graphql-tag';
 
 class WCCFeatures extends baseFeatures.dataSource {
   // eslint-disable-next-line class-methods-use-this
-  getFeatures(root) {
-    const speakerFeatures = root.speakers.map(this.createSpeakerFeature);
-
-    return [...speakerFeatures];
-  }
 
   createSpeakerFeature = ({ name, id }) => ({
     name,

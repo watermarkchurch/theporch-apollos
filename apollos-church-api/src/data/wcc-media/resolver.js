@@ -95,7 +95,7 @@ const resolver = {
         pagination,
       }),
     features: (root, args, { dataSources }) =>
-      dataSources.WCCFeatures.getFeatures(root),
+      dataSources.WCCMessage.getFeatures(root),
   },
   Query: {
     messages: (_, pagination, { dataSources }) =>

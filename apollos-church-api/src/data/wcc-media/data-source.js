@@ -21,6 +21,14 @@ class dataSource extends RESTDataSource {
     return result.message;
   }
 
+  getFeatures({ speakers }) {
+    const speakerFeatures = speakers.map(
+      this.context.dataSources.Feature.createSpeakerFeature
+    );
+
+    return [...speakerFeatures];
+  }
+
   getVideoThumbnailUrl = (youtube) => {
     // first, Watermark's Youtube URLs seem to be misformatted. Fix that:
     const fixedUrl = youtube.replace('?rel=0', '');
