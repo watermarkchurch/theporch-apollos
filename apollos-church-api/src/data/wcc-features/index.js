@@ -15,9 +15,29 @@ class WCCFeatures extends baseFeatures.dataSource {
     id: createGlobalId(id, 'SpeakerFeature'),
     __typename: 'SpeakerFeature',
   });
+
+  async userFeedAlgorithm({ limit = 20 } = {}) {
+    const { WCCMessage } = this.context.dataSources;
+
+    const { edges: items } = await WCCMessage.paginate({
+      pagination: { limit },
+      filters: { target: 'the_porch' },
+    });
+
+    return items.map(({ node: item }, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      title: item.title,
+      subtitle: item.subtitle,
+      relatedNode: { ...item, __type: 'WCCMessage' },
+      image: WCCMessage.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: WCCMessage.subtitle,
+    }));
+  }
 }
 
 const resolver = {
+  ...baseFeatures.resolver,
   SpeakerFeature: {
     profileImage: async ({ name }, args, { dataSources }) => {
       const speaker = await dataSources.WCCMessage.getSpeakerByName({ name });
@@ -30,6 +50,7 @@ const resolver = {
 };
 
 const schema = gql`
+  ${baseFeatures.schema}
   type SpeakerFeature implements Feature & Node {
     id: ID!
     order: Int

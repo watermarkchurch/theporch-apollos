@@ -2,6 +2,9 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 
 import { ApolloError } from 'apollo-server';
+import { get, values } from 'lodash';
+
+import { resolver as seriesResolver } from '../wcc-series';
 
 class dataSource extends RESTDataSource {
   baseURL = 'https://media.watermark.org/api/v1/messages';
@@ -96,6 +99,18 @@ class dataSource extends RESTDataSource {
       getTotalCount,
     };
   }
+
+  getCoverImage = ({ images, thumbnail_url, series }) => ({
+    sources: [
+      {
+        uri:
+          get(images, 'square.url') ||
+          values(images).find(({ url } = {}) => url)?.url ||
+          thumbnail_url ||
+          seriesResolver.WCCSeries.coverImage(series),
+      },
+    ],
+  });
 }
 
 export default dataSource;
