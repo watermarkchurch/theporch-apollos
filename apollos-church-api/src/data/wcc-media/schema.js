@@ -1,10 +1,11 @@
 import gql from 'graphql-tag';
 
-const schema =  gql`
+const schema = gql`
   type WCCMessage implements ContentItem & Node {
     id: ID!
     title(hyphenated: Boolean): String
     coverImage: ImageMedia
+    videoThumbnailImage: ImageMedia
     htmlContent: String
     summary: String
     childContentItemsConnection(
@@ -24,10 +25,7 @@ const schema =  gql`
   }
 
   extend type Query {
-    messages(
-      first: Int
-      after: String
-    ): ContentItemsConnection
+    messages(first: Int, after: String): ContentItemsConnection
   }
 `;
 

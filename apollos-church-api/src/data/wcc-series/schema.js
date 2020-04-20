@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const schema =  gql`
+const schema = gql`
   type WCCSeries implements ContentItem & Node {
     id: ID!
     title(hyphenated: Boolean): String

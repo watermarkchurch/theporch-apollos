@@ -11,22 +11,37 @@ const resolver = {
     id: ({ id }, args, context, { parentType }) =>
       createGlobalId(`${id}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ images }) => ({ sources: [{ uri: images.square?.url || values(images).find(({ url } = {}) => url)?.url }] }),
+    coverImage: ({ images }) => ({
+      sources: [
+        {
+          uri:
+            images.square?.url ||
+            values(images).find(({ url } = {}) => url)?.url,
+        },
+      ],
+    }),
     summary: ({ subtitle }) => subtitle,
-    images: ({ images }) => Object.keys(images).map((key) => ({ sources: [{ uri: images[key].url }], name: images[key].type_name, key })),
-    parentChannel: (input, args, { dataSources}) => dataSources.ContentChannel.getSeriesChannel(), // TODO
+    htmlContent: ({ subtitle }) => subtitle,
+    images: ({ images }) =>
+      Object.keys(images).map((key) => ({
+        sources: [{ uri: images[key].url }],
+        name: images[key].type_name,
+        key,
+      })),
+    parentChannel: (input, args, { dataSources }) =>
+      dataSources.ContentChannel.getSeriesChannel(), // TODO
     theme: () => null, // TODO
     siblingContentItemsConnection: () => ({
       pageInfo: () => null,
       totalCount: () => 0,
-      edges: () => ([]),
+      edges: () => [],
     }),
     childContentItemsConnection: ({ id }, pagination, { dataSources }) =>
       dataSources.WCCMessage.paginate({
-        restrictSearchableAttributes: 'Person.full_name',
+        filters: { filter: { series_id: id } },
         pagination,
       }),
   },
-}
+};
 
 export default resolver;

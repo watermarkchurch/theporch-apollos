@@ -29,6 +29,7 @@ const EnhancedSchedule = withTheme(({ theme, ...props }) => ({
     headerTitleStyle: {
       color: theme.colors.text.primary,
     },
+    headerBackgroundColor: theme.colors.background.paper,
   },
 }))(ScheduleNavigator);
 

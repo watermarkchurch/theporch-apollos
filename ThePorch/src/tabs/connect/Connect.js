@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Animated } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
-import { BackgroundView } from '@apollosproject/ui-kit';
 import { get } from 'lodash';
 
+import BackgroundView from '../../ui/BackgroundTexture';
 import ActionTable from './ActionTable';
 import ActionBar from './ActionBar';
 import UserAvatarHeader from './UserAvatarHeader';
@@ -15,7 +15,6 @@ import GET_CONNECT_SCREEN from './getConnectScreen';
 
 class Connect extends PureComponent {
   static navigationOptions = () => ({
-    title: 'Connect',
     header: null,
   });
 
@@ -26,11 +25,18 @@ class Connect extends PureComponent {
     }),
   };
 
+  scrollY = new Animated.Value(0);
+
   render() {
     return (
-      <BackgroundView>
-        <SafeAreaView>
-          <ScrollView>
+      <BackgroundView style={flex}>
+        <SafeAreaView style={flex}>
+          <ScrollView
+            onScroll={Animated.event([
+              { nativeEvent: { contentOffset: { y: this.scrollY } } },
+            ])}
+            style={flex}
+          >
             <UserAvatarHeader />
             <Query query={GET_CONNECT_SCREEN}>
               {({ data }) => {

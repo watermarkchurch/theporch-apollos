@@ -5,6 +5,7 @@ import { ContentItem } from '@apollosproject/data-connector-rock';
 import { get, values } from 'lodash';
 
 import marked from 'marked';
+import moment from 'moment';
 import { createGlobalId } from '@apollosproject/server-core';
 
 import { resolver as seriesResolver } from '../wcc-series';
@@ -15,15 +16,23 @@ const resolver = {
       createGlobalId(`${id || objectID}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
     coverImage: ({ images, thumbnail_url, series = {} }) => ({
-      sources: [{ uri: get(images, 'square.url') || values(images).find(({ url } = {}) => url)?.url || thumbnail_url || seriesResolver.WCCSeries.coverImage(series) }],
+      sources: [
+        {
+          uri:
+            get(images, 'square.url') ||
+            values(images).find(({ url } = {}) => url)?.url ||
+            thumbnail_url ||
+            seriesResolver.WCCSeries.coverImage(series),
+        },
+      ],
     }),
-    htmlContent: ({ description, sermon_guide, transcript, date, ...args }) => {
+    htmlContent: ({ description, sermon_guide, transcript, date }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
       let htmlContent = '';
 
       if (date) {
-        htmlContent += `<p><strong>Posted on ${date}</strong></p>`;
+        htmlContent += `<H6>${moment(date).format('MM/DD/YYYY')}</H6>`;
       }
 
       htmlContent += `<p>${description}</p>`;
@@ -39,28 +48,74 @@ const resolver = {
       return htmlContent;
     },
     summary: ({ subtitle }) => subtitle,
-    images: ({ images }) => Object.keys(images | []).map((key) => ({ sources: [{ uri: images[key].url }], name: images[key].type_name, key })),
-    videos: ({ assets: { streaming_video = {} } = {} }) => streaming_video.url ? [{ sources: [{ uri: streaming_video.url }], name: streaming_video.type_name, key: 'streaming_video' }] : null,
-    audios: ({ assets: { audio = {} } = {} }) => audio.url ? [{ sources: [{ uri: audio.url }], name: audio.type_name, key: 'audio' }] : null,
-    parentChannel: (input, args, { dataSources}) => dataSources.ContentChannel.getMessagesChannel(), // TODO
+    images: ({ images }) =>
+      Object.keys(images || []).map((key) => ({
+        sources: [{ uri: images[key].url }],
+        name: images[key].type_name,
+        key,
+      })),
+    videoThumbnailImage: (
+      { external_urls: { youtube } = {}, ...other },
+      args,
+      { dataSources, ...otherContext }
+    ) =>
+      youtube
+        ? {
+            sources: [
+              { uri: dataSources.WCCMessage.getVideoThumbnailUrl(youtube) },
+            ],
+          }
+        : resolver.WCCMessage.coverImage(other, args, {
+            dataSources,
+            ...otherContext,
+          }),
+    videos: ({ assets: { streaming_video = {} } = {} }, _, { dataSources }) =>
+      streaming_video.url
+        ? [
+            {
+              sources: [{ uri: streaming_video.url }],
+              name: streaming_video.type_name,
+              key: 'streaming_video',
+            },
+          ]
+        : null,
+    audios: ({ assets: { audio = {} } = {} }) =>
+      audio.url
+        ? [
+            {
+              sources: [{ uri: audio.url }],
+              name: audio.type_name,
+              key: 'audio',
+            },
+          ]
+        : null,
+    parentChannel: (input, args, { dataSources }) =>
+      dataSources.ContentChannel.getMessagesChannel(), // TODO
     theme: () => null, // TODO
     childContentItemsConnection: () => ({
       pageInfo: () => null,
       totalCount: () => 0,
-      edges: () => ([]),
+      edges: () => [],
     }),
-    siblingContentItemsConnection: ({ series: { id } = {} } = {}, pagination, { dataSources }) =>
+    siblingContentItemsConnection: (
+      { series: { id } = {} } = {},
+      pagination,
+      { dataSources }
+    ) =>
       dataSources.WCCMessage.paginate({
         filters: { filter: { series_id: id } },
         pagination,
       }),
-    features: (root, args, { dataSources }) => dataSources.WCCFeatures.getFeatures(root),
+    features: (root, args, { dataSources }) =>
+      dataSources.WCCFeatures.getFeatures(root),
   },
   Query: {
-    messages: (_, pagination, { dataSources }) => dataSources.WCCMessage.paginate({
-      pagination,
-    }),
+    messages: (_, pagination, { dataSources }) =>
+      dataSources.WCCMessage.paginate({
+        pagination,
+        filters: { target: 'the_porch' },
+      }),
   },
-}
+};
 
 export default resolver;

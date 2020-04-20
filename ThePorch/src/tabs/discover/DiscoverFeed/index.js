@@ -2,9 +2,12 @@ import React, { memo } from 'react';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { Animated } from 'react-native';
 
 import { FeedView } from '@apollosproject/ui-kit';
+import { SafeAreaView } from 'react-navigation';
 
+import BackgroundView from '../../../ui/BackgroundTexture';
 import TileContentFeed from './TileContentFeed';
 import GET_CONTENT_CHANNELS from './getContentChannels';
 
@@ -16,21 +19,25 @@ const childContentItemLoadingState = {
 const feedItemLoadingState = {
   name: '',
   isLoading: true,
+  id: 1,
 };
 
 const renderItem = (
   { item } // eslint-disable-line react/prop-types
-) => (
-  <TileContentFeed
-    id={item.id}
-    name={item.name}
-    content={get(item, 'childContentItemsConnection.edges', []).map(
-      (edge) => edge.node
-    )}
-    isLoading={item.isLoading}
-    loadingStateObject={childContentItemLoadingState}
-  />
-);
+) =>
+  React.isValidElement(item) ? (
+    item
+  ) : (
+    <TileContentFeed
+      id={item?.id}
+      name={item?.name}
+      content={get(item, 'childContentItemsConnection.edges', []).map(
+        (edge) => edge.node
+      )}
+      isLoading={item?.isLoading}
+      loadingStateObject={childContentItemLoadingState}
+    />
+  );
 
 renderItem.propTypes = {
   item: PropTypes.shape({
@@ -40,21 +47,33 @@ renderItem.propTypes = {
   }),
 };
 
-const DiscoverFeed = memo(() => (
-  <Query query={GET_CONTENT_CHANNELS} fetchPolicy="cache-and-network">
-    {({ error, loading, data: { contentChannels = [] } = {}, refetch }) => (
-      <FeedView
-        error={error}
-        content={contentChannels}
-        isLoading={loading && !contentChannels.length}
-        refetch={refetch}
-        renderItem={renderItem}
-        loadingStateObject={feedItemLoadingState}
-        numColumns={1}
-      />
-    )}
-  </Query>
-));
+const DiscoverFeed = memo(() => {
+  const scrollY = new Animated.Value(0);
+
+  return (
+    <Query query={GET_CONTENT_CHANNELS} fetchPolicy="cache-and-network">
+      {({ error, loading, data: { contentChannels = [] } = {}, refetch }) => (
+        <BackgroundView animatedScrollPos={scrollY}>
+          <FeedView
+            onScroll={Animated.event([
+              { nativeEvent: { contentOffset: { y: scrollY } } },
+            ])}
+            error={error}
+            content={contentChannels}
+            ListHeaderComponent={
+              <SafeAreaView forceInset={{ top: 'always' }} />
+            }
+            isLoading={loading && !contentChannels.length}
+            refetch={refetch}
+            renderItem={renderItem}
+            loadingStateObject={feedItemLoadingState}
+            numColumns={1}
+          />
+        </BackgroundView>
+      )}
+    </Query>
+  );
+});
 
 DiscoverFeed.displayName = 'DiscoverFeed';
 

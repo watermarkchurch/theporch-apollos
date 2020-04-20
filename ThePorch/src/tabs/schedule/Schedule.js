@@ -5,25 +5,18 @@ import {
   BackgroundView,
   // TabView,
   ActivityIndicator,
-  H6,
   H2,
   ThemeMixin,
-  withThemeMixin,
   ErrorCard,
 } from '@apollosproject/ui-kit';
-import { TabView } from 'react-native-tab-view';
 
-import SearchInputHeader, {
-  ReactNavigationStyleReset,
-} from '../../ui/SearchInputHeader';
-import GET_DAYS from './getDays';
+import { ReactNavigationStyleReset } from '../../ui/SearchInputHeader';
 
-import moment from 'moment';
-import UpNext from './UpNext'
-import ThemedBottomTabBar from '../tabBar';
 import headerOptions from '../headerOptions';
 import AppStateRefetch from '../../ui/AppStateRefetch';
-import ConferenceCard from './ConferenceCard'
+import GET_DAYS from './getDays';
+import UpNext from './UpNext';
+import ConferenceCard from './ConferenceCard';
 
 import Day from './Day';
 
@@ -31,7 +24,10 @@ class Schedule extends PureComponent {
   static navigationOptions = ({ screenProps }) => ({
     title: 'Schedule',
     ...headerOptions,
-    headerStyle: ReactNavigationStyleReset.header,
+    headerStyle: [
+      ReactNavigationStyleReset.header,
+      { backgroundColor: screenProps.headerBackgroundColor },
+    ],
     headerTitle: (props) => (
       <ThemeMixin mixin={{ type: 'dark' }}>
         <headerOptions.headerTitle {...props} />
@@ -75,7 +71,7 @@ class Schedule extends PureComponent {
                 <ScrollView>
                   <ConferenceCard />
                   <UpNext />
-                  {days.map(day => (
+                  {days.map((day) => (
                     <>
                       <H2>{day.title}</H2>
                       <Day id={day.id} />

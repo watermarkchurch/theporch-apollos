@@ -10,7 +10,40 @@
  * elements are colored, go there. The next level of control comes
  * on a per-component basis with "overrides"
  */
-// const colors = {};
+const colors = {
+  primary: '#F76E5E',
+  secondary: '#644AA1',
+
+  tertiary: '#8AA7C5',
+  screen: '#F8F7F4',
+  paper: '#FFFFFF',
+  alert: '#AB3C30',
+
+  // Dark shades
+  darkPrimary: '#1F1F22',
+  darkSecondary: '#4D4D4F',
+  darkTertiary: '#A5A5A5',
+
+  // Light shades
+  lightPrimary: '#F2F2F2',
+  lightSecondary: '#CDCDCD',
+  lightTertiary: '#A5A5A5',
+  // Statics
+  wordOfChrist: '#8B0000', // only used in Scripture.
+  icons: {
+    AwakenAlt: '#6755B3',
+    ConnectAlt: '#EBA938',
+    DiscoverAlt: '#01859A',
+    FavoriteAlt: '#EBA938',
+    HomeAlt: '#F76E5E',
+    LocationAlt: '#6755B3',
+    TimeAlt: '#6755B3',
+  },
+};
+
+// App theme type.
+
+export const type = 'dark';
 
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
@@ -51,9 +84,33 @@
  * }
  * ```
  */
+const overrides = {
+  'ui-kit.inputs.Search.InputWrapper': {
+    backgroundColor: colors.screen,
+  },
+  'ui-kit.inputs.Search.ClearSearchButtonBackground': {
+    backgroundColor: colors.screen,
+  },
+  'Onboarding.SlideContent.Title': ({
+    colors: themeColors,
+    sizing: themeSizing,
+  }) => ({
+    textAlign: 'center',
+    color: themeColors.paper,
+    marginBottom: themeSizing.baseUnit,
+  }),
+  'Onboarding.SlideContent.Description': ({ sizing: themeSizing }) => ({
+    textAlign: 'center',
+    maxWidth: '80%',
+    lineHeight: themeSizing.baseUnit * 1.5,
+  }),
+  'Onboarding.SlideContent.BrandIcon': {
+    alignSelf: 'center',
+  },
+};
 // const overrides = {
 //   ...styleOverrides,
 //   ...propOverrides,
 // };
 
-export default {};
+export default { colors, overrides, type };

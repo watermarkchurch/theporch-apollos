@@ -1,4 +1,5 @@
 import React from 'react';
+import ApollosConfig from '@apollosproject/config';
 
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
@@ -9,7 +10,6 @@ import { withNavigation } from 'react-navigation';
 import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
 import { updateLikedContent } from '@apollosproject/ui-connected';
 import { Icon, withTheme, Touchable } from '@apollosproject/ui-kit';
-
 
 const LikeIcon = withTheme(
   ({ theme: { colors: { secondary } = {} } = {}, isLiked } = {}) => ({
@@ -38,27 +38,28 @@ LikeButton.propTypes = {
   toggleLike: PropTypes.func,
 };
 
-
 const GET_LIKED_CONTENT_ITEM = gql`
   query getLikedContentItem($itemId: ID!) {
     node(id: $itemId) {
       ... on ContentItem {
         id
         isLiked @client(always: true)
+        ...contentCardFragment
       }
     }
   }
+  ${ApollosConfig.FRAGMENTS.CONTENT_CARD_FRAGMENT}
 `;
 
 const UPDATE_LIKE_ENTITY = gql`
   mutation updateLikeEntity($itemId: ID!, $operation: LIKE_OPERATION!) {
-    updateLikeEntity(input: { nodeId: $itemId, operation: $operation }) @client {
+    updateLikeEntity(input: { nodeId: $itemId, operation: $operation })
+      @client {
       id @client
       isLiked @client(always: true)
     }
   }
 `;
-
 
 const GetLikeData = ({ itemId, children }) => (
   <Query query={GET_LIKED_CONTENT_ITEM} variables={{ itemId }}>
@@ -92,15 +93,10 @@ const UpdateLikeStatus = ({
             __typename: item && item.__typename,
           },
         }}
-        update={(
-          cache,
-          data,
-        ) => {
+        update={(cache, data) => {
           const {
             data: {
-              updateLikeEntity: {
-                isLiked: liked,
-              },
+              updateLikeEntity: { isLiked: liked },
             },
           } = data;
           updateLikedContent({ liked, cache, item });
@@ -130,7 +126,7 @@ const UpdateLikeStatus = ({
                       },
                     });
                   } catch (e) {
-                    console.log(e)
+                    console.log(e);
                   }
                 },
               })

@@ -60,7 +60,7 @@ export default class TestingControlPanel extends PureComponent {
           )}
         </RockAuthedWebBrowser>
         <TouchableCell
-          handlePress={() => this.props.navigation.navigate('Onboarding')}
+          handlePress={() => this.props.navigation.navigate('LandingScreen')}
           iconName="Avatar"
           cellText={`Launch Onboarding`}
         />

@@ -1,32 +1,67 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, View } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
   ContentHTMLViewConnected,
   HorizontalContentSeriesFeedConnected,
-  MediaControlsConnected,
-  ContentSingleFeaturesConnected,
-  UpNextButtonConnected,
 } from '@apollosproject/ui-connected';
 import {
   styled,
   GradientOverlayImage,
-  BackgroundView,
   PaddedView,
   H2,
+  H3,
+  BackgroundView,
   StretchyView,
-  HorizontalTileFeed,
+  withTheme,
 } from '@apollosproject/ui-kit';
+import Color from 'color';
+
 import Features from '../Features';
+import MediaControlsConnected from '../MediaControls';
+
+import BackgroundTextureAngled from '../../ui/BackgroundTextureAngled';
+// import StretchyView from '../../ui/StretchyView';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
-const StyledMediaControlsConnected = styled(({ theme }) => ({
-  marginTop: -(theme.sizing.baseUnit * 2.5),
-}))(MediaControlsConnected);
+const Content = styled(({ theme }) => ({
+  marginTop: -(theme.sizing.baseUnit * 3.25),
+}))(View);
 
-const UniversalContentItem = ({ content, loading }) => {
+const Header = styled({
+  width: '80%',
+})(View);
+
+const stretchyStyle = {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
+  aspectRatio: 1,
+};
+
+const HeaderImage = withTheme(({ theme }) => ({
+  overlayType: 'featured',
+  overlayColor: Color(theme.colors.darkPrimary)
+    .alpha(theme.alpha.low)
+    .string(),
+  style: stretchyStyle,
+  imageStyle: stretchyStyle,
+}))(GradientOverlayImage);
+
+const getChildrenLabel = (typename) => {
+  switch (typename) {
+    case 'WCCMessage':
+    case 'WCCSeries':
+      return 'In this series';
+    default:
+      return 'Also check out';
+  }
+};
+
+const UniversalContentItem = ({ id, content, loading }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
     <BackgroundView>
@@ -34,24 +69,38 @@ const UniversalContentItem = ({ content, loading }) => {
         {({ Stretchy, ...scrollViewProps }) => (
           <FlexedScrollView {...scrollViewProps}>
             {coverImageSources.length || loading ? (
-              <Stretchy>
-                <GradientOverlayImage
+              <Stretchy style={stretchyStyle}>
+                <HeaderImage
+                  forceRatio={1}
                   isLoading={!coverImageSources.length && loading}
                   source={coverImageSources}
+                  maintainAspectRatio={false}
                 />
               </Stretchy>
             ) : null}
-            <StyledMediaControlsConnected contentId={content.id} />
-            {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
-            <PaddedView vertical={!coverImageSources.length}>
-              <H2 padded isLoading={!content.title && loading}>
-                {content.title}
-              </H2>
-              <ContentHTMLViewConnected contentId={content.id} />
-            </PaddedView>
-            <ContentSingleFeaturesConnected contentId={content.id} />
-            {/* <UpNextButtonConnected contentId={content.id} /> */}
-            <HorizontalContentSeriesFeedConnected contentId={content.id} />
+            <BackgroundTextureAngled>
+              <Content>
+                <MediaControlsConnected contentId={id} />
+                {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+                <PaddedView vertical={!coverImageSources.length}>
+                  <Header>
+                    <H2 padded isLoading={!content.title && loading}>
+                      {content.title}
+                    </H2>
+                  </Header>
+                  <ContentHTMLViewConnected contentId={id} />
+                </PaddedView>
+                {/* <UpNextButtonConnected contentId={content.id} /> */}
+                <Features contentId={id} />
+
+                <PaddedView horizontal={false}>
+                  <PaddedView vertical={false}>
+                    <H3>{getChildrenLabel(content.__typename)}</H3>
+                  </PaddedView>
+                  <HorizontalContentSeriesFeedConnected contentId={id} />
+                </PaddedView>
+              </Content>
+            </BackgroundTextureAngled>
           </FlexedScrollView>
         )}
       </StretchyView>
