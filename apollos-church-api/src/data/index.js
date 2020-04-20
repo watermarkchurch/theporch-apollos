@@ -25,7 +25,7 @@ import {
   Campus,
   Group,
   BinaryFiles,
-  Features,
+  Feature,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
 import * as ContentfulData from './contentful';
@@ -68,9 +68,9 @@ const data = {
   Campus,
   Group,
   BinaryFiles,
-  Features,
   WCCFeatures,
   // Event,
+  Feature,
   Cache,
   WCCMessage,
   WCCBlog,
