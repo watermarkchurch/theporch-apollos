@@ -45,7 +45,6 @@ class Connect extends PureComponent {
             <Query query={GET_CONNECT_SCREEN} fetchPolicy={'cache-and-network'}>
               {({ data }) => {
                 const features = get(data, 'connectScreen.features', []);
-                console.log(data);
                 return <Features features={features} />;
               }}
             </Query>
