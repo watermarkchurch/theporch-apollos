@@ -48,6 +48,7 @@ class Connect extends PureComponent {
                 return <Features features={features} />;
               }}
             </Query>
+            <ActionTable />
           </ScrollView>
         </SafeAreaView>
       </BackgroundView>
