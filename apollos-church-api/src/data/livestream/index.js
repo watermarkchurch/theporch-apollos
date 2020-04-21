@@ -32,13 +32,15 @@ class dataSource extends RESTDataSource {
     // The follow method looks at the sermon feed and the `getLiveStream` on this module
     // If we have data in the sermon feed, and the `getLiveStream.isLive` is true
     // this returns an array of livestreams
-    const { streams } = await this.get('/');
+    const { streams } = await this.get('', { target: 'the_porch' });
+    console.log(JSON.stringify(streams, null, 2));
     return streams.map((stream) => ({
       isLive: !!stream.current_event,
       eventStartTime:
         stream.current_event?.starts_at || stream.next_event?.starts_at,
       media: this.getMediaUrl(stream),
       webViewUrl: this.getWebviewUrl(stream),
+      // contentItem:
     }));
   }
 }
