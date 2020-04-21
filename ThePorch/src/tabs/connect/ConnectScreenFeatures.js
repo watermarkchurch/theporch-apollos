@@ -49,10 +49,10 @@ const SocialIconsFeature = ({ title, socialIcons }) => (
 );
 
 // hack to move the title outside the action list card
-const ActionListFeature = ({ title, ...feature }) => (
+const ActionListFeature = ({ subtitle, ...feature }) => (
   <>
     <PaddedView>
-      <StyledH2>{title}</StyledH2>
+      <StyledH2>{subtitle}</StyledH2>
     </PaddedView>
     <CoreActionListFeature {...feature} />
   </>
@@ -64,6 +64,10 @@ handleOnPressActionItem = ({ navigation }) => ({ action, relatedNode }) => {
       itemId: relatedNode.id,
       transitionKey: 2,
     });
+  }
+  if (action === 'OPEN_URL') {
+    // todo - support `useInAppBrowser`
+    Linking.openURL(relatedNode.url);
   }
   if (action === 'READ_EVENT') {
     navigation.navigate('Event', {

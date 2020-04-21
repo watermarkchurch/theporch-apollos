@@ -5,7 +5,28 @@ export default gql`
   query getConnectScreen {
     connectScreen {
       features {
-        ...ActionListFeatureFragment
+        ... on ActionListFeature {
+          title
+          subtitle
+          id
+          actions {
+            id
+            image {
+              sources {
+                uri
+              }
+            }
+            title
+            subtitle
+            action
+            relatedNode {
+              id
+              ... on Link {
+                url
+              }
+            }
+          }
+        }
         ... on SocialIconsFeature {
           title
           id
@@ -17,5 +38,4 @@ export default gql`
       }
     }
   }
-  ${ApollosConfig.FRAGMENTS.ACTION_LIST_FEATURE_FRAGMENT}
 `;

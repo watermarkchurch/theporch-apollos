@@ -53,20 +53,23 @@ class WCCFeatures extends baseFeatures.dataSource {
     const { ConnectScreen } = this.context.dataSources;
     const screen = await ConnectScreen.getDefaultPage();
 
-    return screen.fields.listItems.map((item, i) => ({
-      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
-      title: item.fields.title,
-      subtitle: item.fields.summary,
-      relatedNode: {
-        ...item,
-        id: item.sys.id,
-        __type: startCase(item.sys.contentType.sys.id),
-      },
-      image: item.fields.mediaUrl
-        ? { sources: [{ uri: item.fields.mediaUrl }] }
-        : null,
-      action: 'READ_CONTENT',
-    }));
+    return screen.fields.listItems.map((item, i) => {
+      const type = startCase(item.sys.contentType.sys.id);
+      return {
+        id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+        title: item.fields.title,
+        subtitle: item.fields.summary,
+        relatedNode: {
+          ...item,
+          id: item.sys.id,
+          __type: type,
+        },
+        image: item.fields.mediaUrl
+          ? { sources: [{ uri: item.fields.mediaUrl }] }
+          : null,
+        action: type === 'Link' ? 'OPEN_URL' : 'READ_CONTENT',
+      };
+    });
   }
 }
 
@@ -108,6 +111,10 @@ const schema = gql`
   type SocialIconsItem {
     icon: String
     url: String
+  }
+
+  extend enum ACTION_FEATURE_ACTION {
+    OPEN_URL
   }
 
   type SocialIconsFeature implements Feature & Node {
