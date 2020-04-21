@@ -31,37 +31,28 @@ const StyledH2 = styled(({ theme }) => ({
   fontSize: theme.sizing.baseUnit * 1.75,
 }))(H2);
 
-const SocialIconsFeature = ({ title, socialIcons }) => {
-  // TODO: Once `socialIcons` is working use that instead of `socialIconsTemp`. Doing this for testing purposes.
-  const socialIconsTemp = [
-    { icon: 'instagram', url: 'https://www.example.com/' },
-    { icon: 'facebook', url: 'https://www.example.com/' },
-    { icon: 'youtube', url: 'https://www.example.com/' },
-    { icon: 'twitter', url: 'https://www.example.com/' },
-  ];
-  return (
-    <>
-      <PaddedView>
-        <StyledH2>{title}</StyledH2>
-      </PaddedView>
-      <HorizontalView>
-        {socialIconsTemp.map(({ icon, url }) => (
-          <Touchable onPress={() => Linking.openURL(url)}>
-            <SocialIcon>
-              <Icon name={icon} fillOpacity="0.5" />
-            </SocialIcon>
-          </Touchable>
-        ))}
-      </HorizontalView>
-    </>
-  );
-};
-
-// hack to move the title outside the action list card
-const ActionListFeature = ({ subtitle, ...feature }) => (
+const SocialIconsFeature = ({ title, socialIcons }) => (
   <>
     <PaddedView>
-      <StyledH2>{subtitle}</StyledH2>
+      <StyledH2>{title}</StyledH2>
+    </PaddedView>
+    <HorizontalView>
+      {socialIcons.map(({ icon, url }) => (
+        <Touchable onPress={() => Linking.openURL(url)}>
+          <SocialIcon>
+            <Icon name={icon} fillOpacity="0.5" />
+          </SocialIcon>
+        </Touchable>
+      ))}
+    </HorizontalView>
+  </>
+);
+
+// hack to move the title outside the action list card
+const ActionListFeature = ({ title, ...feature }) => (
+  <>
+    <PaddedView>
+      <StyledH2>{title}</StyledH2>
     </PaddedView>
     <CoreActionListFeature {...feature} />
   </>
