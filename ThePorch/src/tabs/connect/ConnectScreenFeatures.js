@@ -1,43 +1,68 @@
 import React from 'react';
 import { View, Linking } from 'react-native';
 import { ActionListFeature as CoreActionListFeature } from '@apollosproject/ui-connected';
-import { H2, Touchable, styled, Icon } from '@apollosproject/ui-kit';
+import {
+  H2,
+  Touchable,
+  styled,
+  Icon,
+  PaddedView,
+} from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
+import SafeAreaView from 'react-native-safe-area-view';
 
-const HorizontalView = styled({
+const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'center',
-})(View);
+  marginBottom: theme.sizing.baseUnit,
+}))(View);
 
-const SocialIcon = styled({
+const SocialIcon = styled(({ theme }) => ({
   width: 50,
   height: 50,
   borderRadius: 50,
-  backgroundColor: 'blue',
+  backgroundColor: theme.colors.darkPrimary,
   justifyContent: 'center',
   alignItems: 'center',
-})(View);
+}))(View);
 
-const SocialIconsFeature = ({ title, socialIcons }) => (
-  <>
-    <H2>{title}</H2>
-    <HorizontalView>
-      {socialIcons.map(({ icon, url }) => (
-        <Touchable onPress={() => Linking.openURL(url)}>
-          <SocialIcon>
-            <Icon name={'play'} />
-          </SocialIcon>
-        </Touchable>
-      ))}
-    </HorizontalView>
-  </>
-);
+const StyledH2 = styled(({ theme }) => ({
+  fontSize: theme.sizing.baseUnit * 1.75,
+}))(H2);
+
+const SocialIconsFeature = ({ title, socialIcons }) => {
+  // TODO: Once `socialIcons` is working use that instead of `socialIconsTemp`. Doing this for testing purposes.
+  const socialIconsTemp = [
+    { icon: 'instagram', url: 'https://www.example.com/' },
+    { icon: 'facebook', url: 'https://www.example.com/' },
+    { icon: 'youtube', url: 'https://www.example.com/' },
+    { icon: 'twitter', url: 'https://www.example.com/' },
+  ];
+  return (
+    <>
+      <PaddedView>
+        <StyledH2>{title}</StyledH2>
+      </PaddedView>
+      <HorizontalView>
+        {socialIconsTemp.map(({ icon, url }) => (
+          <Touchable onPress={() => Linking.openURL(url)}>
+            <SocialIcon>
+              <Icon name={icon} fillOpacity="0.5" />
+            </SocialIcon>
+          </Touchable>
+        ))}
+      </HorizontalView>
+    </>
+  );
+};
 
 // hack to move the title outside the action list card
-const ActionListFeature = ({ title, ...feature }) => (
+const ActionListFeature = ({ subtitle, ...feature }) => (
   <>
-    <H2>{title}</H2>
+    <PaddedView>
+      <StyledH2>{subtitle}</StyledH2>
+    </PaddedView>
     <CoreActionListFeature {...feature} />
   </>
 );
