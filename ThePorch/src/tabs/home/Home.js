@@ -9,7 +9,7 @@ import { FeaturesFeedConnected } from '@apollosproject/ui-connected';
 import BackgroundView from '../../ui/BackgroundTexture';
 
 const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
+  height: theme.sizing.baseUnit * 2,
   margin: theme.sizing.baseUnit,
   alignSelf: 'center',
   resizeMode: 'contain',
