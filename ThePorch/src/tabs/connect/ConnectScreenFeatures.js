@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
 import { ActionListFeature as CoreActionListFeature } from '@apollosproject/ui-connected';
 import {
@@ -9,7 +10,6 @@ import {
   PaddedView,
 } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
-import SafeAreaView from 'react-native-safe-area-view';
 
 const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -32,20 +32,13 @@ const StyledH2 = styled(({ theme }) => ({
 }))(H2);
 
 const SocialIconsFeature = ({ title, socialIcons }) => {
-  // TODO: Once `socialIcons` is working use that instead of `socialIconsTemp`. Doing this for testing purposes.
-  const socialIconsTemp = [
-    { icon: 'instagram', url: 'https://www.example.com/' },
-    { icon: 'facebook', url: 'https://www.example.com/' },
-    { icon: 'youtube', url: 'https://www.example.com/' },
-    { icon: 'twitter', url: 'https://www.example.com/' },
-  ];
   return (
     <>
       <PaddedView>
         <StyledH2>{title}</StyledH2>
       </PaddedView>
       <HorizontalView>
-        {socialIconsTemp.map(({ icon, url }) => (
+        {socialIcons.map(({ icon, url }) => (
           <Touchable onPress={() => Linking.openURL(url)}>
             <SocialIcon>
               <Icon name={icon} fillOpacity="0.5" />
@@ -55,6 +48,16 @@ const SocialIconsFeature = ({ title, socialIcons }) => {
       </HorizontalView>
     </>
   );
+};
+
+SocialIconsFeature.propTypes = {
+  title: PropTypes.string,
+  socialIcons: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.string,
+      url: PropTypes.string,
+    })
+  ),
 };
 
 // hack to move the title outside the action list card
