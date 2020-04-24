@@ -11,7 +11,6 @@ import {
   GradientOverlayImage,
   PaddedView,
   H2,
-  H3,
   BackgroundView,
   StretchyView,
   withTheme,
@@ -50,6 +49,10 @@ const HeaderImage = withTheme(({ theme }) => ({
   style: stretchyStyle,
   imageStyle: stretchyStyle,
 }))(GradientOverlayImage);
+
+const StyledH2 = styled(({ theme }) => ({
+  fontSize: theme.sizing.baseUnit * 1.75,
+}))(H2);
 
 const getChildrenLabel = (typename) => {
   switch (typename) {
@@ -95,7 +98,7 @@ const UniversalContentItem = ({ id, content, loading }) => {
 
                 <PaddedView horizontal={false}>
                   <PaddedView vertical={false}>
-                    <H3>{getChildrenLabel(content.__typename)}</H3>
+                    <StyledH2>{getChildrenLabel(content.__typename)}</StyledH2>
                   </PaddedView>
                   <HorizontalContentSeriesFeedConnected contentId={id} />
                 </PaddedView>
