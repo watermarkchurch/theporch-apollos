@@ -34,7 +34,7 @@ export class dataSource extends RESTDataSource {
   getPopularChannel = () =>
     this.getFromId(
       JSON.stringify({
-        search: this.context.dataSources.Search.messagesIndex,
+        search: this.context.dataSources.Search.messagesPopularIndex,
         name: 'Trending',
         filters: 'ministries:"The Porch"',
       })
@@ -68,7 +68,7 @@ export class dataSource extends RESTDataSource {
     return Object.keys(topics).map((name) =>
       this.getFromId(
         JSON.stringify({
-          search: this.context.dataSources.Search.messagesIndex,
+          search: this.context.dataSources.Search.messagesPopularIndex,
           name,
           filters: `ministries:"The Porch" AND topics:"${name}"`,
         })
