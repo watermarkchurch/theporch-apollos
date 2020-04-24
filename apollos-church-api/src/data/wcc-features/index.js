@@ -11,6 +11,33 @@ class WCCFeatures extends baseFeatures.dataSource {
     __typename: 'SpeakerFeature',
   });
 
+  // Gets a configurable amount of content items from a specific content channel.
+  async contentChannelAlgorithm({ contentChannelId, limit = null } = {}) {
+    if (contentChannelId == null) {
+      throw new Error(
+        `contentChannelId is a required argument for the CONTENT_CHANNEL ActionList algorithm.
+Make sure you structure your algorithm entry as \`{ type: 'CONTENT_CHANNEL', aruments: { contentChannelId: 13 } }\``
+      );
+    }
+
+    const { ContentItem } = this.context.dataSources;
+    const cursor = ContentItem.byContentChannelId(contentChannelId).expand(
+      'ContentChannel'
+    );
+
+    const items = limit ? await cursor.top(limit).get() : await cursor.get();
+
+    return items.map((item, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      title: item.title,
+      subtitle: get(item, 'contentChannel.name'),
+      relatedNode: { ...item, __type: ContentItem.resolveType(item) },
+      image: ContentItem.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: ContentItem.createSummary(item),
+    }));
+  }
+
   async userFeedAlgorithm({ limit = 20 } = {}) {
     const { WCCMessage } = this.context.dataSources;
 
