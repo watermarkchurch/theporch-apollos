@@ -14,6 +14,15 @@ APP:
   ROOT_API_URL: ${ROOT_URL}
   JOBS_USERNAME: ${JOBS_USERNAME}
   JOBS_PASSWORD: ${JOBS_PASSWORD}
+
+CONTENTFUL:
+  PORCH:
+    SPACE: 3ewlji0hjgzj
+    API_KEY: ${CONTENTFUL_PORCH_KEY}
+  CONFERENCE:
+    SPACE: vsbnbtnlrnnr
+    API_KEY: ${CONTENTFUL_REST_KEY}
+
 ROCK:
   API_URL: https://apollosrock.newspring.cc/api
   API_TOKEN: ${ROCK_TOKEN}
@@ -121,6 +130,8 @@ ROCK_MAPPINGS:
     Location:
       EntityType: Contentful
     Speaker:
+      EntityType: Contentful
+    Announcement:
       EntityType: Contentful
     ContentItem:
       EntityType: Contentful
