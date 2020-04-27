@@ -166,25 +166,14 @@ HOME_FEATURES:
           limit: 1
     type: VerticalCardList
     isFeatured: true
-  # - title: FOR YOU
-  #   algorithms: [SERMON_CHILDREN, PERSONA_FEED]
-  #   subtitle: Explore what God calls you to today
-  #   type: ActionList
-  # - algorithms: [PERSONA_FEED]
-  #   subtitle: Continue
-  #   type: HorizontalCardList
-  # - title: RECOMMENDED
-  #   algorithms: [SERMON_CHILDREN]
-  #   subtitle: For Him
-  #   type: VerticalCardList
-  # - title: BULLETIN
-  #   subtitle: What's happening at apollos?
-  #   type: ActionList
-  #   algorithms:
-  #     - type: CONTENT_CHANNEL
-  #       arguments:
-  #         contentChannelId: 13
-  #     - type: UPCOMING_EVENTS
+  - title: Podcast
+    subtitle: Views from The Porch
+    algorithms:
+      - type: WCC_MESSAGES
+        arguments:
+          filters:
+            filter[series_id][]: 562
+    type: ActionList
   - algorithms: [USER_FEED]
     type: VerticalCardList
 

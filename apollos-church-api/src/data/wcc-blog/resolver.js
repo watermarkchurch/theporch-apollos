@@ -10,13 +10,8 @@ const resolver = {
     id: ({ slug }, args, context, { parentType }) =>
       createGlobalId(`${slug}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ heroImage, thumbnailImage }) => {
-      let uri;
-      if (thumbnailImage) uri = `https:${thumbnailImage.file.url}`;
-      if (heroImage) uri = `https:${heroImage.file.url}`;
-
-      return uri ? { sources: [{ uri }] } : null;
-    },
+    coverImage: (contentItem, _, { dataSources }) =>
+      dataSources.WCCBlog.getCoverImage(contentItem),
     htmlContent: ({ _links: { fragment } = {} }, _, { dataSources }) =>
       dataSources.WCCBlog.get(fragment),
     summary: ({ subtitle }) => subtitle,

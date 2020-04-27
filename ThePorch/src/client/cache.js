@@ -47,7 +47,7 @@ export const ensureCacheHydration = (async () => {
       // If the current version matches the latest version,
       // we're good to go and can restore the cache.
       try {
-        await persistor.restore();
+        // await persistor.restore();
       } catch (restoreError) {
         // If the restore fails, we want to do our best to purge the cache.
         await persistor.purge();

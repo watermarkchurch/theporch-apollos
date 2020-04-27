@@ -4,13 +4,37 @@ import { get } from 'lodash';
 import gql from 'graphql-tag';
 
 class WCCFeatures extends baseFeatures.dataSource {
-  // eslint-disable-next-line class-methods-use-this
+  constructor(...args) {
+    super(...args);
+    this.ACTION_ALGORITHIMS.WCC_MESSAGES = this.mediaMessages.bind(this);
+  }
 
   createSpeakerFeature = ({ name, id }) => ({
     name,
     id: createGlobalId(id, 'SpeakerFeature'),
     __typename: 'SpeakerFeature',
   });
+
+  async mediaMessages({ filters = {}, limit = 3 } = {}) {
+    const { WCCMessage } = this.context.dataSources;
+    const { edges: messages } = await WCCMessage.paginate({
+      pagination: { first: limit },
+      filters: {
+        target: 'the_porch',
+        ...filters,
+      },
+    });
+
+    return messages.map(({ node: item }, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      // labelText: 'Latest Message',
+      title: item.title,
+      relatedNode: { ...item, __type: 'WCCMessage' },
+      image: WCCMessage.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: WCCMessage.createSummary(item),
+    }));
+  }
 
   async campaignItemsAlgorithm({ limit = 1 } = {}) {
     const { WCCMessage } = this.context.dataSources;
@@ -31,20 +55,19 @@ class WCCFeatures extends baseFeatures.dataSource {
   }
 
   async userFeedAlgorithm({ limit = 20 } = {}) {
-    const { WCCMessage } = this.context.dataSources;
+    const { WCCBlog } = this.context.dataSources;
 
-    const { edges: items } = await WCCMessage.paginate({
+    const { edges: items } = await WCCBlog.paginate({
       pagination: { limit },
-      filters: { target: 'the_porch' },
     });
 
     return items.map(({ node: item }, i) => ({
       id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
       title: item.title,
       relatedNode: { ...item, __type: 'WCCMessage' },
-      image: WCCMessage.getCoverImage(item),
+      image: WCCBlog.getCoverImage(item),
       action: 'READ_CONTENT',
-      summary: WCCMessage.createSummary(item),
+      summary: item.subtitle,
     }));
   }
 }
@@ -66,7 +89,6 @@ const resolver = {
     hasAction: (root, args, { dataSources: { ContentItem } }) => {
       try {
         const type = ContentItem.resolveType(root.relatedNode);
-        console.log({ type }, type === 'WCCMessage');
         if (type === 'WCCMessage') return true;
       } catch {
         return false;
