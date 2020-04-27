@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import { ErrorCard, H3, PaddedView } from '@apollosproject/ui-kit';
+import { ErrorCard, H2, PaddedView, styled } from '@apollosproject/ui-kit';
 import { get, groupBy } from 'lodash';
 import TextFeature from './TextFeature';
 import ScriptureFeature from './ScriptureFeature';
@@ -20,6 +20,10 @@ const FEATURE_LABEL_MAP = {
   ScriptureFeature: 'Scripture',
   SpeakerFeature: 'Speakers',
 };
+
+const StyledH2 = styled(({ theme }) => ({
+  fontSize: theme.sizing.baseUnit * 1.75,
+}))(H2);
 
 const Features = ({ contentId }) => {
   if (!contentId) return null;
@@ -43,7 +47,7 @@ const Features = ({ contentId }) => {
           <PaddedView horizontal={false} key={key}>
             {FEATURE_LABEL_MAP[key] ? (
               <PaddedView>
-                <H3>{FEATURE_LABEL_MAP[key]}</H3>
+                <StyledH2>{FEATURE_LABEL_MAP[key]}</StyledH2>
               </PaddedView>
             ) : null}
             {groups[key].map(({ __typename, ...feature }) => {

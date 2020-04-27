@@ -81,6 +81,12 @@
 		<string>Inter-UI-Medium.otf</string>
 		<string>Inter-UI-MediumItalic.otf</string>
 		<string>Inter-UI-Regular.otf</string>
+		<string>BebasNeue-Regular.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-BoldItalic.ttf</string>
+		<string>Lato-Italic.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash</string>
