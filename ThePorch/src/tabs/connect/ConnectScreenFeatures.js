@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
 import { ActionListFeature as CoreActionListFeature } from '@apollosproject/ui-connected';
 import {
@@ -9,7 +10,6 @@ import {
   PaddedView,
 } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
-import SafeAreaView from 'react-native-safe-area-view';
 
 const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -38,7 +38,7 @@ const SocialIconsFeature = ({ title, socialIcons }) => (
     </PaddedView>
     <HorizontalView>
       {socialIcons.map(({ icon, url }) => (
-        <Touchable onPress={() => Linking.openURL(url)}>
+        <Touchable onPress={() => Linking.openURL(url)} key={icon}>
           <SocialIcon>
             <Icon name={icon} fillOpacity="0.5" />
           </SocialIcon>
@@ -47,6 +47,16 @@ const SocialIconsFeature = ({ title, socialIcons }) => (
     </HorizontalView>
   </>
 );
+
+SocialIconsFeature.propTypes = {
+  title: PropTypes.string,
+  socialIcons: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.string,
+      url: PropTypes.string,
+    })
+  ),
+};
 
 // hack to move the title outside the action list card
 const ActionListFeature = ({ subtitle, ...feature }) => (
