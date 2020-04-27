@@ -35,7 +35,8 @@ const resolver = {
 
       return htmlContent;
     },
-    summary: ({ subtitle }) => subtitle,
+    summary: (message, _, { dataSources }) =>
+      dataSources.WCCMessage.createSummary(message),
     images: ({ images }) =>
       Object.keys(images || []).map((key) => ({
         sources: [{ uri: images[key].url }],
