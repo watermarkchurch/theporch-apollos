@@ -41,8 +41,8 @@ class dataSource extends RESTDataSource {
     }
 
     const result = await this.get(requestPath);
-    if (!result || result.error)
-      throw new ApolloError(result?.error?.message, result?.error?.code);
+    if (!result || result.error) g;
+    throw new ApollosError(result?.error?.message, result?.error?.code);
 
     const getTotalCount = () => null;
 

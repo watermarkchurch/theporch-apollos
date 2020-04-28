@@ -30,11 +30,11 @@ const ActionTable = () => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
       <View>
-        <RowHeader>
-          <Name>
-            <H4>{'Connect with Apollos'}</H4>
-          </Name>
-        </RowHeader>
+        {/* <RowHeader> */}
+        {/*   <Name> */}
+        {/*     <H4>{'Connect with Apollos'}</H4> */}
+        {/*   </Name> */}
+        {/* </RowHeader> */}
         <TableView>
           <Touchable
             onPress={() => openUrl('https://apollosrock.newspring.cc/page/235')}
