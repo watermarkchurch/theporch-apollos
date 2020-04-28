@@ -96,9 +96,13 @@ const overrides = {
   H2: {
     fontFamily: typography.sans.bebas.default,
     fontWeight: '700',
+    fontSize: 54,
+    lineHeight: 58,
   },
   H3: {
-    fontFamily: typography.sans.montserrat.default,
+    fontSize: 24,
+    lineHeight: 26,
+    fontFamily: typography.sans.bebas.default,
   },
   H4: {
     fontFamily: typography.sans.regular.default,

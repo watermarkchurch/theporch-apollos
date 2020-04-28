@@ -3,6 +3,7 @@ directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITI
 enum ACTION_FEATURE_ACTION {
   READ_CONTENT
   READ_EVENT
+  OPEN_URL
 }
 
 type ActionListAction {
@@ -58,6 +59,25 @@ input AnalyticsTrackInput {
 }
 
 scalar AnalyticsValue
+
+type Announcement implements ContentItem & Node {
+  id: ID!
+  htmlContent: String
+  summary: String
+  title(hyphenated: Boolean): String
+  coverImage: ImageMedia
+  images: [ImageMedia]
+  videos: [VideoMedia]
+  audios: [AudioMedia]
+  theme: Theme
+  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  media: VideoMediaSource
+  parentChannel: ContentChannel
+  isLiked: Boolean
+  likedCount: Int
+  sharing: SharableContentItem
+}
 
 type AudioMedia implements Media {
   name: String
@@ -155,6 +175,26 @@ type ConferenceDay implements Node {
   title: String
   childContentItemsConnection(first: Int, after: String): ContentItemsConnection
   date: String!
+}
+
+enum CONNECT_ACTION_INTENT {
+  OPEN_URL
+  OPEN_CONTENT
+  OPEN_URL_EXTERNALLY
+  OPEN_APP_SCREEN
+}
+
+type ConnectResource {
+  id: ID
+  actionTarget: String
+  actionIntent: CONNECT_ACTION_INTENT
+  title: String
+  icon: String
+}
+
+type ConnectScreen {
+  id: ID
+  features: [Feature]
 }
 
 type ContentChannel implements Node {
@@ -487,6 +527,7 @@ type Query {
   personaFeed(first: Int, after: String): ContentItemsConnection
   conference(code: String): Conference
   speakers: [Speaker]
+  connectScreen(persona: String): ConnectScreen
   currentUser: AuthenticatedUser
   userExists(identity: String): USER_AUTH_STATUS
   liveStream: LiveStream @deprecated(reason: "Use liveStreams, there may be multiple.")
@@ -555,6 +596,18 @@ type SharableFeature implements Sharable {
 type SmsPinResult {
   success: Boolean
   userAuthStatus: USER_AUTH_STATUS
+}
+
+type SocialIconsFeature implements Feature & Node {
+  id: ID!
+  order: Int
+  title: String
+  socialIcons: [SocialIconsItem]
+}
+
+type SocialIconsItem {
+  icon: String
+  url: String
 }
 
 type Speaker implements Node & ContentItem {

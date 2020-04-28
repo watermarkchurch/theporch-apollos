@@ -19,6 +19,14 @@ class dataSource extends RESTDataSource {
     return result;
   }
 
+  getCoverImage = ({ heroImage, thumbnailImage }) => {
+    let uri;
+    if (thumbnailImage) uri = `https:${thumbnailImage.file.url}`;
+    if (heroImage) uri = `https:${heroImage.file.url}`;
+
+    return uri ? { sources: [{ uri }] } : null;
+  };
+
   async paginate({ pagination: { after } = {} } = {}) {
     let requestPath = this.channelPath;
 
