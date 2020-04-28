@@ -19,6 +19,8 @@ export const resolver = resolverMerge(
 
 export class dataSource extends ContentItem.dataSource {
   resolveType = (node) => {
+    if (node.__typename) return node.__typename;
+    if (node.name && !node.id) return 'WCCSpeaker';
     if (node.sys) {
       const contentfulType = node.sys.contentType.sys.id;
       return upperFirst(camelCase(contentfulType));

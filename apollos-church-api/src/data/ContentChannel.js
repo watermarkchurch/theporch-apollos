@@ -21,9 +21,7 @@ export class dataSource extends RESTDataSource {
         throw new ApolloError(result?.error?.message, result?.error?.code);
     } else {
       const parsed = JSON.parse(id);
-      if (parsed.search) {
-        result = parsed;
-      }
+      result = parsed;
     }
     return {
       ...result,
@@ -55,6 +53,13 @@ export class dataSource extends RESTDataSource {
       'https://media.watermark.org/api/v1/series?filter[tag_id]=4'
     );
 
+  getSpeakersChannel = () =>
+    this.getFromId(
+      JSON.stringify({
+        speakers: true,
+      })
+    );
+
   getTopicsChannels = async () => {
     const indice = this.context.dataSources.Search.indice(
       this.context.dataSources.Search.messagesIndex
@@ -79,6 +84,7 @@ export class dataSource extends RESTDataSource {
   getRootChannels = async () => [
     this.getPopularChannel(),
     this.getSeriesChannel(),
+    this.getSpeakersChannel(),
     this.getBlogChannel(),
     ...(await this.getTopicsChannels()),
   ];
@@ -108,6 +114,7 @@ export const resolver = {
     id: ({ id }, args, context, { parentType }) =>
       createGlobalId(id, parentType.name),
     name: (node) => {
+      if (node.speakers) return 'Speakers';
       if (node.name) return node.name;
       if (node.search) return 'From the Porch'; // fallback title for Search channel
       if (node.series) return 'Series';
@@ -117,6 +124,17 @@ export const resolver = {
     description: () => null,
     childContentChannels: () => [],
     childContentItemsConnection: async (node, pagination, { dataSources }) => {
+      if (node.speakers) {
+        return dataSources.WCCSpeaker.paginate({ pagination });
+        // return {
+        //   edges: node.speakers.map((speaker) => ({
+        //     node: {
+        //       name: speaker,
+        //       __typename: 'WCCSpeaker',
+        //     },
+        //   })),
+        // };
+      }
       if (node.search) {
         const results = await dataSources.Search.byPaginatedQuery({
           ...pagination,
