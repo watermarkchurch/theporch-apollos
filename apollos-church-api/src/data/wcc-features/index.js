@@ -1,10 +1,13 @@
 import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
+import { get, startCase } from 'lodash';
 import gql from 'graphql-tag';
-import { startCase } from 'lodash';
 
 class WCCFeatures extends baseFeatures.dataSource {
-  // eslint-disable-next-line class-methods-use-this
+  constructor(...args) {
+    super(...args);
+    this.ACTION_ALGORITHIMS.WCC_MESSAGES = this.mediaMessages.bind(this);
+  }
 
   ACTION_ALGORITHIMS = {
     // We need to make sure `this` refers to the class, not the `ACTION_ALGORITHIMS` object.
@@ -30,23 +33,81 @@ class WCCFeatures extends baseFeatures.dataSource {
     __typename: 'SocialIconsFeature',
   });
 
-  async userFeedAlgorithm({ limit = 20 } = {}) {
+  async mediaMessages({ filters = {}, limit = 3 } = {}) {
     const { WCCMessage } = this.context.dataSources;
+    const { edges: messages } = await WCCMessage.paginate({
+      pagination: { first: limit },
+      filters: {
+        target: 'the_porch',
+        ...filters,
+      },
+    });
 
-    const { edges: items } = await WCCMessage.paginate({
+    return messages.map(({ node: item }, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      // labelText: 'Latest Message',
+      title: item.title,
+      relatedNode: { ...item, __type: 'WCCMessage' },
+      image: WCCMessage.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: WCCMessage.createSummary(item),
+    }));
+  }
+
+  async campaignItemsAlgorithm({ limit = 1 } = {}) {
+    const { WCCMessage } = this.context.dataSources;
+    const { edges: currentMessages } = await WCCMessage.paginate({
+      pagination: { first: limit },
+      filters: { target: 'the_porch', 'filter[tag_id][]': 40 },
+    });
+
+    return currentMessages.map(({ node: item }, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      labelText: 'Latest Message',
+      title: item.title,
+      relatedNode: { ...item, __type: 'WCCMessage' },
+      image: WCCMessage.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: WCCMessage.createSummary(item),
+    }));
+  }
+
+  async userFeedAlgorithm({ limit = 20 } = {}) {
+    const { WCCBlog, WCCMessage } = this.context.dataSources;
+
+    const { edges: blogEdges } = await WCCBlog.paginate({
+      pagination: { limit },
+    });
+
+    const { edges: messageEdges } = await WCCMessage.paginate({
       pagination: { limit },
       filters: { target: 'the_porch' },
     });
 
-    return items.map(({ node: item }, i) => ({
+    const blogs = blogEdges.map(({ node: item }, i) => ({
       id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
       title: item.title,
-      subtitle: item.subtitle,
+      relatedNode: { ...item, __type: 'WCCBlog' },
+      image: WCCBlog.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: item.subtitle,
+    }));
+
+    const messages = messageEdges.map(({ node: item }, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      title: item.title,
       relatedNode: { ...item, __type: 'WCCMessage' },
       image: WCCMessage.getCoverImage(item),
       action: 'READ_CONTENT',
-      summary: WCCMessage.subtitle,
+      summary: WCCMessage.createSummary(item),
     }));
+
+    const items = [...blogs, ...messages];
+
+    return items.sort(
+      (nodeA, nodeB) =>
+        new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
+    );
   }
 
   async connectScreenAlgorithm() {
@@ -90,8 +151,8 @@ const resolver = {
     hasAction: (root, args, { dataSources: { ContentItem } }) => {
       try {
         const type = ContentItem.resolveType(root.relatedNode);
-        if (type === 'WCCMedia') return true;
-      } finally {
+        if (type === 'WCCMessage') return true;
+      } catch {
         return false;
       }
     },

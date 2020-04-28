@@ -1,5 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
+import natural from 'natural';
 
 import { ApolloError } from 'apollo-server';
 import { get, values } from 'lodash';
@@ -21,6 +22,22 @@ class dataSource extends RESTDataSource {
     return result.message;
   }
 
+  createSummary = ({ subtitle, description }) => {
+    if (subtitle) return subtitle;
+    if (!description || typeof description !== 'string') return '';
+
+    // Protect against 0 length sentences (tokenizer will throw an error)
+    if (description.split(' ').length === 1) return '';
+
+    const tokenizer = new natural.SentenceTokenizer();
+    const tokens = tokenizer.tokenize(description);
+
+    // protects from starting with up to a three digit number and period
+    return tokens.length > 1 && tokens[0].length < 5
+      ? `${tokens[0]} ${tokens[1]}`
+      : tokens[0];
+  };
+
   getFeatures({ speakers }) {
     const speakerFeatures = speakers.map(
       this.context.dataSources.Feature.createSpeakerFeature
@@ -37,6 +54,18 @@ class dataSource extends RESTDataSource {
     if (!videoId) return null;
     return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   };
+
+  getCoverImage = ({ images, thumbnail_url, series }) => ({
+    sources: [
+      {
+        uri:
+          get(images, 'square.url') ||
+          values(images).find(({ url } = {}) => url)?.url ||
+          thumbnail_url ||
+          seriesResolver.WCCSeries.coverImage(series),
+      },
+    ],
+  });
 
   async getSpeakerByName({ name }) {
     const { Search } = this.context.dataSources;
@@ -107,18 +136,6 @@ class dataSource extends RESTDataSource {
       getTotalCount,
     };
   }
-
-  getCoverImage = ({ images, thumbnail_url, series }) => ({
-    sources: [
-      {
-        uri:
-          get(images, 'square.url') ||
-          values(images).find(({ url } = {}) => url)?.url ||
-          thumbnail_url ||
-          seriesResolver.WCCSeries.coverImage(series),
-      },
-    ],
-  });
 }
 
 export default dataSource;
