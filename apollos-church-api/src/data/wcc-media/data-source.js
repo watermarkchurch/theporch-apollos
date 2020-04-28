@@ -88,14 +88,14 @@ class dataSource extends RESTDataSource {
     return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   };
 
-  getCoverImage = ({ images, thumbnail_url, series }) => ({
+  getCoverImage = ({ images, thumbnail_url, series } = {}) => ({
     sources: [
       {
         uri:
           get(images, 'square.url') ||
           values(images).find(({ url } = {}) => url)?.url ||
           thumbnail_url ||
-          seriesResolver.WCCSeries.coverImage(series),
+          (series && seriesResolver.WCCSeries.coverImage(series)),
       },
     ],
   });

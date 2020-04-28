@@ -22,7 +22,7 @@ const resolver = {
     }),
     summary: ({ subtitle }) => subtitle,
     htmlContent: ({ subtitle }) => subtitle,
-    images: ({ images }) =>
+    images: ({ images } = {}) =>
       Object.keys(images).map((key) => ({
         sources: [{ uri: images[key].url }],
         name: images[key].type_name,
