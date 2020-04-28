@@ -44,6 +44,11 @@ const resolver = {
       totalCount: () => 0,
       edges: () => [],
     }),
+    sharing: (root, args, { dataSources }) => ({
+      url: dataSources.WCCBlog.getShareUrl(root),
+      title: 'Share via ...',
+      message: `${root.title}`,
+    }),
   },
   Query: {
     blogs: (_, pagination, { dataSources }) =>

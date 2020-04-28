@@ -41,6 +41,11 @@ const resolver = {
         filters: { filter: { series_id: id } },
         pagination,
       }),
+    sharing: (root, args, { dataSources }) => ({
+      url: dataSources.WCCSeries.getShareUrl(root),
+      title: 'Share via ...',
+      message: `${root.title} Series on The Porch`,
+    }),
   },
 };
 

@@ -13,13 +13,6 @@ export const resolver = resolverMerge(
           filters: { target: 'the_porch' },
         }),
     },
-    // ContentItemsConnection: {
-    //   edges: (items) =>
-    //     items.map((node) => ({
-    //       node,
-    //       cursor: null,
-    //     })),
-    // },
   },
   ContentItem
 );

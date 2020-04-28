@@ -23,7 +23,7 @@ const ActionContainer = ({ itemId }) => (
     <MediaPlayerSpacer>
       <PositioningView>
         <LikeButtonConnected itemId={itemId} />
-        {/* <ShareButtonConnected itemId={itemId} /> */}
+        <ShareButtonConnected itemId={itemId} />
       </PositioningView>
     </MediaPlayerSpacer>
   </Container>

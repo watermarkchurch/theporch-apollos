@@ -1,6 +1,11 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
-import { createCursor, parseCursor } from '@apollosproject/server-core';
+import {
+  createCursor,
+  parseCursor,
+  createGlobalId,
+} from '@apollosproject/server-core';
 import natural from 'natural';
+import ApollosConfig from '@apollosproject/config';
 
 import { ApolloError } from 'apollo-server';
 import { get, values } from 'lodash';
@@ -37,6 +42,9 @@ class dataSource extends RESTDataSource {
       ? `${tokens[0]} ${tokens[1]}`
       : tokens[0];
   };
+
+  getShareUrl = async ({ id, objectID }) =>
+    `https://www.theporch.live/messages/${id || objectID}`;
 
   getFeatures({ speakers }) {
     const speakerFeatures = speakers.map(

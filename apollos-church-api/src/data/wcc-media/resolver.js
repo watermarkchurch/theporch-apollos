@@ -99,6 +99,11 @@ const resolver = {
       dataSources.WCCMessage.getFeatures(root),
     liveStream: (root, args, { dataSources }) =>
       dataSources.WCCMessage.getLiveStreamForItem(root),
+    sharing: (root, args, { dataSources }) => ({
+      url: dataSources.WCCMessage.getShareUrl(root),
+      title: 'Share via ...',
+      message: `${root.title} \n${dataSources.WCCMessage.createSummary(root)}`,
+    }),
   },
   Query: {
     messages: (_, pagination, { dataSources }) =>

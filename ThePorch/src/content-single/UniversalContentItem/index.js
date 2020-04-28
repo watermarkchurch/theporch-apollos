@@ -60,7 +60,7 @@ const getChildrenLabel = (typename) => {
     case 'WCCSeries':
       return 'In this series';
     default:
-      return 'Also check out';
+      return null;
   }
 };
 

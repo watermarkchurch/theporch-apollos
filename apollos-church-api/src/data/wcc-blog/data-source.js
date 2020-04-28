@@ -19,6 +19,8 @@ class dataSource extends RESTDataSource {
     return result;
   }
 
+  getShareUrl = async ({ slug }) => `https://www.theporch.live/blogs${slug}`;
+
   getCoverImage = ({ heroImage, thumbnailImage }) => {
     let uri;
     if (thumbnailImage) uri = `https:${thumbnailImage.file.url}`;
