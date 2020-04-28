@@ -3,6 +3,7 @@ directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITI
 enum ACTION_FEATURE_ACTION {
   READ_CONTENT
   READ_EVENT
+  OPEN_URL
 }
 
 type ActionListAction {

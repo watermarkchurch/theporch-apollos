@@ -4,13 +4,11 @@ import { SafeAreaView } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
+import { Card } from '@apollosproject/ui-kit';
 import { get } from 'lodash';
 
 import BackgroundView from '../../ui/BackgroundTexture';
 import ActionTable from './ActionTable';
-import ActionBar from './ActionBar';
-import UserAvatarHeader from './UserAvatarHeader';
 import GET_CONNECT_SCREEN from './getConnectScreen';
 import Features from './ConnectScreenFeatures';
 
@@ -48,7 +46,9 @@ class Connect extends PureComponent {
                 return <Features features={features} />;
               }}
             </Query>
-            <ActionTable />
+            <Card>
+              <ActionTable />
+            </Card>
           </ScrollView>
         </SafeAreaView>
       </BackgroundView>
