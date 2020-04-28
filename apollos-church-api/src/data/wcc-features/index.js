@@ -55,20 +55,41 @@ class WCCFeatures extends baseFeatures.dataSource {
   }
 
   async userFeedAlgorithm({ limit = 20 } = {}) {
-    const { WCCBlog } = this.context.dataSources;
+    const { WCCBlog, WCCMessage } = this.context.dataSources;
 
-    const { edges: items } = await WCCBlog.paginate({
+    const { edges: blogEdges } = await WCCBlog.paginate({
       pagination: { limit },
     });
 
-    return items.map(({ node: item }, i) => ({
+    const { edges: messageEdges } = await WCCMessage.paginate({
+      pagination: { limit },
+      filters: { target: 'the_porch' },
+    });
+
+    const blogs = blogEdges.map(({ node: item }, i) => ({
       id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
       title: item.title,
-      relatedNode: { ...item, __type: 'WCCMessage' },
+      relatedNode: { ...item, __type: 'WCCBlog' },
       image: WCCBlog.getCoverImage(item),
       action: 'READ_CONTENT',
       summary: item.subtitle,
     }));
+
+    const messages = messageEdges.map(({ node: item }, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      title: item.title,
+      relatedNode: { ...item, __type: 'WCCMessage' },
+      image: WCCMessage.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: WCCMessage.createSummary(item),
+    }));
+
+    const items = [...blogs, ...messages];
+
+    return items.sort(
+      (nodeA, nodeB) =>
+        new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
+    );
   }
 }
 
