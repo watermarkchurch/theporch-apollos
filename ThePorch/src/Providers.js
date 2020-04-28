@@ -20,11 +20,13 @@ const AppProviders = (props) => (
       {/* > */}
       <MediaPlayerProvider>
         <AnalyticsProvider>
-          <Providers
-            themeInput={customTheme}
-            iconInput={customIcons}
-            {...props}
-          />
+          <LiveProvider>
+            <Providers
+              themeInput={customTheme}
+              iconInput={customIcons}
+              {...props}
+            />
+          </LiveProvider>
         </AnalyticsProvider>
       </MediaPlayerProvider>
       {/* </NotificationsProvider> */}
