@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import { Card } from '@apollosproject/ui-kit';
+import { PaddedView } from '@apollosproject/ui-kit';
+import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
 import { get } from 'lodash';
 
 import BackgroundView from '../../ui/BackgroundTexture';
@@ -31,26 +32,29 @@ class Connect extends PureComponent {
   render() {
     return (
       <BackgroundView style={flex}>
-        <SafeAreaView style={flex}>
-          <ScrollView
-            onScroll={Animated.event([
-              { nativeEvent: { contentOffset: { y: this.scrollY } } },
-            ])}
-            style={flex}
-          >
-            {/* <UserAvatarHeader /> */}
-            {/* <HorizontalLikedContentFeedConnected /> */}
-            <Query query={GET_CONNECT_SCREEN} fetchPolicy={'cache-and-network'}>
-              {({ data }) => {
-                const features = get(data, 'connectScreen.features', []);
-                return <Features features={features} />;
-              }}
-            </Query>
-            <Card>
+        <ScrollView
+          onScroll={Animated.event([
+            { nativeEvent: { contentOffset: { y: this.scrollY } } },
+          ])}
+          style={flex}
+        >
+          <SafeAreaView style={flex}>
+            <PaddedView horizontal={false}>
+              {/* <UserAvatarHeader /> */}
+              <HorizontalLikedContentFeedConnected />
+              <Query
+                query={GET_CONNECT_SCREEN}
+                fetchPolicy={'cache-and-network'}
+              >
+                {({ data }) => {
+                  const features = get(data, 'connectScreen.features', []);
+                  return <Features features={features} />;
+                }}
+              </Query>
               <ActionTable />
-            </Card>
-          </ScrollView>
-        </SafeAreaView>
+            </PaddedView>
+          </SafeAreaView>
+        </ScrollView>
       </BackgroundView>
     );
   }

@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
-import { ActionListFeature } from '@apollosproject/ui-connected';
+import { ActionListFeature as CoreActionListFeature } from '@apollosproject/ui-connected';
 import {
-  H3,
+  H4,
   Touchable,
   styled,
   Icon,
   PaddedView,
-  Card,
 } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
+import Label from '../../ui/LabelText';
 
 const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -29,9 +29,9 @@ const SocialIcon = styled(({ theme }) => ({
 }))(View);
 
 const SocialIconsFeature = ({ title, socialIcons }) => (
-  <Card>
-    <PaddedView>
-      <H3>{title}</H3>
+  <>
+    <PaddedView vertical={false}>
+      <Label padded>{title}</Label>
     </PaddedView>
     <HorizontalView>
       {socialIcons.map(({ icon, url }) => (
@@ -42,7 +42,7 @@ const SocialIconsFeature = ({ title, socialIcons }) => (
         </Touchable>
       ))}
     </HorizontalView>
-  </Card>
+  </>
 );
 
 SocialIconsFeature.propTypes = {
@@ -56,14 +56,14 @@ SocialIconsFeature.propTypes = {
 };
 
 // hack to move the title outside the action list card
-// const ActionListFeature = ({ subtitle, ...feature }) => (
-//   <>
-//     <PaddedView>
-//       <StyledH2>{subtitle}</StyledH2>
-//     </PaddedView>
-//     <CoreActionListFeature {...feature} />
-//   </>
-// );
+const ActionListFeature = ({ subtitle, ...feature }) => (
+  <>
+    <PaddedView vertical={false}>
+      <Label>{subtitle}</Label>
+    </PaddedView>
+    <CoreActionListFeature {...feature} />
+  </>
+);
 
 handleOnPressActionItem = ({ navigation }) => ({ action, relatedNode }) => {
   if (action === 'READ_CONTENT') {

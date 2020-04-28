@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import {
   styled,
   withTheme,
-  H2,
   H6,
   HorizontalTileFeed,
   ButtonLink,
@@ -19,6 +18,7 @@ import {
 import { HorizontalContentCardConnected } from '@apollosproject/ui-connected';
 
 import horizontalContentCardMapper from '../../../ui/horizontalContentCardMapper';
+import Label from '../../../ui/LabelText';
 
 const RowHeader = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -31,10 +31,6 @@ const RowHeader = styled(({ theme }) => ({
 const Name = styled({
   flexGrow: 2,
 })(View);
-
-const StyledH2 = styled(({ theme }) => ({
-  fontSize: theme.sizing.baseUnit * 1.75,
-}))(H2);
 
 const AndroidTouchableFix = withTheme(({ theme }) => ({
   borderRadius: theme.sizing.baseBorderRadius / 2,
@@ -65,7 +61,7 @@ const TileContentFeed = ({ isLoading, id, name, navigation, content = [] }) =>
     <>
       <RowHeader>
         <Name>
-          <StyledH2>{name}</StyledH2>
+          <Label>{name}</Label>
         </Name>
         <AndroidTouchableFix
           onPress={() => {

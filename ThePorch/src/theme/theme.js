@@ -100,9 +100,8 @@ const overrides = {
     lineHeight: 58,
   },
   H3: {
-    fontSize: 24,
-    lineHeight: 26,
-    fontFamily: typography.sans.bebas.default,
+    fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
   },
   H4: {
     fontFamily: typography.sans.regular.default,
@@ -115,6 +114,10 @@ const overrides = {
   H6: {
     fontFamily: typography.sans.regular.default,
     fontWeight: '600',
+  },
+  LabelText: {
+    fontFamily: typography.sans.bebas.default,
+    fontWeight: '700',
   },
 
   // UI-Kit

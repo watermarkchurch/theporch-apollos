@@ -10,10 +10,10 @@ import {
   Touchable,
   styled,
   PaddedView,
-  H4,
 } from '@apollosproject/ui-kit';
 import { RockAuthedWebBrowser } from '@apollosproject/ui-connected';
 import NavigationActions from '../../../NavigationService';
+import Label from '../../../ui/LabelText';
 
 const RowHeader = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -30,11 +30,11 @@ const ActionTable = () => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
       <View>
-        {/* <RowHeader> */}
-        {/*   <Name> */}
-        {/*     <H4>{'Connect with Apollos'}</H4> */}
-        {/*   </Name> */}
-        {/* </RowHeader> */}
+        <RowHeader>
+          <Name>
+            <Label>More</Label>
+          </Name>
+        </RowHeader>
         <TableView>
           <Touchable
             onPress={() => openUrl('https://apollosrock.newspring.cc/page/235')}
