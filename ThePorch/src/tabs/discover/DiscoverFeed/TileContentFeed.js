@@ -18,6 +18,8 @@ import {
 
 import { HorizontalContentCardConnected } from '@apollosproject/ui-connected';
 
+import horizontalContentCardMapper from '../../../ui/horizontalContentCardMapper';
+
 const RowHeader = styled(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -91,6 +93,7 @@ const TileContentFeed = ({ isLoading, id, name, navigation, content = [] }) =>
             }}
           >
             <HorizontalContentCardConnected
+              Component={horizontalContentCardMapper}
               contentId={item.id}
               isLoading={isLoading}
             />
