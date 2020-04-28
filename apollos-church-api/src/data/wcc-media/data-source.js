@@ -46,6 +46,31 @@ class dataSource extends RESTDataSource {
     return [...speakerFeatures];
   }
 
+  getActiveLiveStreamContent = async () => {
+    const { LiveStream } = this.context.dataSources;
+    const streams = await LiveStream.getLiveStreams();
+
+    const liveStreams = streams.filter(({ isLive }) => isLive);
+    const messages = await Promise.all(
+      streams.map(async (stream) => await stream.contentItem)
+    );
+
+    return messages;
+  };
+
+  getLiveStreamForItem = async ({ id }) => {
+    const { LiveStream } = this.context.dataSources;
+    const streams = await LiveStream.getLiveStreams();
+    const streamsWithContent = await Promise.all(
+      streams.map(async (stream) => ({
+        ...stream,
+        contentItem: await stream.contentItem,
+      }))
+    );
+
+    return streamsWithContent.find((stream) => stream?.contentItem?.id === id);
+  };
+
   getVideoThumbnailUrl = (youtube) => {
     // first, Watermark's Youtube URLs seem to be misformatted. Fix that:
     const fixedUrl = youtube.replace('?rel=0', '');

@@ -97,6 +97,8 @@ const resolver = {
       }),
     features: (root, args, { dataSources }) =>
       dataSources.WCCMessage.getFeatures(root),
+    liveStream: (root, args, { dataSources }) =>
+      dataSources.WCCMessage.getLiveStreamForItem(root),
   },
   Query: {
     messages: (_, pagination, { dataSources }) =>

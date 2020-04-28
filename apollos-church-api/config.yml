@@ -177,6 +177,13 @@ HOME_FEATURES:
           limit: 1
     type: VerticalCardList
     isFeatured: true
+  - algorithms:
+      - type: CAMPAIGN_ITEMS
+        arguments:
+          limit: 3
+          skip: 1
+    type: VerticalCardList
+    isFeatured: true
   - title: Podcast
     subtitle: Views from The Porch
     algorithms:

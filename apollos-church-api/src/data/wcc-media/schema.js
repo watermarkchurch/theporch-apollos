@@ -22,6 +22,8 @@ const schema = gql`
     parentChannel: ContentChannel
     theme: Theme
     features: [Feature]
+
+    liveStream: LiveStream
   }
 
   extend type Query {

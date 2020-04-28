@@ -5,6 +5,24 @@ import gql from 'graphql-tag';
 ApollosConfig.loadJs({
   FRAGMENTS: {
     ...FRAGMENTS,
+    LIVE_STREAM_FRAGMENT: gql`
+      fragment LiveStreamFragment on LiveStream {
+        isLive
+        eventStartTime
+        media {
+          sources {
+            uri
+          }
+        }
+        webViewUrl
+
+        contentItem {
+          ... on WCCMessage {
+            id
+          }
+        }
+      }
+    `,
     CONTENT_MEDIA_FRAGMENT: gql`
       fragment contentMediaFragment on WCCMessage {
         id

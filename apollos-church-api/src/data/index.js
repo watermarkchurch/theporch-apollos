@@ -4,7 +4,6 @@ import { createApolloServerConfig } from '@apollosproject/server-core';
 
 import * as Analytics from '@apollosproject/data-connector-analytics';
 import * as Scripture from '@apollosproject/data-connector-bible';
-import * as LiveStream from '@apollosproject/data-connector-church-online';
 // import * as Cloudinary from '@apollosproject/data-connector-cloudinary';
 import * as OneSignal from '@apollosproject/data-connector-onesignal';
 import * as Pass from '@apollosproject/data-connector-passes';
@@ -37,6 +36,7 @@ import * as Feature from './wcc-features';
 import * as ContentItem from './ContentItem';
 import * as ContentChannel from './ContentChannel';
 import * as Search from './search';
+import * as LiveStream from './livestream';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
