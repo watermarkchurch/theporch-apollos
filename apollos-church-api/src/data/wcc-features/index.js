@@ -1,18 +1,15 @@
 import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
-import { get, startCase } from 'lodash';
+import { startCase } from 'lodash';
 import gql from 'graphql-tag';
+import moment from 'moment';
 
 class WCCFeatures extends baseFeatures.dataSource {
-  constructor(...args) {
-    super(...args);
-    this.ACTION_ALGORITHIMS.WCC_MESSAGES = this.mediaMessages.bind(this);
-  }
-
   ACTION_ALGORITHIMS = {
     // We need to make sure `this` refers to the class, not the `ACTION_ALGORITHIMS` object.
     ...this.ACTION_ALGORITHIMS,
     CONNECT_SCREEN: this.connectScreenAlgorithm.bind(this),
+    WCC_MESSAGES: this.mediaMessages.bind(this),
   };
 
   createSpeakerFeature = ({ name, id }) => ({
@@ -54,22 +51,60 @@ class WCCFeatures extends baseFeatures.dataSource {
     }));
   }
 
-  async campaignItemsAlgorithm({ limit = 1 } = {}) {
-    const { WCCMessage } = this.context.dataSources;
+  async campaignItemsAlgorithm({ limit = 1, skip = 0 } = {}) {
+    const { WCCMessage, LiveStream } = this.context.dataSources;
+
+    let campaignItems = [];
+
+    const streams = await LiveStream.getLiveStreams();
+
+    // look for a content item
+    const liveSream = await streams.find(
+      async ({ contentItem }) => contentItem
+    );
+
+    if (liveSream) {
+      const contentItem = await liveSream.contentItem;
+      campaignItems.push({
+        id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
+        labelText: `Live ${moment(liveSream.eventStartTime).format(
+          'ddd'
+        )} at ${moment(liveSream.eventStartTime).format('ha')}`,
+        title: contentItem.title,
+        relatedNode: { ...contentItem, __type: 'WCCMessage' },
+        image: WCCMessage.getCoverImage(contentItem),
+        action: 'READ_CONTENT',
+        summary: WCCMessage.createSummary(contentItem),
+      });
+    }
+
+    // early exit for optimization
+    if (limit + skip <= campaignItems.length) {
+      return campaignItems.slice(skip, skip + limit);
+    }
+
     const { edges: currentMessages } = await WCCMessage.paginate({
-      pagination: { first: limit },
+      pagination: { first: 1 },
       filters: { target: 'the_porch', 'filter[tag_id][]': 40 },
     });
 
-    return currentMessages.map(({ node: item }, i) => ({
-      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
-      labelText: 'Latest Message',
-      title: item.title,
-      relatedNode: { ...item, __type: 'WCCMessage' },
-      image: WCCMessage.getCoverImage(item),
-      action: 'READ_CONTENT',
-      summary: WCCMessage.createSummary(item),
-    }));
+    campaignItems = [
+      ...campaignItems,
+      ...currentMessages.map(({ node: item }, i) => ({
+        id: createGlobalId(
+          `${item.id}${i + campaignItems.length}`,
+          'ActionListAction'
+        ),
+        labelText: 'Latest Message',
+        title: item.title,
+        relatedNode: { ...item, __type: 'WCCMessage' },
+        image: WCCMessage.getCoverImage(item),
+        action: 'READ_CONTENT',
+        summary: WCCMessage.createSummary(item),
+      })),
+    ];
+
+    return campaignItems.slice(skip, skip + limit);
   }
 
   async userFeedAlgorithm({ limit = 20 } = {}) {

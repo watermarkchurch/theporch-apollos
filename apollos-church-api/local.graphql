@@ -756,6 +756,7 @@ type WCCMessage implements ContentItem & Node {
   parentChannel: ContentChannel
   theme: Theme
   features: [Feature]
+  liveStream: LiveStream
   sharing: SharableContentItem
 }
 

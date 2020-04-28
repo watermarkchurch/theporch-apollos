@@ -1,29 +1,29 @@
+/* eslint-disable camelcase */
 import * as Livestream from '@apollosproject/data-connector-church-online';
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 class dataSource extends RESTDataSource {
   baseURL = 'https://media.watermark.org/api/v1/streams';
 
-  async getLiveStream() {
+  getLiveStream = async () =>
     // deprecated, we shouldn't use this anywhere
-    return null;
-  }
+    null;
 
-  getMediaUrl({ current_event, next_event }) {
+  getMediaUrl = ({ current_event, next_event }) => {
     const url = current_event?.stream_url || next_event?.stream_url;
     if (url) {
       return { sources: [{ uri: url }] };
     }
     return null;
-  }
+  };
 
-  getWebviewUrl({ current_event, next_event }) {
+  getWebviewUrl = ({ current_event, next_event }) => {
     const url = current_event?.embed_code || next_event?.embed_code;
     if (url) {
       return /src="(.*?)"/.exec(url)[1];
     }
     return null;
-  }
+  };
 
   async contentItemForEvent({ current_event, next_event }) {
     const url = current_event?._links?.message || next_event?._links?.message;
