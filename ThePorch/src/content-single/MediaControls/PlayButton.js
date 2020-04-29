@@ -6,6 +6,7 @@ import {
   styled,
   TouchableScale,
   Card,
+  CardLabel,
   ConnectedImage,
   Icon,
   MediaThumbnailItem,
@@ -36,6 +37,7 @@ const PlayButton = ({
   icon,
   onPress,
   isLoading,
+  isLive,
   ...props
 }) => (
   <Container {...props}>
@@ -46,6 +48,18 @@ const PlayButton = ({
             source={coverImageSources}
             style={StyleSheet.absoluteFill}
           />
+          <MediaThumbnailItem bottom right>
+            <PaddedView>
+              {isLive ? (
+                <CardLabel
+                  title="Live"
+                  type="secondary"
+                  icon="live-dot"
+                  iconSize={8}
+                />
+              ) : null}
+            </PaddedView>
+          </MediaThumbnailItem>
           <MediaThumbnailItem centered>
             <MediaThumbnailIcon isLoading={isLoading} name={icon} />
           </MediaThumbnailItem>

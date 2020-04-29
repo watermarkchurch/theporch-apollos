@@ -7,6 +7,7 @@ import PlayButton from './PlayButton';
 import AudioPlayButton from './AudioPlayButton';
 
 const MediaControls = ({
+  contentId,
   coverImageSources,
   error,
   liveStreamSource,
@@ -29,6 +30,7 @@ const MediaControls = ({
   if (get(liveStreamSource, 'uri', false)) {
     Control = (
       <PlayButtonConnected
+        isLive
         isLoading={showLoadingState}
         Component={PlayButton}
         coverImageSources={coverImageSources}

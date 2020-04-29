@@ -14,6 +14,7 @@ import {
   BackgroundView,
   StretchyView,
   withTheme,
+  CardLabel,
 } from '@apollosproject/ui-kit';
 import Color from 'color';
 

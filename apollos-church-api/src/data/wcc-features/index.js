@@ -2,7 +2,7 @@ import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
 import { startCase } from 'lodash';
 import gql from 'graphql-tag';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 class WCCFeatures extends baseFeatures.dataSource {
   ACTION_ALGORITHIMS = {
@@ -56,32 +56,53 @@ class WCCFeatures extends baseFeatures.dataSource {
 
     let campaignItems = [];
 
+    // **********
+    // Case 1: Handle Live Stream with a Message Object
+    // **********
+    let liveStreamIsInCampaign = false; // used to prevent live stream from showing twice
     const streams = await LiveStream.getLiveStreams();
 
     // look for a content item
-    const liveSream = await streams.find(
+    const liveStream = await streams.find(
       async ({ contentItem }) => contentItem
     );
 
-    if (liveSream) {
-      const contentItem = await liveSream.contentItem;
-      campaignItems.push({
-        id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
-        labelText: `Live ${moment(liveSream.eventStartTime).format(
-          'ddd'
-        )} at ${moment(liveSream.eventStartTime).format('ha')}`,
-        title: contentItem.title,
-        relatedNode: { ...contentItem, __type: 'WCCMessage' },
-        image: WCCMessage.getCoverImage(contentItem),
-        action: 'READ_CONTENT',
-        summary: WCCMessage.createSummary(contentItem),
-      });
+    const tzDate = moment(liveStream?.eventStartTime).tz('America/Chicago');
+
+    if (liveStream) {
+      const contentItem = await liveStream.contentItem;
+      const contentDate = moment(contentItem.date).startOf('day'); // content dates don't have timestamps on them anyways
+
+      if (
+        contentDate >= moment().startOf('day') || // content is future dated OR
+        moment().isSame(liveStream.eventStartTime, 'day') // the stream is starting today
+      ) {
+        // then show the upcoming live event on the home feed.
+        // Otherwise, we won't show the upcoming message (as it may be an old message still)
+        liveStreamIsInCampaign = true; // used to prevent live stream for showing twice
+
+        campaignItems.push({
+          id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
+          labelText: `${tzDate < new Date() ? 'Last' : 'Next'} ${tzDate.format(
+            'ddd'
+          )} ${tzDate.format('ha')} CT`,
+          title: contentItem.title,
+          relatedNode: { ...contentItem, __type: 'WCCMessage' },
+          image: WCCMessage.getCoverImage(contentItem),
+          action: 'READ_CONTENT',
+          summary: WCCMessage.createSummary(contentItem),
+        });
+      }
     }
 
     // early exit for optimization
     if (limit + skip <= campaignItems.length) {
       return campaignItems.slice(skip, skip + limit);
     }
+
+    // **********
+    // Case 2: Handle the Latest Message
+    // **********
 
     const { edges: currentMessages } = await WCCMessage.paginate({
       pagination: { first: 1 },
@@ -103,6 +124,38 @@ class WCCFeatures extends baseFeatures.dataSource {
         summary: WCCMessage.createSummary(item),
       })),
     ];
+
+    // early exit for optimization
+    if (limit + skip <= campaignItems.length) {
+      return campaignItems.slice(skip, skip + limit);
+    }
+
+    // **********
+    // Case 3: Handle the Upcoming Live Stream
+    // **********
+
+    if (liveStream && !liveStreamIsInCampaign) {
+      const contentItem = await liveStream.contentItem;
+      campaignItems.push({
+        id: createGlobalId(
+          `${liveStream.id}${campaignItems.length}`,
+          'ActionListAction'
+        ),
+        labelText: `${tzDate < new Date() ? 'Last' : 'Next'} ${tzDate.format(
+          'ddd'
+        )} at ${tzDate.format('ha')} CT`,
+        title: liveStream.title,
+        relatedNode: { __typename: 'WCCMessage', ...contentItem },
+        image: LiveStream.getCoverImage(liveStream),
+        action: null, // 'READ_CONTENT',
+        hasAction: false,
+        summary: liveStream.description,
+      });
+    }
+
+    // **********
+    // Case 4: Handle Contentful Featured Content (TODO)
+    // **********
 
     return campaignItems.slice(skip, skip + limit);
   }
@@ -181,9 +234,9 @@ const resolver = {
     },
   },
   CardListItem: {
-    coverImage: async (root, args, { dataSources: { WCCMessage } }) =>
-      await root.image,
+    coverImage: ({ image }) => image,
     hasAction: (root, args, { dataSources: { ContentItem } }) => {
+      if (root.hasAction !== undefined) return root.hasAction;
       try {
         const type = ContentItem.resolveType(root.relatedNode);
         if (type === 'WCCMessage') return true;

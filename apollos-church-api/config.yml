@@ -185,7 +185,7 @@ HOME_FEATURES:
           limit: 3
           skip: 1
     type: VerticalCardList
-    isFeatured: true
+    isFeatured: false
   - title: Podcast
     subtitle: Views from The Porch
     algorithms:

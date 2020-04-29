@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import * as Livestream from '@apollosproject/data-connector-church-online';
 import { RESTDataSource } from 'apollo-datasource-rest';
+import { get, values } from 'lodash';
 
 class dataSource extends RESTDataSource {
   baseURL = 'https://media.watermark.org/api/v1/streams';
@@ -16,6 +17,16 @@ class dataSource extends RESTDataSource {
     }
     return null;
   };
+
+  getCoverImage = ({ images } = {}) => ({
+    sources: [
+      {
+        uri:
+          get(images, 'square.url') ||
+          values(images).find(({ url } = {}) => url)?.url,
+      },
+    ],
+  });
 
   getWebviewUrl = ({ current_event, next_event }) => {
     const url = current_event?.embed_code || next_event?.embed_code;
@@ -38,6 +49,7 @@ class dataSource extends RESTDataSource {
     // this returns an array of livestreams
     const { streams } = await this.get('', { target: 'the_porch' });
     return streams.map((stream) => ({
+      ...(stream.current_event || stream.next_event),
       isLive: !!stream.current_event,
       eventStartTime:
         stream.current_event?.starts_at || stream.next_event?.starts_at,
