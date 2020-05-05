@@ -24,6 +24,8 @@ const StyledCampusCard = styled(({ theme }) => ({
   marginBottom: theme.sizing.baseUnit,
 }))(CampusCard);
 
+const StyledTouchable = styled({ alignSelf: 'stretch' })(Touchable);
+
 // memo = sfc PureComponent 💥
 const LocationFinder = memo(
   ({
@@ -40,14 +42,14 @@ const LocationFinder = memo(
       {BackgroundComponent}
       <StyledSlideContent title={slideTitle} description={description}>
         {campus && onPressPrimary ? (
-          <Touchable onPress={onPressButton}>
+          <StyledTouchable onPress={onPressButton}>
             <StyledCampusCard
               key={campus.id}
               title={campus.name}
               description={getCampusAddress(campus)}
               images={[campus.image]}
             />
-          </Touchable>
+          </StyledTouchable>
         ) : (
           <PaddedView horizontal={false}>
             <Button title={buttonText} onPress={onPressButton} pill={false} />

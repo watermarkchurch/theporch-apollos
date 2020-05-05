@@ -8,6 +8,7 @@ import { get } from 'lodash';
 
 import MapView from '@apollosproject/ui-mapview';
 
+import { CampusConsumer } from '../CampusProvider';
 import GET_CAMPUSES from './getCampusLocations';
 
 class Location extends PureComponent {
@@ -94,38 +95,31 @@ class Location extends PureComponent {
         }}
         fetchPolicy="cache-and-network"
       >
-        {({ loading, error, data: { campuses, currentUser } = {} }) => (
-          <Component
-            navigation={this.props.navigation}
-            isLoading={loading}
-            error={error}
-            campuses={campuses || []}
-            initialRegion={this.props.initialRegion}
-            userLocation={this.state.userLocation}
-            currentCampus={get(currentUser, 'profile.campus')}
-            isLoadingSelectedCampus={this.state.loadingNewCampus}
-            onLocationSelect={async (campus) => {
-              this.setState({ loadingNewCampus: true });
-              console.warn(JSON.stringify(campus));
-              // await handlePress({
-              //   variables: {
-              //     campusId: campus.id,
-              //   },
-              //   optimisticResponse: {
-              //     updateUserCampus: {
-              //       __typename: 'Mutation',
-              //       id: currentUser.id,
-              //       campus,
-              //     },
-              //   },
-              //   ...changeCampusOptions,
-              // });
-              // eslint-disable-next-line no-unused-expressions
-              this.props.onChangeCampus &&
-                this.props.onChangeCampus({ campus });
-              this.props.navigation.goBack();
-            }}
-          />
+        {({ loading, error, data: { campuses } = {} }) => (
+          <CampusConsumer>
+            {({ changeCampus, userCampus }) =>
+              console.log(userCampus) || (
+                <Component
+                  navigation={this.props.navigation}
+                  isLoading={loading}
+                  error={error}
+                  campuses={campuses || []}
+                  initialRegion={this.props.initialRegion}
+                  userLocation={this.state.userLocation}
+                  currentCampus={campuses?.length && userCampus}
+                  isLoadingSelectedCampus={this.state.loadingNewCampus}
+                  onLocationSelect={async (campus) => {
+                    this.setState({ loadingNewCampus: true });
+                    changeCampus(campus);
+                    // eslint-disable-next-line no-unused-expressions
+                    this.props.onChangeCampus &&
+                      this.props.onChangeCampus({ campus });
+                    this.props.navigation.goBack();
+                  }}
+                />
+              )
+            }
+          </CampusConsumer>
         )}
       </Query>
     );

@@ -8,7 +8,6 @@ import {
 import { styled, ThemeMixin, PaddedView, Button } from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
-  LocationFinderConnected,
   OnboardingSwiper,
 } from '@apollosproject/ui-onboarding';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -21,6 +20,7 @@ import BackgroundTexture from '../BackgroundTexture';
 
 import AskNotifications from './AskNotifications';
 import AskLocation from './AskLocation';
+import LocationFinderConnected from './LocationFinderConnected'
 
 function Onboarding({ navigation }) {
   const dispatch = useOnboardDispatch();
@@ -62,15 +62,6 @@ function Onboarding({ navigation }) {
             </>
           )}
         </OnboardingSwiper>
-        {/* <SafeAreaView> */}
-        {/*   <PaddedView> */}
-        {/*     <Button */}
-        {/*       title={'Finish'} */}
-        {/*       onPress={} */}
-        {/*       pill={false} */}
-        {/*     /> */}
-        {/*   </PaddedView> */}
-        {/* </SafeAreaView> */}
       </BackgroundTexture>
     </ThemeMixin>
   );
