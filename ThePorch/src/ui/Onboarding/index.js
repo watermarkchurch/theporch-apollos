@@ -5,7 +5,13 @@ import {
   requestNotifications,
   RESULTS,
 } from 'react-native-permissions';
-import { styled, ThemeMixin, PaddedView, Button } from '@apollosproject/ui-kit';
+import {
+  withTheme,
+  styled,
+  ThemeMixin,
+  PaddedView,
+  Button,
+} from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
   OnboardingSwiper,
@@ -20,9 +26,9 @@ import BackgroundTexture from '../BackgroundTexture';
 
 import AskNotifications from './AskNotifications';
 import AskLocation from './AskLocation';
-import LocationFinderConnected from './LocationFinderConnected'
+import LocationFinderConnected from './LocationFinderConnected';
 
-function Onboarding({ navigation }) {
+function Onboarding({ navigation, headerBackgroundColor, headerTitleColor }) {
   const dispatch = useOnboardDispatch();
 
   useEffect(() => {
@@ -38,7 +44,10 @@ function Onboarding({ navigation }) {
               <LocationFinderConnected
                 onPressPrimary={swipeForward}
                 onNavigate={() => {
-                  navigation.navigate('Location');
+                  navigation.navigate('Location', {
+                    headerBackgroundColor,
+                    headerTitleColor,
+                  });
                 }}
                 Component={AskLocation}
               />
@@ -73,4 +82,7 @@ Onboarding.navigationOptions = {
   gesturesEnabled: false,
 };
 
-export default Onboarding;
+export default withTheme(({ theme }) => ({
+  headerBackgroundColor: theme.colors.darkPrimary,
+  headerTitleColor: theme.colors.primary,
+}))(Onboarding);

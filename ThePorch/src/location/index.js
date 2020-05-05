@@ -57,7 +57,7 @@ class Location extends PureComponent {
       </PaddedView>
     ),
     headerStyle: {
-      backgroundColor: navigation.getParam('backgroundColor', []),
+      backgroundColor: navigation.getParam('headerBackgroundColor', []),
     },
     headerTitleStyle: {
       color: navigation.getParam('headerTitleColor', []),

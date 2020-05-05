@@ -24,7 +24,7 @@ const StyledCampusCard = styled(({ theme }) => ({
   marginBottom: theme.sizing.baseUnit,
 }))(CampusCard);
 
-const StyledTouchable = styled({ alignSelf: 'stretch' })(Touchable);
+const StyledPadding = styled({ alignSelf: 'stretch' })(PaddedView);
 
 // memo = sfc PureComponent 💥
 const LocationFinder = memo(
@@ -40,16 +40,22 @@ const LocationFinder = memo(
   }) => (
     <Slide onPressPrimary={onPressPrimary} {...props}>
       {BackgroundComponent}
-      <StyledSlideContent title={slideTitle} description={description}>
+      <StyledSlideContent
+        icon={'brand-icon-alt'}
+        title={slideTitle}
+        description={description}
+      >
         {campus && onPressPrimary ? (
-          <StyledTouchable onPress={onPressButton}>
-            <StyledCampusCard
-              key={campus.id}
-              title={campus.name}
-              description={getCampusAddress(campus)}
-              images={[campus.image]}
-            />
-          </StyledTouchable>
+          <StyledPadding horizontal={false}>
+            <Touchable onPress={onPressButton}>
+              <StyledCampusCard
+                key={campus.id}
+                title={campus.name}
+                description={getCampusAddress(campus)}
+                images={[campus.image]}
+              />
+            </Touchable>
+          </StyledPadding>
         ) : (
           <PaddedView horizontal={false}>
             <Button title={buttonText} onPress={onPressButton} pill={false} />
@@ -86,10 +92,10 @@ LocationFinder.propTypes = {
 LocationFinder.displayName = 'LocationFinder';
 
 LocationFinder.defaultProps = {
-  slideTitle: "Let's select your local campus",
+  slideTitle: 'Find the Porch near you',
   description:
-    "We'll use your location to connect you with your nearby campus and community",
-  buttonText: 'Yes, find my local campus',
+    'The Porch is located in Dallas, Texas at Watermark Community Church, but did you know we have livestreaming locations at other churches across the country?',
+  buttonText: 'Find the closest live-stream location',
 };
 
 export default LocationFinder;
