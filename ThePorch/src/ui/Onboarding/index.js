@@ -8,6 +8,7 @@ import {
 import { styled, ThemeMixin, PaddedView, Button } from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
+  LocationFinderConnected,
   OnboardingSwiper,
 } from '@apollosproject/ui-onboarding';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -19,6 +20,7 @@ import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
 import BackgroundTexture from '../BackgroundTexture';
 
 import AskNotifications from './AskNotifications';
+import AskLocation from './AskLocation';
 
 function Onboarding({ navigation }) {
   const dispatch = useOnboardDispatch();
@@ -30,9 +32,16 @@ function Onboarding({ navigation }) {
   return (
     <ThemeMixin mixin={{ type: 'dark' }}>
       <BackgroundTexture>
-        <OnboardingSwiper>
+        <OnboardingSwiper showsPagination={false}>
           {({ swipeForward }) => (
             <>
+              <LocationFinderConnected
+                onPressPrimary={swipeForward}
+                onNavigate={() => {
+                  navigation.navigate('Location');
+                }}
+                Component={AskLocation}
+              />
               <AskNotificationsConnected
                 onRequestPushPermissions={(update) => {
                   checkNotifications().then((checkRes) => {
@@ -47,20 +56,21 @@ function Onboarding({ navigation }) {
                     }
                   });
                 }}
+                onPressPrimary={() => dispatch(hideOnboarding())}
                 Component={AskNotifications}
               />
             </>
           )}
         </OnboardingSwiper>
-        <SafeAreaView>
-          <PaddedView>
-            <Button
-              title={'Finish'}
-              onPress={() => dispatch(hideOnboarding())}
-              pill={false}
-            />
-          </PaddedView>
-        </SafeAreaView>
+        {/* <SafeAreaView> */}
+        {/*   <PaddedView> */}
+        {/*     <Button */}
+        {/*       title={'Finish'} */}
+        {/*       onPress={} */}
+        {/*       pill={false} */}
+        {/*     /> */}
+        {/*   </PaddedView> */}
+        {/* </SafeAreaView> */}
       </BackgroundTexture>
     </ThemeMixin>
   );

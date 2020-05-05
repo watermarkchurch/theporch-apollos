@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { styled, PaddedView, Button } from '@apollosproject/ui-kit';
-
+import { SafeAreaView } from 'react-native';
 import { Slide, SlideContent } from '@apollosproject/ui-onboarding';
 
 const StyledSlideContent = styled({
@@ -9,6 +9,12 @@ const StyledSlideContent = styled({
   justifyContent: 'center',
   alignItems: 'center',
 })(SlideContent);
+
+const StyledFinishButton = styled({
+  alignSelf: 'center',
+  flex: 1,
+  width: '100%',
+})(Button);
 
 // memo = sfc PureComponent 💥
 // eslint-disable-next-line react/display-name
@@ -21,6 +27,7 @@ const AskNotifications = memo(
     buttonDisabled,
     onPressButton,
     isLoading,
+    onPressPrimary,
     ...props
   }) => (
     <Slide {...props}>
@@ -41,6 +48,15 @@ const AskNotifications = memo(
           </PaddedView>
         ) : null}
       </StyledSlideContent>
+      <SafeAreaView>
+        <PaddedView>
+          <StyledFinishButton
+            title={'Finish'}
+            onPress={onPressPrimary}
+            pill={false}
+          />
+        </PaddedView>
+      </SafeAreaView>
     </Slide>
   )
 );
