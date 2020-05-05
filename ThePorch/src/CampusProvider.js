@@ -31,7 +31,6 @@ class CampusProvider extends React.Component {
     this.setState(({ value }) => ({
       value: { ...value, userCampus: newCampus },
     }));
-    console.log({ newCampus });
     if (persist) {
       AsyncStorage.setItem('userCampus', JSON.stringify(newCampus));
     }

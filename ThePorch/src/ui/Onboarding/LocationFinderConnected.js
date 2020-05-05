@@ -37,7 +37,6 @@ class LocationFinderConnected extends PureComponent {
         {({ userCampus }) => (
           <AnalyticsConsumer>
             {({ track }) => {
-              console.warn(userCampus);
               const { onPressPrimary, ...otherProps } = this.props;
               const showNextBtn = !!userCampus;
 
