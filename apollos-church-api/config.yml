@@ -24,9 +24,9 @@ CONTENTFUL:
     API_KEY: ${CONTENTFUL_REST_KEY}
 
 ROCK:
-  API_URL: https://apollosrock.newspring.cc/api
+  API_URL: https://rock.theporch.live/api
   API_TOKEN: ${ROCK_TOKEN}
-  IMAGE_URL: https://apollosrock.newspring.cc/GetImage.ashx
+  IMAGE_URL: https://rock.theporch.live/GetImage.ashx
   SHARE_URL: https://wcc-theporch-app.herokuapp.com
   # This should match the timezone of the Rock server
   TIMEZONE: 'America/New_York'
