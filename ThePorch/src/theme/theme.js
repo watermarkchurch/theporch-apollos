@@ -46,6 +46,8 @@ const colors = {
 
 export const type = 'dark';
 
+export const barStyle = 'light-content';
+
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
@@ -151,4 +153,4 @@ const overrides = {
 //   ...propOverrides,
 // };
 
-export default { colors, overrides, type };
+export default { colors, overrides, type, barStyle };

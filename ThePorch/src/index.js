@@ -9,7 +9,6 @@ import Passes from '@apollosproject/ui-passes';
 import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
-import SplashScreen from 'react-native-splash-screen';
 
 import Providers from './Providers';
 import NavigationService from './NavigationService';

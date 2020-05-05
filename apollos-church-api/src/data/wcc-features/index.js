@@ -10,6 +10,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     ...this.ACTION_ALGORITHIMS,
     CONNECT_SCREEN: this.connectScreenAlgorithm.bind(this),
     WCC_MESSAGES: this.mediaMessages.bind(this),
+    WCC_SERIES: this.mediaSeries.bind(this),
   };
 
   createSpeakerFeature = ({ name, id }) => ({
@@ -30,9 +31,28 @@ class WCCFeatures extends baseFeatures.dataSource {
     __typename: 'SocialIconsFeature',
   });
 
+  async mediaSeries({ seriesId } = {}) {
+    const { WCCSeries } = this.context.dataSources;
+    const item = await WCCSeries.getFromId(seriesId);
+
+    if (!item) return [];
+
+    return [
+      {
+        id: createGlobalId(`${item.id}`, 'ActionListAction'),
+        labelText: 'Series',
+        title: item.title,
+        relatedNode: { ...item, __type: 'WCCSeries' },
+        image: WCCSeries.getCoverImage(item),
+        action: 'READ_CONTENT',
+        summary: item.subtitle,
+      },
+    ];
+  }
+
   async mediaMessages({ filters = {}, limit = 3 } = {}) {
-    const { WCCMessage } = this.context.dataSources;
-    const { edges: messages } = await WCCMessage.paginate({
+    const { WCCSeries } = this.context.dataSources;
+    const { edges: messages } = await WCCSeries.paginate({
       pagination: { first: limit },
       filters: {
         target: 'the_porch',
