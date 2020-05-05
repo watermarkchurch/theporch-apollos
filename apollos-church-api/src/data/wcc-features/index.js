@@ -33,7 +33,7 @@ class WCCFeatures extends baseFeatures.dataSource {
 
   async mediaSeries({ seriesId } = {}) {
     const { WCCSeries } = this.context.dataSources;
-    const item = await WCCSeries.getFromId(seriesId);
+    const item = await WCCSeries.getFromId(seriesId.toString());
 
     if (!item) return [];
 
@@ -51,8 +51,8 @@ class WCCFeatures extends baseFeatures.dataSource {
   }
 
   async mediaMessages({ filters = {}, limit = 3 } = {}) {
-    const { WCCSeries } = this.context.dataSources;
-    const { edges: messages } = await WCCSeries.paginate({
+    const { WCCMessage } = this.context.dataSources;
+    const { edges: messages } = await WCCMessage.paginate({
       pagination: { first: limit },
       filters: {
         target: 'the_porch',
