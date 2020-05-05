@@ -27,7 +27,7 @@ import {
 
 const AppStatusBar = withTheme(({ theme }) => ({
   barStyle: theme.barStyle,
-  backgroundColor: theme.colors.paper,
+  backgroundColor: theme.colors.background.paper,
 }))(StatusBar);
 
 const AppContainer = () => {
