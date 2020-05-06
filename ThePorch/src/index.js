@@ -60,8 +60,7 @@ const AppContainer = () => {
       LandingScreen,
     },
     {
-      // initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',
-      initialRouteName: 'Onboarding',
+      initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',
       mode: 'modal',
       headerMode: 'screen',
     }
