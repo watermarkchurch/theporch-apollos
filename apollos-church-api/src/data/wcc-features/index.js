@@ -92,20 +92,23 @@ class WCCFeatures extends baseFeatures.dataSource {
     if (liveStream) {
       const contentItem = await liveStream.contentItem;
       const contentDate = moment(contentItem.date).startOf('day'); // content dates don't have timestamps on them anyways
-
-      if (
-        contentDate >= moment().startOf('day') || // content is future dated OR
-        moment().isSame(liveStream.eventStartTime, 'day') // the stream is starting today
-      ) {
+      const messageIsTodayOrLater = contentDate >= moment().startOf('day');
+      const streamIsToday = moment().isSame(liveStream.eventStartTime, 'day');
+      if (messageIsTodayOrLater || streamIsToday) {
         // then show the upcoming live event on the home feed.
         // Otherwise, we won't show the upcoming message (as it may be an old message still)
         liveStreamIsInCampaign = true; // used to prevent live stream for showing twice
 
+        const dayOfStream = tzDate.format('ddd');
+        const timeOfStream = `${tzDate.format('ha')} CT`;
+
+        let dayLabel = `Next ${dayOfStream} at ${timeOfStream}`;
+        if (tzDate < new Date()) dayLabel = `Last ${dayOfStream}`;
+        if (streamIsToday) dayLabel = `Today at ${timeOfStream}`;
+
         campaignItems.push({
           id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
-          labelText: `${tzDate < new Date() ? 'Last' : 'Next'} ${tzDate.format(
-            'ddd'
-          )} ${tzDate.format('ha')} CT`,
+          labelText: dayLabel,
           title: contentItem.title,
           relatedNode: { ...contentItem, __type: 'WCCMessage' },
           image: WCCMessage.getCoverImage(contentItem),
@@ -199,6 +202,7 @@ class WCCFeatures extends baseFeatures.dataSource {
       image: WCCBlog.getCoverImage(item),
       action: 'READ_CONTENT',
       summary: item.subtitle,
+      labelText: 'From the Blog',
     }));
 
     const messages = messageEdges.map(({ node: item }, i) => ({
@@ -208,6 +212,7 @@ class WCCFeatures extends baseFeatures.dataSource {
       image: WCCMessage.getCoverImage(item),
       action: 'READ_CONTENT',
       summary: WCCMessage.createSummary(item),
+      labelText: item.series.title,
     }));
 
     const items = [...blogs, ...messages];
