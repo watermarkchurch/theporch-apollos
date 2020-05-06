@@ -6,9 +6,9 @@ import RNBootSplash from 'react-native-bootsplash';
 
 import { BackgroundView, withTheme } from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
-import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
+import Location from './location';
 
 import Providers from './Providers';
 import NavigationService from './NavigationService';

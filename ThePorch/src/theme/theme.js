@@ -154,6 +154,7 @@ const overrides = {
     textAlign: 'center',
     maxWidth: '80%',
     lineHeight: themeSizing.baseUnit * 1.5,
+    alignSelf: 'center',
   }),
   'Onboarding.SlideContent.BrandIcon': {
     alignSelf: 'center',
