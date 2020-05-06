@@ -547,6 +547,7 @@ type Query {
   search(query: String!, first: Int, after: String): SearchResultsConnection
   campuses(location: CampusLocationInput): [Campus]
   userFeedFeatures: [Feature]
+  userFeedFeaturesWithCampus(campusId: ID): [Feature]
   messages(first: Int, after: String): ContentItemsConnection
   blogs(first: Int, after: String): ContentItemsConnection
 }

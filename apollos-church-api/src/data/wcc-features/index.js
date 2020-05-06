@@ -10,6 +10,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     ...this.ACTION_ALGORITHIMS,
     CONNECT_SCREEN: this.connectScreenAlgorithm.bind(this),
     WCC_MESSAGES: this.mediaMessages.bind(this),
+    CAMPUS_ITEMS_FEATURE: this.campusItemsFeature.bind(this),
   };
 
   createSpeakerFeature = ({ name, id }) => ({
@@ -198,6 +199,15 @@ class WCCFeatures extends baseFeatures.dataSource {
     );
   }
 
+  async campusItemsFeature() {
+    const { campusId } = this.context.dataSources;
+    if (!campusId) {
+      return [];
+    }
+
+    const { ContentItem } = this.context.dataSources;
+  }
+
   async connectScreenAlgorithm() {
     const { ConnectScreen } = this.context.dataSources;
     const screen = await ConnectScreen.getDefaultPage();
@@ -224,6 +234,18 @@ class WCCFeatures extends baseFeatures.dataSource {
 
 const resolver = {
   ...baseFeatures.resolver,
+  Query: {
+    ...baseFeatures.resolver.Query,
+    userFeedFeaturesWithCampus: (root, { campusId }, context, ...args) => {
+      context.campusId = campusId;
+      return baseFeatures.resolver.Query.userFeedFeatures(
+        root,
+        null,
+        context,
+        ...args
+      );
+    },
+  },
   SpeakerFeature: {
     profileImage: async ({ name }, args, { dataSources }) => {
       const speaker = await dataSources.WCCMessage.getSpeakerByName({ name });
@@ -272,6 +294,10 @@ const schema = gql`
 
     title: String
     socialIcons: [SocialIconsItem]
+  }
+
+  extend type Query {
+    userFeedFeaturesWithCampus(campusId: ID): [Feature]
   }
 `;
 

@@ -30,4 +30,29 @@ export class dataSource extends ContentItem.dataSource {
       return 'WCCMessage';
     return 'WCCBlog';
   };
+
+  byRockCampus = async ({ contentChannelIds = [], campusId }) => {
+    const campusRockId = parseGlobalId(campusId).id;
+    const { guid } = await Campus.getFromId(campusRockId);
+
+    if (!guid) {
+      // No campus or no current user.
+      return this.request().empty();
+    }
+
+    // Return data matching just their campus
+    const cursor = this.request(
+      `Apollos/ContentChannelItemsByAttributeValue?attributeKey=Campus&attributeValues=${guid}`
+    );
+
+    if (contentChannelIds.length !== 0) {
+      cursor.filterOneOf(
+        contentChannelIds.map((id) => `ContentChannelId eq ${id}`)
+      );
+    }
+
+    return cursor
+      .andFilter(this.LIVE_CONTENT())
+      .orderBy('StartDateTime', 'desc');
+  };
 }
