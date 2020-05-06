@@ -1,3 +1,7 @@
+import React from 'react';
+import { HighlightCard } from '@apollosproject/ui-kit';
+import Color from 'color';
+import PorchCard from '../ui/PorchFeaturedCard';
 import fontStack from './fontStack';
 // import styleOverrides from './styleOverrides';
 // import propOverrides from './propOverrides';
@@ -46,6 +50,8 @@ const colors = {
 
 export const type = 'dark';
 
+export const barStyle = 'light-content';
+
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
@@ -88,6 +94,13 @@ export const typography = {
  * ```
  */
 
+export const buttons = ({ colors: themeColors, alpha: themeAlpha }) => ({
+  overlay: {
+    fill: Color(themeColors.darkTertiary).alpha(themeAlpha.high),
+    accent: themeColors.white,
+  },
+});
+
 const overrides = {
   // Typography
   H1: {
@@ -97,7 +110,7 @@ const overrides = {
     fontFamily: typography.sans.bebas.default,
     fontWeight: '700',
     fontSize: 54,
-    lineHeight: 58,
+    lineHeight: 54,
   },
   H3: {
     fontFamily: typography.sans.regular.default,
@@ -146,10 +159,19 @@ const overrides = {
   'Onboarding.SlideContent.BrandIcon': {
     alignSelf: 'center',
   },
+
+  ContentCardComponentMapper: {
+    Component: () => ({ __typename, ...otherArgs }) =>
+      __typename === 'WCCMessage' ? (
+        <PorchCard __typename={__typename} {...otherArgs} />
+      ) : (
+        <HighlightCard __typename={__typename} {...otherArgs} />
+      ),
+  },
 };
 // const overrides = {
 //   ...styleOverrides,
 //   ...propOverrides,
 // };
 
-export default { colors, overrides, type };
+export default { colors, overrides, type, barStyle, buttons };

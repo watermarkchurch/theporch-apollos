@@ -10,6 +10,7 @@ const horizontalContentCardComponentMapper = (props) => {
   switch (get(props, '__typename')) {
     case 'WCCMessage':
     case 'WCCSeries':
+    case 'WCCSpeaker':
       return (
         <HorizontalHighlightCard title={props.hyphenatedTitle} {...props} />
       );
