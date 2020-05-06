@@ -46,12 +46,15 @@ class dataSource extends RESTDataSource {
   getShareUrl = async ({ id, objectID }) =>
     `https://www.theporch.live/messages/${id || objectID}`;
 
-  getFeatures({ speakers }) {
+  getFeatures({ speakers, series }) {
     const speakerFeatures = speakers.map(
       this.context.dataSources.Feature.createSpeakerFeature
     );
 
-    return [...speakerFeatures];
+    const webviewFeatures = this.context.dataSources.Feature.createWebviewFeature(
+      series
+    );
+    return [...speakerFeatures, webviewFeatures];
   }
 
   getActiveLiveStreamContent = async () => {

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { ErrorCard, H2, PaddedView, styled } from '@apollosproject/ui-kit';
 import { get, groupBy } from 'lodash';
+
+import { WebviewFeature } from '@apollosproject/ui-connected';
+
 import TextFeature from './TextFeature';
 import ScriptureFeature from './ScriptureFeature';
 import SpeakerFeature from './SpeakerFeature';
@@ -13,12 +16,14 @@ const FEATURE_MAP = {
   TextFeature,
   ScriptureFeature,
   SpeakerFeature,
+  WebviewFeature,
 };
 
 const FEATURE_LABEL_MAP = {
   TextFeature: null,
   ScriptureFeature: 'Scripture',
   SpeakerFeature: 'Speakers',
+  WebviewFeature: null,
 };
 
 const StyledH2 = styled(({ theme }) => ({

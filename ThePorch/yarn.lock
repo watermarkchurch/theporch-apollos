@@ -40,10 +40,10 @@
     graphql-tag "2.9.2"
     yup "^0.27.0"
 
-"@apollosproject/ui-connected@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@apollosproject/ui-connected/-/ui-connected-1.4.0.tgz#89d4c4a55d71fc9b6a05cb8e9d21d0888ac6dada"
-  integrity sha512-LTGiF3+v1QGXbFi168dkKpHdh9l/C4nRZJ55SyZ8e0imFVVHHiRRGByt10vcSZ0rZp1VjyFDDmOPBTinuAsfOg==
+"@apollosproject/ui-connected@1.3.0-alpha.46":
+  version "1.3.0-alpha.46"
+  resolved "https://registry.yarnpkg.com/@apollosproject/ui-connected/-/ui-connected-1.3.0-alpha.46.tgz#29900387ea60c6626149d1e43f6aef5145e85a62"
+  integrity sha512-yMtS3xnVQmIPl3I+g4keP9hdq/aUvwud+20X7LqtQBb5oJ8O9y4a16LVddgB6U3gxndcBKcACMoGD3eCEZ99+A==
   dependencies:
     apollo-upload-client "9.0.0"
     graphql-tag "2.9.2"

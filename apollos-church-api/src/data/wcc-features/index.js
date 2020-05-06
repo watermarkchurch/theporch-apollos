@@ -19,6 +19,15 @@ class WCCFeatures extends baseFeatures.dataSource {
     __typename: 'SpeakerFeature',
   });
 
+  createWebviewFeature = ({ id, external_playlist }) => ({
+    title: 'Setlist',
+    linkText: 'Open in Spotify',
+    url:
+      'https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N',
+    id: createGlobalId(id, 'WebviewFeature'),
+    __typename: 'WebviewFeature',
+  });
+
   createSocialIconsFeature = ({ title }) => ({
     id: createGlobalId('SocialIconsFeature', 'SocialIconsFeature'),
     socialIcons: [

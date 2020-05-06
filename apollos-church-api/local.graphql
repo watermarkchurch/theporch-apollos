@@ -801,6 +801,14 @@ type WCCSpeaker implements Node & ContentItem {
   sharing: SharableContentItem
 }
 
+type WebviewFeature implements Feature & Node {
+  id: ID!
+  order: Int
+  url: String
+  title: String
+  linkText: String
+}
+
 type WeekendContentItem implements ContentItem & Node {
   id: ID!
   title(hyphenated: Boolean): String
