@@ -6,9 +6,9 @@ import Geolocation from 'react-native-geolocation-service';
 import { PaddedView, ButtonLink } from '@apollosproject/ui-kit';
 import { get } from 'lodash';
 
-import MapView from '@apollosproject/ui-mapview';
-
 import { CampusConsumer } from '../CampusProvider';
+import MapView from './MapView';
+
 import GET_CAMPUSES from './getCampusLocations';
 
 class Location extends PureComponent {

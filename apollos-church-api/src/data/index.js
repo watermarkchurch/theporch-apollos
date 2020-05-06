@@ -21,7 +21,6 @@ import {
   PersonalDevice,
   Template,
   AuthSms,
-  Campus,
   Group,
   BinaryFiles,
   // Feature,
@@ -38,6 +37,7 @@ import * as ContentChannel from './ContentChannel';
 import * as Search from './search';
 import * as LiveStream from './livestream';
 import * as WCCSpeaker from './WCCSpeaker';
+import * as Campus from './Campus';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
