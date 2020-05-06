@@ -186,14 +186,16 @@ HOME_FEATURES:
           skip: 1
     type: VerticalCardList
     isFeatured: false
-  - title: Podcast
-    subtitle: Views from The Porch
+  - heroAlgorithms:
+      - type: WCC_SERIES
+        arguments:
+            seriesId: 562
     algorithms:
       - type: WCC_MESSAGES
         arguments:
           filters:
             filter[series_id][]: 562
-    type: ActionList
+    type: HeroListFeature
   - algorithms: [USER_FEED]
     type: VerticalCardList
 
