@@ -1,6 +1,6 @@
 import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
-import { createGlobalId } from '@apollosproject/server-core';
-import { startCase } from 'lodash';
+import { createGlobalId, parseGlobalId } from '@apollosproject/server-core';
+import { startCase, get } from 'lodash';
 import gql from 'graphql-tag';
 import moment from 'moment-timezone';
 
@@ -10,8 +10,25 @@ class WCCFeatures extends baseFeatures.dataSource {
     ...this.ACTION_ALGORITHIMS,
     CONNECT_SCREEN: this.connectScreenAlgorithm.bind(this),
     WCC_MESSAGES: this.mediaMessages.bind(this),
-    CAMPUS_ITEMS_FEATURE: this.campusItemsFeature.bind(this),
+    CAMPUS_ITEMS: this.campusItemsAlgorithm.bind(this),
   };
+
+  getFromId(args, id) {
+    const type = id.split(':')[0];
+    const funcArgs = JSON.parse(args);
+    const method = this[`create${type}`].bind(this);
+    if (funcArgs.campusId) {
+      this.context.campusId = funcArgs.campusId;
+    }
+    return method(funcArgs);
+  }
+
+  createFeatureId({ args, type }) {
+    return createGlobalId(
+      JSON.stringify({ campusId: this.context.campusId, ...args }),
+      type
+    );
+  }
 
   createSpeakerFeature = ({ name, id }) => ({
     name,
@@ -199,13 +216,35 @@ class WCCFeatures extends baseFeatures.dataSource {
     );
   }
 
-  async campusItemsFeature() {
-    const { campusId } = this.context.dataSources;
+  async campusItemsAlgorithm() {
+    const {
+      campusId,
+      dataSources: { ContentItem },
+    } = this.context;
     if (!campusId) {
       return [];
     }
 
-    const { ContentItem } = this.context.dataSources;
+    const rockCampusId = parseGlobalId(campusId).id;
+
+    const itemsCursor = await ContentItem.byRockCampus({
+      campusId: rockCampusId,
+    });
+    const items = await itemsCursor.get();
+
+    return items.map((item, i) => ({
+      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      title: item.title,
+      subtitle: get(item, 'contentChannel.name'),
+      relatedNode: {
+        ...item,
+        __typename: 'UniversalContentItem',
+        __type: 'UniversalContentItem',
+      },
+      image: ContentItem.getCoverImage(item),
+      action: 'READ_CONTENT',
+      summary: ContentItem.createSummary(item),
+    }));
   }
 
   async connectScreenAlgorithm() {

@@ -32,8 +32,8 @@ export class dataSource extends ContentItem.dataSource {
   };
 
   byRockCampus = async ({ contentChannelIds = [], campusId }) => {
-    const campusRockId = parseGlobalId(campusId).id;
-    const { guid } = await Campus.getFromId(campusRockId);
+    const { Campus } = this.context.dataSources;
+    const { guid } = await Campus.getFromId(campusId);
 
     if (!guid) {
       // No campus or no current user.
@@ -42,7 +42,7 @@ export class dataSource extends ContentItem.dataSource {
 
     // Return data matching just their campus
     const cursor = this.request(
-      `Apollos/ContentChannelItemsByAttributeValue?attributeKey=Campus&attributeValues=${guid}`
+      `Apollos/ContentChannelItemsByAttributeValue?attributeKey=campuses&attributeValues=${guid}`
     );
 
     if (contentChannelIds.length !== 0) {

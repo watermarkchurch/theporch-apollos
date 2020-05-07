@@ -194,6 +194,9 @@ HOME_FEATURES:
           filters:
             filter[series_id][]: 562
     type: ActionList
+  - subtitle: Your Campus
+    algorithms: [CAMPUS_ITEMS]
+    type: ActionList
   - algorithms: [USER_FEED]
     type: VerticalCardList
 
