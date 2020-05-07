@@ -1,6 +1,7 @@
 import React from 'react';
 import { HighlightCard } from '@apollosproject/ui-kit';
 import Color from 'color';
+import { Platform } from 'react-native';
 import PorchCard from '../ui/PorchFeaturedCard';
 import fontStack from './fontStack';
 // import styleOverrides from './styleOverrides';
@@ -167,7 +168,19 @@ const overrides = {
         <HighlightCard __typename={__typename} {...otherArgs} />
       ),
   },
+
+  'ui-connected.WebviewFeature.StyledCard': ({ shadows: themeShadows }) => ({
+    borderRadius: 0,
+    marginHorizontal: 0,
+    ...Platform.select(themeShadows.none),
+  }),
+  'ui-connected.WebviewFeature.StyledH3': ({ sizing: themeSizing }) => ({
+    fontFamily: typography.sans.bebas.default,
+    fontSize: themeSizing.baseUnit * 1.75,
+    fontWeight: '700',
+  }),
 };
+
 // const overrides = {
 //   ...styleOverrides,
 //   ...propOverrides,
