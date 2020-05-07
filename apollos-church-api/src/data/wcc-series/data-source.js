@@ -14,8 +14,8 @@ class dataSource extends WCCMediaAPIDataSource {
       },
     ],
   });
-
-  getShareUrl = async ({ id: series_id }) => { // eslint-disable-line
+  // eslint-disable-next-line
+  getShareUrl = async ({ id: series_id }) => {
     const {
       edges: messages,
     } = await this.context.dataSources.WCCMessage.paginate({
@@ -26,6 +26,13 @@ class dataSource extends WCCMediaAPIDataSource {
     const { id } = messages[0].node;
     return `https://www.theporch.live/messages/${id}`;
   };
+
+  getFeatures(series) {
+    const webviewFeatures = this.context.dataSources.Feature.createWebviewFeature(
+      series
+    );
+    return [webviewFeatures];
+  }
 }
 
 export default dataSource;

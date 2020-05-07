@@ -782,6 +782,7 @@ type WCCSeries implements ContentItem & Node {
   audios: [AudioMedia]
   parentChannel: ContentChannel
   theme: Theme
+  features: [Feature]
   sharing: SharableContentItem
 }
 

@@ -42,6 +42,11 @@ export default gql`
           ...FeaturesFragment
         }
       }
+      ... on WCCSeries {
+        features {
+          ...FeaturesFragment
+        }
+      }
     }
   }
   ${FEATURES_FRAGMENT}
