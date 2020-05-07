@@ -11,15 +11,8 @@ const resolver = {
     id: ({ id }, args, context, { parentType }) =>
       createGlobalId(`${id}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
-    coverImage: ({ images }) => ({
-      sources: [
-        {
-          uri:
-            images.square?.url ||
-            values(images).find(({ url } = {}) => url)?.url,
-        },
-      ],
-    }),
+    coverImage: (contentItem, _, { dataSources }) =>
+      dataSources.WCCSeries.getCoverImage(contentItem),
     summary: ({ subtitle }) => subtitle,
     htmlContent: ({ subtitle }) => subtitle,
     images: ({ images } = {}) =>
