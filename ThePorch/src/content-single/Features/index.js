@@ -23,7 +23,6 @@ const FEATURE_LABEL_MAP = {
   TextFeature: null,
   ScriptureFeature: 'Scripture',
   SpeakerFeature: 'Speakers',
-  WebviewFeature: null,
 };
 
 const StyledH2 = styled(({ theme }) => ({
