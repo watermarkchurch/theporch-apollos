@@ -1,4 +1,4 @@
-import { get, values } from 'lodash';
+import { get, values, isString } from 'lodash';
 
 import WCCMediaAPIDataSource from '../WCCMediaAPIDataSource';
 
@@ -33,7 +33,7 @@ class dataSource extends WCCMediaAPIDataSource {
     const features = [];
     const externalPlaylist = get(attributeValues, 'external_playlist', '');
 
-    if (externalPlaylist !== '') {
+    if (isString(externalPlaylist) && externalPlaylist !== '') {
       features.push(Feature.createWebviewFeature(attributeValues));
     }
 

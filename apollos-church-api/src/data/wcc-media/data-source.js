@@ -8,7 +8,7 @@ import natural from 'natural';
 import ApollosConfig from '@apollosproject/config';
 
 import { ApolloError } from 'apollo-server';
-import { get, values } from 'lodash';
+import { get, values, isString } from 'lodash';
 
 import { resolver as seriesResolver } from '../wcc-series';
 
@@ -61,7 +61,7 @@ class dataSource extends RESTDataSource {
       ''
     );
 
-    if (externalPlaylist !== '') {
+    if (isString(externalPlaylist) && externalPlaylist !== '') {
       features.push(Feature.createWebviewFeature(attributeValues.series));
     }
 
