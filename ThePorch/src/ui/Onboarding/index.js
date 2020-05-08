@@ -5,7 +5,13 @@ import {
   requestNotifications,
   RESULTS,
 } from 'react-native-permissions';
-import { styled, ThemeMixin, PaddedView, Button } from '@apollosproject/ui-kit';
+import {
+  withTheme,
+  styled,
+  ThemeMixin,
+  PaddedView,
+  Button,
+} from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
   OnboardingSwiper,
@@ -19,8 +25,10 @@ import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
 import BackgroundTexture from '../BackgroundTexture';
 
 import AskNotifications from './AskNotifications';
+import AskLocation from './AskLocation';
+import LocationFinderConnected from './LocationFinderConnected';
 
-function Onboarding({ navigation }) {
+function Onboarding({ navigation, headerBackgroundColor, headerTitleColor }) {
   const dispatch = useOnboardDispatch();
 
   useEffect(() => {
@@ -30,9 +38,19 @@ function Onboarding({ navigation }) {
   return (
     <ThemeMixin mixin={{ type: 'dark' }}>
       <BackgroundTexture>
-        <OnboardingSwiper>
+        <OnboardingSwiper showsPagination={false}>
           {({ swipeForward }) => (
             <>
+              <LocationFinderConnected
+                onPressPrimary={swipeForward}
+                onNavigate={() => {
+                  navigation.navigate('Location', {
+                    headerBackgroundColor,
+                    headerTitleColor,
+                  });
+                }}
+                Component={AskLocation}
+              />
               <AskNotificationsConnected
                 onRequestPushPermissions={(update) => {
                   checkNotifications().then((checkRes) => {
@@ -47,20 +65,12 @@ function Onboarding({ navigation }) {
                     }
                   });
                 }}
+                onPressPrimary={() => dispatch(hideOnboarding())}
                 Component={AskNotifications}
               />
             </>
           )}
         </OnboardingSwiper>
-        <SafeAreaView>
-          <PaddedView>
-            <Button
-              title={'Finish'}
-              onPress={() => dispatch(hideOnboarding())}
-              pill={false}
-            />
-          </PaddedView>
-        </SafeAreaView>
       </BackgroundTexture>
     </ThemeMixin>
   );
@@ -72,4 +82,7 @@ Onboarding.navigationOptions = {
   gesturesEnabled: false,
 };
 
-export default Onboarding;
+export default withTheme(({ theme }) => ({
+  headerBackgroundColor: theme.colors.darkPrimary,
+  headerTitleColor: theme.colors.primary,
+}))(Onboarding);

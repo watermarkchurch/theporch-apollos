@@ -6,6 +6,7 @@ import { MediaPlayerProvider } from '@apollosproject/ui-media-player';
 import { NotificationsProvider } from '@apollosproject/ui-notifications';
 import { LiveProvider } from '@apollosproject/ui-connected';
 import OnboardProvider from './OnboardProvider';
+import { CampusProvider } from './CampusProvider';
 
 import NavigationService from './NavigationService';
 import ClientProvider from './client';
@@ -14,22 +15,24 @@ import customTheme, { customIcons } from './theme';
 const AppProviders = (props) => (
   <ClientProvider {...props}>
     <OnboardProvider>
-      {/* <NotificationsProvider */}
-      {/*   oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY} */}
-      {/*   navigate={NavigationService.navigate} */}
-      {/* > */}
-      <MediaPlayerProvider>
-        <AnalyticsProvider>
-          <LiveProvider>
-            <Providers
-              themeInput={customTheme}
-              iconInput={customIcons}
-              {...props}
-            />
-          </LiveProvider>
-        </AnalyticsProvider>
-      </MediaPlayerProvider>
-      {/* </NotificationsProvider> */}
+      <CampusProvider>
+        {/* <NotificationsProvider */}
+        {/*   oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY} */}
+        {/*   navigate={NavigationService.navigate} */}
+        {/* > */}
+        <MediaPlayerProvider>
+          <AnalyticsProvider>
+            <LiveProvider>
+              <Providers
+                themeInput={customTheme}
+                iconInput={customIcons}
+                {...props}
+              />
+            </LiveProvider>
+          </AnalyticsProvider>
+        </MediaPlayerProvider>
+        {/* </NotificationsProvider> */}
+      </CampusProvider>
     </OnboardProvider>
   </ClientProvider>
 );
