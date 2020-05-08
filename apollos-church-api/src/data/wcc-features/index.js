@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
 import { startCase } from 'lodash';
@@ -22,8 +23,7 @@ class WCCFeatures extends baseFeatures.dataSource {
   createWebviewFeature = ({ id, external_playlist }) => ({
     title: 'Setlist',
     linkText: 'Open in Spotify',
-    url:
-      'https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N',
+    url: external_playlist,
     id: createGlobalId(id, 'WebviewFeature'),
     __typename: 'WebviewFeature',
   });

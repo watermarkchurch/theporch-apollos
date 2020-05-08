@@ -1,4 +1,5 @@
-import { values } from 'lodash';
+import { get, values } from 'lodash';
+
 import WCCMediaAPIDataSource from '../WCCMediaAPIDataSource';
 
 class dataSource extends WCCMediaAPIDataSource {
@@ -27,11 +28,16 @@ class dataSource extends WCCMediaAPIDataSource {
     return `https://www.theporch.live/messages/${id}`;
   };
 
-  getFeatures(series) {
-    const webviewFeatures = this.context.dataSources.Feature.createWebviewFeature(
-      series
-    );
-    return [webviewFeatures];
+  getFeatures(attributeValues) {
+    const { Feature } = this.context.dataSources;
+    const features = [];
+    const externalPlaylist = get(attributeValues, 'external_playlist', '');
+
+    if (externalPlaylist !== '') {
+      features.push(Feature.createWebviewFeature(attributeValues));
+    }
+
+    return features;
   }
 }
 
