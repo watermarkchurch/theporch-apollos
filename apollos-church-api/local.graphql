@@ -783,6 +783,7 @@ type WCCSeries implements ContentItem & Node {
   audios: [AudioMedia]
   parentChannel: ContentChannel
   theme: Theme
+  features: [Feature]
   sharing: SharableContentItem
 }
 
@@ -800,6 +801,14 @@ type WCCSpeaker implements Node & ContentItem {
   parentChannel: ContentChannel
   theme: Theme
   sharing: SharableContentItem
+}
+
+type WebviewFeature implements Feature & Node {
+  id: ID!
+  order: Int
+  linkText: String
+  title: String
+  url: String
 }
 
 type WeekendContentItem implements ContentItem & Node {

@@ -1,4 +1,5 @@
-import { values } from 'lodash';
+import { get, values, isString } from 'lodash';
+
 import WCCMediaAPIDataSource from '../WCCMediaAPIDataSource';
 
 class dataSource extends WCCMediaAPIDataSource {
@@ -14,8 +15,8 @@ class dataSource extends WCCMediaAPIDataSource {
       },
     ],
   });
-
-  getShareUrl = async ({ id: series_id }) => { // eslint-disable-line
+  // eslint-disable-next-line
+  getShareUrl = async ({ id: series_id }) => {
     const {
       edges: messages,
     } = await this.context.dataSources.WCCMessage.paginate({
@@ -26,6 +27,18 @@ class dataSource extends WCCMediaAPIDataSource {
     const { id } = messages[0].node;
     return `https://www.theporch.live/messages/${id}`;
   };
+
+  getFeatures(attributeValues) {
+    const { Feature } = this.context.dataSources;
+    const features = [];
+    const externalPlaylist = get(attributeValues, 'external_playlist', '');
+
+    if (isString(externalPlaylist) && externalPlaylist !== '') {
+      features.push(Feature.createWebviewFeature(attributeValues));
+    }
+
+    return features;
+  }
 }
 
 export default dataSource;

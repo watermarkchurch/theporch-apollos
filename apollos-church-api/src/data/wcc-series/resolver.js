@@ -29,6 +29,8 @@ const resolver = {
       totalCount: () => 0,
       edges: () => [],
     }),
+    features: (root, args, { dataSources }) =>
+      dataSources.WCCSeries.getFeatures(root),
     childContentItemsConnection: ({ id }, pagination, { dataSources }) =>
       dataSources.WCCMessage.paginate({
         filters: { filter: { series_id: id } },

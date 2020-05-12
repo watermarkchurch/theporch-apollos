@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Feature as baseFeatures } from '@apollosproject/data-connector-rock';
 import { createGlobalId, parseGlobalId } from '@apollosproject/server-core';
 import { startCase, get } from 'lodash';
@@ -35,6 +36,14 @@ class WCCFeatures extends baseFeatures.dataSource {
     name,
     id: createGlobalId(id, 'SpeakerFeature'),
     __typename: 'SpeakerFeature',
+  });
+
+  createWebviewFeature = ({ id, external_playlist }) => ({
+    title: 'Setlist',
+    linkText: 'Open in Spotify',
+    url: external_playlist,
+    id: createGlobalId(id, 'WebviewFeature'),
+    __typename: 'WebviewFeature',
   });
 
   createSocialIconsFeature = ({ title }) => ({
