@@ -805,9 +805,9 @@ type WCCSpeaker implements Node & ContentItem {
 type WebviewFeature implements Feature & Node {
   id: ID!
   order: Int
-  url: String
-  title: String
   linkText: String
+  title: String
+  url: String
 }
 
 type WeekendContentItem implements ContentItem & Node {
