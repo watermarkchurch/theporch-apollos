@@ -2,15 +2,14 @@ import React, { PureComponent } from 'react';
 import { Image, Animated } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
-
 import { styled } from '@apollosproject/ui-kit';
 import {
-  FeaturesFeedConnected,
   VerticalCardListFeature,
   CampaignItemListFeature,
 } from '@apollosproject/ui-connected';
 
 import BackgroundView from '../../ui/BackgroundTexture';
+import FeaturesFeedWithCampus from './FeaturesFeedWithCampus';
 
 const LogoTitle = styled(({ theme }) => ({
   height: theme.sizing.baseUnit * 2,
@@ -80,7 +79,7 @@ class Home extends PureComponent {
     return (
       <BackgroundView animatedScrollPos={this.scrollY}>
         <SafeAreaView>
-          <FeaturesFeedConnected
+          <FeaturesFeedWithCampus
             onScroll={Animated.event([
               { nativeEvent: { contentOffset: { y: this.scrollY } } },
             ])}
