@@ -26,7 +26,11 @@ const Name = styled({
   flexGrow: 1,
 })(View);
 
-const ActionTable = () => (
+const ActionTable = ({
+  navigation,
+  headerBackgroundColor,
+  headerTitleColor,
+}) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
       <View>
@@ -36,6 +40,20 @@ const ActionTable = () => (
           </Name>
         </RowHeader>
         <TableView>
+          <Touchable
+            onPress={() => {
+              navigation.navigate('Location', {
+                headerBackgroundColor,
+                headerTitleColor,
+              });
+            }}
+          >
+            <Cell>
+              <CellText>Location</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
           <Touchable
             onPress={() => openUrl('https://apollosrock.newspring.cc/page/235')}
           >

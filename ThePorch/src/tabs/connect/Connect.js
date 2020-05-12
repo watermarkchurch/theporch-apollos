@@ -3,10 +3,10 @@ import { ScrollView, Animated } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
+import { get } from 'lodash';
 
 import { PaddedView } from '@apollosproject/ui-kit';
 import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
-import { get } from 'lodash';
 
 import BackgroundView from '../../ui/BackgroundTexture';
 import ActionTable from './ActionTable';
@@ -16,9 +16,11 @@ import Features from './ConnectScreenFeatures';
 const flex = { flex: 1 };
 
 class Connect extends PureComponent {
-  static navigationOptions = () => ({
+  static navigationOptions = ({ screenProps }) => ({
     header: null,
   });
+
+  scrollY = new Animated.Value(0);
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -27,9 +29,8 @@ class Connect extends PureComponent {
     }),
   };
 
-  scrollY = new Animated.Value(0);
-
   render() {
+    const { navigation, screenProps } = this.props;
     return (
       <BackgroundView style={flex}>
         <ScrollView
@@ -51,7 +52,11 @@ class Connect extends PureComponent {
                   return <Features features={features} />;
                 }}
               </Query>
-              <ActionTable />
+              <ActionTable
+                navigation={navigation}
+                headerBackgroundColor={screenProps.headerBackgroundColor}
+                headerTitleColor={screenProps.headerTitleStyle.color}
+              />
             </PaddedView>
           </SafeAreaView>
         </ScrollView>
