@@ -16,7 +16,7 @@ import Features from './ConnectScreenFeatures';
 const flex = { flex: 1 };
 
 class Connect extends PureComponent {
-  static navigationOptions = ({ screenProps }) => ({
+  static navigationOptions = () => ({
     header: null,
   });
 
@@ -26,6 +26,11 @@ class Connect extends PureComponent {
     navigation: PropTypes.shape({
       getParam: PropTypes.func,
       navigate: PropTypes.func,
+    }),
+    screenProps: PropTypes.shape({
+      headerBackgroundColor: PropTypes.string,
+      headerTintColor: PropTypes.string,
+      headerTitleStyle: PropTypes.shape({ color: PropTypes.string }),
     }),
   };
 
@@ -56,6 +61,7 @@ class Connect extends PureComponent {
                 navigation={navigation}
                 headerBackgroundColor={screenProps.headerBackgroundColor}
                 headerTitleColor={screenProps.headerTitleStyle.color}
+                headerTintColor={screenProps.headerTintColor}
               />
             </PaddedView>
           </SafeAreaView>

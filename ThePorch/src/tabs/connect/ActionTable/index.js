@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {
   TableView,
@@ -30,6 +31,7 @@ const ActionTable = ({
   navigation,
   headerBackgroundColor,
   headerTitleColor,
+  headerTintColor,
 }) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
@@ -45,6 +47,7 @@ const ActionTable = ({
               navigation.navigate('Location', {
                 headerBackgroundColor,
                 headerTitleColor,
+                headerTintColor,
               });
             }}
           >
@@ -96,6 +99,15 @@ const ActionTable = ({
     )}
   </RockAuthedWebBrowser>
 );
+
+ActionTable.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  headerBackgroundColor: PropTypes.string,
+  headerTitleColor: PropTypes.string,
+  headerTintColor: PropTypes.string,
+};
 
 const StyledActionTable = styled(({ theme }) => ({
   paddingBottom: theme.sizing.baseUnit * 100,

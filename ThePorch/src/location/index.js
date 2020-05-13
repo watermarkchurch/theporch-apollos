@@ -12,6 +12,27 @@ import MapView from './MapView';
 import GET_CAMPUSES from './getCampusLocations';
 
 class Location extends PureComponent {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Location',
+    headerLeft: null,
+    headerRight: (
+      <PaddedView vertical={false}>
+        <ButtonLink
+          style={{ color: navigation.getParam('headerTintColor', []) }}
+          onPress={() => navigation.goBack()}
+        >
+          Back
+        </ButtonLink>
+      </PaddedView>
+    ),
+    headerStyle: {
+      backgroundColor: navigation.getParam('headerBackgroundColor', []),
+    },
+    headerTitleStyle: {
+      color: navigation.getParam('headerTitleColor', []),
+    },
+  });
+
   static propTypes = {
     Component: PropTypes.oneOfType([
       PropTypes.node,
@@ -47,27 +68,6 @@ class Location extends PureComponent {
         Dimensions.get('window').height,
     },
   };
-
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Location',
-    headerLeft: null,
-    headerRight: (
-      <PaddedView vertical={false}>
-        <ButtonLink
-          style={{ color: navigation.getParam('headerTitleColor', []) }}
-          onPress={() => navigation.goBack()}
-        >
-          Back
-        </ButtonLink>
-      </PaddedView>
-    ),
-    headerStyle: {
-      backgroundColor: navigation.getParam('headerBackgroundColor', []),
-    },
-    headerTitleStyle: {
-      color: navigation.getParam('headerTitleColor', []),
-    },
-  });
 
   state = {
     userLocation: null,
