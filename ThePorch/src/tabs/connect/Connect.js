@@ -8,10 +8,13 @@ import { get } from 'lodash';
 import { PaddedView } from '@apollosproject/ui-kit';
 import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
 
+import { CampusConsumer } from '../../CampusProvider';
+
 import BackgroundView from '../../ui/BackgroundTexture';
 import ActionTable from './ActionTable';
 import GET_CONNECT_SCREEN from './getConnectScreen';
 import Features from './ConnectScreenFeatures';
+import CurrentCampus from './CurrentCampus';
 
 const flex = { flex: 1 };
 
@@ -48,6 +51,21 @@ class Connect extends PureComponent {
             <PaddedView horizontal={false}>
               {/* <UserAvatarHeader /> */}
               <HorizontalLikedContentFeedConnected />
+              <CampusConsumer>
+                {({ userCampus }) => (
+                  <CurrentCampus
+                    sectionTitle={'Your Campus'}
+                    cardTitle={userCampus.city}
+                    coverImage={userCampus.image}
+                    cardButtonText={'Campus Details'}
+                    headerActionText={'Change'}
+                    navigation={navigation}
+                    headerBackgroundColor={screenProps.headerBackgroundColor}
+                    headerTitleColor={screenProps.headerTitleStyle.color}
+                    headerTintColor={screenProps.headerTintColor}
+                  />
+                )}
+              </CampusConsumer>
               <Query
                 query={GET_CONNECT_SCREEN}
                 fetchPolicy={'cache-and-network'}
