@@ -5,7 +5,6 @@ import {
   styled,
   withTheme,
   ThemeMixin,
-  Card,
   CardContent,
   CardImage,
   H2,
@@ -18,19 +17,19 @@ import {
   Icon,
 } from '@apollosproject/ui-kit';
 
+import { View } from 'react-native';
+import Label from '../../../ui/LabelText';
+
 const StyledCard = withTheme(({ theme }) => ({
   cardColor: theme.colors.primary,
-}))(Card);
+  height: 190,
+  overflow: 'hidden',
+  borderRadius: theme.sizing.baseBorderRadius,
+  marginBottom: theme.sizing.baseUnit * 2,
+}))(View);
 
-const StyledH2 = styled(({ theme }) => ({
-  fontSize: theme.sizing.baseUnit * 1.75,
-}))(H2);
-
-const Image = withTheme(({ theme, customTheme }) => ({
-  maxAspectRatio: 1.2,
-  minAspectRatio: 0.75,
-  maintainAspectRatio: true,
-  overlayColor: get(customTheme, 'colors.primary', theme.colors.black),
+const Image = withTheme(({ theme }) => ({
+  overlayColor: theme.colors.black,
 }))(CardImage);
 
 const Content = styled(
@@ -76,7 +75,7 @@ const CurrentCampus = withIsLoading(
     >
       <PaddedView vertical={false}>
         <SideBySideView>
-          <StyledH2 numberOfLines={1}>{sectionTitle}</StyledH2>
+          <Label padded>{sectionTitle}</Label>
           <StyledButtonLink
             onPress={() => {
               navigation.navigate('Location', {
@@ -89,28 +88,28 @@ const CurrentCampus = withIsLoading(
             {headerActionText}
           </StyledButtonLink>
         </SideBySideView>
-      </PaddedView>
 
-      <StyledCard isLoading={isLoading}>
-        <Image
-          overlayType={'gradient-bottom'}
-          customTheme={theme}
-          source={coverImage}
-        />
-        <Content>
-          <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
-          <Button
-            onPress={() => {}}
-            loading={isLoading}
-            type={'default'}
-            pill={false}
-            bordered
-          >
-            <H4>{cardButtonText}</H4>
-            <Icon name="arrow-next" size={16} />
-          </Button>
-        </Content>
-      </StyledCard>
+        <StyledCard isLoading={isLoading}>
+          <Image
+            overlayType={'gradient-bottom'}
+            customTheme={theme}
+            source={coverImage}
+          />
+          <Content>
+            <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
+            <Button
+              onPress={() => {}}
+              loading={isLoading}
+              type={'default'}
+              pill={false}
+              bordered
+            >
+              <H4>{cardButtonText}</H4>
+              <Icon name="arrow-next" size={16} />
+            </Button>
+          </Content>
+        </StyledCard>
+      </PaddedView>
     </ThemeMixin>
   )
 );
