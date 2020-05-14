@@ -18,9 +18,9 @@ import fontStack from './fontStack';
  */
 const colors = {
   primary: '#F76E5E',
-  secondary: '#644AA1',
+  secondary: '#01859A',
 
-  tertiary: '#8AA7C5',
+  tertiary: '#EBA938',
   screen: '#F8F7F4',
   paper: '#FFFFFF',
   alert: '#AB3C30',
