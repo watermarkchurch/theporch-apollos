@@ -102,28 +102,26 @@ class Location extends PureComponent {
       >
         {({ loading, error, data: { campuses } = {} }) => (
           <CampusConsumer>
-            {({ changeCampus, userCampus }) =>
-              console.log(userCampus) || (
-                <Component
-                  navigation={this.props.navigation}
-                  isLoading={loading}
-                  error={error}
-                  campuses={campuses || []}
-                  initialRegion={this.props.initialRegion}
-                  userLocation={this.state.userLocation}
-                  currentCampus={campuses?.length && userCampus}
-                  isLoadingSelectedCampus={this.state.loadingNewCampus}
-                  onLocationSelect={async (campus) => {
-                    this.setState({ loadingNewCampus: true });
-                    changeCampus(campus);
-                    // eslint-disable-next-line no-unused-expressions
-                    this.props.onChangeCampus &&
-                      this.props.onChangeCampus({ campus });
-                    this.props.navigation.goBack();
-                  }}
-                />
-              )
-            }
+            {({ changeCampus, userCampus }) => (
+              <Component
+                navigation={this.props.navigation}
+                isLoading={loading}
+                error={error}
+                campuses={campuses || []}
+                initialRegion={this.props.initialRegion}
+                userLocation={this.state.userLocation}
+                currentCampus={campuses?.length && userCampus}
+                isLoadingSelectedCampus={this.state.loadingNewCampus}
+                onLocationSelect={async (campus) => {
+                  this.setState({ loadingNewCampus: true });
+                  changeCampus(campus);
+                  // eslint-disable-next-line no-unused-expressions
+                  this.props.onChangeCampus &&
+                    this.props.onChangeCampus({ campus });
+                  this.props.navigation.goBack();
+                }}
+              />
+            )}
           </CampusConsumer>
         )}
       </Query>
