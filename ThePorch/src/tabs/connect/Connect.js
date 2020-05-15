@@ -63,6 +63,7 @@ class Connect extends PureComponent {
                     headerBackgroundColor={screenProps.headerBackgroundColor}
                     headerTitleColor={screenProps.headerTitleStyle.color}
                     headerTintColor={screenProps.headerTintColor}
+                    item={userCampus}
                   />
                 )}
               </CampusConsumer>

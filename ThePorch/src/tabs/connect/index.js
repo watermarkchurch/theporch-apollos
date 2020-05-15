@@ -6,12 +6,14 @@ import TestingControlPanel from '../../testing-control-panel';
 
 import tabBarIcon from '../tabBarIcon';
 import Connect from './Connect';
+import AboutCampus from './AboutCampus';
 
 const ConnectNavigator = createStackNavigator(
   {
     Connect,
     TestingControlPanel,
     LikedContentFeedConnected,
+    AboutCampus,
   },
   {
     initialRouteName: 'Connect',

@@ -66,52 +66,60 @@ const CurrentCampus = withIsLoading(
     headerBackgroundColor,
     headerTitleColor,
     headerTintColor,
-  }) => (
-    <ThemeMixin
-      mixin={{
-        type: get(theme, 'type', 'dark').toLowerCase(), // not sure why we need toLowerCase
-        colors: get(theme, 'colors', {}),
-      }}
-    >
-      <PaddedView vertical={false}>
-        <SideBySideView>
-          <Label padded>{sectionTitle}</Label>
-          <StyledButtonLink
-            onPress={() => {
-              navigation.navigate('Location', {
-                headerBackgroundColor,
-                headerTitleColor,
-                headerTintColor,
-              });
-            }}
-          >
-            {headerActionText}
-          </StyledButtonLink>
-        </SideBySideView>
-
-        <StyledCard isLoading={isLoading}>
-          <Image
-            overlayType={'gradient-bottom'}
-            customTheme={theme}
-            source={coverImage}
-          />
-          <Content>
-            <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
-            <Button
-              onPress={() => {}}
-              loading={isLoading}
-              type={'default'}
-              pill={false}
-              bordered
+    item,
+  }) => {
+    const handleOnPressItem = () => {
+      navigation.push('AboutCampus', {
+        item,
+      });
+    };
+    return (
+      <ThemeMixin
+        mixin={{
+          type: get(theme, 'type', 'dark').toLowerCase(), // not sure why we need toLowerCase
+          colors: get(theme, 'colors', {}),
+        }}
+      >
+        <PaddedView vertical={false}>
+          <SideBySideView>
+            <Label padded>{sectionTitle}</Label>
+            <StyledButtonLink
+              onPress={() => {
+                navigation.navigate('Location', {
+                  headerBackgroundColor,
+                  headerTitleColor,
+                  headerTintColor,
+                });
+              }}
             >
-              <H4>{cardButtonText}</H4>
-              <Icon name="arrow-next" size={16} />
-            </Button>
-          </Content>
-        </StyledCard>
-      </PaddedView>
-    </ThemeMixin>
-  )
+              {headerActionText}
+            </StyledButtonLink>
+          </SideBySideView>
+
+          <StyledCard isLoading={isLoading}>
+            <Image
+              overlayType={'gradient-bottom'}
+              customTheme={theme}
+              source={coverImage}
+            />
+            <Content>
+              <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
+              <Button
+                onPress={() => handleOnPressItem(item)}
+                loading={isLoading}
+                type={'default'}
+                pill={false}
+                bordered
+              >
+                <H4>{cardButtonText}</H4>
+                <Icon name="arrow-next" size={16} />
+              </Button>
+            </Content>
+          </StyledCard>
+        </PaddedView>
+      </ThemeMixin>
+    );
+  }
 );
 
 export default CurrentCampus;
