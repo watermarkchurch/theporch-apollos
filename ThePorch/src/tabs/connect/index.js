@@ -18,6 +18,7 @@ const ConnectNavigator = createStackNavigator(
   {
     initialRouteName: 'Connect',
     headerMode: 'screen',
+    mode: 'modal',
     defaultNavigationOptions: ({ screenProps }) => ({
       headerTintColor: screenProps.headerTintColor,
       headerTitleStyle: screenProps.headerTitleStyle,

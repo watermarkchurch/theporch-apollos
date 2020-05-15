@@ -12,6 +12,7 @@ import {
   StretchyView,
   withTheme,
   BodyText,
+  ModalView,
 } from '@apollosproject/ui-kit';
 import Color from 'color';
 
@@ -52,41 +53,47 @@ const AboutCampus = ({ navigation }) => {
   const item = navigation.getParam('item', []);
   const { image, name } = item;
   return (
-    <BackgroundView>
-      <StretchyView>
-        {({ Stretchy, ...scrollViewProps }) => (
-          <FlexedScrollView {...scrollViewProps}>
-            {image ? (
-              <Stretchy style={stretchyStyle}>
-                <HeaderImage
-                  forceRatio={1}
-                  source={image}
-                  maintainAspectRatio={false}
-                />
-              </Stretchy>
-            ) : null}
-            <BackgroundTextureAngled>
-              <Content>
-                {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
-                <PaddedView>
-                  <Header>
-                    <H2 padded>{name}</H2>
-                  </Header>
-                </PaddedView>
-                <PaddedView>
-                  <BodyText padded>
-                    {
-                      'A precise hit will start a chain reaction which should destroy the station. Only a precise hit will set up a chain reaction. The shaft is ray-shielded, so you’ll have to use proton torpedoes. That’s impossible, even for a computer. It’s not impossible. I used to bull’s-eye womp rats in my T-sixteen back home. They’re not much bigger than two meters.'
-                    }
-                  </BodyText>
-                </PaddedView>
-              </Content>
-            </BackgroundTextureAngled>
-          </FlexedScrollView>
-        )}
-      </StretchyView>
-    </BackgroundView>
+    <ModalView navigation={navigation} onClose={() => navigation.goBack()}>
+      <BackgroundView>
+        <StretchyView>
+          {({ Stretchy, ...scrollViewProps }) => (
+            <FlexedScrollView {...scrollViewProps}>
+              {image ? (
+                <Stretchy style={stretchyStyle}>
+                  <HeaderImage
+                    forceRatio={1}
+                    source={image}
+                    maintainAspectRatio={false}
+                  />
+                </Stretchy>
+              ) : null}
+              <BackgroundTextureAngled>
+                <Content>
+                  {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+                  <PaddedView>
+                    <Header>
+                      <H2 padded>{name}</H2>
+                    </Header>
+                  </PaddedView>
+                  <PaddedView>
+                    <BodyText padded>
+                      {
+                        'A precise hit will start a chain reaction which should destroy the station. Only a precise hit will set up a chain reaction. The shaft is ray-shielded, so you’ll have to use proton torpedoes. That’s impossible, even for a computer. It’s not impossible. I used to bull’s-eye womp rats in my T-sixteen back home. They’re not much bigger than two meters.'
+                      }
+                    </BodyText>
+                  </PaddedView>
+                </Content>
+              </BackgroundTextureAngled>
+            </FlexedScrollView>
+          )}
+        </StretchyView>
+      </BackgroundView>
+    </ModalView>
   );
+};
+
+AboutCampus.navigationOptions = {
+  header: null,
 };
 
 export default AboutCampus;
