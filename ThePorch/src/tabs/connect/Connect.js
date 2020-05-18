@@ -54,7 +54,7 @@ class Connect extends PureComponent {
                 {({ userCampus }) => (
                   <CurrentCampus
                     sectionTitle={'Your Campus'}
-                    cardTitle={userCampus.city}
+                    cardTitle={userCampus.name}
                     coverImage={userCampus.image}
                     cardButtonText={'Campus Details'}
                     headerActionText={'Change'}
