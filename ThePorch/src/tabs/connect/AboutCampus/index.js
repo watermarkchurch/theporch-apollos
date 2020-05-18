@@ -8,6 +8,7 @@ import {
   GradientOverlayImage,
   PaddedView,
   H2,
+  H6,
   BackgroundView,
   StretchyView,
   withTheme,
@@ -28,6 +29,12 @@ const Header = styled({
   width: '80%',
 })(View);
 
+const StyledH6 = styled(({ theme: { colors, sizing } }) => ({
+  color: colors.text.tertiary,
+  fontSize: sizing.baseUnit * 0.875,
+  marginBottom: sizing.baseUnit,
+}))(H6);
+
 const stretchyStyle = {
   position: 'absolute',
   left: 0,
@@ -44,10 +51,6 @@ const HeaderImage = withTheme(({ theme }) => ({
   style: stretchyStyle,
   imageStyle: stretchyStyle,
 }))(GradientOverlayImage);
-
-const StyledH2 = styled(({ theme }) => ({
-  fontSize: theme.sizing.baseUnit * 1.75,
-}))(H2);
 
 const AboutCampus = ({ navigation }) => {
   const item = navigation.getParam('item', []);
@@ -72,13 +75,14 @@ const AboutCampus = ({ navigation }) => {
                   {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
                   <PaddedView>
                     <Header>
-                      <H2 padded>{name}</H2>
+                      <StyledH6>{'My Campus'}</StyledH6>
+                      <H2>{name}</H2>
                     </Header>
                   </PaddedView>
                   <PaddedView>
                     <BodyText padded>
                       {
-                        'A precise hit will start a chain reaction which should destroy the station. Only a precise hit will set up a chain reaction. The shaft is ray-shielded, so you’ll have to use proton torpedoes. That’s impossible, even for a computer. It’s not impossible. I used to bull’s-eye womp rats in my T-sixteen back home. They’re not much bigger than two meters.'
+                        'The Porch is a weekly gathering of 3,500+ 20 and 30-somethings in Dallas, Texas. We come together to celebrate the good news of Jesus, learn from The Bible, and seek to impact the world around us.'
                       }
                     </BodyText>
                   </PaddedView>
