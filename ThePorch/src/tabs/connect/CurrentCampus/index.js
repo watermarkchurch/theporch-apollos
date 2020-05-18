@@ -22,27 +22,29 @@ import Label from '../../../ui/LabelText';
 
 const StyledCard = withTheme(({ theme }) => ({
   cardColor: theme.colors.primary,
-  height: 190,
   overflow: 'hidden',
   borderRadius: theme.sizing.baseBorderRadius,
   marginBottom: theme.sizing.baseUnit * 2,
 }))(View);
 
+const stretchyStyle = {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
+  aspectRatio: 1,
+};
+
 const Image = withTheme(({ theme }) => ({
-  overlayColor: theme.colors.black,
+  overlayColor: theme.colors.darkPrimary,
+  style: stretchyStyle,
 }))(CardImage);
 
-const Content = styled(
-  ({ theme }) => ({
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    alignItems: 'flex-start', // needed to make `Label` display as an "inline" element
-    paddingHorizontal: theme.sizing.baseUnit * 1.5, // TODO: refactor CardContent to have this be the default
-    paddingBottom: theme.sizing.baseUnit * 2, // TODO: refactor CardContent to have this be the default
-  }),
-  'ui-kit.HighlightCard.Content'
-)(CardContent);
+const Content = styled(({ theme }) => ({
+  alignItems: 'flex-start',
+  paddingHorizontal: theme.sizing.baseUnit * 1.5,
+  paddingVertical: theme.sizing.baseUnit * 1.5,
+}))(CardContent);
 
 const StyledButtonLink = styled(({ theme }) => ({
   alignSelf: 'center',
@@ -97,11 +99,7 @@ const CurrentCampus = withIsLoading(
           </SideBySideView>
 
           <StyledCard isLoading={isLoading}>
-            <Image
-              overlayType={'gradient-bottom'}
-              customTheme={theme}
-              source={coverImage}
-            />
+            <Image overlayType={'featured'} source={coverImage} />
             <Content>
               <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
               <Button

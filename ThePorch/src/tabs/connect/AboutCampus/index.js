@@ -46,7 +46,7 @@ const stretchyStyle = {
 const HeaderImage = withTheme(({ theme }) => ({
   overlayType: 'featured',
   overlayColor: Color(theme.colors.darkPrimary)
-    .alpha(theme.alpha.low)
+    .alpha(theme.alpha.high)
     .string(),
   style: stretchyStyle,
   imageStyle: stretchyStyle,
