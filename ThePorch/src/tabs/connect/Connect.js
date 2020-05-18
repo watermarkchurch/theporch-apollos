@@ -75,12 +75,7 @@ class Connect extends PureComponent {
                   return <Features features={features} />;
                 }}
               </Query>
-              <ActionTable
-                navigation={navigation}
-                headerBackgroundColor={screenProps.headerBackgroundColor}
-                headerTitleColor={screenProps.headerTitleStyle.color}
-                headerTintColor={screenProps.headerTintColor}
-              />
+              <ActionTable navigation={navigation} />
             </PaddedView>
           </SafeAreaView>
         </ScrollView>
