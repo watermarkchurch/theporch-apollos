@@ -99,7 +99,11 @@ const CurrentCampus = withIsLoading(
           </SideBySideView>
 
           <StyledCard isLoading={isLoading}>
-            <Image overlayType={'featured'} source={coverImage} />
+            <Image
+              forceRatio={1}
+              overlayType={'featured'}
+              source={coverImage}
+            />
             <Content>
               <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
               <Button
