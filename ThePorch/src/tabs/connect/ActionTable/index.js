@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import PropTypes from 'prop-types';
 
 import {
   TableView,
@@ -79,12 +78,6 @@ const ActionTable = () => (
     )}
   </RockAuthedWebBrowser>
 );
-
-ActionTable.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 const StyledActionTable = styled(({ theme }) => ({
   paddingBottom: theme.sizing.baseUnit * 100,
