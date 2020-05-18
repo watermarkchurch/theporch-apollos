@@ -100,6 +100,10 @@ export const buttons = ({ colors: themeColors, alpha: themeAlpha }) => ({
     fill: Color(themeColors.darkTertiary).alpha(themeAlpha.high),
     accent: themeColors.white,
   },
+  default: {
+    fill: themeColors.white,
+    accent: themeColors.white,
+  },
 });
 
 const overrides = {
