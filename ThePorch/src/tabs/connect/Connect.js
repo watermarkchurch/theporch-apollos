@@ -49,7 +49,6 @@ class Connect extends PureComponent {
         >
           <SafeAreaView style={flex}>
             <PaddedView horizontal={false}>
-              {/* <UserAvatarHeader /> */}
               <HorizontalLikedContentFeedConnected />
               <CampusConsumer>
                 {({ userCampus }) => (
