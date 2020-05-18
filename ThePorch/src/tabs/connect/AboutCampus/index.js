@@ -36,11 +36,11 @@ const StyledH6 = styled(({ theme: { colors, sizing } }) => ({
 }))(H6);
 
 const stretchyStyle = {
-  position: 'absolute',
+  aspectRatio: 1,
   left: 0,
+  position: 'absolute',
   top: 0,
   width: '100%',
-  aspectRatio: 1,
 };
 
 const HeaderImage = withTheme(({ theme }) => ({

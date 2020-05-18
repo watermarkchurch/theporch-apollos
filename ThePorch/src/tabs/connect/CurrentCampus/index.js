@@ -2,37 +2,37 @@ import React from 'react';
 import { get } from 'lodash';
 
 import {
-  styled,
-  withTheme,
-  ThemeMixin,
+  Button,
+  ButtonLink,
   CardContent,
   CardImage,
   H2,
-  withIsLoading,
-  ButtonLink,
-  Button,
-  SideBySideView,
-  PaddedView,
   H4,
   Icon,
+  PaddedView,
+  SideBySideView,
+  ThemeMixin,
+  styled,
+  withIsLoading,
+  withTheme,
 } from '@apollosproject/ui-kit';
 
 import { View } from 'react-native';
 import Label from '../../../ui/LabelText';
 
 const StyledCard = withTheme(({ theme }) => ({
-  cardColor: theme.colors.primary,
-  overflow: 'hidden',
   borderRadius: theme.sizing.baseBorderRadius,
+  cardColor: theme.colors.primary,
   marginBottom: theme.sizing.baseUnit * 2,
+  overflow: 'hidden',
 }))(View);
 
 const stretchyStyle = {
-  position: 'absolute',
+  aspectRatio: 1,
   left: 0,
+  position: 'absolute',
   top: 0,
   width: '100%',
-  aspectRatio: 1,
 };
 
 const Image = withTheme(({ theme }) => ({
@@ -61,14 +61,14 @@ const CurrentCampus = withIsLoading(
     cardTitle,
     coverImage,
     headerActionText,
+    headerBackgroundColor,
+    headerTintColor,
+    headerTitleColor,
     isLoading,
+    item,
+    navigation,
     sectionTitle,
     theme,
-    navigation,
-    headerBackgroundColor,
-    headerTitleColor,
-    headerTintColor,
-    item,
   }) => {
     const handleOnPressItem = () => {
       navigation.push('AboutCampus', {
@@ -89,8 +89,8 @@ const CurrentCampus = withIsLoading(
               onPress={() => {
                 navigation.navigate('Location', {
                   headerBackgroundColor,
-                  headerTitleColor,
                   headerTintColor,
+                  headerTitleColor,
                 });
               }}
             >
