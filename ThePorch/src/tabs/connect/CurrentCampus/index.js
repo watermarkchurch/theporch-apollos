@@ -65,14 +65,14 @@ const CurrentCampus = withIsLoading(
     headerTintColor,
     headerTitleColor,
     isLoading,
-    item,
+    itemId,
     navigation,
     sectionTitle,
     theme,
   }) => {
     const handleOnPressItem = () => {
       navigation.push('AboutCampus', {
-        item,
+        itemId,
       });
     };
     return (
@@ -107,7 +107,7 @@ const CurrentCampus = withIsLoading(
             <Content>
               <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
               <Button
-                onPress={() => handleOnPressItem(item)}
+                onPress={() => handleOnPressItem()}
                 loading={isLoading}
                 type={'default'}
                 pill={false}

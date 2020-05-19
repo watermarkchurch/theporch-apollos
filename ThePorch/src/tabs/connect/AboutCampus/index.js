@@ -1,8 +1,7 @@
 import React from 'react';
 import { Animated, View } from 'react-native';
-import { get } from 'lodash';
-import PropTypes from 'prop-types';
-
+import { Query } from 'react-apollo';
+import Color from 'color';
 import {
   styled,
   GradientOverlayImage,
@@ -15,9 +14,9 @@ import {
   BodyText,
   ModalView,
 } from '@apollosproject/ui-kit';
-import Color from 'color';
 
 import BackgroundTextureAngled from '../../../ui/BackgroundTextureAngled';
+import GET_ABOUT_CAMPUS from './getAboutCampus';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
 
@@ -53,44 +52,47 @@ const HeaderImage = withTheme(({ theme }) => ({
 }))(GradientOverlayImage);
 
 const AboutCampus = ({ navigation }) => {
-  const item = navigation.getParam('item', []);
-  const { image, name } = item;
+  const itemId = navigation.getParam('itemId', []);
   return (
     <ModalView navigation={navigation} onClose={() => navigation.goBack()}>
       <BackgroundView>
-        <StretchyView>
-          {({ Stretchy, ...scrollViewProps }) => (
-            <FlexedScrollView {...scrollViewProps}>
-              {image ? (
-                <Stretchy style={stretchyStyle}>
-                  <HeaderImage
-                    forceRatio={1}
-                    source={image}
-                    maintainAspectRatio={false}
-                  />
-                </Stretchy>
-              ) : null}
-              <BackgroundTextureAngled>
-                <Content>
-                  {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
-                  <PaddedView>
-                    <Header>
-                      <StyledH6>{'My Campus'}</StyledH6>
-                      <H2>{name}</H2>
-                    </Header>
-                  </PaddedView>
-                  <PaddedView>
-                    <BodyText padded>
-                      {
-                        'The Porch is a weekly gathering of 3,500+ 20 and 30-somethings in Dallas, Texas. We come together to celebrate the good news of Jesus, learn from The Bible, and seek to impact the world around us.'
-                      }
-                    </BodyText>
-                  </PaddedView>
-                </Content>
-              </BackgroundTextureAngled>
-            </FlexedScrollView>
+        <Query
+          query={GET_ABOUT_CAMPUS}
+          variables={{ itemId }}
+          fetchPolicy="cache-and-network"
+        >
+          {({ data: { node: { name, description, image } = {} } = {} }) => (
+            <StretchyView>
+              {({ Stretchy, ...scrollViewProps }) => (
+                <FlexedScrollView {...scrollViewProps}>
+                  {image ? (
+                    <Stretchy style={stretchyStyle}>
+                      <HeaderImage
+                        forceRatio={1}
+                        source={image}
+                        maintainAspectRatio={false}
+                      />
+                    </Stretchy>
+                  ) : null}
+                  <BackgroundTextureAngled>
+                    <Content>
+                      {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+                      <PaddedView>
+                        <Header>
+                          <StyledH6>{'My Campus'}</StyledH6>
+                          <H2>{name}</H2>
+                        </Header>
+                      </PaddedView>
+                      <PaddedView>
+                        <BodyText padded>{description}</BodyText>
+                      </PaddedView>
+                    </Content>
+                  </BackgroundTextureAngled>
+                </FlexedScrollView>
+              )}
+            </StretchyView>
           )}
-        </StretchyView>
+        </Query>
       </BackgroundView>
     </ModalView>
   );
