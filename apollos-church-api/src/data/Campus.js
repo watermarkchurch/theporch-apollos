@@ -32,14 +32,12 @@ export const latLonDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 class dataSource extends CampusDataSource {
-  getAll = () =>
+  getFromId = (id) =>
     this.request()
-      .filter('IsActive eq true')
+      .filter(`Id eq ${id}`)
       .expand('Location')
       .expand('Location/Image')
-      .expand('CampusTypeValue')
-      .cache({ ttl: 600 }) // ten minutes
-      .get();
+      .first();
 
   getByLocation = async ({ latitude, longitude } = {}) => {
     let campuses = await this.getAll();
