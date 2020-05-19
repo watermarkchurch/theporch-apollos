@@ -1,6 +1,14 @@
 import { Campus } from '@apollosproject/data-connector-rock';
+import gql from 'graphql-tag';
 
-const { schema, resolver, dataSource: CampusDataSource } = Campus;
+const { schema: CoreSchema, resolver, dataSource: CampusDataSource } = Campus;
+
+const schema = gql`
+  ${CoreSchema}
+  extend type Campus {
+    description: String
+  }
+`;
 
 // copied from core
 export const latLonDistance = (lat1, lon1, lat2, lon2) => {

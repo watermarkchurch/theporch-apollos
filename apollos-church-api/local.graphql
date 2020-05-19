@@ -139,6 +139,7 @@ type Campus implements Node {
   longitude: Float
   image: ImageMediaSource
   distanceFromLocation(location: CampusLocationInput): Float
+  description: String
 }
 
 input CampusLocationInput {
