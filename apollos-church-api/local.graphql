@@ -389,12 +389,26 @@ type Link implements Node {
   useInAppBrowser: Boolean
 }
 
-type LiveStream {
+type LiveStream implements ContentItem & Node {
+  id: ID!
+  title(hyphenated: Boolean): String
+  coverImage: ImageMedia
+  htmlContent: String
+  summary: String
+  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
+  images: [ImageMedia]
+  videos: [VideoMedia]
+  audios: [AudioMedia]
+  parentChannel: ContentChannel
+  theme: Theme
+  features: [Feature]
   isLive: Boolean
   eventStartTime: String
   media: VideoMedia
   webViewUrl: String
   contentItem: ContentItem
+  sharing: SharableContentItem
 }
 
 type Location implements Node & ContentItem {
@@ -541,7 +555,6 @@ type Query {
   connectScreen(persona: String): ConnectScreen
   currentUser: AuthenticatedUser
   userExists(identity: String): USER_AUTH_STATUS
-  liveStream: LiveStream @deprecated(reason: "Use liveStreams, there may be multiple.")
   liveStreams: [LiveStream]
   scripture(query: String!, version: VERSION): Scripture @deprecated(reason: "Use 'scriptures' instead.")
   scriptures(query: String!, version: VERSION): [Scripture]
@@ -750,23 +763,6 @@ type WCCBlog implements ContentItem & Node {
   audios: [AudioMedia]
   parentChannel: ContentChannel
   theme: Theme
-  sharing: SharableContentItem
-}
-
-type WCCLiveStream implements ContentItem & Node {
-  id: ID!
-  title(hyphenated: Boolean): String
-  coverImage: ImageMedia
-  htmlContent: String
-  summary: String
-  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
-  siblingContentItemsConnection(first: Int, after: String): ContentItemsConnection
-  images: [ImageMedia]
-  videos: [VideoMedia]
-  audios: [AudioMedia]
-  parentChannel: ContentChannel
-  theme: Theme
-  features: [Feature]
   sharing: SharableContentItem
 }
 

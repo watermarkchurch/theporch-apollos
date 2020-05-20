@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const schema = gql`
-  type WCCLiveStream implements ContentItem & Node {
+  type LiveStream implements ContentItem & Node {
     id: ID!
     title(hyphenated: Boolean): String
     coverImage: ImageMedia
@@ -21,6 +21,19 @@ const schema = gql`
     parentChannel: ContentChannel
     theme: Theme
     features: [Feature]
+
+    isLive: Boolean @cacheControl(maxAge: 10)
+    eventStartTime: String
+    media: VideoMedia
+    webViewUrl: String
+    contentItem: ContentItem @cacheControl(maxAge: 10)
+  }
+
+  extend type Query {
+    liveStreams: [LiveStream] @cacheControl(maxAge: 10)
+  }
+  extend type WeekendContentItem {
+    liveStream: LiveStream
   }
 `;
 

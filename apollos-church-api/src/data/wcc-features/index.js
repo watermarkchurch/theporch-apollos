@@ -206,7 +206,7 @@ class WCCFeatures extends baseFeatures.dataSource {
           'ddd'
         )} at ${tzDate.format('ha')} CT`,
         title: liveStream.title,
-        relatedNode: { __typename: 'WCCLiveStream', ...liveStream },
+        relatedNode: { __typename: 'LiveStream', ...liveStream },
         image: LiveStream.getCoverImage(liveStream),
         action: 'READ_CONTENT',
         hasAction: false,
