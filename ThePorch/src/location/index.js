@@ -12,6 +12,27 @@ import MapView from './MapView';
 import GET_CAMPUSES from './getCampusLocations';
 
 class Location extends PureComponent {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Location',
+    headerLeft: null,
+    headerRight: (
+      <PaddedView vertical={false}>
+        <ButtonLink
+          style={{ color: navigation.getParam('headerTintColor', []) }}
+          onPress={() => navigation.goBack()}
+        >
+          Back
+        </ButtonLink>
+      </PaddedView>
+    ),
+    headerStyle: {
+      backgroundColor: navigation.getParam('headerBackgroundColor', []),
+    },
+    headerTitleStyle: {
+      color: navigation.getParam('headerTitleColor', []),
+    },
+  });
+
   static propTypes = {
     Component: PropTypes.oneOfType([
       PropTypes.node,
@@ -48,27 +69,6 @@ class Location extends PureComponent {
     },
   };
 
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Location',
-    headerLeft: null,
-    headerRight: (
-      <PaddedView vertical={false}>
-        <ButtonLink
-          style={{ color: navigation.getParam('headerTitleColor', []) }}
-          onPress={() => navigation.goBack()}
-        >
-          Back
-        </ButtonLink>
-      </PaddedView>
-    ),
-    headerStyle: {
-      backgroundColor: navigation.getParam('headerBackgroundColor', []),
-    },
-    headerTitleStyle: {
-      color: navigation.getParam('headerTitleColor', []),
-    },
-  });
-
   state = {
     userLocation: null,
     loadingNewCampus: false,
@@ -102,28 +102,26 @@ class Location extends PureComponent {
       >
         {({ loading, error, data: { campuses } = {} }) => (
           <CampusConsumer>
-            {({ changeCampus, userCampus }) =>
-              console.log(userCampus) || (
-                <Component
-                  navigation={this.props.navigation}
-                  isLoading={loading}
-                  error={error}
-                  campuses={campuses || []}
-                  initialRegion={this.props.initialRegion}
-                  userLocation={this.state.userLocation}
-                  currentCampus={campuses?.length && userCampus}
-                  isLoadingSelectedCampus={this.state.loadingNewCampus}
-                  onLocationSelect={async (campus) => {
-                    this.setState({ loadingNewCampus: true });
-                    changeCampus(campus);
-                    // eslint-disable-next-line no-unused-expressions
-                    this.props.onChangeCampus &&
-                      this.props.onChangeCampus({ campus });
-                    this.props.navigation.goBack();
-                  }}
-                />
-              )
-            }
+            {({ changeCampus, userCampus }) => (
+              <Component
+                navigation={this.props.navigation}
+                isLoading={loading}
+                error={error}
+                campuses={campuses || []}
+                initialRegion={this.props.initialRegion}
+                userLocation={this.state.userLocation}
+                currentCampus={campuses?.length && userCampus}
+                isLoadingSelectedCampus={this.state.loadingNewCampus}
+                onLocationSelect={async (campus) => {
+                  this.setState({ loadingNewCampus: true });
+                  changeCampus(campus);
+                  // eslint-disable-next-line no-unused-expressions
+                  this.props.onChangeCampus &&
+                    this.props.onChangeCampus({ campus });
+                  this.props.navigation.goBack();
+                }}
+              />
+            )}
           </CampusConsumer>
         )}
       </Query>

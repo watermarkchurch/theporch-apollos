@@ -1,25 +1,18 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   checkNotifications,
   openSettings,
   requestNotifications,
   RESULTS,
 } from 'react-native-permissions';
-import {
-  withTheme,
-  styled,
-  ThemeMixin,
-  PaddedView,
-  Button,
-} from '@apollosproject/ui-kit';
+import { withTheme, ThemeMixin } from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
   OnboardingSwiper,
 } from '@apollosproject/ui-onboarding';
 import AsyncStorage from '@react-native-community/async-storage';
-import { SafeAreaView } from 'react-navigation';
 
-import { resetAction } from '../../NavigationService';
 import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
 
 import BackgroundTexture from '../BackgroundTexture';
@@ -28,7 +21,12 @@ import AskNotifications from './AskNotifications';
 import AskLocation from './AskLocation';
 import LocationFinderConnected from './LocationFinderConnected';
 
-function Onboarding({ navigation, headerBackgroundColor, headerTitleColor }) {
+function Onboarding({
+  navigation,
+  headerBackgroundColor,
+  headerTitleColor,
+  headerTintColor,
+}) {
   const dispatch = useOnboardDispatch();
 
   useEffect(() => {
@@ -47,6 +45,7 @@ function Onboarding({ navigation, headerBackgroundColor, headerTitleColor }) {
                   navigation.navigate('Location', {
                     headerBackgroundColor,
                     headerTitleColor,
+                    headerTintColor,
                   });
                 }}
                 Component={AskLocation}
@@ -82,7 +81,17 @@ Onboarding.navigationOptions = {
   gesturesEnabled: false,
 };
 
+Onboarding.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  headerBackgroundColor: PropTypes.string,
+  headerTitleColor: PropTypes.string,
+  headerTintColor: PropTypes.string,
+};
+
 export default withTheme(({ theme }) => ({
-  headerBackgroundColor: theme.colors.darkPrimary,
-  headerTitleColor: theme.colors.primary,
+  headerBackgroundColor: theme.colors.background.paper,
+  headerTitleColor: theme.colors.text.primary,
+  headerTintColor: theme.colors.action.primary,
 }))(Onboarding);

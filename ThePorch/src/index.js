@@ -18,6 +18,8 @@ import Tabs from './tabs';
 import LandingScreen from './LandingScreen';
 import UserWebBrowser from './user-web-browser';
 import Onboarding from './ui/Onboarding';
+import AboutCampus from './AboutCampus';
+
 import {
   readOnboardingFromStorage,
   useOnboardDispatch,
@@ -57,6 +59,7 @@ const AppContainer = () => {
       UserWebBrowser,
       Onboarding,
       LandingScreen,
+      AboutCampus,
     },
     {
       initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',

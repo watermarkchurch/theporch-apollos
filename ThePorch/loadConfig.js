@@ -48,5 +48,22 @@ ApollosConfig.loadJs({
         }
       }
     `,
+    CAMPUS_PARTS_FRAGMENT: gql`
+      fragment CampusParts on Campus {
+        id
+        name
+        description
+        latitude
+        longitude
+        street1
+        street2
+        city
+        state
+        postalCode
+        image {
+          uri
+        }
+      }
+    `,
   },
 });

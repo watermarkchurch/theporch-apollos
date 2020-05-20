@@ -18,9 +18,9 @@ import fontStack from './fontStack';
  */
 const colors = {
   primary: '#F76E5E',
-  secondary: '#644AA1',
+  secondary: '#01859A',
 
-  tertiary: '#8AA7C5',
+  tertiary: '#EBA938',
   screen: '#F8F7F4',
   paper: '#FFFFFF',
   alert: '#AB3C30',
@@ -98,6 +98,10 @@ export const typography = {
 export const buttons = ({ colors: themeColors, alpha: themeAlpha }) => ({
   overlay: {
     fill: Color(themeColors.darkTertiary).alpha(themeAlpha.high),
+    accent: themeColors.white,
+  },
+  default: {
+    fill: themeColors.white,
     accent: themeColors.white,
   },
 });

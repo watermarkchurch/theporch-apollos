@@ -1,6 +1,38 @@
 import { Campus } from '@apollosproject/data-connector-rock';
+import gql from 'graphql-tag';
+import { resolverMerge } from '@apollosproject/server-core';
 
-const { schema, resolver, dataSource: CampusDataSource } = Campus;
+const { schema: CoreSchema, dataSource: CampusDataSource } = Campus;
+
+const schema = gql`
+  ${CoreSchema}
+  extend type Campus {
+    description: String
+
+    childContentItemsConnection(
+      first: Int
+      after: String
+    ): ContentItemsConnection
+  }
+`;
+
+const resolver = resolverMerge(
+  {
+    Campus: {
+      childContentItemsConnection: async ({ id }, args, { dataSources }) => {
+        const cursor = await dataSources.ContentItem.byRockCampus({
+          campusId: id,
+        });
+
+        return dataSources.ContentItem.paginate({
+          cursor,
+          args,
+        });
+      },
+    },
+  },
+  Campus
+);
 
 // copied from core
 export const latLonDistance = (lat1, lon1, lat2, lon2) => {
@@ -24,14 +56,12 @@ export const latLonDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 class dataSource extends CampusDataSource {
-  getAll = () =>
+  getFromId = (id) =>
     this.request()
-      .filter('IsActive eq true')
+      .filter(`Id eq ${id}`)
       .expand('Location')
       .expand('Location/Image')
-      .expand('CampusTypeValue')
-      .cache({ ttl: 600 }) // ten minutes
-      .get();
+      .first();
 
   getByLocation = async ({ latitude, longitude } = {}) => {
     let campuses = await this.getAll();
