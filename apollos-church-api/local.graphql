@@ -140,6 +140,7 @@ type Campus implements Node {
   image: ImageMediaSource
   distanceFromLocation(location: CampusLocationInput): Float
   description: String
+  childContentItemsConnection(first: Int, after: String): ContentItemsConnection
 }
 
 input CampusLocationInput {

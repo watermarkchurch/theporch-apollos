@@ -1,14 +1,38 @@
 import { Campus } from '@apollosproject/data-connector-rock';
 import gql from 'graphql-tag';
+import { resolverMerge } from '@apollosproject/server-core';
 
-const { schema: CoreSchema, resolver, dataSource: CampusDataSource } = Campus;
+const { schema: CoreSchema, dataSource: CampusDataSource } = Campus;
 
 const schema = gql`
   ${CoreSchema}
   extend type Campus {
     description: String
+
+    childContentItemsConnection(
+      first: Int
+      after: String
+    ): ContentItemsConnection
   }
 `;
+
+const resolver = resolverMerge(
+  {
+    Campus: {
+      childContentItemsConnection: async ({ id }, args, { dataSources }) => {
+        const cursor = await dataSources.ContentItem.byRockCampus({
+          campusId: id,
+        });
+
+        return dataSources.ContentItem.paginate({
+          cursor,
+          args,
+        });
+      },
+    },
+  },
+  Campus
+);
 
 // copied from core
 export const latLonDistance = (lat1, lon1, lat2, lon2) => {

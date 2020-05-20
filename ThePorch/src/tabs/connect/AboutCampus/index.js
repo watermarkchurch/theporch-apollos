@@ -16,6 +16,8 @@ import {
 } from '@apollosproject/ui-kit';
 
 import BackgroundTextureAngled from '../../../ui/BackgroundTextureAngled';
+import ChildContentFeed from './ChildContent';
+
 import GET_ABOUT_CAMPUS from './getAboutCampus';
 
 const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
@@ -61,7 +63,7 @@ const AboutCampus = ({ navigation }) => {
           variables={{ itemId }}
           fetchPolicy="cache-and-network"
         >
-          {({ data: { node: { name, description, image } = {} } = {} }) => (
+          {({ data: { node: { name, description, image, id } = {} } = {} }) => (
             <StretchyView>
               {({ Stretchy, ...scrollViewProps }) => (
                 <FlexedScrollView {...scrollViewProps}>
@@ -86,6 +88,7 @@ const AboutCampus = ({ navigation }) => {
                       <PaddedView>
                         <BodyText padded>{description}</BodyText>
                       </PaddedView>
+                      <ChildContentFeed contentId={id} />
                     </Content>
                   </BackgroundTextureAngled>
                 </FlexedScrollView>
