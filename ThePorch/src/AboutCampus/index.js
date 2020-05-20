@@ -15,7 +15,7 @@ import {
   ModalView,
 } from '@apollosproject/ui-kit';
 
-import BackgroundTextureAngled from '../../../ui/BackgroundTextureAngled';
+import BackgroundTextureAngled from '../ui/BackgroundTextureAngled';
 import ChildContentFeed from './ChildContent';
 
 import GET_ABOUT_CAMPUS from './getAboutCampus';
