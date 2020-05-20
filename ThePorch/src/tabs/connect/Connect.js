@@ -49,7 +49,6 @@ class Connect extends PureComponent {
         >
           <SafeAreaView style={flex}>
             <PaddedView horizontal={false}>
-              <HorizontalLikedContentFeedConnected />
               <CampusConsumer>
                 {({ userCampus }) => (
                   <CurrentCampus
@@ -66,6 +65,7 @@ class Connect extends PureComponent {
                   />
                 )}
               </CampusConsumer>
+              <HorizontalLikedContentFeedConnected />
               <Query
                 query={GET_CONNECT_SCREEN}
                 fetchPolicy={'cache-and-network'}
