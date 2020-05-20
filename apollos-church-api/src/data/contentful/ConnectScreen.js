@@ -39,19 +39,12 @@ class dataSource extends ContentfulDataSource {
   getDefaultPage = async () => {
     const result = await this.get(`entries`, {
       content_type: 'connectPage',
-      'fields.persona': 'default',
+      'fields.persona': 'connect screen',
     });
     return result[0];
   };
 
-  getFromPersona = async ({ persona }) => {
-    const result = await this.get(`entries`, {
-      content_type: 'connectPage',
-      'fields.persona': persona,
-    });
-    if (result.length === 0) return this.getDefaultPage();
-    return result[0];
-  };
+  getFromPersona = () => this.getDefaultPage();
 }
 
 const resolver = {
