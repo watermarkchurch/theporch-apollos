@@ -50,20 +50,22 @@ class Connect extends PureComponent {
           <SafeAreaView style={flex}>
             <PaddedView horizontal={false}>
               <CampusConsumer>
-                {({ userCampus }) => (
-                  <CurrentCampus
-                    cardButtonText={'Campus Details'}
-                    cardTitle={userCampus.name}
-                    coverImage={userCampus.image}
-                    headerActionText={'Change'}
-                    headerBackgroundColor={screenProps.headerBackgroundColor}
-                    headerTintColor={screenProps.headerTintColor}
-                    headerTitleColor={screenProps.headerTitleStyle.color}
-                    itemId={userCampus.id}
-                    navigation={navigation}
-                    sectionTitle={'Your Campus'}
-                  />
-                )}
+                {({ userCampus }) =>
+                  userCampus ? (
+                    <CurrentCampus
+                      cardButtonText={'Campus Details'}
+                      cardTitle={userCampus.name}
+                      coverImage={userCampus.image}
+                      headerActionText={'Change'}
+                      headerBackgroundColor={screenProps.headerBackgroundColor}
+                      headerTintColor={screenProps.headerTintColor}
+                      headerTitleColor={screenProps.headerTitleStyle.color}
+                      itemId={userCampus.id}
+                      navigation={navigation}
+                      sectionTitle={'Your Campus'}
+                    />
+                  ) : null
+                }
               </CampusConsumer>
               <HorizontalLikedContentFeedConnected />
               <Query
