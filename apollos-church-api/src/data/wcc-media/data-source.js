@@ -13,7 +13,7 @@ import { get, values, isString } from 'lodash';
 import { resolver as seriesResolver } from '../wcc-series';
 
 class dataSource extends RESTDataSource {
-  baseURL = 'https://media.watermark.org/api/v1/messages';
+  baseURL = 'https://media-staging.watermark.org/api/v1/messages';
 
   async getFromId(id) {
     const result = await this.get(id);
