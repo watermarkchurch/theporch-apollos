@@ -7,7 +7,9 @@ class dataSource extends RESTDataSource {
 
   objectTypePlural = 'series';
 
-  baseURL = `https://media.watermark.org/api/v1/${this.objectTypePlural}`;
+  baseURL = `https://media-staging.watermark.org/api/v1/${
+    this.objectTypePlural
+  }`;
 
   async getFromId(id) {
     const result = await this.get(id);

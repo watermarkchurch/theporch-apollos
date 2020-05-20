@@ -45,12 +45,12 @@ export class dataSource extends RESTDataSource {
     );
 
   getMessagesChannel = () =>
-    this.getFromId('https://media.watermark.org/api/v1/messages');
+    this.getFromId('https://media-staging.watermark.org/api/v1/messages');
 
   // todo
   getSeriesChannel = () =>
     this.getFromId(
-      'https://media.watermark.org/api/v1/series?filter[tag_id]=4'
+      'https://media-staging.watermark.org/api/v1/series?filter[tag_id]=4'
     );
 
   getSpeakersChannel = () =>

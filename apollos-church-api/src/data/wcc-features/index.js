@@ -5,6 +5,14 @@ import { startCase, get } from 'lodash';
 import gql from 'graphql-tag';
 import moment from 'moment-timezone';
 
+const getSpotifyEmbed = (url) => {
+  const playlistParts = url.split('playlist/');
+  if (!playlistParts.length || !playlistParts[1]) return null;
+  const playlistId = playlistParts[1].split('?')[0];
+
+  return `https://open.spotify.com/embed/playlist/${playlistId}`;
+};
+
 class WCCFeatures extends baseFeatures.dataSource {
   ACTION_ALGORITHIMS = {
     // We need to make sure `this` refers to the class, not the `ACTION_ALGORITHIMS` object.
@@ -40,8 +48,8 @@ class WCCFeatures extends baseFeatures.dataSource {
 
   createWebviewFeature = ({ id, external_playlist }) => ({
     title: 'Setlist',
-    linkText: 'Open in Spotify',
-    url: external_playlist,
+    // linkText: 'Open in Spotify',
+    url: getSpotifyEmbed(external_playlist),
     id: createGlobalId(id, 'WebviewFeature'),
     __typename: 'WebviewFeature',
   });
