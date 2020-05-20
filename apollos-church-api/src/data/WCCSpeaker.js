@@ -23,6 +23,10 @@ export class dataSource extends RESTDataSource {
 
     speakers = Object.keys(speakers);
 
+    // make sure Marvin is first
+    speakers = speakers.filter((name) => name !== 'David Marvin');
+    speakers.unshift('David Marvin');
+
     // parse the incoming cursor
     if (after) {
       const parsed = parseCursor(after);
