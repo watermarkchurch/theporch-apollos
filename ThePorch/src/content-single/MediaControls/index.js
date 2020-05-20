@@ -32,7 +32,8 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
             error,
           }) => {
             const coverImageSources = (coverImage && coverImage.sources) || [];
-            const liveStreamSource = get(liveStream, 'media.sources[0]');
+            const liveStreamSource =
+              get(liveStream, 'isLive') && get(liveStream, 'media.sources[0]');
             const videoSource = get(videos, '[0].sources[0]', null);
             const audioSource = get(audios, '[0].sources[0]', null);
             const webViewUrl = get(liveStream, 'webViewUrl');
