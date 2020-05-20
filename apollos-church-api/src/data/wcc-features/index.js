@@ -162,10 +162,14 @@ class WCCFeatures extends baseFeatures.dataSource {
     // Case 2: Handle the Latest Message
     // **********
 
-    const { edges: currentMessages } = await WCCMessage.paginate({
-      pagination: { first: 1 },
+    let { edges: currentMessages = [] } = await WCCMessage.paginate({
+      pagination: { first: 2 },
       filters: { target: 'the_porch', 'filter[tag_id][]': 40 },
     });
+
+    currentMessages = currentMessages.filter(
+      ({ node: item }) => moment(item.date) < moment().startOf('day')
+    );
 
     campaignItems = [
       ...campaignItems,

@@ -9,8 +9,12 @@ import { createGlobalId } from '@apollosproject/server-core';
 
 const resolver = {
   WCCMessage: {
-    id: ({ id, objectID }, args, context, { parentType }) =>
-      createGlobalId(`${id || objectID}`, parentType.name),
+    id: (
+      { id, objectID, _links: { self: link } = {} },
+      args,
+      context,
+      { parentType }
+    ) => createGlobalId(`${link || id || objectID}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
     coverImage: (contentItem, _, { dataSources }) =>
       dataSources.WCCMessage.getCoverImage(contentItem),

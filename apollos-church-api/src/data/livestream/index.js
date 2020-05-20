@@ -38,8 +38,7 @@ class dataSource extends RESTDataSource {
 
   async contentItemForEvent({ current_event, next_event }) {
     const url = current_event?._links?.message || next_event?._links?.message;
-    const { message } = await this.get(url);
-    return message;
+    return this.context.dataSources.WCCMessage.getFromId(url);
   }
 
   async getLiveStreams() {

@@ -1,11 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
-import {
-  createCursor,
-  parseCursor,
-  createGlobalId,
-} from '@apollosproject/server-core';
+import { createCursor, parseCursor } from '@apollosproject/server-core';
 import natural from 'natural';
-import ApollosConfig from '@apollosproject/config';
 
 import { ApolloError } from 'apollo-server';
 import { get, values, isString } from 'lodash';
@@ -17,6 +12,7 @@ class dataSource extends RESTDataSource {
 
   async getFromId(id) {
     const result = await this.get(id);
+
     if (
       !result ||
       typeof result !== 'object' ||
