@@ -2,12 +2,10 @@ import React, { memo } from 'react';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { Animated } from 'react-native';
 
-import { FeedView } from '@apollosproject/ui-kit';
+import { FeedView, BackgroundView } from '@apollosproject/ui-kit';
 import { SafeAreaView } from 'react-navigation';
 
-import BackgroundView from '../../../ui/BackgroundTexture';
 import TileContentFeed from './TileContentFeed';
 import GET_CONTENT_CHANNELS from './getContentChannels';
 
@@ -47,33 +45,24 @@ renderItem.propTypes = {
   }),
 };
 
-const DiscoverFeed = memo(() => {
-  const scrollY = new Animated.Value(0);
-
-  return (
-    <Query query={GET_CONTENT_CHANNELS} fetchPolicy="cache-and-network">
-      {({ error, loading, data: { contentChannels = [] } = {}, refetch }) => (
-        <BackgroundView animatedScrollPos={scrollY}>
-          <FeedView
-            onScroll={Animated.event([
-              { nativeEvent: { contentOffset: { y: scrollY } } },
-            ])}
-            error={error}
-            content={contentChannels}
-            ListHeaderComponent={
-              <SafeAreaView forceInset={{ top: 'always' }} />
-            }
-            isLoading={loading && !contentChannels.length}
-            refetch={refetch}
-            renderItem={renderItem}
-            loadingStateObject={feedItemLoadingState}
-            numColumns={1}
-          />
-        </BackgroundView>
-      )}
-    </Query>
-  );
-});
+const DiscoverFeed = memo(() => (
+  <Query query={GET_CONTENT_CHANNELS} fetchPolicy="cache-and-network">
+    {({ error, loading, data: { contentChannels = [] } = {}, refetch }) => (
+      <BackgroundView>
+        <FeedView
+          error={error}
+          content={contentChannels}
+          ListHeaderComponent={<SafeAreaView forceInset={{ top: 'always' }} />}
+          isLoading={loading && !contentChannels.length}
+          refetch={refetch}
+          renderItem={renderItem}
+          loadingStateObject={feedItemLoadingState}
+          numColumns={1}
+        />
+      </BackgroundView>
+    )}
+  </Query>
+));
 
 DiscoverFeed.displayName = 'DiscoverFeed';
 

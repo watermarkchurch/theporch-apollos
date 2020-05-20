@@ -4,7 +4,7 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 import { get, values } from 'lodash';
 
 class dataSource extends RESTDataSource {
-  baseURL = 'https://media.watermark.org/api/v1/streams';
+  baseURL = 'https://media-staging.watermark.org/api/v1/streams';
 
   getLiveStream = async () =>
     // deprecated, we shouldn't use this anywhere

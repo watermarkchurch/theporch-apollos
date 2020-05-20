@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
-import { PaddedView } from '@apollosproject/ui-kit';
+import { PaddedView, BackgroundView } from '@apollosproject/ui-kit';
 import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
 
 import { CampusConsumer } from '../../CampusProvider';
 
-import BackgroundView from '../../ui/BackgroundTexture';
 import ActionTable from './ActionTable';
 import GET_CONNECT_SCREEN from './getConnectScreen';
 import Features from './ConnectScreenFeatures';

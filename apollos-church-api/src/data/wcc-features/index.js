@@ -5,6 +5,14 @@ import { startCase, get } from 'lodash';
 import gql from 'graphql-tag';
 import moment from 'moment-timezone';
 
+const getSpotifyEmbed = (url) => {
+  const playlistParts = url.split('playlist/');
+  if (!playlistParts.length || !playlistParts[1]) return null;
+  const playlistId = playlistParts[1].split('?')[0];
+
+  return `https://open.spotify.com/embed/playlist/${playlistId}`;
+};
+
 class WCCFeatures extends baseFeatures.dataSource {
   ACTION_ALGORITHIMS = {
     // We need to make sure `this` refers to the class, not the `ACTION_ALGORITHIMS` object.
@@ -40,8 +48,8 @@ class WCCFeatures extends baseFeatures.dataSource {
 
   createWebviewFeature = ({ id, external_playlist }) => ({
     title: 'Setlist',
-    linkText: 'Open in Spotify',
-    url: external_playlist,
+    // linkText: 'Open in Spotify',
+    url: getSpotifyEmbed(external_playlist),
     id: createGlobalId(id, 'WebviewFeature'),
     __typename: 'WebviewFeature',
   });
@@ -49,10 +57,10 @@ class WCCFeatures extends baseFeatures.dataSource {
   createSocialIconsFeature = ({ title }) => ({
     id: createGlobalId('SocialIconsFeature', 'SocialIconsFeature'),
     socialIcons: [
-      { icon: 'instagram', url: 'https://example.com' },
-      { icon: 'facebook', url: 'https://example.com' },
-      { icon: 'youtube', url: 'https://example.com' },
-      { icon: 'twitter', url: 'https://example.com' },
+      { icon: 'instagram', url: 'https://www.instagram.com/theporch/' },
+      { icon: 'facebook', url: 'https://www.facebook.com/theporchdallas/' },
+      { icon: 'youtube', url: 'https://www.youtube.com/user/porchdallas' },
+      { icon: 'twitter', url: 'https://twitter.com/theporch' },
     ],
     title,
     __typename: 'SocialIconsFeature',
@@ -185,7 +193,6 @@ class WCCFeatures extends baseFeatures.dataSource {
     // **********
 
     if (liveStream && !liveStreamIsInCampaign) {
-      const contentItem = await liveStream.contentItem;
       campaignItems.push({
         id: createGlobalId(
           `${liveStream.id}${campaignItems.length}`,
@@ -195,9 +202,9 @@ class WCCFeatures extends baseFeatures.dataSource {
           'ddd'
         )} at ${tzDate.format('ha')} CT`,
         title: liveStream.title,
-        relatedNode: { __typename: 'WCCMessage', ...contentItem },
+        relatedNode: { __typename: 'WCCLiveStream', ...liveStream },
         image: LiveStream.getCoverImage(liveStream),
-        action: null, // 'READ_CONTENT',
+        action: 'READ_CONTENT',
         hasAction: false,
         summary: liveStream.description,
       });
@@ -244,10 +251,11 @@ class WCCFeatures extends baseFeatures.dataSource {
 
     const items = [...blogs, ...messages];
 
-    return items.sort(
-      (nodeA, nodeB) =>
-        new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
-    );
+    // return items.sort(
+    //   (nodeA, nodeB) =>
+    //     new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
+    // );
+    return items;
   }
 
   async campusItemsAlgorithm() {

@@ -1,14 +1,13 @@
 import React, { PureComponent } from 'react';
-import { Image, Animated } from 'react-native';
+import { Image } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
-import { styled } from '@apollosproject/ui-kit';
+import { styled, BackgroundView } from '@apollosproject/ui-kit';
 import {
   VerticalCardListFeature,
   CampaignItemListFeature,
 } from '@apollosproject/ui-connected';
 
-import BackgroundView from '../../ui/BackgroundTexture';
 import FeaturesFeedWithCampus from './FeaturesFeedWithCampus';
 
 const LogoTitle = styled(({ theme }) => ({
@@ -22,8 +21,6 @@ class Home extends PureComponent {
   static navigationOptions = () => ({
     header: null,
   });
-
-  scrollY = new Animated.Value(0);
 
   additionalFeatures = {
     // VerticalCardListFeature: (props) => (
@@ -77,12 +74,9 @@ class Home extends PureComponent {
 
   render() {
     return (
-      <BackgroundView animatedScrollPos={this.scrollY}>
+      <BackgroundView>
         <SafeAreaView>
           <FeaturesFeedWithCampus
-            onScroll={Animated.event([
-              { nativeEvent: { contentOffset: { y: this.scrollY } } },
-            ])}
             onPressActionItem={this.handleOnPressActionItem}
             ListHeaderComponent={
               <LogoTitle source={require('./wordmark.png')} />

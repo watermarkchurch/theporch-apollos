@@ -37,28 +37,56 @@ const ActionTable = () => (
         </RowHeader>
         <TableView>
           <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/235')}
+            onPress={() =>
+              openUrl(
+                'https://www.watermark.org/dallas/ministries/community/community-formation/singles-community-formation'
+              )
+            }
           >
             <Cell>
-              <CellText>Find a serving opportunity</CellText>
+              <CellText>Community Groups</CellText>
               <CellIcon name="arrow-next" />
             </Cell>
           </Touchable>
           <Divider />
           <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/236')}
+            onPress={() =>
+              openUrl('https://watermark.formstack.com/forms/porchvolunteerapp')
+            }
           >
             <Cell>
-              <CellText>Join a small group</CellText>
+              <CellText>Serve with Us</CellText>
               <CellIcon name="arrow-next" />
             </Cell>
           </Touchable>
           <Divider />
           <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/233')}
+            onPress={() => openUrl('http://www.watermark.org/membership')}
           >
             <Cell>
-              <CellText>I need prayer</CellText>
+              <CellText>Become a Member</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() =>
+              openUrl('https://www.theporch.live/connect#StayInformed')
+            }
+          >
+            <Cell>
+              <CellText>Stay Informed</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() =>
+              openUrl('https://www.theporch.live/connect#Contactus')
+            }
+          >
+            <Cell>
+              <CellText>Contact Us</CellText>
               <CellIcon name="arrow-next" />
             </Cell>
           </Touchable>
