@@ -54,5 +54,10 @@ export const resolver = {
       fields.description ? marked(fields.description) : null,
     coverImage: ({ fields }, args, { dataSources }) =>
       fields.mediaUrl ? { sources: [{ uri: fields.mediaUrl }] } : null,
+    sharing: ({ fields }) => ({
+      url: null,
+      title: fields.title,
+      message: fields.title,
+    }),
   },
 };

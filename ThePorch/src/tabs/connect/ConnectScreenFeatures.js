@@ -2,13 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
 import { ActionListFeature as CoreActionListFeature } from '@apollosproject/ui-connected';
-import {
-  H4,
-  Touchable,
-  styled,
-  Icon,
-  PaddedView,
-} from '@apollosproject/ui-kit';
+import { Touchable, styled, Icon, PaddedView } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
 import Label from '../../ui/LabelText';
 
@@ -65,7 +59,10 @@ const ActionListFeature = ({ subtitle, ...feature }) => (
   </>
 );
 
-handleOnPressActionItem = ({ navigation }) => ({ action, relatedNode }) => {
+const handleOnPressActionItem = ({ navigation }) => ({
+  action,
+  relatedNode,
+}) => {
   if (action === 'READ_CONTENT') {
     navigation.navigate('ContentSingle', {
       itemId: relatedNode.id,
@@ -93,7 +90,7 @@ function Features({ features = [], navigation }) {
       return (
         <Component
           {...feature}
-          onPressActionItem={handleOnPressActionItem({ navigation })}
+          onPressItem={handleOnPressActionItem({ navigation })}
         />
       );
     }

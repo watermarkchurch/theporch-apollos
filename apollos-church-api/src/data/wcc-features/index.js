@@ -57,10 +57,10 @@ class WCCFeatures extends baseFeatures.dataSource {
   createSocialIconsFeature = ({ title }) => ({
     id: createGlobalId('SocialIconsFeature', 'SocialIconsFeature'),
     socialIcons: [
-      { icon: 'instagram', url: 'https://example.com' },
-      { icon: 'facebook', url: 'https://example.com' },
-      { icon: 'youtube', url: 'https://example.com' },
-      { icon: 'twitter', url: 'https://example.com' },
+      { icon: 'instagram', url: 'https://www.instagram.com/theporch/' },
+      { icon: 'facebook', url: 'https://www.facebook.com/theporchdallas/' },
+      { icon: 'youtube', url: 'https://www.youtube.com/user/porchdallas' },
+      { icon: 'twitter', url: 'https://twitter.com/theporch' },
     ],
     title,
     __typename: 'SocialIconsFeature',
