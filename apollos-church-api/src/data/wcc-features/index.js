@@ -193,7 +193,6 @@ class WCCFeatures extends baseFeatures.dataSource {
     // **********
 
     if (liveStream && !liveStreamIsInCampaign) {
-      const contentItem = await liveStream.contentItem;
       campaignItems.push({
         id: createGlobalId(
           `${liveStream.id}${campaignItems.length}`,
@@ -203,9 +202,9 @@ class WCCFeatures extends baseFeatures.dataSource {
           'ddd'
         )} at ${tzDate.format('ha')} CT`,
         title: liveStream.title,
-        relatedNode: { __typename: 'WCCMessage', ...contentItem },
+        relatedNode: { __typename: 'WCCLiveStream', ...liveStream },
         image: LiveStream.getCoverImage(liveStream),
-        action: null, // 'READ_CONTENT',
+        action: 'READ_CONTENT',
         hasAction: false,
         summary: liveStream.description,
       });
@@ -252,10 +251,11 @@ class WCCFeatures extends baseFeatures.dataSource {
 
     const items = [...blogs, ...messages];
 
-    return items.sort(
-      (nodeA, nodeB) =>
-        new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
-    );
+    // return items.sort(
+    //   (nodeA, nodeB) =>
+    //     new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
+    // );
+    return items;
   }
 
   async campusItemsAlgorithm() {

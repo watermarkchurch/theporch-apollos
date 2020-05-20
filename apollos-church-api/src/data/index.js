@@ -28,6 +28,7 @@ import {
 import * as Theme from './theme';
 import * as ContentfulData from './contentful';
 
+import * as WCCLiveStream from './wcc-livestream';
 import * as WCCMessage from './wcc-media';
 import * as WCCSeries from './wcc-series';
 import * as WCCBlog from './wcc-blog';
@@ -77,6 +78,7 @@ const data = {
   WCCBlog,
   WCCSeries,
   WCCSpeaker,
+  WCCLiveStream,
 };
 
 const {

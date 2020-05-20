@@ -6,14 +6,14 @@ import { ContentItem } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
 
 const resolver = {
-  WCCSeries: {
+  WCCLiveStream: {
     id: ({ id }, args, context, { parentType }) =>
       createGlobalId(`${id}`, parentType.name),
     title: ContentItem.resolver.ContentItem.title,
     coverImage: (contentItem, _, { dataSources }) =>
-      dataSources.WCCSeries.getCoverImage(contentItem),
-    summary: ({ subtitle }) => subtitle,
-    htmlContent: ({ subtitle }) => subtitle,
+      dataSources.WCCLiveStream.getCoverImage(contentItem),
+    summary: ({ description }) => description,
+    htmlContent: ({ description }) => description,
     images: ({ images } = {}) =>
       Object.keys(images).map((key) => ({
         sources: [{ uri: images[key].url }],
@@ -28,17 +28,16 @@ const resolver = {
       totalCount: () => 0,
       edges: () => [],
     }),
-    features: (root, args, { dataSources }) =>
-      dataSources.WCCSeries.getFeatures(root),
-    childContentItemsConnection: ({ id }, pagination, { dataSources }) =>
-      dataSources.WCCMessage.paginate({
-        filters: { filter: { series_id: id } },
-        pagination,
-      }),
-    sharing: (root, args, { dataSources }) => ({
-      url: dataSources.WCCSeries.getShareUrl(root),
+    features: () => null,
+    childContentItemsConnection: () => ({
+      pageInfo: () => null,
+      totalCount: () => 0,
+      edges: () => [],
+    }),
+    sharing: () => ({
+      url: 'https://www.theporch.live/live-stream',
       title: 'Share via ...',
-      message: `${root.title} Series on The Porch`,
+      message: `Watch the Porch Live`,
     }),
   },
 };

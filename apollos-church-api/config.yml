@@ -118,6 +118,8 @@ ROCK_MAPPINGS:
       EntityType: ContentChannelItem
     WCCSeries:
       EntityType: ContentChannelItem
+    WCCLiveStream:
+      EntityType: ContentChannelItem
     WCCSpeaker:
       EntityType: ContentChannelItem
     UniversalContentItem:
