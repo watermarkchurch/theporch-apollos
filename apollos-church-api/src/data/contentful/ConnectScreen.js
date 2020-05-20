@@ -56,7 +56,7 @@ class dataSource extends ContentfulDataSource {
 
 const resolver = {
   Query: {
-    connectScreen: (root, { persona = 'default' }, { dataSources }) =>
+    connectScreen: (root, { persona = 'connect page' }, { dataSources }) =>
       dataSources.ConnectScreen.getFromPersona({ persona }),
   },
   ConnectScreen: {
