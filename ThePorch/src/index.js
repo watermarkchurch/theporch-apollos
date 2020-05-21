@@ -20,6 +20,7 @@ import LandingScreen from './LandingScreen';
 import UserWebBrowser from './user-web-browser';
 import Onboarding from './ui/Onboarding';
 import AboutCampus from './AboutCampus';
+import AppStateTracker from './AppStateTracker';
 
 import {
   readOnboardingFromStorage,
@@ -99,16 +100,19 @@ const App = () => (
       <AppStatusBar />
       <AnalyticsConsumer>
         {({ track }) => (
-          <AppContainer
-            onNavigationStateChange={(prevState, currentState) => {
-              const currentScreen = getActiveRouteName(currentState);
-              const prevScreen = getActiveRouteName(prevState);
+          <>
+            <AppStateTracker track={track} />
+            <AppContainer
+              onNavigationStateChange={(prevState, currentState) => {
+                const currentScreen = getActiveRouteName(currentState);
+                const prevScreen = getActiveRouteName(prevState);
 
-              if (prevScreen !== currentScreen) {
-                track({ eventName: `Viewed ${currentScreen}` });
-              }
-            }}
-          />
+                if (prevScreen !== currentScreen) {
+                  track({ eventName: `Viewed ${currentScreen}` });
+                }
+              }}
+            />
+          </>
         )}
       </AnalyticsConsumer>
       <MediaPlayer />
