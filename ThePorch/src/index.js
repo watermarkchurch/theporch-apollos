@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { isNil } from 'lodash';
 import RNBootSplash from 'react-native-bootsplash';
+import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
 
 import { BackgroundView, withTheme } from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
@@ -31,7 +32,7 @@ const AppStatusBar = withTheme(({ theme }) => ({
   backgroundColor: theme.colors.background.paper,
 }))(StatusBar);
 
-const AppContainer = () => {
+const AppContainer = (props) => {
   const dispatch = useOnboardDispatch();
 
   useEffect(() => {
@@ -72,6 +73,7 @@ const AppContainer = () => {
 
   return (
     <Container
+      {...props}
       ref={(navigatorRef) => {
         NavigationService.setTopLevelNavigator(navigatorRef);
       }}
@@ -79,11 +81,36 @@ const AppContainer = () => {
   );
 };
 
+function getActiveRouteName(navigationState) {
+  if (!navigationState) {
+    return null;
+  }
+  const route = navigationState.routes[navigationState.index];
+  // dive into nested navigators
+  if (route.routes) {
+    return getActiveRouteName(route);
+  }
+  return route.routeName;
+}
+
 const App = () => (
   <Providers>
     <BackgroundView>
       <AppStatusBar />
-      <AppContainer />
+      <AnalyticsConsumer>
+        {({ track }) => (
+          <AppContainer
+            onNavigationStateChange={(prevState, currentState) => {
+              const currentScreen = getActiveRouteName(currentState);
+              const prevScreen = getActiveRouteName(prevState);
+
+              if (prevScreen !== currentScreen) {
+                track({ eventName: `Viewed ${currentScreen}` });
+              }
+            }}
+          />
+        )}
+      </AnalyticsConsumer>
       <MediaPlayer />
     </BackgroundView>
   </Providers>
