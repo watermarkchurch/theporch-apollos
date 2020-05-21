@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 class AppStateTracker extends Component {
   state = {
     appState: AppState.currentState,
+    currentTime: new Date().getTime(),
   };
 
   componentDidMount() {
+    this.props.track({ eventName: 'App Opened' });
     AppState.addEventListener('change', this.handleAppStateChange);
   }
 
