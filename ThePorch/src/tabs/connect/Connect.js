@@ -6,7 +6,7 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
 import { PaddedView, BackgroundView } from '@apollosproject/ui-kit';
-import { HorizontalLikedContentFeedConnected } from '@apollosproject/ui-connected';
+import HorizontalLikedContentFeedConnected from './HorizontalLikedContentFeedConnected';
 
 import { CampusConsumer } from '../../CampusProvider';
 

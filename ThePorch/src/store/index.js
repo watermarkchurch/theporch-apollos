@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { schema as mediaPlayerSchema } from '@apollosproject/ui-media-player';
 import { updatePushId } from '@apollosproject/ui-notifications';
 import CACHE_LOADED from '../client/getCacheLoaded'; // eslint-disable-line
+import ApollosConfig from '@apollosproject/config';
 
 // TODO: this will require more organization...ie...not keeping everything in one file.
 // But this is simple while our needs our small.
@@ -12,6 +13,7 @@ export const schema = `
     pushId: String
     cacheLoaded: Boolean
     notificationsEnabled: Boolean
+    likedContent: [Node]
   }
 
   type Mutation {
@@ -79,6 +81,46 @@ export const resolvers = {
   Breakouts: { isLiked: resolveIsLiked },
   Location: { isLiked: resolveIsLiked },
   Speaker: { isLiked: resolveIsLiked },
+  Query: {
+    likedContent: (a, b, { cache }) => {
+      const query = gql`
+        query {
+          likedContent @client {
+            id
+          }
+        }
+      `;
+
+      let likedContent = [];
+
+      try {
+        ({ likedContent = [] } = cache.readQuery({ query }));
+      } catch (e) {
+        likedContent = [];
+      }
+
+      const contentQuery = gql`
+        query($id: ID!) {
+          node(id: $id) {
+            ...contentCardFragment
+          }
+        }
+        ${ApollosConfig.FRAGMENTS.CONTENT_CARD_FRAGMENT}
+      `;
+
+      try {
+        return likedContent.map((content) => {
+          const data = cache.readQuery({
+            query: contentQuery,
+            variables: { id: content.id },
+          });
+          return data.node;
+        });
+      } catch (e) {
+        return likedContent;
+      }
+    },
+  },
   Mutation: {
     cacheMarkLoaded: async (root, args, { cache, client }) => {
       cache.writeQuery({
