@@ -61,7 +61,16 @@ class dataSource extends CampusDataSource {
       .filter(`Id eq ${id}`)
       .expand('Location')
       .expand('Location/Image')
+      .expand('CampusTypeValue')
       .first();
+
+  getAll = () =>
+    this.request()
+      .filter('IsActive eq true')
+      .expand('Location')
+      .expand('Location/Image')
+      .expand('CampusTypeValue')
+      .get();
 
   getByLocation = async ({ latitude, longitude } = {}) => {
     let campuses = await this.getAll();
