@@ -1,6 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 import { ApolloError } from 'apollo-server';
+import { logRequests } from './utils';
 
 class dataSource extends RESTDataSource {
   objectType = 'series';
@@ -11,9 +12,10 @@ class dataSource extends RESTDataSource {
     this.objectTypePlural
   }`;
 
-  willSendRequest = (request) => {
+  willSendRequest(request) {
     request.params.set('target', 'the_porch');
-  };
+    logRequests.call(this, request);
+  }
 
   async getFromId(id) {
     const result = await this.get(id);

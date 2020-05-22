@@ -2,6 +2,7 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 
 import { ApolloError } from 'apollo-server';
+import { logRequests } from '../utils';
 
 class dataSource extends RESTDataSource {
   baseURL = 'https://di0v2frwtdqnv.cloudfront.net';
@@ -11,6 +12,10 @@ class dataSource extends RESTDataSource {
   channelPath = 'api/v1/property/theporch-app/blog';
 
   nodePath = 'api/v1/blog';
+
+  willSendRequest(request) {
+    logRequests.call(this, request);
+  }
 
   async getFromId(id) {
     const result = await this.get(`${this.nodePath}${id}`);

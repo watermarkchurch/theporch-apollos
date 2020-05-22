@@ -2,7 +2,7 @@ import { ContentChannel } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
 import { ApolloError } from 'apollo-server';
 import { RESTDataSource } from 'apollo-datasource-rest';
-
+import { logRequests } from './utils';
 // export const dataSource = ContentChannel.dataSource;
 
 export class dataSource extends RESTDataSource {
@@ -10,6 +10,10 @@ export class dataSource extends RESTDataSource {
   //   console.log(response.body.toString());
   //   console.log('didReceiveResponse', { response, request });
   // }
+
+  willSendRequest = (request) => {
+    logRequests.call(this, request);
+  };
 
   async getFromId(id) {
     let result;
