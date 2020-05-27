@@ -52,16 +52,16 @@ class Connect extends PureComponent {
                 {({ userCampus }) =>
                   userCampus ? (
                     <CurrentCampus
-                      cardButtonText={'Campus Details'}
+                      cardButtonText={'Location Details'}
                       cardTitle={userCampus.name}
                       coverImage={userCampus.image}
-                      headerActionText={'Change'}
+                      headerActionText={'Change Location'}
                       headerBackgroundColor={screenProps.headerBackgroundColor}
                       headerTintColor={screenProps.headerTintColor}
                       headerTitleColor={screenProps.headerTitleStyle.color}
                       itemId={userCampus.id}
                       navigation={navigation}
-                      sectionTitle={'Your Campus'}
+                      sectionTitle={'Your Porch Location'}
                     />
                   ) : null
                 }
