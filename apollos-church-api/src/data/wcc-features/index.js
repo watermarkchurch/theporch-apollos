@@ -47,7 +47,7 @@ class WCCFeatures extends baseFeatures.dataSource {
   });
 
   createWebviewFeature = ({ id, external_playlist }) => ({
-    title: 'Setlist',
+    title: 'Worship Set',
     // linkText: 'Open in Spotify',
     url: getSpotifyEmbed(external_playlist),
     id: createGlobalId(id, 'WebviewFeature'),
