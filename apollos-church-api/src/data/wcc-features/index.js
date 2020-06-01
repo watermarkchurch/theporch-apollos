@@ -115,12 +115,16 @@ class WCCFeatures extends baseFeatures.dataSource {
     // Case 1: Handle Live Stream with a Message Object
     // **********
     let liveStreamIsInCampaign = false; // used to prevent live stream from showing twice
-    const streams = await LiveStream.getLiveStreams();
+    let liveStream;
 
-    // look for a content item
-    const liveStream = await streams.find(
-      async ({ contentItem }) => contentItem
-    );
+    try {
+      const streams = await LiveStream.getLiveStreams();
+
+      // look for a content item
+      liveStream = await streams.find(async ({ contentItem }) => contentItem);
+    } catch (e) {
+      console.log('Error loading live stream, continuing', e);
+    }
 
     const tzDate = moment(liveStream?.eventStartTime).tz('America/Chicago');
 
@@ -167,9 +171,9 @@ class WCCFeatures extends baseFeatures.dataSource {
       filters: { target: 'the_porch', 'filter[tag_id][]': 40 },
     });
 
-    currentMessages = currentMessages.filter(
-      ({ node: item }) => moment(item.date) < moment().startOf('day')
-    );
+    currentMessages = currentMessages
+      .filter(({ node: item }) => moment(item.date) < moment().startOf('day'))
+      .slice(0, 1);
 
     campaignItems = [
       ...campaignItems,
