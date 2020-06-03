@@ -181,7 +181,7 @@ HOME_FEATURES:
           limit: 1
     type: VerticalCardList
     isFeatured: true
-  - subtitle: Your Campus
+  - subtitle: Your Porch Location
     algorithms: [CAMPUS_ITEMS]
     type: ActionList
   - algorithms:
