@@ -15,6 +15,7 @@ import {
   ModalView,
 } from '@apollosproject/ui-kit';
 
+import HTMLView from '@apollosproject/ui-htmlview';
 import BackgroundTextureAngled from '../ui/BackgroundTextureAngled';
 import ChildContentFeed from './ChildContent';
 
@@ -86,7 +87,7 @@ const AboutCampus = ({ navigation }) => {
                         </Header>
                       </PaddedView>
                       <PaddedView>
-                        <BodyText padded>{description}</BodyText>
+                        <HTMLView padded>{description}</HTMLView>
                       </PaddedView>
                       <ChildContentFeed contentId={id} />
                     </Content>
