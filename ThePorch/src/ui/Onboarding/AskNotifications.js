@@ -28,6 +28,8 @@ const AskNotifications = memo(
     onPressButton,
     isLoading,
     onPressPrimary,
+    primaryNavText,
+    pressPrimaryEventName,
     ...props
   }) => (
     <Slide {...props}>
@@ -48,15 +50,19 @@ const AskNotifications = memo(
           </PaddedView>
         ) : null}
       </StyledSlideContent>
-      <SafeAreaView>
-        <PaddedView>
-          <StyledFinishButton
-            title={'Finish'}
-            onPress={onPressPrimary}
-            pill={false}
-          />
-        </PaddedView>
-      </SafeAreaView>
+      {onPressPrimary ? (
+        <SafeAreaView>
+          <PaddedView>
+            <StyledFinishButton
+              trackEventName={pressPrimaryEventName}
+              title={primaryNavText}
+              onPress={onPressPrimary}
+              loading={isLoading}
+              pill={false}
+            />
+          </PaddedView>
+        </SafeAreaView>
+      ) : null}
     </Slide>
   )
 );

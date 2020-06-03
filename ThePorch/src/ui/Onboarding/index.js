@@ -64,6 +64,7 @@ function Onboarding({
                     }
                   });
                 }}
+                primaryNavText={'Finish'}
                 onPressPrimary={() => dispatch(hideOnboarding())}
                 Component={AskNotifications}
               />
