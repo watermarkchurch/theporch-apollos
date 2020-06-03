@@ -1,6 +1,7 @@
 import { Campus } from '@apollosproject/data-connector-rock';
 import gql from 'graphql-tag';
 import { resolverMerge } from '@apollosproject/server-core';
+import { markdown } from 'markdown';
 
 const { schema: CoreSchema, dataSource: CampusDataSource } = Campus;
 
@@ -29,6 +30,7 @@ const resolver = resolverMerge(
           args,
         });
       },
+      description: ({ description }) => markdown.toHTML(description),
     },
   },
   Campus
