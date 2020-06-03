@@ -81,7 +81,7 @@ const AboutCampus = ({ navigation }) => {
                       {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
                       <PaddedView>
                         <Header>
-                          <StyledH6>{'My Campus'}</StyledH6>
+                          <StyledH6>{'Your Porch Location'}</StyledH6>
                           <H2>{name}</H2>
                         </Header>
                       </PaddedView>
