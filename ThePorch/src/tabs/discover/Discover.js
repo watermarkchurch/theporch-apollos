@@ -8,7 +8,13 @@ class Discover extends PureComponent {
   }
 }
 
-Discover.navigationOptions = {
+Discover.navigationOptions = (props) => ({
   header: null,
-};
+  headerStyle: {
+    backgroundColor: props.screenProps.headerBackgroundColor,
+    borderBottomWidth: 0,
+    elevation: 0,
+  },
+});
+
 export default Discover;
