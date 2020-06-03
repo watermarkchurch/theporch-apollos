@@ -15,13 +15,18 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1C48DCDE11AC47C48E918489 /* Inter-UI-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DC74A378C1CC40E4B6192D7F /* Inter-UI-Medium.otf */; };
 		25B9E67E3B46D33F45473A84 /* libPods-ThePorch-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F64CCA987A0419EB9C02236 /* libPods-ThePorch-tvOSTests.a */; };
+		266A7142AF334F8CA499DF01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* ThePorchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ThePorchTests.m */; };
+		43DA2370C6B2465ABD84BB9D /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93B167306EA44017A1CF3B6F /* BebasNeue-Regular.ttf */; };
+		49E1665199B14366A4B9E185 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24AF4617EBA64C968003C4C5 /* Lato-BoldItalic.ttf */; };
 		578FFEC1D7D54C9B871A9E5B /* Inter-UI-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A5A2BC2998547F4816B82E4 /* Inter-UI-BlackItalic.otf */; };
+		5D7DD547D49D4920BC68FD31 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE456D2B54C8477CBD70E2A3 /* Lato-Italic.ttf */; };
 		68D1351E80AA4A2C96288FD9 /* Inter-UI-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EC21254B449443F99016EBFD /* Inter-UI-Black.otf */; };
+		7F5BD94A7890471CB5F1D2E8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC770D21C1834A52AC462B54 /* Lato-Regular.ttf */; };
 		7FBC6BC3CE8D48298F9850A9 /* Inter-UI-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D5157D807E164356ADE87867 /* Inter-UI-Bold.otf */; };
 		82AAE52E24187BB500D1EEC7 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAE52D24187BB500D1EEC7 /* BootSplash.storyboard */; };
 		82AAE52F24187BB500D1EEC7 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAE52D24187BB500D1EEC7 /* BootSplash.storyboard */; };
@@ -34,18 +39,13 @@
 		90743C40BF544F10A810C43C /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADC3D2DB245545ADB1CAB3FE /* DroidSerif-Italic.ttf */; };
 		93A2B0A9328A46A4B7DD5EFA /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E007B33EDD74B82AEF02C24 /* DroidSerif-Regular.ttf */; };
 		A415698B9815C7305EDB7AA7 /* libPods-ThePorchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 560CBCD50AE7D282715D134E /* libPods-ThePorchTests.a */; };
+		A80A006C299D4EB3A431BB1F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F78EBB17E4867ACFE4682 /* Lato-Bold.ttf */; };
 		AB3BD177B8A14193A5EEDDF8 /* Inter-UI-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A613256118404CB691DE2C8E /* Inter-UI-Regular.otf */; };
 		B02F194A3F6A4FE29AC799B4 /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A93F9D112A034626A9421759 /* DroidSerif-BoldItalic.ttf */; };
 		E875558F3FB8FA2024EF7DC2 /* libPods-ThePorch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB6B5B7B6A0D1ECB68CF0DD /* libPods-ThePorch.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		FCB3069DB5DD4170B2CAEFC4 /* Inter-UI-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A460FD7884FD4574A818005A /* Inter-UI-MediumItalic.otf */; };
-		43DA2370C6B2465ABD84BB9D /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93B167306EA44017A1CF3B6F /* BebasNeue-Regular.ttf */; };
-		A80A006C299D4EB3A431BB1F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F78EBB17E4867ACFE4682 /* Lato-Bold.ttf */; };
-		49E1665199B14366A4B9E185 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24AF4617EBA64C968003C4C5 /* Lato-BoldItalic.ttf */; };
-		5D7DD547D49D4920BC68FD31 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE456D2B54C8477CBD70E2A3 /* Lato-Italic.ttf */; };
-		7F5BD94A7890471CB5F1D2E8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC770D21C1834A52AC462B54 /* Lato-Regular.ttf */; };
-		266A7142AF334F8CA499DF01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,18 +71,21 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ThePorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePorchTests.m; sourceTree = "<group>"; };
 		0D480D95FC7F4569B8B934E3 /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ThePorch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePorch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* ThePorch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ThePorch.app; path = "The Porch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ThePorch/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ThePorch/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ThePorch/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ThePorch/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ThePorch/main.m; sourceTree = "<group>"; };
 		1F8F5BC4745C8F22C695573D /* Pods-ThePorch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.release.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.release.xcconfig"; sourceTree = "<group>"; };
+		24AF4617EBA64C968003C4C5 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		282F78EBB17E4867ACFE4682 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* ThePorch-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ThePorch-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ThePorch-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ThePorch-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F5410F239E9477B9C2E86BD /* Inter-UI-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-BoldItalic.otf"; path = "../assets/fonts/Inter-UI-BoldItalic.otf"; sourceTree = "<group>"; };
 		38B9762ACA099D28C28DBB31 /* libPods-ThePorch-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		4E007B33EDD74B82AEF02C24 /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Regular.ttf"; path = "../assets/fonts/DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
 		4F64CCA987A0419EB9C02236 /* libPods-ThePorch-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F271B8EB67A4997A2C7D96 /* Pods-ThePorch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		63F6EE53A9B44B4388B5F1C2 /* Inter-UI-Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Italic.otf"; path = "../assets/fonts/Inter-UI-Italic.otf"; sourceTree = "<group>"; };
 		745C835CA2F1E1EC2425152A /* Pods-ThePorch-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOS/Pods-ThePorch-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		82AAE52D24187BB500D1EEC7 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = ThePorch/BootSplash.storyboard; sourceTree = "<group>"; };
+		93B167306EA44017A1CF3B6F /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BebasNeue-Regular.ttf"; path = "../assets/fonts/BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		A460FD7884FD4574A818005A /* Inter-UI-MediumItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-MediumItalic.otf"; path = "../assets/fonts/Inter-UI-MediumItalic.otf"; sourceTree = "<group>"; };
 		A613256118404CB691DE2C8E /* Inter-UI-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Regular.otf"; path = "../assets/fonts/Inter-UI-Regular.otf"; sourceTree = "<group>"; };
 		A93F9D112A034626A9421759 /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-BoldItalic.ttf"; path = "../assets/fonts/DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -102,17 +106,13 @@
 		DA9745795726553C6FA9E7A8 /* Pods-ThePorch-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC74A378C1CC40E4B6192D7F /* Inter-UI-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Medium.otf"; path = "../assets/fonts/Inter-UI-Medium.otf"; sourceTree = "<group>"; };
 		DDB6B5B7B6A0D1ECB68CF0DD /* libPods-ThePorch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE456D2B54C8477CBD70E2A3 /* Lato-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Italic.ttf"; path = "../assets/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; };
 		E3B8A0AC5A6B4FABB3BDF6CB /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Bold.ttf"; path = "../assets/fonts/DroidSerif-Bold.ttf"; sourceTree = "<group>"; };
 		E98AC9782C338F13632EF710 /* Pods-ThePorchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorchTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorchTests/Pods-ThePorchTests.release.xcconfig"; sourceTree = "<group>"; };
 		EC21254B449443F99016EBFD /* Inter-UI-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Black.otf"; path = "../assets/fonts/Inter-UI-Black.otf"; sourceTree = "<group>"; };
+		EC770D21C1834A52AC462B54 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		93B167306EA44017A1CF3B6F /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; name = "BebasNeue-Regular.ttf"; path = "../assets/fonts/BebasNeue-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		282F78EBB17E4867ACFE4682 /* Lato-Bold.ttf */ = {isa = PBXFileReference; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		24AF4617EBA64C968003C4C5 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DE456D2B54C8477CBD70E2A3 /* Lato-Italic.ttf */ = {isa = PBXFileReference; name = "Lato-Italic.ttf"; path = "../assets/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EC770D21C1834A52AC462B54 /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,7 +274,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* The Porch.app */,
+				13B07F961A680F5B00A75B9A /* ThePorch.app */,
 				00E356EE1AD99517003FC87E /* ThePorchTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ThePorch-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ThePorch-tvOSTests.xctest */,
@@ -320,7 +320,7 @@
 			);
 			name = ThePorch;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* The Porch.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* ThePorch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* ThePorch-tvOS */ = {
