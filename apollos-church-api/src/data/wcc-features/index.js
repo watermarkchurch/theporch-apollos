@@ -337,7 +337,7 @@ const resolver = {
   },
   SpeakerFeature: {
     profileImage: async ({ name }, args, { dataSources }) => {
-      const speaker = await dataSources.WCCMessage.getSpeakerByName({ name });
+      const speaker = await dataSources.WCCSpeaker.getByName({ name });
       if (speaker?.image) {
         return { sources: [{ uri: speaker.image }] };
       }

@@ -100,16 +100,6 @@ class dataSource extends WCCMediaAPIDataSource {
       },
     ],
   });
-
-  async getSpeakerByName({ name }) {
-    const { Search } = this.context.dataSources;
-    const results = await Search.byPaginatedQuery({
-      index: Search.peopleIndex,
-      query: name,
-      facets: ['*'],
-    });
-    return results[0];
-  }
 }
 
 export default dataSource;

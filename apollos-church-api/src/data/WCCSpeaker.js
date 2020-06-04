@@ -9,6 +9,16 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 export class dataSource extends RESTDataSource {
   getFromId = (id) => ({ name: id });
 
+  async getByName({ name }) {
+    const { Search } = this.context.dataSources;
+    const results = await Search.byPaginatedQuery({
+      index: Search.peopleIndex,
+      query: name,
+      facets: ['*'],
+    });
+    return results[0];
+  }
+
   paginate = async ({ pagination: { after, first = 5 } }) => {
     const indice = this.context.dataSources.Search.indice(
       this.context.dataSources.Search.messagesIndex
@@ -83,9 +93,15 @@ export const resolver = {
       createGlobalId(name, parentType.name),
     title: ({ name }) => name,
     summary: () => null,
-    htmlContent: () => '',
+    htmlContent: async ({ name }, args, { dataSources }) => {
+      const speaker = await dataSources.WCCSpeaker.getByName({ name });
+      if (speaker?.content) {
+        return Object.values(speaker.content)[0];
+      }
+      return null;
+    },
     coverImage: async ({ name }, args, { dataSources }) => {
-      const speaker = await dataSources.WCCMessage.getSpeakerByName({ name });
+      const speaker = await dataSources.WCCSpeaker.getByName({ name });
       if (speaker?.image) {
         return { sources: [{ uri: speaker.image }] };
       }
