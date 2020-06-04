@@ -1,6 +1,7 @@
 import natural from 'natural';
 
 import { get, values, isString } from 'lodash';
+import ApollosConfig from '@apollosproject/config';
 import WCCMediaAPIDataSource from '../WCCMediaAPIDataSource';
 
 import { resolver as seriesResolver } from '../wcc-series';
@@ -10,7 +11,7 @@ class dataSource extends WCCMediaAPIDataSource {
 
   objectTypePlural = 'messages';
 
-  baseURL = `https://media-staging.watermark.org/api/v1/${
+  baseURL = `${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/${
     this.objectTypePlural
   }`;
 

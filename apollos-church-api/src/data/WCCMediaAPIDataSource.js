@@ -1,13 +1,14 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { createCursor, parseCursor } from '@apollosproject/server-core';
 import { ApolloError } from 'apollo-server';
+import ApollosConfig from '@apollosproject/config';
 
 class dataSource extends RESTDataSource {
   objectType = 'series';
 
   objectTypePlural = 'series';
 
-  baseURL = `https://media-staging.watermark.org/api/v1/${
+  baseURL = `${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/${
     this.objectTypePlural
   }`;
 

@@ -2,6 +2,7 @@ import { ContentChannel } from '@apollosproject/data-connector-rock';
 import { createGlobalId } from '@apollosproject/server-core';
 import { ApolloError } from 'apollo-server';
 import { RESTDataSource } from 'apollo-datasource-rest';
+import ApollosConfig from '@apollosproject/config';
 
 // export const dataSource = ContentChannel.dataSource;
 
@@ -45,12 +46,12 @@ export class dataSource extends RESTDataSource {
     );
 
   getMessagesChannel = () =>
-    this.getFromId('https://media-staging.watermark.org/api/v1/messages');
+    this.getFromId(`${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/messages`);
 
   // todo
   getSeriesChannel = () =>
     this.getFromId(
-      'https://media-staging.watermark.org/api/v1/series?filter[tag_id]=4'
+      `${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/series?filter[tag_id]=4`
     );
 
   getSpeakersChannel = () =>

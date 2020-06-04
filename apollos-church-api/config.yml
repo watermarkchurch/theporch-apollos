@@ -39,14 +39,16 @@ CHURCH_ONLINE:
   URL: https://apollos.churchonline.org/api/v1/
   MEDIA_URLS: []
   WEB_VIEW_URL: https://apollos.churchonline.org/
+WATERMARK:
+  MEDIA_API: https://media.watermark.org
 ALGOLIA:
   APPLICATION_ID: FPTWE3M1PT
   API_KEY: ${ALGOLIA_API_KEY}
   # TODO: should we support multiple indices? how
-  BLOG_INDEX: papyrus_heroku-staging_blogs
-  PEOPLE_INDEX: people_staging
-  MESSAGES_INDEX: Messages_staging_rev_chron
-  MESSAGES_POPULAR_INDEX: Messages_staging
+  BLOG_INDEX: papyrus_heroku-production_blogs
+  PEOPLE_INDEX: people_production
+  MESSAGES_INDEX: Messages_production_rev_chron
+  MESSAGES_POPULAR_INDEX: Messages_production
   # Configure Algolia custom settings here
   # https://www.algolia.com/doc/api-reference/settings-api-parameters/
   CONFIGURATION:

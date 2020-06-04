@@ -1,5 +1,6 @@
 import { values } from 'lodash';
 
+import ApollosConfig from '@apollosproject/config';
 import WCCMediaAPIDataSource from '../WCCMediaAPIDataSource';
 
 class dataSource extends WCCMediaAPIDataSource {
@@ -7,7 +8,7 @@ class dataSource extends WCCMediaAPIDataSource {
 
   objectTypePlural = 'streams';
 
-  baseURL = `https://media-staging.watermark.org/api/v1/${
+  baseURL = `${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/${
     this.objectTypePlural
   }`;
 
