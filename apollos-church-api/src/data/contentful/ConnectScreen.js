@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { snakeCase, upperCase } from 'lodash';
 import ApollosConfig from '@apollosproject/config';
 import ContentfulDataSource from './ContentfulDataSource';
 
@@ -62,7 +61,19 @@ const resolver = {
       const socialFeatures = await dataSources.Feature.createSocialIconsFeature(
         { title: 'Join the Conversation ' }
       );
-      return [listItems, socialFeatures];
+
+      const linkTables = data.fields.listItems.filter(
+        ({ sys }) => sys.contentType.sys.id === 'actionTable'
+      );
+
+      const linkFeatures = linkTables.map((table) =>
+        dataSources.Feature.createLinkTableFeature({
+          links: table.fields.links,
+          id: 'connect-screen',
+        })
+      );
+
+      return [listItems, socialFeatures, ...linkFeatures];
     },
   },
 };

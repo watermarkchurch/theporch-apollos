@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import ApollosConfig from '@apollosproject/config';
 
 export default gql`
   query getConnectScreen {
@@ -33,6 +32,14 @@ export default gql`
           socialIcons {
             icon
             url
+          }
+        }
+        ... on LinkTableFeature {
+          id
+          links {
+            id
+            url
+            title
           }
         }
       }

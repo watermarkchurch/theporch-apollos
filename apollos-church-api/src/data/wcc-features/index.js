@@ -66,6 +66,16 @@ class WCCFeatures extends baseFeatures.dataSource {
     __typename: 'SocialIconsFeature',
   });
 
+  createLinkTableFeature = ({ id, links }) => ({
+    id: createGlobalId(id, 'LinkTableFeature'),
+    links: links.map(({ fields, sys }) => ({
+      id: createGlobalId(sys.id, 'Link'),
+      fields,
+      sys,
+    })),
+    __typename: 'LinkTableFeature',
+  });
+
   async mediaSeries({ seriesId } = {}) {
     const { WCCSeries } = this.context.dataSources;
     const item = await WCCSeries.getFromId(seriesId.toString());
@@ -366,6 +376,13 @@ const schema = gql`
 
     name: String
     profileImage: ImageMedia
+  }
+
+  type LinkTableFeature implements Feature {
+    id: ID!
+    order: Int
+
+    links: [Link]
   }
 
   type SocialIconsItem {
