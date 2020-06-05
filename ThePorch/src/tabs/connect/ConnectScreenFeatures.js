@@ -104,13 +104,13 @@ const Name = styled({
   flexGrow: 1,
 })(View);
 
-const LinkTableFeature = ({ links }) => (
+const LinkTableFeature = ({ links, title }) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
       <View>
         <RowHeader>
           <Name>
-            <Label>More</Label>
+            <Label>{title}</Label>
           </Name>
         </RowHeader>
         <TableView>

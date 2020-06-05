@@ -66,11 +66,14 @@ const resolver = {
         ({ sys }) => sys.contentType.sys.id === 'actionTable'
       );
 
-      const linkFeatures = linkTables.map((table) =>
-        dataSources.Feature.createLinkTableFeature({
-          links: table.fields.links,
-          id: 'connect-screen',
-        })
+      const linkFeatures = linkTables.map(
+        (table) =>
+          console.log(table.fields) ||
+          dataSources.Feature.createLinkTableFeature({
+            links: table.fields.links,
+            title: table.fields.title,
+            id: 'connect-screen',
+          })
       );
 
       return [listItems, socialFeatures, ...linkFeatures];

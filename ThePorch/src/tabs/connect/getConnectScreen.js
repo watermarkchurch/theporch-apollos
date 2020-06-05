@@ -36,6 +36,7 @@ export default gql`
         }
         ... on LinkTableFeature {
           id
+          title
           links {
             id
             url

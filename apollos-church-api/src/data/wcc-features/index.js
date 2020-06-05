@@ -66,8 +66,9 @@ class WCCFeatures extends baseFeatures.dataSource {
     __typename: 'SocialIconsFeature',
   });
 
-  createLinkTableFeature = ({ id, links }) => ({
+  createLinkTableFeature = ({ id, links, title }) => ({
     id: createGlobalId(id, 'LinkTableFeature'),
+    title,
     links: links.map(({ fields, sys }) => ({
       id: createGlobalId(sys.id, 'Link'),
       fields,
@@ -311,23 +312,25 @@ class WCCFeatures extends baseFeatures.dataSource {
     const { ConnectScreen } = this.context.dataSources;
     const screen = await ConnectScreen.getDefaultPage();
 
-    return screen.fields.listItems.map((item, i) => {
-      const type = startCase(item.sys.contentType.sys.id);
-      return {
-        id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
-        title: item.fields.title,
-        subtitle: item.fields.summary,
-        relatedNode: {
-          ...item,
-          id: item.sys.id,
-          __type: type,
-        },
-        image: item.fields.mediaUrl
-          ? { sources: [{ uri: item.fields.mediaUrl }] }
-          : null,
-        action: type === 'Link' ? 'OPEN_URL' : 'READ_CONTENT',
-      };
-    });
+    return screen.fields.listItems
+      .filter(({ sys }) => sys.contentType.sys.id !== 'actionTable')
+      .map((item, i) => {
+        const type = startCase(item.sys.contentType.sys.id);
+        return {
+          id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+          title: item.fields.title,
+          subtitle: item.fields.summary,
+          relatedNode: {
+            ...item,
+            id: item.sys.id,
+            __type: type,
+          },
+          image: item.fields.mediaUrl
+            ? { sources: [{ uri: item.fields.mediaUrl }] }
+            : null,
+          action: type === 'Link' ? 'OPEN_URL' : 'READ_CONTENT',
+        };
+      });
   }
 }
 
@@ -378,9 +381,10 @@ const schema = gql`
     profileImage: ImageMedia
   }
 
-  type LinkTableFeature implements Feature {
+  type LinkTableFeature implements Feature & Node {
     id: ID!
     order: Int
+    title: String
 
     links: [Link]
   }
