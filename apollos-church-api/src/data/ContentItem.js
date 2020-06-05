@@ -1,10 +1,11 @@
-import { camelCase, upperFirst } from 'lodash';
+import { camelCase, upperFirst, isNaN } from 'lodash';
 import { ContentItem } from '@apollosproject/data-connector-rock';
-import { resolverMerge } from '@apollosproject/server-core';
+import { resolverMerge, createGlobalId } from '@apollosproject/server-core';
+import ApollosConfig from '@apollosproject/config';
 
 export const { schema } = ContentItem;
 
-export const resolver = resolverMerge(
+export const baseResolver = resolverMerge(
   {
     Query: {
       userFeed: (root, pagination, { dataSources }) =>
@@ -15,6 +16,23 @@ export const resolver = resolverMerge(
     },
   },
   ContentItem
+);
+
+const contentItemResolvers = {
+  sharing: (root, args, { dataSources }) => ({
+    url: dataSources.ContentItem.getShareUrl(root), // core doesn't pass down root....
+    title: 'Share via ...',
+    message: `${root.title} - ${dataSources.ContentItem.createSummary(root)}`,
+  }),
+};
+const contentItemTypes = Object.keys(ApollosConfig.ROCK_MAPPINGS.CONTENT_ITEM);
+
+export const resolver = contentItemTypes.reduce(
+  (acc, curr) => ({
+    ...acc,
+    [curr]: { ...baseResolver[curr], ...contentItemResolvers },
+  }),
+  baseResolver
 );
 
 export class dataSource extends ContentItem.dataSource {
@@ -31,6 +49,13 @@ export class dataSource extends ContentItem.dataSource {
     if (typeof node.id === 'number' || !isNaN(node.objectID))
       return 'WCCMessage';
     return 'WCCBlog';
+  };
+
+  getShareUrl = async ({ id, ...args }) => {
+    const __typename = this.resolveType({ id, ...args });
+    return `${
+      ApollosConfig.ROCK.SHARE_URL
+    }/app-link/ContentSingle?itemId=${createGlobalId(id, __typename)}`;
   };
 
   byRockCampus = async ({ contentChannelIds = [], campusId }) => {
