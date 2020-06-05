@@ -6,9 +6,8 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
 import { PaddedView, BackgroundView } from '@apollosproject/ui-kit';
-import HorizontalLikedContentFeedConnected from './HorizontalLikedContentFeedConnected';
-
 import { CampusConsumer } from '../../CampusProvider';
+import HorizontalLikedContentFeedConnected from './HorizontalLikedContentFeedConnected';
 
 import ActionTable from './ActionTable';
 import GET_CONNECT_SCREEN from './getConnectScreen';
@@ -76,7 +75,6 @@ class Connect extends PureComponent {
                   return <Features features={features} />;
                 }}
               </Query>
-              <ActionTable />
             </PaddedView>
           </SafeAreaView>
         </ScrollView>

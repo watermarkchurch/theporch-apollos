@@ -1,8 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
-import { ActionListFeature as CoreActionListFeature } from '@apollosproject/ui-connected';
-import { Touchable, styled, Icon, PaddedView } from '@apollosproject/ui-kit';
+import {
+  ActionListFeature as CoreActionListFeature,
+  RockAuthedWebBrowser,
+} from '@apollosproject/ui-connected';
+import {
+  Touchable,
+  Cell,
+  CellIcon,
+  CellText,
+  styled,
+  Icon,
+  PaddedView,
+  TableView,
+} from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
 import Label from '../../ui/LabelText';
 
@@ -81,7 +93,46 @@ const handleOnPressActionItem = ({ navigation }) => ({
   }
 };
 
-const FEATURES_MAP = { ActionListFeature, SocialIconsFeature };
+const RowHeader = styled(({ theme }) => ({
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingVertical: theme.sizing.baseUnit,
+}))(PaddedView);
+
+const Name = styled({
+  flexGrow: 1,
+})(View);
+
+const LinkTableFeature = ({ links, title }) => (
+  <RockAuthedWebBrowser>
+    {(openUrl) => (
+      <View>
+        <RowHeader>
+          <Name>
+            <Label>{title}</Label>
+          </Name>
+        </RowHeader>
+        <TableView>
+          {links.map(({ url, title }) => (
+            <Touchable key={url} onPress={() => openUrl(url)}>
+              <Cell>
+                <CellText>{title}</CellText>
+                <CellIcon name="arrow-next" />
+              </Cell>
+            </Touchable>
+          ))}
+        </TableView>
+      </View>
+    )}
+  </RockAuthedWebBrowser>
+);
+
+const FEATURES_MAP = {
+  ActionListFeature,
+  SocialIconsFeature,
+  LinkTableFeature,
+};
 
 function Features({ features = [], navigation }) {
   return features.map((feature) => {

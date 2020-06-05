@@ -389,6 +389,12 @@ type Link implements Node {
   useInAppBrowser: Boolean
 }
 
+type LinkTableFeature implements Feature {
+  id: ID!
+  order: Int
+  links: [Link]
+}
+
 type LiveStream implements ContentItem & Node {
   id: ID!
   title(hyphenated: Boolean): String
