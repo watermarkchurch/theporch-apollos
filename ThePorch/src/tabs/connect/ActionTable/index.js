@@ -10,9 +10,9 @@ import {
   Touchable,
   styled,
   PaddedView,
+  NavigationService,
 } from '@apollosproject/ui-kit';
 import { RockAuthedWebBrowser } from '@apollosproject/ui-connected';
-import NavigationActions from '../../../NavigationService';
 import Label from '../../../ui/LabelText';
 
 const RowHeader = styled(({ theme }) => ({
@@ -93,7 +93,7 @@ const ActionTable = () => (
         </TableView>
         <TableView>
           <Touchable
-            onPress={() => NavigationActions.navigate('TestingControlPanel')}
+            onPress={() => NavigationService.navigate('TestingControlPanel')}
           >
             <Cell>
               <CellIcon name="settings" />

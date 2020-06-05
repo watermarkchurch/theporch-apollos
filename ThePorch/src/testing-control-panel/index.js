@@ -7,7 +7,11 @@ import TouchableCell from './TouchableCell';
 export default class TestingControlPanel extends PureComponent {
   static navigationOptions = ({ screenProps }) => ({
     title: 'Testing Control Panel',
-    headerStyle: { backgroundColor: screenProps.headerBackgroundColor },
+    headerStyle: {
+      backgroundColor: screenProps.headerBackgroundColor,
+      borderBottomWidth: 0,
+      elevation: 0,
+    },
   });
 
   render() {

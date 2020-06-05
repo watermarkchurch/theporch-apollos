@@ -1,6 +1,7 @@
 import React from 'react';
 import ApollosConfig from '@apollosproject/config';
-import { Providers } from '@apollosproject/ui-kit';
+import { Providers, NavigationService } from '@apollosproject/ui-kit';
+import { AuthProvider } from '@apollosproject/ui-auth';
 import { AnalyticsProvider } from '@apollosproject/ui-analytics';
 import { MediaPlayerProvider } from '@apollosproject/ui-media-player';
 import { NotificationsProvider } from '@apollosproject/ui-notifications';
@@ -9,7 +10,6 @@ import OnboardProvider from './OnboardProvider';
 import { CampusProvider } from './CampusProvider';
 import { track, identify } from './amplitude';
 
-import NavigationService from './NavigationService';
 import ClientProvider from './client';
 import customTheme, { customIcons } from './theme';
 

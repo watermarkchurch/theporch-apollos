@@ -4,5 +4,12 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<key>com.apple.developer.networking.wifi-info</key>
+	<true/>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applink:theporch.app</string>
+		<string>applink:wcc-theporch-app.herokuapp.com</string>
+	</array>
 </dict>
 </plist>
