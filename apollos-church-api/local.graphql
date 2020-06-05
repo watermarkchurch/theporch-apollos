@@ -389,9 +389,10 @@ type Link implements Node {
   useInAppBrowser: Boolean
 }
 
-type LinkTableFeature implements Feature {
+type LinkTableFeature implements Feature & Node {
   id: ID!
   order: Int
+  title: String
   links: [Link]
 }
 
