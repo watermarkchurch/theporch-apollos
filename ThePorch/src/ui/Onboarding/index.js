@@ -6,7 +6,11 @@ import {
   requestNotifications,
   RESULTS,
 } from 'react-native-permissions';
-import { withTheme, ThemeMixin } from '@apollosproject/ui-kit';
+import {
+  withTheme,
+  ThemeMixin,
+  NavigationService,
+} from '@apollosproject/ui-kit';
 import {
   AskNotificationsConnected,
   OnboardingSwiper,

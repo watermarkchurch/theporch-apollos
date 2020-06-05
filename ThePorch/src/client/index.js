@@ -5,8 +5,8 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { getVersion, getApplicationName } from 'react-native-device-info';
 
+import { NavigationService } from '@apollosproject/ui-kit';
 import { resolvers, schema, defaults } from '../store';
-import NavigationService from '../NavigationService';
 
 import httpLink from './httpLink';
 import cache, { ensureCacheHydration } from './cache';
@@ -35,7 +35,6 @@ export const client = new ApolloClient({
 clearStore = client.clearStore;
 
 wipeData();
-
 // Ensure that media player still works after logout.
 client.onClearStore(() => wipeData());
 

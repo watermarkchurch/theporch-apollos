@@ -5,14 +5,17 @@ import { isNil } from 'lodash';
 import RNBootSplash from 'react-native-bootsplash';
 import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
 
-import { BackgroundView, withTheme } from '@apollosproject/ui-kit';
+import {
+  BackgroundView,
+  withTheme,
+  NavigationService,
+} from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
 import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
 import Location from './location';
 
 import Providers from './Providers';
-import NavigationService from './NavigationService';
 import ContentSingle from './content-single';
 import Event from './event';
 import Tabs from './tabs';
