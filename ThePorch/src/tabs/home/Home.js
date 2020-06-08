@@ -3,11 +3,8 @@ import { Image } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
 import { styled, BackgroundView } from '@apollosproject/ui-kit';
-import {
-  VerticalCardListFeature,
-  CampaignItemListFeature,
-} from '@apollosproject/ui-connected';
 
+import { RockAuthedWebBrowser } from '@apollosproject/ui-connected';
 import FeaturesFeedWithCampus from './FeaturesFeedWithCampus';
 
 const LogoTitle = styled(({ theme }) => ({
@@ -51,13 +48,7 @@ class Home extends PureComponent {
     }),
   };
 
-  handleOnPress = (item) =>
-    this.props.navigation.navigate('ContentSingle', {
-      itemId: item.id,
-      transitionKey: item.transitionKey,
-    });
-
-  handleOnPressActionItem = ({ action, relatedNode }) => {
+  handleOnPress = ({ openUrl }) => ({ action, relatedNode }) => {
     if (action === 'READ_CONTENT') {
       this.props.navigation.navigate('ContentSingle', {
         itemId: relatedNode.id,
@@ -70,21 +61,28 @@ class Home extends PureComponent {
         transitionKey: 2,
       });
     }
+    if (action === 'OPEN_URL') {
+      openUrl(relatedNode.url);
+    }
   };
 
   render() {
     return (
-      <BackgroundView>
-        <SafeAreaView>
-          <FeaturesFeedWithCampus
-            onPressActionItem={this.handleOnPressActionItem}
-            ListHeaderComponent={
-              <LogoTitle source={require('./wordmark.png')} />
-            }
-            additionalFeatures={this.featureOverrides}
-          />
-        </SafeAreaView>
-      </BackgroundView>
+      <RockAuthedWebBrowser>
+        {(openUrl) => (
+          <BackgroundView>
+            <SafeAreaView>
+              <FeaturesFeedWithCampus
+                onPressActionItem={this.handleOnPress({ openUrl })}
+                ListHeaderComponent={
+                  <LogoTitle source={require('./wordmark.png')} />
+                }
+                additionalFeatures={this.featureOverrides}
+              />
+            </SafeAreaView>
+          </BackgroundView>
+        )}
+      </RockAuthedWebBrowser>
     );
   }
 }

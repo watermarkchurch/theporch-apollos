@@ -118,7 +118,7 @@ class WCCFeatures extends baseFeatures.dataSource {
   }
 
   async campaignItemsAlgorithm({ limit = 1, skip = 0 } = {}) {
-    const { WCCMessage, LiveStream } = this.context.dataSources;
+    const { WCCMessage, LiveStream, ConnectScreen } = this.context.dataSources;
 
     let campaignItems = [];
 
@@ -232,6 +232,30 @@ class WCCFeatures extends baseFeatures.dataSource {
     // **********
     // Case 4: Handle Contentful Featured Content (TODO)
     // **********
+    const screen = await ConnectScreen.getFromReferenceId('featured items');
+    if (screen) {
+      campaignItems.push(
+        ...screen.fields.listItems
+          .filter(({ sys }) => sys.contentType.sys.id !== 'actionTable')
+          .map((item, i) => {
+            const type = startCase(item.sys.contentType.sys.id);
+            return {
+              id: createGlobalId(`${item.id}${i}`, 'CardListItem'),
+              title: item.fields.title,
+              subtitle: item.fields.summary,
+              relatedNode: {
+                ...item,
+                id: item.sys.id,
+                __type: type,
+              },
+              image: item.fields.mediaUrl
+                ? { sources: [{ uri: item.fields.mediaUrl }] }
+                : null,
+              action: type === 'Link' ? 'OPEN_URL' : 'READ_CONTENT',
+            };
+          })
+      );
+    }
 
     return campaignItems.slice(skip, skip + limit);
   }

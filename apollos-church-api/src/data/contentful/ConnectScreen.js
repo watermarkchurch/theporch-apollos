@@ -43,6 +43,14 @@ class dataSource extends ContentfulDataSource {
     return result[0];
   };
 
+  getFromReferenceId = async (id = 'connect screen') => {
+    const result = await this.get(`entries`, {
+      content_type: 'connectPage',
+      'fields.persona': id,
+    });
+    return result[0];
+  };
+
   getFromPersona = () => this.getDefaultPage();
 }
 
@@ -66,14 +74,12 @@ const resolver = {
         ({ sys }) => sys.contentType.sys.id === 'actionTable'
       );
 
-      const linkFeatures = linkTables.map(
-        (table) =>
-          console.log(table.fields) ||
-          dataSources.Feature.createLinkTableFeature({
-            links: table.fields.links,
-            title: table.fields.title,
-            id: 'connect-screen',
-          })
+      const linkFeatures = linkTables.map((table) =>
+        dataSources.Feature.createLinkTableFeature({
+          links: table.fields.links,
+          title: table.fields.title,
+          id: 'connect-screen',
+        })
       );
 
       return [listItems, socialFeatures, ...linkFeatures];
