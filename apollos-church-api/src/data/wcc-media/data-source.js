@@ -62,7 +62,7 @@ class dataSource extends WCCMediaAPIDataSource {
 
     const liveStreams = streams.filter(({ isLive }) => isLive);
     const messages = await Promise.all(
-      streams.map(async (stream) => await stream.contentItem)
+      liveStreams.map(async (stream) => await stream.contentItem)
     );
 
     return messages;
