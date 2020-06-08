@@ -71,7 +71,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ThePorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePorchTests.m; sourceTree = "<group>"; };
 		0D480D95FC7F4569B8B934E3 /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ThePorch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ThePorch.app; path = "The Porch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* The Porch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Porch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ThePorch/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ThePorch/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ThePorch/Images.xcassets; sourceTree = "<group>"; };
@@ -101,6 +101,7 @@
 		AB44FC16DED929081698EDFD /* Pods-ThePorchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorchTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorchTests/Pods-ThePorchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADC3D2DB245545ADB1CAB3FE /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Italic.ttf"; path = "../assets/fonts/DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
 		AE85030F59F256E90D5A4C2B /* Pods-ThePorch-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOS/Pods-ThePorch-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		BF421F17248E66DD0058F3A0 /* The Porch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "The Porch.entitlements"; path = "ThePorch/The Porch.entitlements"; sourceTree = "<group>"; };
 		D394E3064D75710E81C51EB0 /* Pods-ThePorch-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5157D807E164356ADE87867 /* Inter-UI-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Bold.otf"; path = "../assets/fonts/Inter-UI-Bold.otf"; sourceTree = "<group>"; };
 		DA9745795726553C6FA9E7A8 /* Pods-ThePorch-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 		13B07FAE1A68108700A75B9A /* ThePorch */ = {
 			isa = PBXGroup;
 			children = (
+				BF421F17248E66DD0058F3A0 /* The Porch.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -274,7 +276,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ThePorch.app */,
+				13B07F961A680F5B00A75B9A /* The Porch.app */,
 				00E356EE1AD99517003FC87E /* ThePorchTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ThePorch-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ThePorch-tvOSTests.xctest */,
@@ -321,7 +323,7 @@
 			);
 			name = ThePorch;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* ThePorch.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* The Porch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* ThePorch-tvOS */ = {
@@ -716,6 +718,7 @@
 			baseConfigurationReference = 54F271B8EB67A4997A2C7D96 /* Pods-ThePorch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ThePorch/The Porch.entitlements";
 				CURRENT_PROJECT_VERSION = 25;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 5Z8S3JU749;
@@ -744,6 +747,7 @@
 			baseConfigurationReference = 1F8F5BC4745C8F22C695573D /* Pods-ThePorch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ThePorch/The Porch.entitlements";
 				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 5Z8S3JU749;
 				HEADER_SEARCH_PATHS = (
