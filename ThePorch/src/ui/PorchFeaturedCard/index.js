@@ -71,6 +71,7 @@ const ActionIcon = withTheme(({ theme }) => ({
 
 const Title = styled(({ theme }) => ({
   paddingRight: theme.sizing.baseUnit * 3,
+  flex: 1,
 }))(H2);
 
 const Label = withTheme(
