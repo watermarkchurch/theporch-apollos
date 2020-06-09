@@ -62,15 +62,8 @@ const resolver = {
             dataSources,
             ...otherContext,
           }),
-    videos: async (
-      { assets: { streaming_video = {}, id } = {} },
-      _,
-      { dataSources }
-    ) => {
-      const liveStream = await dataSources.WCCMessage.getLiveStreamForItem({
-        id,
-      });
-      return liveStream?.isLive && streaming_video.url
+    videos: ({ assets: { streaming_video = {} } = {} }, _, { dataSources }) =>
+      streaming_video.url
         ? [
             {
               sources: [{ uri: streaming_video.url }],
@@ -78,8 +71,7 @@ const resolver = {
               key: 'streaming_video',
             },
           ]
-        : null;
-    },
+        : null,
     audios: ({ assets: { audio = {} } = {} }) =>
       audio.url
         ? [
