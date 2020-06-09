@@ -71,7 +71,7 @@ const ActionListFeature = ({ subtitle, ...feature }) => (
   </>
 );
 
-const handleOnPressActionItem = ({ navigation }) => ({
+const handleOnPress = ({ openUrl, navigation }) => ({
   action,
   relatedNode,
 }) => {
@@ -81,15 +81,14 @@ const handleOnPressActionItem = ({ navigation }) => ({
       transitionKey: 2,
     });
   }
-  if (action === 'OPEN_URL') {
-    // todo - support `useInAppBrowser`
-    Linking.openURL(relatedNode.url);
-  }
   if (action === 'READ_EVENT') {
     navigation.navigate('Event', {
       eventId: relatedNode.id,
       transitionKey: 2,
     });
+  }
+  if (action === 'OPEN_URL') {
+    openUrl(relatedNode.url);
   }
 };
 
@@ -135,17 +134,23 @@ const FEATURES_MAP = {
 };
 
 function Features({ features = [], navigation }) {
-  return features.map((feature) => {
-    if (FEATURES_MAP[feature.__typename]) {
-      const Component = FEATURES_MAP[feature.__typename];
-      return (
-        <Component
-          {...feature}
-          onPressItem={handleOnPressActionItem({ navigation })}
-        />
-      );
-    }
-  });
+  return (
+    <RockAuthedWebBrowser>
+      {(openUrl) =>
+        features.map((feature) => {
+          if (FEATURES_MAP[feature.__typename]) {
+            const Component = FEATURES_MAP[feature.__typename];
+            return (
+              <Component
+                {...feature}
+                onPressItem={handleOnPress({ navigation, openUrl })}
+              />
+            );
+          }
+        })
+      }
+    </RockAuthedWebBrowser>
+  );
 }
 
 export default withNavigation(Features);
