@@ -320,7 +320,11 @@ class WCCFeatures extends baseFeatures.dataSource {
     return items.map((item, i) => ({
       id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
       title: item.title,
-      subtitle: get(item, 'contentChannel.name'),
+      subtitle: get(item, 'attributeValues.eventStartsOn.value')
+        ? moment
+            .tz(item.attributeValues.eventStartsOn.value, 'America/Chicago')
+            .format('ha - MM/DD')
+        : get(item, 'contentChannel.name'),
       relatedNode: {
         ...item,
         __typename: 'UniversalContentItem',

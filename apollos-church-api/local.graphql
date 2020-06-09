@@ -554,6 +554,9 @@ type Query {
   _placeholder: Boolean
   node(id: ID!): Node
   contentChannels: [ContentChannel]
+  campaigns: ContentItemsConnection
+  userFeed(first: Int, after: String): ContentItemsConnection
+  personaFeed(first: Int, after: String): ContentItemsConnection
   conference(code: String): Conference
   speakers: [Speaker]
   connectScreen(persona: String): ConnectScreen
@@ -569,9 +572,6 @@ type Query {
   userFeedFeaturesWithCampus(campusId: ID): [Feature]
   messages(first: Int, after: String): ContentItemsConnection
   blogs(first: Int, after: String): ContentItemsConnection
-  campaigns: ContentItemsConnection
-  userFeed(first: Int, after: String): ContentItemsConnection
-  personaFeed(first: Int, after: String): ContentItemsConnection
 }
 
 type RockPersonDetails {
