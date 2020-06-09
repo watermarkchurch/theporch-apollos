@@ -46,7 +46,8 @@ export class dataSource extends ContentItem.dataSource {
       return upperFirst(camelCase(contentfulType));
     }
     if (typeof node.messages_count === 'number') return 'WCCSeries';
-    if (typeof node.id === 'number' || !isNaN(node.objectID))
+
+    if (typeof node.id === 'number' || !isNaN(Number(node.objectID)))
       return 'WCCMessage';
     return 'WCCBlog';
   };
