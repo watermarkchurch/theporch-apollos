@@ -36,13 +36,12 @@ class dataSource extends WCCMediaAPIDataSource {
     return null;
   };
 
-  getWebviewUrl = ({ current_event, next_event }) => {
-    const url = current_event?.embed_code || next_event?.embed_code;
-    if (url) {
-      return /src="(.*?)"/.exec(url)[1];
-    }
-    return null;
-  };
+  getWebviewUrl = ({ current_event, next_event }) => null;
+  // const url = current_event?.embed_code || next_event?.embed_code;
+  // if (url) {
+  //   return /src="(.*?)"/.exec(url)[1];
+  // }
+  // return null;
 
   async contentItemForEvent({ current_event, next_event }) {
     const url = current_event?._links?.message || next_event?._links?.message;
