@@ -13,10 +13,13 @@ class dataSource extends RESTDataSource {
   }`;
 
   willSendRequest = (request) => {
-    request.params.set('target', 'the_porch');
+    // TODO: really, this should be set on all requests.
+    // But for now, we're just going to set it manulaly on pagination requests
+    // request.params.set('target', 'the_porch');
   };
 
   async getFromId(id) {
+    console.log('getFromID', id);
     const result = await this.get(id);
     if (
       !result ||
@@ -78,6 +81,7 @@ class dataSource extends RESTDataSource {
       node,
       cursor: createCursor({
         ...paginationPartsForCursors,
+        target: 'the_porch', // todo
         offset: paginationPartsForCursors.offset + i + 1,
       }),
     }));
