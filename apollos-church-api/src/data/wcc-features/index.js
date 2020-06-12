@@ -86,7 +86,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     return [
       {
         id: createGlobalId(`${item.id}`, 'ActionListAction'),
-        labelText: 'Series',
+        labelText: 'All Episodes',
         title: item.title,
         relatedNode: { ...item, __type: 'WCCSeries' },
         image: WCCSeries.getCoverImage(item),
