@@ -1,9 +1,11 @@
-import { H3, styled } from '@apollosproject/ui-kit';
+import { styled } from '@apollosproject/ui-kit';
+
+import LabelText from '../ui/LabelText';
 
 export default {
   headerTitle: styled(({ theme }) => ({
     paddingHorizontal: theme.sizing.baseUnit,
-  }))(H3),
+  }))(LabelText),
   headerStyle: {
     shadowColor: 'transparent',
     borderBottomWidth: 0,

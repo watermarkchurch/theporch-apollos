@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import ContentfulDataSource from './ContentfulDataSource';
 
-const CONFERENCE_CODE = 'CLC2019'; // todo: move into .env
+const CONFERENCE_CODE = 'awaken'; // todo: move into .env
 
 export class dataSource extends ContentfulDataSource {
   getFromCode = async (code) => {
@@ -27,6 +27,7 @@ export const schema = gql`
     days: [ConferenceDay] @cacheControl(maxAge: 1800)
     maps: [Location] @cacheControl(maxAge: 1800)
     upNext(likedIds: [ID]): ContentItem @cacheControl(maxAge: 300)
+    announcements(first: Int, after: String): ContentItemsConnection
   }
 
   extend type Query {
@@ -46,6 +47,12 @@ export const resolver = {
     code: ({ fields }) => fields.code,
     days: ({ fields }) => fields.days,
     maps: ({ fields }) => fields.maps,
+    announcements: ({ fields }) => ({
+      edges: fields.announcements.map((node) => ({
+        node,
+        cursor: null,
+      })),
+    }),
     upNext: ({ fields }, { likedIds = [] }) => {
       const currentTime = moment();
 

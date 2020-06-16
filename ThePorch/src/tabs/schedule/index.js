@@ -7,18 +7,24 @@ import tabBarIcon from '../tabBarIcon';
 
 import Schedule from './Schedule';
 
+import Landing from './TemporaryAwakenLanding';
+
 const ScheduleNavigator = createStackNavigator(
   {
-    Schedule,
-    ContentFeed,
+    Landing,
+    // Schedule,
+    // ContentFeed,
   },
   {
-    initialRouteName: 'Schedule',
+    initialRouteName: 'Landing',
     defaultNavigationOptions: ({ screenProps }) => ({
       headerTintColor: screenProps.headerTintColor,
       headerTitleStyle: screenProps.headerTitleStyle,
     }),
-    navigationOptions: { tabBarIcon: tabBarIcon('calendar') },
+    navigationOptions: {
+      tabBarIcon: tabBarIcon('AwakenAlt'),
+      tabBarLabel: 'AWAKEN',
+    },
   }
 );
 

@@ -52,8 +52,15 @@ export const resolver = {
       dataSources.ContentfulContentItem.createSummary(node),
     htmlContent: ({ fields }) =>
       fields.description ? marked(fields.description) : null,
-    coverImage: ({ fields }, args, { dataSources }) =>
-      fields.mediaUrl ? { sources: [{ uri: fields.mediaUrl }] } : null,
+    coverImage: ({ fields: { art } }) => ({
+      name: art?.fields?.name,
+      key: art?.fields?.name,
+      sources: [
+        {
+          uri: art?.fields?.file?.url,
+        },
+      ],
+    }),
     sharing: ({ fields }) => ({
       url: null,
       title: fields.title,

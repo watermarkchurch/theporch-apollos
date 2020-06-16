@@ -248,8 +248,8 @@ class WCCFeatures extends baseFeatures.dataSource {
                 id: item.sys.id,
                 __type: type,
               },
-              image: item.fields.mediaUrl
-                ? { sources: [{ uri: item.fields.mediaUrl }] }
+              image: item.fields?.art?.fields?.file?.url
+                ? { sources: [{ uri: item.fields?.art?.fields?.file?.url }] }
                 : null,
               action: type === 'Link' ? 'OPEN_URL' : 'READ_CONTENT',
             };
@@ -353,8 +353,8 @@ class WCCFeatures extends baseFeatures.dataSource {
             id: item.sys.id,
             __type: type,
           },
-          image: item.fields.mediaUrl
-            ? { sources: [{ uri: item.fields.mediaUrl }] }
+          image: item.fields?.art?.fields?.file?.url
+            ? { sources: [{ uri: item.fields?.art?.fields?.file?.url }] }
             : null,
           action: type === 'Link' ? 'OPEN_URL' : 'READ_CONTENT',
         };

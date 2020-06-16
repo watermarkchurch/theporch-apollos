@@ -22,7 +22,7 @@ import Day from './Day';
 
 class Schedule extends PureComponent {
   static navigationOptions = ({ screenProps }) => ({
-    title: 'Schedule',
+    title: 'Awaken',
     ...headerOptions,
     headerStyle: [
       ReactNavigationStyleReset.header,
@@ -70,13 +70,13 @@ class Schedule extends PureComponent {
                 <AppStateRefetch refetch={refetch} />
                 <ScrollView>
                   <ConferenceCard />
-                  <UpNext />
+                  {/* <UpNext />
                   {days.map((day) => (
                     <>
                       <H2>{day.title}</H2>
                       <Day id={day.id} />
                     </>
-                  ))}
+                  ))} */}
                 </ScrollView>
               </>
             );
