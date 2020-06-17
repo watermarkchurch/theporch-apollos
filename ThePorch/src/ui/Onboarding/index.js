@@ -6,6 +6,7 @@ import {
   requestNotifications,
   RESULTS,
 } from 'react-native-permissions';
+
 import {
   withTheme,
   ThemeMixin,
@@ -24,6 +25,7 @@ import BackgroundTexture from '../BackgroundTexture';
 import AskNotifications from './AskNotifications';
 import AskLocation from './AskLocation';
 import LocationFinderConnected from './LocationFinderConnected';
+import OnboardingVideo from './OnboardingVideo';
 
 function Onboarding({
   navigation,
@@ -43,6 +45,7 @@ function Onboarding({
         <OnboardingSwiper showsPagination={false}>
           {({ swipeForward }) => (
             <>
+              <OnboardingVideo onPressPrimary={swipeForward} />
               <LocationFinderConnected
                 onPressPrimary={swipeForward}
                 onNavigate={() => {
