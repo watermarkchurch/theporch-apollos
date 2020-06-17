@@ -17,6 +17,7 @@ import {
 } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
 import Label from '../../ui/LabelText';
+import { CampusConsumer } from '../../CampusProvider';
 
 const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -103,7 +104,14 @@ const Name = styled({
   flexGrow: 1,
 })(View);
 
-const LinkTableFeature = ({ links, title }) => (
+const LinkTableFeature = ({
+  links,
+  title,
+  navigation,
+  headerBackgroundColor,
+  headerTintColor,
+  headerTitleColor,
+}) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
       <View>
@@ -121,6 +129,27 @@ const LinkTableFeature = ({ links, title }) => (
               </Cell>
             </Touchable>
           ))}
+          <CampusConsumer>
+            {({ userCampus }) =>
+              !userCampus && (
+                <Touchable
+                  key={'select-campus'}
+                  onPress={() =>
+                    navigation.navigate('Location', {
+                      headerBackgroundColor,
+                      headerTintColor,
+                      headerTitleColor,
+                    })
+                  }
+                >
+                  <Cell>
+                    <CellText>{'Select a Campus'}</CellText>
+                    <CellIcon name="arrow-next" />
+                  </Cell>
+                </Touchable>
+              )
+            }
+          </CampusConsumer>
         </TableView>
       </View>
     )}
@@ -133,7 +162,7 @@ const FEATURES_MAP = {
   LinkTableFeature,
 };
 
-function Features({ features = [], navigation }) {
+function Features({ features = [], navigation, ...props }) {
   return (
     <RockAuthedWebBrowser>
       {(openUrl) =>
@@ -142,7 +171,9 @@ function Features({ features = [], navigation }) {
             const Component = FEATURES_MAP[feature.__typename];
             return (
               <Component
+                {...props}
                 {...feature}
+                navigation={navigation}
                 onPressItem={handleOnPress({ navigation, openUrl })}
               />
             );

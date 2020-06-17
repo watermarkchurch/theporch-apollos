@@ -72,7 +72,14 @@ class Connect extends PureComponent {
               >
                 {({ data }) => {
                   const features = get(data, 'connectScreen.features', []);
-                  return <Features features={features} />;
+                  return (
+                    <Features
+                      features={features}
+                      headerBackgroundColor={screenProps.headerBackgroundColor}
+                      headerTintColor={screenProps.headerTintColor}
+                      headerTitleColor={screenProps.headerTitleStyle.color}
+                    />
+                  );
                 }}
               </Query>
             </PaddedView>
