@@ -40,38 +40,65 @@ const OnboardingVideo = memo(
   ({
     isLoading,
     onPressPrimary,
-    onPressSecondary,
     primaryNavText,
     secondaryButtonAltText,
     secondaryButtonText,
     ...props
   }) => {
     const [videoEnded, setVideoEnded] = useState(false);
+    const [skipVideo, setSkipVideo] = useState(false);
+    const [playAgain, setPlayAgain] = useState(false);
+
+    const handleOnEnd = () => {
+      setPlayAgain(false);
+      setVideoEnded(true);
+    };
+
+    const handleOnPlayAgain = () => {
+      setPlayAgain(true);
+      setVideoEnded(false);
+    };
+
+    const handleOnSkip = () => {
+      onPressPrimary();
+      setSkipVideo(true);
+    };
+
     return (
       <BackgroundView>
         <Slide {...props}>
-          <StyledSlideContent icon={'brand-icon-alt'} title={'Come On In!'}>
+          <StyledSlideContent
+            icon={'brand-icon-alt'}
+            title={'Welcome to The Porch!'}
+          >
             {!videoEnded && (
               <StyledVideo
                 source={require('./porch-app-onboarding-video.mp4')}
                 fullscreen
-                muted
-                onEnd={() => setVideoEnded(true)}
+                onEnd={handleOnEnd}
+                paused={skipVideo}
+                repeat={playAgain}
               />
             )}
           </StyledSlideContent>
         </Slide>
         {videoEnded && (
           <SafeAreaView>
-            <PaddedView horizontal={false}>
-              <StyledFinishButton title={primaryNavText} pill={false} />
+            <PaddedView horizontal>
+              <StyledFinishButton
+                title={primaryNavText}
+                onPress={handleOnSkip}
+                pill={false}
+              />
             </PaddedView>
           </SafeAreaView>
         )}
         <SafeAreaView>
           <PaddedView horizontal={false}>
-            <SecondaryButton>
-              {videoEnded ? 'Play Again' : 'Skip'}
+            <SecondaryButton
+              onPress={videoEnded ? handleOnPlayAgain : handleOnSkip}
+            >
+              {videoEnded ? secondaryButtonAltText : secondaryButtonText}
             </SecondaryButton>
           </PaddedView>
         </SafeAreaView>
@@ -85,7 +112,6 @@ OnboardingVideo.displayName = 'OnboardingVideo';
 OnboardingVideo.propTypes = {
   isLoading: PropTypes.bool,
   onPressPrimary: PropTypes.func,
-  onPressSecondary: PropTypes.func,
   primaryNavText: PropTypes.string,
   secondaryButtonAltText: PropTypes.string,
   secondaryButtonText: PropTypes.string,
