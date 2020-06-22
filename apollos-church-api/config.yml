@@ -218,7 +218,8 @@ HOME_FEATURES:
             filter[series_id][]: 562
     type: HeroListFeature
   - algorithms: [USER_FEED]
-    type: VerticalCardList
+    subtitle: From the Blog
+    type: ActionList
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

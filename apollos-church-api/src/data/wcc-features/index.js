@@ -260,19 +260,14 @@ class WCCFeatures extends baseFeatures.dataSource {
     return campaignItems.slice(skip, skip + limit);
   }
 
-  async userFeedAlgorithm({ limit = 20 } = {}) {
-    const { WCCBlog, WCCMessage } = this.context.dataSources;
+  async userFeedAlgorithm({ limit = 5 } = {}) {
+    const { WCCBlog } = this.context.dataSources;
 
-    const { edges: blogEdges } = await WCCBlog.paginate({
+    const { edges } = await WCCBlog.paginate({
       pagination: { limit },
     });
 
-    const { edges: messageEdges } = await WCCMessage.paginate({
-      pagination: { limit },
-      filters: { target: 'the_porch' },
-    });
-
-    const blogs = blogEdges.map(({ node: item }, i) => ({
+    const items = edges.map(({ node: item }, i) => ({
       id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
       title: item.title,
       relatedNode: { ...item, __type: 'WCCBlog' },
@@ -282,23 +277,7 @@ class WCCFeatures extends baseFeatures.dataSource {
       labelText: 'From the Blog',
     }));
 
-    const messages = messageEdges.map(({ node: item }, i) => ({
-      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
-      title: item.title,
-      relatedNode: { ...item, __type: 'WCCMessage' },
-      image: WCCMessage.getCoverImage(item),
-      action: 'READ_CONTENT',
-      summary: WCCMessage.createSummary(item),
-      labelText: item.series.title,
-    }));
-
-    const items = [...blogs, ...messages];
-
-    // return items.sort(
-    //   (nodeA, nodeB) =>
-    //     new Date(nodeA.relatedNode.date) - new Date(nodeB.relatedNode.date)
-    // );
-    return items;
+    return items.slice(0, limit);
   }
 
   async campusItemsAlgorithm() {
