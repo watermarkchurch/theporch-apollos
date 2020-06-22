@@ -62,7 +62,18 @@ class Connect extends PureComponent {
                       navigation={navigation}
                       sectionTitle={'Your Porch Location'}
                     />
-                  ) : null
+                  ) : (
+                    <CurrentCampus
+                      cardButtonText={'Select a location'}
+                      cardTitle={'No location'}
+                      headerActionText={'Select a Location'}
+                      navigation={navigation}
+                      sectionTitle={'Your Porch Location'}
+                      headerBackgroundColor={screenProps.headerBackgroundColor}
+                      headerTintColor={screenProps.headerTintColor}
+                      headerTitleColor={screenProps.headerTitleStyle.color}
+                    />
+                  )
                 }
               </CampusConsumer>
               <HorizontalLikedContentFeedConnected />

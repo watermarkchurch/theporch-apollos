@@ -71,9 +71,17 @@ const CurrentCampus = withIsLoading(
     theme,
   }) => {
     const handleOnPressItem = () => {
-      navigation.push('AboutCampus', {
-        itemId,
-      });
+      if (itemId) {
+        navigation.push('AboutCampus', {
+          itemId,
+        });
+      } else {
+        navigation.navigate('Location', {
+          headerBackgroundColor,
+          headerTintColor,
+          headerTitleColor,
+        });
+      }
     };
     return (
       <ThemeMixin
