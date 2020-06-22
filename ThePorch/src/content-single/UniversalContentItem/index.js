@@ -15,7 +15,10 @@ import {
   StretchyView,
   withTheme,
   CardLabel,
+  FeedView,
 } from '@apollosproject/ui-kit';
+import ActionListItem from '@apollosproject/ui-kit/src/ActionList/ActionListItem';
+import { withNavigation } from 'react-navigation';
 import Color from 'color';
 
 import Features from '../Features';
@@ -59,13 +62,13 @@ const getChildrenLabel = (typename) => {
   switch (typename) {
     case 'WCCMessage':
     case 'WCCSeries':
-      return 'In this series';
+      return 'All episodes';
     default:
       return null;
   }
 };
 
-const UniversalContentItem = ({ id, content, loading }) => {
+const UniversalContentItem = ({ id, content, loading, navigation }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
     <BackgroundView>
@@ -101,7 +104,24 @@ const UniversalContentItem = ({ id, content, loading }) => {
                   <PaddedView vertical={false}>
                     <StyledH2>{getChildrenLabel(content.__typename)}</StyledH2>
                   </PaddedView>
-                  <HorizontalContentSeriesFeedConnected contentId={id} />
+                  <HorizontalContentSeriesFeedConnected
+                    Component={FeedView}
+                    renderItem={({ item }) => (
+                      <PaddedView vertical={false}>
+                        <ActionListItem
+                          imageSource={item.coverImage?.sources}
+                          title={item.title}
+                          label={item.summary}
+                          onPress={() =>
+                            navigation.push('ContentSingle', {
+                              itemId: item.id,
+                            })
+                          }
+                        />
+                      </PaddedView>
+                    )}
+                    contentId={id}
+                  />
                 </PaddedView>
               </Content>
             </BackgroundTextureAngled>
@@ -133,6 +153,7 @@ UniversalContentItem.propTypes = {
     ),
   }),
   loading: PropTypes.bool,
+  navigation: PropTypes.shape({}),
 };
 
-export default UniversalContentItem;
+export default withNavigation(UniversalContentItem);
