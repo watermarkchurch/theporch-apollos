@@ -221,11 +221,13 @@ HOME_FEATURES:
     subtitle: From the Blog
     type: ActionList
     primaryAction:
-      action: OPEN_URL
+      action: NAVIGATE
       title: 'View More'
       relatedNode:
-        __typename: Url
-        url: 'https://www.apollos.io'
+        __typename: NavigationAction
+        route: Discover
+        screen: ContentFeed
+        screenParams: '{ "itemTitle": "From the Blog", "itemId": "ContentChannel:b5fcc9e62edbcfe95cb70cd32ff7b65e00bb43a44d605f89058e62cab742c3781f55b82c74e3715f365916a7df09d38cb64b0f814acdd8233ce72af4c3f5074582ee105083314936dc6853a1d592c1c0" }'
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

@@ -396,6 +396,18 @@ const schema = gql`
     links: [Link]
   }
 
+  type NavigationAction implements Node {
+    route: String
+    routeParams: String
+    screen: String
+    screenParams: String
+    id: ID!
+  }
+
+  extend enum ACTION_FEATURE_ACTION {
+    NAVIGATE
+  }
+
   type SocialIconsItem {
     icon: String
     url: String

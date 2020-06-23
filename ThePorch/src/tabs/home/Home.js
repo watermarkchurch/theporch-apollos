@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Image } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
+import { NavigationActions } from 'react-navigation';
 
 import { styled, BackgroundView } from '@apollosproject/ui-kit';
 
@@ -43,6 +44,20 @@ class Home extends PureComponent {
     }
     if (action === 'OPEN_URL') {
       openUrl(relatedNode.url);
+    }
+    if (action === 'NAVIGATE') {
+      try {
+        this.props.navigation.navigate(
+          relatedNode.route,
+          JSON.parse(relatedNode.routeParams),
+          NavigationActions.navigate({
+            routeName: relatedNode.screen,
+            params: JSON.parse(relatedNode.screenParams),
+          })
+        );
+      } catch (e) {
+        console.warn(e);
+      }
     }
   };
 

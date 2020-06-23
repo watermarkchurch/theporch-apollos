@@ -4,6 +4,7 @@ enum ACTION_FEATURE_ACTION {
   READ_CONTENT
   READ_EVENT
   OPEN_URL
+  NAVIGATE
 }
 
 type ActionListAction {
@@ -498,6 +499,14 @@ type Mutation {
   updateUserPushSettings(input: PushSettingsInput!): Person
   updateUserCampus(campusId: String!): Person
   addPrayer(text: String!, isAnonymous: Boolean): PrayerRequest
+}
+
+type NavigationAction implements Node {
+  route: String
+  routeParams: String
+  screen: String
+  screenParams: String
+  id: ID!
 }
 
 interface Node {
