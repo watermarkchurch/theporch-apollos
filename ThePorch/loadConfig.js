@@ -5,30 +5,14 @@ import gql from 'graphql-tag';
 ApollosConfig.loadJs({
   FRAGMENTS: {
     ...FRAGMENTS,
-    VERTICAL_CARD_LIST_FEATURE_FRAGMENT: gql`
-      fragment VerticalCardListFeatureFragment on VerticalCardListFeature {
+    RELATED_NODE_FRAGMENT: gql`
+      fragment RelatedFeatureNodeFragment on Node {
         id
-        isFeatured
-        title
-        subtitle
-        cards {
-          action
-          title
-          hasAction
-          actionIcon
-          labelText
-          summary
-          coverImage {
-            sources {
-              uri
-            }
-          }
-          relatedNode {
-            id
-            ... on Link {
-              url
-            }
-          }
+        ... on Url {
+          url
+        }
+        ... on Link {
+          url
         }
       }
     `,

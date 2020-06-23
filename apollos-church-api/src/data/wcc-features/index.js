@@ -401,10 +401,6 @@ const schema = gql`
     url: String
   }
 
-  extend enum ACTION_FEATURE_ACTION {
-    OPEN_URL
-  }
-
   type SocialIconsFeature implements Feature & Node {
     id: ID!
     order: Int
