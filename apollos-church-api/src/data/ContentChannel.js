@@ -34,7 +34,7 @@ export class dataSource extends RESTDataSource {
     this.getFromId(
       JSON.stringify({
         search: this.context.dataSources.Search.messagesPopularIndex,
-        name: 'Trending',
+        name: 'Crowd Favorites',
         filters: 'ministries:"The Porch"',
       })
     );
