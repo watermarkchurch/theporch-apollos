@@ -5,6 +5,14 @@ import gql from 'graphql-tag';
 ApollosConfig.loadJs({
   FRAGMENTS: {
     ...FRAGMENTS,
+    RELATED_NODE_FRAGMENT: gql`
+      fragment RelatedFeatureNodeFragment on Node {
+        id
+        ... on Url {
+          url
+        }
+      }
+    `,
     LIVE_STREAM_FRAGMENT: gql`
       fragment LiveStreamFragment on LiveStream {
         isLive
