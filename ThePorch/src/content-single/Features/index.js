@@ -4,10 +4,12 @@ import { Query } from 'react-apollo';
 import { ErrorCard, H2, PaddedView, styled } from '@apollosproject/ui-kit';
 import { get, groupBy } from 'lodash';
 
-import { WebviewFeature } from '@apollosproject/ui-connected';
+import {
+  WebviewFeature,
+  TextFeature,
+  ScriptureFeature,
+} from '@apollosproject/ui-connected';
 
-import TextFeature from './TextFeature';
-import ScriptureFeature from './ScriptureFeature';
 import SpeakerFeature from './SpeakerFeature';
 
 import GET_CONTENT_ITEM_FEATURES from './getContentItemFeatures';

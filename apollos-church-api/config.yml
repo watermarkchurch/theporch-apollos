@@ -220,6 +220,12 @@ HOME_FEATURES:
   - algorithms: [USER_FEED]
     subtitle: From the Blog
     type: ActionList
+    primaryAction:
+      action: OPEN_URL
+      title: 'View More'
+      relatedNode:
+        __typename: Url
+        url: 'https://www.apollos.io'
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:
