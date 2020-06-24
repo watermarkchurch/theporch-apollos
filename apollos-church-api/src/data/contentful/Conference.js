@@ -27,7 +27,7 @@ export const schema = gql`
     days: [ConferenceDay] @cacheControl(maxAge: 1800)
     maps: [Location] @cacheControl(maxAge: 1800)
     upNext(likedIds: [ID]): ContentItem @cacheControl(maxAge: 300)
-    announcements(first: Int, after: String): ContentItemsConnection
+    announcements(first: Int): ContentItemsConnection
   }
 
   extend type Query {
@@ -47,11 +47,13 @@ export const resolver = {
     code: ({ fields }) => fields.code,
     days: ({ fields }) => fields.days,
     maps: ({ fields }) => fields.maps,
-    announcements: ({ fields }) => ({
-      edges: fields.announcements.map((node) => ({
-        node,
-        cursor: null,
-      })),
+    announcements: ({ fields }, { first = 5 }) => ({
+      edges: fields.announcements
+        .map((node) => ({
+          node,
+          cursor: null,
+        }))
+        .slice(0, first),
     }),
     upNext: ({ fields }, { likedIds = [] }) => {
       const currentTime = moment();

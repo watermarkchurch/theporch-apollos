@@ -1,11 +1,11 @@
 import { createStackNavigator } from 'react-navigation';
 import { withTheme } from '@apollosproject/ui-kit';
 
-import ContentFeed from '../../content-feed';
+// import ContentFeed from '../../content-feed';
 
 import tabBarIcon from '../tabBarIcon';
 
-import Schedule from './Schedule';
+// import Schedule from './Schedule';
 
 import Landing from './TemporaryAwakenLanding';
 

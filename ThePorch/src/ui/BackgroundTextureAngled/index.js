@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled, BackgroundView, FlexedView } from '@apollosproject/ui-kit';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 
 const ImageBackground = styled(() => ({
   position: 'absolute',
@@ -25,14 +25,14 @@ const AngledBackground = styled(() => ({
   />
 ));
 
-const Background = styled({ overflow: 'visible' })(BackgroundView);
+const Background = styled({ overflow: 'visible' })(View);
 
 const ContentContainer = styled({
   marginTop: '-10%',
 })(FlexedView);
 
 const BackgroundTexture = ({ children, ...otherProps }) => (
-  <FlexedView style={{ overflow: 'hidden' }}>
+  <FlexedView>
     <AngledBackground />
     <Background {...otherProps}>
       <ImageBackground />

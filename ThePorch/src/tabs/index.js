@@ -5,7 +5,7 @@ import TabBar from './tabBar';
 import Connect from './connect';
 import Home from './home';
 import Discover from './discover';
-import Awaken from './schedule';
+import Awaken from './awaken';
 
 const TabNavigator = createBottomTabNavigator(
   {

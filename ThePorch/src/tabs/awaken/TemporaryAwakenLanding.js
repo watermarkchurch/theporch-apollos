@@ -1,15 +1,22 @@
 import React, { PureComponent } from 'react';
-import { ThemeMixin, BackgroundView, FeedView } from '@apollosproject/ui-kit';
+import {
+  PaddedView,
+  ThemeMixin,
+  BackgroundView,
+  FeedView,
+} from '@apollosproject/ui-kit';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
 import {
   ContentCardConnected,
   fetchMoreResolver,
+  HorizontalContentSeriesFeedConnected,
 } from '@apollosproject/ui-connected';
 import gql from 'graphql-tag';
 import ApollosConfig from '@apollosproject/config';
 import headerOptions from '../headerOptions';
+import Label from '../../ui/LabelText';
 
 const GET_ANNOUNCEMENTS = gql`
   query {
@@ -76,6 +83,16 @@ class ContentFeed extends PureComponent {
               error={error}
               refetch={refetch}
               onPressItem={this.handleOnPress}
+              ListFooterComponent={
+                <PaddedView horizontal={false}>
+                  <PaddedView vertical={false}>
+                    <Label>From last year</Label>
+                  </PaddedView>
+                  <HorizontalContentSeriesFeedConnected
+                    contentId={'WCCSeries:5898078114f88e6a4d4921e36741f536'}
+                  />
+                </PaddedView>
+              }
             />
           )}
         </Query>
