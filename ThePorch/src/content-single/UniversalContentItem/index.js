@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, View, FlatList } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
@@ -14,7 +14,6 @@ import {
   BackgroundView,
   StretchyView,
   withTheme,
-  CardLabel,
   FeedView,
 } from '@apollosproject/ui-kit';
 import ActionListItem from '@apollosproject/ui-kit/src/ActionList/ActionListItem';
@@ -27,10 +26,9 @@ import MediaControlsConnected from '../MediaControls';
 import BackgroundTextureAngled from '../../ui/BackgroundTextureAngled';
 // import StretchyView from '../../ui/StretchyView';
 
-const FlexedScrollView = styled({ flex: 1 })(Animated.ScrollView);
-
 const Content = styled(({ theme }) => ({
   marginTop: -(theme.sizing.baseUnit * 3.25),
+  flex: 1,
 }))(View);
 
 const Header = styled({
@@ -68,71 +66,71 @@ const getChildrenLabel = (typename) => {
   }
 };
 
-const UniversalContentItem = ({ id, content, loading, navigation }) => {
+const AnimatedFeedView = Animated.createAnimatedComponent(FeedView);
+
+const UniversalContentItemComponent = ({ id, content, loading }) => (
+  feedViewProps
+) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   return (
     <BackgroundView>
       <StretchyView>
         {({ Stretchy, ...scrollViewProps }) => (
-          <FlexedScrollView {...scrollViewProps}>
-            {coverImageSources.length || loading ? (
-              <Stretchy style={stretchyStyle}>
-                <HeaderImage
-                  forceRatio={1}
-                  isLoading={!coverImageSources.length && loading}
-                  source={coverImageSources}
-                  maintainAspectRatio={false}
-                />
-              </Stretchy>
-            ) : null}
-            <BackgroundTextureAngled>
-              <Content>
-                <MediaControlsConnected contentId={id} />
-                {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
-                <PaddedView vertical={!coverImageSources.length}>
-                  <Header>
-                    <H2 padded isLoading={!content.title && loading}>
-                      {content.title}
-                    </H2>
-                  </Header>
-                  <ContentHTMLViewConnected contentId={id} />
-                </PaddedView>
-                {/* <UpNextButtonConnected contentId={content.id} /> */}
-                <Features contentId={id} />
-
+          <AnimatedFeedView
+            {...scrollViewProps}
+            {...feedViewProps}
+            fetchMore={feedViewProps.onEndReached}
+            initialNumToRender={3}
+            getItemLayout={(itemData, index) => ({
+              length: 72, // todo: this is a "magic" number of ListItem height
+              offset: 72 * index,
+              index,
+            })}
+            onEndReachedThreshold={0.75}
+            ListHeaderComponent={
+              <>
+                {coverImageSources.length || loading ? (
+                  <Stretchy style={stretchyStyle}>
+                    <HeaderImage
+                      forceRatio={1}
+                      isLoading={!coverImageSources.length && loading}
+                      source={coverImageSources}
+                      maintainAspectRatio={false}
+                    />
+                  </Stretchy>
+                ) : null}
+                <BackgroundTextureAngled>
+                  <Content>
+                    <MediaControlsConnected contentId={id} />
+                    {/* fixes text/navigation spacing by adding vertical padding if we dont have an image */}
+                    <PaddedView vertical={!coverImageSources.length}>
+                      <Header>
+                        <H2 padded isLoading={!content.title && loading}>
+                          {content.title}
+                        </H2>
+                      </Header>
+                      <ContentHTMLViewConnected contentId={id} />
+                    </PaddedView>
+                    {/* <UpNextButtonConnected contentId={content.id} /> */}
+                    <Features contentId={id} />
+                  </Content>
+                </BackgroundTextureAngled>
                 <PaddedView horizontal={false}>
                   <PaddedView vertical={false}>
                     <StyledH2>{getChildrenLabel(content.__typename)}</StyledH2>
                   </PaddedView>
-                  <HorizontalContentSeriesFeedConnected
-                    Component={FeedView}
-                    renderItem={({ item }) => (
-                      <PaddedView vertical={false}>
-                        <ActionListItem
-                          imageSource={item.coverImage?.sources}
-                          title={item.title}
-                          label={item.summary}
-                          onPress={() =>
-                            navigation.push('ContentSingle', {
-                              itemId: item.id,
-                            })
-                          }
-                        />
-                      </PaddedView>
-                    )}
-                    contentId={id}
-                  />
                 </PaddedView>
-              </Content>
-            </BackgroundTextureAngled>
-          </FlexedScrollView>
+              </>
+            }
+          />
         )}
       </StretchyView>
     </BackgroundView>
   );
 };
 
-UniversalContentItem.propTypes = {
+UniversalContentItemComponent.propTypes = {
+  id: PropTypes.string,
   content: PropTypes.shape({
     __typename: PropTypes.string,
     parentChannel: PropTypes.shape({
@@ -153,6 +151,31 @@ UniversalContentItem.propTypes = {
     ),
   }),
   loading: PropTypes.bool,
+};
+
+const UniversalContentItem = ({ id, navigation, ...otherProps }) => (
+  <HorizontalContentSeriesFeedConnected
+    Component={UniversalContentItemComponent({ id, ...otherProps })}
+    renderItem={({ item }) => (
+      <PaddedView vertical={false}>
+        <ActionListItem
+          imageSource={item.coverImage?.sources}
+          title={item.title}
+          label={item.summary}
+          onPress={() =>
+            navigation.push('ContentSingle', {
+              itemId: item.id,
+            })
+          }
+        />
+      </PaddedView>
+    )}
+    contentId={id}
+  />
+);
+
+UniversalContentItem.propTypes = {
+  id: PropTypes.string,
   navigation: PropTypes.shape({}),
 };
 

@@ -32,7 +32,7 @@ const ContentContainer = styled({
 })(FlexedView);
 
 const BackgroundTexture = ({ children, ...otherProps }) => (
-  <FlexedView>
+  <FlexedView style={{ overflow: 'hidden' }}>
     <AngledBackground />
     <Background {...otherProps}>
       <ImageBackground />
