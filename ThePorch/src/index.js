@@ -17,7 +17,6 @@ import Location from './location';
 
 import Providers from './Providers';
 import ContentSingle from './content-single';
-import ContentFeed from './content-feed';
 import Event from './event';
 import Tabs from './tabs';
 import LandingScreen from './LandingScreen';
