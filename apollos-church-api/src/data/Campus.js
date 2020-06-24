@@ -30,7 +30,8 @@ const resolver = resolverMerge(
           args,
         });
       },
-      description: ({ description }) => markdown.toHTML(description),
+      description: ({ description, attributeValues }) =>
+        attributeValues.fullDescription.value || markdown.toHTML(description),
     },
   },
   Campus
