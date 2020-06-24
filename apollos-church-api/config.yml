@@ -221,11 +221,12 @@ HOME_FEATURES:
     subtitle: From the Blog
     type: ActionList
     primaryAction:
-      action: OPEN_URL
+      action: OPEN_CONTENT_CHANNEL
       title: 'View More'
       relatedNode:
-        __typename: Url
-        url: 'https://www.apollos.io'
+        __typename: ContentChannel
+        id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
+        name: "From the Blog"
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

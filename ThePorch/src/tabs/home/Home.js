@@ -44,6 +44,13 @@ class Home extends PureComponent {
     if (action === 'OPEN_URL') {
       openUrl(relatedNode.url);
     }
+    if (action === 'OPEN_CONTENT_CHANNEL') {
+      this.props.navigation.navigate('ContentFeed', {
+        itemId: relatedNode.id,
+        itemTitle: relatedNode.name,
+        transitionKey: 2,
+      });
+    }
   };
 
   render() {
