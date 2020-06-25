@@ -171,7 +171,7 @@ type Conference implements Node {
   days: [ConferenceDay]
   maps: [Location]
   upNext(likedIds: [ID]): ContentItem
-  announcements(first: Int, after: String): ContentItemsConnection
+  announcements(first: Int): ContentItemsConnection
 }
 
 type ConferenceDay implements Node {
