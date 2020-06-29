@@ -14,7 +14,7 @@ const fontStack = {
     bebas: { default: 'BebasNeue-Regular' },
   },
   ui: {
-    regular: 'sans-serif',
+    regular: 'System',
   },
 };
 

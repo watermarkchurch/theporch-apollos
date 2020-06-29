@@ -113,29 +113,21 @@ const overrides = {
   },
   H2: {
     fontFamily: typography.sans.bebas.default,
-    fontWeight: '700',
-    fontSize: 54,
-    lineHeight: 54,
   },
   H3: {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
   },
   H4: {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
   },
   H5: {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
   },
   H6: {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
   },
   LabelText: {
     fontFamily: typography.sans.bebas.default,
-    fontWeight: '700',
   },
 
   // UI-Kit
@@ -191,4 +183,11 @@ const overrides = {
 //   ...propOverrides,
 // };
 
-export default { colors, overrides, type, barStyle, buttons };
+export default {
+  colors,
+  type,
+  barStyle,
+  typography,
+  buttons,
+  overrides,
+};
