@@ -14,6 +14,9 @@ ApollosConfig.loadJs({
         ... on Link {
           url
         }
+        ... on ContentChannel {
+          name
+        }
       }
     `,
     LIVE_STREAM_FRAGMENT: gql`

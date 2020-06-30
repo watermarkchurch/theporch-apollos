@@ -409,6 +409,10 @@ const schema = gql`
     socialIcons: [SocialIconsItem]
   }
 
+  extend enum ACTION_FEATURE_ACTION {
+    OPEN_CONTENT_CHANNEL
+  }
+
   extend type Query {
     userFeedFeaturesWithCampus(campusId: ID): [Feature]
   }
