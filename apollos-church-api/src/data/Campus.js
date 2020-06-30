@@ -10,6 +10,12 @@ const schema = gql`
   extend type Campus {
     description: String
 
+    leader: Person
+    serviceTimes: String
+    contactEmail: String
+
+    social: [SocialIconsItem]
+
     childContentItemsConnection(
       first: Int
       after: String
@@ -32,6 +38,40 @@ const resolver = resolverMerge(
       },
       description: ({ description, attributeValues }) =>
         attributeValues.fullDescription.value || markdown.toHTML(description),
+
+      leader: ({ leaderPersonAliasId }, args, { dataSources }) =>
+        dataSources.Person.getFromAliasId(leaderPersonAliasId),
+      serviceTimes: ({ serviceTimes }) =>
+        (serviceTimes || '').replace('^', ' '),
+      contactEmail: async ({ leaderPersonAliasId }, args, { dataSources }) => {
+        if (!leaderPersonAliasId) return null;
+        const leader = await dataSources.Person.getFromAliasId(
+          leaderPersonAliasId
+        );
+        return leader?.email;
+      },
+      social: ({ attributeValues }) => {
+        const icons = [];
+        if (attributeValues.facebook?.value) {
+          icons.push({
+            url: attributeValues.facebook.value,
+            icon: 'facebook',
+          });
+        }
+        if (attributeValues.instagram?.value) {
+          icons.push({
+            url: attributeValues.instagram.value,
+            icon: 'instagram',
+          });
+        }
+        if (attributeValues.twitter?.value) {
+          icons.push({
+            url: attributeValues.twitter.value,
+            icon: 'twitter',
+          });
+        }
+        return icons;
+      },
     },
   },
   Campus

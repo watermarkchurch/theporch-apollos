@@ -77,6 +77,17 @@ ApollosConfig.loadJs({
         image {
           uri
         }
+        leader {
+          id
+          firstName
+          lastName
+        }
+        serviceTimes
+        contactEmail
+        social {
+          url
+          icon
+        }
       }
     `,
   },
