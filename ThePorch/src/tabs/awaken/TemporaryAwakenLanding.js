@@ -1,9 +1,15 @@
 import React, { PureComponent } from 'react';
+import { View } from 'react-native';
 import {
   PaddedView,
   ThemeMixin,
   BackgroundView,
   FeedView,
+  withTheme,
+  Touchable,
+  styled,
+  H6,
+  ButtonLink,
 } from '@apollosproject/ui-kit';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
@@ -30,10 +36,36 @@ const GET_ANNOUNCEMENTS = gql`
           }
         }
       }
+      mediaSeries {
+        id
+        title
+        ...contentCardFragment
+      }
     }
   }
   ${ApollosConfig.FRAGMENTS.CONTENT_CARD_FRAGMENT}
 `;
+
+const RowHeader = styled(({ theme }) => ({
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  zIndex: 2, // UX hack to improve tapability. Positions RowHeader above StyledHorizontalTileFeed
+  paddingHorizontal: theme.sizing.baseUnit,
+}))(View);
+
+const Name = styled({
+  flexGrow: 2,
+})(View);
+
+const AndroidTouchableFix = withTheme(({ theme }) => ({
+  borderRadius: theme.sizing.baseBorderRadius / 2,
+}))(Touchable);
+
+const ButtonLinkSpacing = styled({
+  flexDirection: 'row', // correctly positions the loading state
+  justifyContent: 'flex-end', // correctly positions the loading state
+})(View);
 
 class ContentFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
@@ -85,11 +117,27 @@ class ContentFeed extends PureComponent {
               onPressItem={this.handleOnPress}
               ListFooterComponent={
                 <PaddedView horizontal={false}>
-                  <PaddedView vertical={false}>
-                    <Label>From last year</Label>
-                  </PaddedView>
+                  <RowHeader>
+                    <Name>
+                      <Label>{data?.node?.mediaSeries?.title}</Label>
+                    </Name>
+                    <AndroidTouchableFix
+                      onPress={() => {
+                        this.props.navigation.navigate('ContentSingle', {
+                          itemId: data?.node?.mediaSeries?.id,
+                          sharing: data?.node?.mediaSeries?.sharing,
+                        });
+                      }}
+                    >
+                      <ButtonLinkSpacing>
+                        <H6>
+                          <ButtonLink>More</ButtonLink>
+                        </H6>
+                      </ButtonLinkSpacing>
+                    </AndroidTouchableFix>
+                  </RowHeader>
                   <HorizontalContentSeriesFeedConnected
-                    contentId={'WCCSeries:5898078114f88e6a4d4921e36741f536'}
+                    contentId={data?.node?.mediaSeries?.id}
                   />
                 </PaddedView>
               }

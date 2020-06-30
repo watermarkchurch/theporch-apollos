@@ -226,7 +226,7 @@ HOME_FEATURES:
       relatedNode:
         __typename: ContentChannel
         id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
-        name: "From the Blog"
+        name: 'From the Blog'
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

@@ -28,6 +28,7 @@ export const schema = gql`
     maps: [Location] @cacheControl(maxAge: 1800)
     upNext(likedIds: [ID]): ContentItem @cacheControl(maxAge: 300)
     announcements(first: Int): ContentItemsConnection
+    mediaSeries: WCCSeries
   }
 
   extend type Query {
@@ -55,6 +56,8 @@ export const resolver = {
         }))
         .slice(0, first),
     }),
+    mediaSeries: (a, b, { dataSources }) =>
+      dataSources.WCCSeries.getFromId('644'),
     upNext: ({ fields }, { likedIds = [] }) => {
       const currentTime = moment();
 

@@ -87,6 +87,7 @@ const UniversalContentItemComponent = ({ id, content, loading }) => (
               index,
             })}
             onEndReachedThreshold={0.75}
+            initialScrollIndex={0}
             ListHeaderComponent={
               <>
                 {coverImageSources.length || loading ? (

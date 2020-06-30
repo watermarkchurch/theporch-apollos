@@ -13,9 +13,7 @@ class dataSource extends RESTDataSource {
   }`;
 
   willSendRequest = (request) => {
-    // TODO: really, this should be set on all requests.
-    // But for now, we're just going to set it manulaly on pagination requests
-    // request.params.set('target', 'the_porch');
+    request.params.set('target', 'the_porch');
   };
 
   async getFromId(id) {
