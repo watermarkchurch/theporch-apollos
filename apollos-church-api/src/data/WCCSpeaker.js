@@ -121,7 +121,7 @@ export const resolver = {
     ) => {
       const results = await dataSources.Search.byPaginatedQuery({
         ...pagination,
-        index: dataSources.Search.messagesPopularIndex,
+        index: dataSources.Search.messagesIndex,
         filters: `ministries:"The Porch" AND speakers.speaker_name:"${name}"`,
       });
       return {
