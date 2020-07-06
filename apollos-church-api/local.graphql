@@ -142,6 +142,10 @@ type Campus implements Node {
   image: ImageMediaSource
   distanceFromLocation(location: CampusLocationInput): Float
   description: String
+  leader: Person
+  serviceTimes: String
+  contactEmail: String
+  social: [SocialIconsItem]
   childContentItemsConnection(first: Int, after: String): ContentItemsConnection
 }
 

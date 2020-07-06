@@ -235,7 +235,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     const screen = await ConnectScreen.getFromReferenceId('featured items');
     if (screen) {
       campaignItems.push(
-        ...screen.fields.listItems
+        ...(screen.fields.listItems || [])
           .filter(({ sys }) => sys.contentType.sys.id !== 'actionTable')
           .map((item, i) => {
             const type = startCase(item.sys.contentType.sys.id);
