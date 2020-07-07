@@ -116,15 +116,19 @@ const overrides = {
   },
   H3: {
     fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
   },
   H4: {
     fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
   },
   H5: {
     fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
   },
   H6: {
     fontFamily: typography.sans.regular.default,
+    fontWeight: '600',
   },
   LabelText: {
     fontFamily: typography.sans.bebas.default,
