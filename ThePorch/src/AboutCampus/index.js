@@ -211,8 +211,7 @@ const AboutCampus = ({ navigation }) => {
                             <Touchable
                               onPress={() => {
                                 const emailUrl = `mailto:${contactEmail}`;
-                                if (Linking.canOpenURL(emailUrl))
-                                  Linking.openURL(emailUrl);
+                                Linking.openURL(emailUrl);
                               }}
                             >
                               <Cell>

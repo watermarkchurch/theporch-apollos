@@ -10,6 +10,7 @@ import {
   styled,
   H6,
   ButtonLink,
+  TouchableScale,
 } from '@apollosproject/ui-kit';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
@@ -18,11 +19,13 @@ import {
   ContentCardConnected,
   fetchMoreResolver,
   HorizontalContentSeriesFeedConnected,
+  HorizontalContentCardConnected,
 } from '@apollosproject/ui-connected';
 import gql from 'graphql-tag';
 import ApollosConfig from '@apollosproject/config';
 import headerOptions from '../headerOptions';
 import Label from '../../ui/LabelText';
+import horizontalContentCardMapper from '../../ui/horizontalContentCardMapper';
 
 const GET_ANNOUNCEMENTS = gql`
   query {
@@ -138,6 +141,31 @@ class ContentFeed extends PureComponent {
                   </RowHeader>
                   <HorizontalContentSeriesFeedConnected
                     contentId={data?.node?.mediaSeries?.id}
+                    renderItem={({ item }) => {
+                      const disabled =
+                        get(item, 'id', '') === data?.node?.mediaSeries?.id;
+                      const isLoading = get(item.node, 'isLoading');
+
+                      return (
+                        <TouchableScale
+                          onPress={() => this.handleOnPress(item)}
+                          disabled={isLoading || disabled}
+                        >
+                          <HorizontalContentCardConnected
+                            labelText={get(
+                              item.node,
+                              'parentChannel.name',
+                              null
+                            )}
+                            contentId={get(item, 'id', '')}
+                            disabled={disabled}
+                            isLoading={isLoading}
+                            __typename={get(item, '__typename')}
+                            Component={horizontalContentCardMapper}
+                          />
+                        </TouchableScale>
+                      );
+                    }}
                   />
                 </PaddedView>
               }
