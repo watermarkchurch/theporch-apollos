@@ -71,7 +71,10 @@ const AnimatedFeedView = Animated.createAnimatedComponent(FeedView);
 const UniversalContentItemComponent = ({ id, content, loading }) => (
   feedViewProps
 ) => {
-  const coverImageSources = get(content, 'coverImage.sources', []);
+  const coverImageSources =
+    get(content, 'series.coverImage.sources') ||
+    get(content, 'coverImage.sources') ||
+    [];
   return (
     <BackgroundView>
       <StretchyView>

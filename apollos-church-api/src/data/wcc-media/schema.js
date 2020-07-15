@@ -24,6 +24,8 @@ const schema = gql`
     features: [Feature]
 
     liveStream: LiveStream
+
+    series: WCCSeries
   }
 
   extend type Query {

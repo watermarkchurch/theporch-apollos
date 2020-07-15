@@ -62,6 +62,102 @@ ApollosConfig.loadJs({
         }
       }
     `,
+    CONTENT_ITEM_FRAGMENT: gql`
+      fragment contentItemFragment on ContentItem {
+        id
+        title
+        summary
+        htmlContent
+        coverImage {
+          name
+          sources {
+            uri
+          }
+        }
+        theme {
+          type
+          colors {
+            primary
+            secondary
+            screen
+            paper
+          }
+        }
+        parentChannel {
+          id
+          name
+        }
+        videos {
+          sources {
+            uri
+          }
+        }
+        audios {
+          sources {
+            uri
+          }
+        }
+        ... on WCCMessage {
+          videos {
+            sources {
+              uri
+            }
+          }
+          parentChannel {
+            id
+            name
+          }
+          series {
+            coverImage {
+              sources {
+                uri
+              }
+            }
+          }
+        }
+      }
+    `,
+    CONTENT_CARD_FRAGMENT: gql`
+      fragment contentCardFragment on ContentItem {
+        id
+        __typename
+        coverImage {
+          sources {
+            uri
+          }
+        }
+        theme {
+          type
+          colors {
+            primary
+            secondary
+            screen
+            paper
+          }
+        }
+        title
+        hyphenatedTitle: title(hyphenated: true)
+        summary
+        ... on WCCMessage {
+          videos {
+            sources {
+              uri
+            }
+          }
+          parentChannel {
+            id
+            name
+          }
+          series {
+            coverImage {
+              sources {
+                uri
+              }
+            }
+          }
+        }
+      }
+    `,
     CAMPUS_PARTS_FRAGMENT: gql`
       fragment CampusParts on Campus {
         id

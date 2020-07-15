@@ -108,6 +108,7 @@ const resolver = {
       title: 'Share via ...',
       message: `${root.title} \n${dataSources.WCCMessage.createSummary(root)}`,
     }),
+    series: ({ series }) => series,
   },
   Query: {
     messages: (_, pagination, { dataSources }) =>

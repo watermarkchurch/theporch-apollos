@@ -44,6 +44,8 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
             const shouldShowLoadingState =
               loading && !hasMedia && contentId.includes('WCCMessage');
 
+            console.log({ shouldShowLoadingState, loading, hasMedia });
+
             // if we don't have a media source don't render
             if (!hasMedia && !shouldShowLoadingState) return null;
 
@@ -53,7 +55,7 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
                 coverImageSources={coverImageSources}
                 error={error}
                 liveStreamSource={liveStreamSource}
-                loading={loading}
+                loading={shouldShowLoadingState}
                 parentChannelName={parentChannel.name}
                 title={title}
                 videoSource={videoSource}
