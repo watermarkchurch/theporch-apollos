@@ -85,7 +85,7 @@ export class dataSource extends RESTDataSource {
   getRootChannels = async () => [
     this.getPopularChannel(),
     this.getSeriesChannel(),
-    this.getSpeakersChannel(),
+    // this.getSpeakersChannel(),
     this.getBlogChannel(),
     ...(await this.getTopicsChannels()),
   ];
