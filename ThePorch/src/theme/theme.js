@@ -166,12 +166,23 @@ const overrides = {
   },
 
   ContentCardComponentMapper: {
-    Component: () => ({ __typename, ...otherArgs }) =>
-      __typename === 'WCCMessage' ? (
-        <PorchCard __typename={__typename} {...otherArgs} />
+    Component: () => ({ __typename, labelText, ...otherArgs }) => {
+      const _labelText =
+        labelText === otherArgs?.parentChannel?.name ? null : labelText;
+      return __typename === 'WCCMessage' ? (
+        <PorchCard
+          __typename={__typename}
+          labelText={_labelText}
+          {...otherArgs}
+        />
       ) : (
-        <HighlightCard __typename={__typename} {...otherArgs} />
-      ),
+        <HighlightCard
+          __typename={__typename}
+          labelText={_labelText}
+          {...otherArgs}
+        />
+      );
+    },
   },
 
   'ui-connected.WebviewFeature.StyledCard': ({ shadows: themeShadows }) => ({

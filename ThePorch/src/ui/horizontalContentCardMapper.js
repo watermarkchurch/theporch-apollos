@@ -12,7 +12,11 @@ const horizontalContentCardComponentMapper = (props) => {
     case 'WCCSeries':
     case 'WCCSpeaker':
       return (
-        <HorizontalHighlightCard title={props.hyphenatedTitle} {...props} />
+        <HorizontalHighlightCard
+          title={props.hyphenatedTitle}
+          {...props}
+          labelText={null}
+        />
       );
     default:
       return <CoreMapper {...props} />;

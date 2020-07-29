@@ -7,11 +7,6 @@ import ApollosConfig from '@apollosproject/config';
 // export const dataSource = ContentChannel.dataSource;
 
 export class dataSource extends RESTDataSource {
-  // didReceiveResponse(response, request) {
-  //   console.log(response.body.toString());
-  //   console.log('didReceiveResponse', { response, request });
-  // }
-
   async getFromId(id) {
     let result;
 
@@ -61,6 +56,22 @@ export class dataSource extends RESTDataSource {
       })
     );
 
+  getPodcastChannel = () =>
+    // this.getFromId(
+    //   `${
+    //     ApollosConfig.WATERMARK.MEDIA_API
+    //   }/api/v1/messages?filter[series_id]=562&target=the_porch`
+    // );
+    this.getFromId(
+      JSON.stringify({
+        name: 'View from the Porch',
+        messages: true,
+        filters: {
+          'filter[series_id]': '562',
+        },
+      })
+    );
+
   getTopicsChannels = async () => {
     const indice = this.context.dataSources.Search.indice(
       this.context.dataSources.Search.messagesIndex
@@ -86,6 +97,7 @@ export class dataSource extends RESTDataSource {
     this.getPopularChannel(),
     this.getSeriesChannel(),
     // this.getSpeakersChannel(),
+    this.getPodcastChannel(),
     this.getBlogChannel(),
     ...(await this.getTopicsChannels()),
   ];
@@ -159,6 +171,7 @@ export const resolver = {
       if (node.messages)
         return dataSources.WCCMessage.paginate({
           pagination,
+          filters: node.filters || {},
         });
       return dataSources.WCCBlog.paginate({
         pagination,
