@@ -47,6 +47,8 @@ export class dataSource extends ContentItem.dataSource {
     }
     if (typeof node.messages_count === 'number') return 'WCCSeries';
 
+    if (node?.current_event || node?.next_event) return 'LiveStream';
+
     if (typeof node.id === 'number' || !isNaN(Number(node.objectID)))
       return 'WCCMessage';
     return 'WCCBlog';

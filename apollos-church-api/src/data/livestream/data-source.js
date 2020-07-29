@@ -45,6 +45,12 @@ class dataSource extends WCCMediaAPIDataSource {
 
   async contentItemForEvent({ current_event, next_event }) {
     const url = current_event?._links?.message || next_event?._links?.message;
+    if (!url) {
+      // so... this is a fun, potentially recursive loop. Technically,
+      // a LiveStream is a content item. If there's no "message" for a LiveStream,
+      // then we want to fallback to using the LiveStream as the content Item 😇
+      return this.getFromId(current_event?.id || next_event?.id);
+    }
     return this.context.dataSources.WCCMessage.getFromId(url);
   }
 

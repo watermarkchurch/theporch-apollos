@@ -17,7 +17,7 @@ class dataSource extends RESTDataSource {
   };
 
   async getFromId(id) {
-    const result = await this.get(id);
+    const result = await this.get(String(id));
     if (
       !result ||
       typeof result !== 'object' ||

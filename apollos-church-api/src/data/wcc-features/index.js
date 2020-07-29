@@ -141,10 +141,13 @@ class WCCFeatures extends baseFeatures.dataSource {
 
     if (liveStream) {
       const contentItem = await liveStream.contentItem;
-      const contentDate = moment(contentItem.date).startOf('day'); // content dates don't have timestamps on them anyways
+      const isMessage = !(
+        contentItem?.current_event || contentItem?.next_event
+      );
+      const contentDate = moment(contentItem?.date || tzDate).startOf('day'); // content dates don't have timestamps on them anyways
       const messageIsTodayOrLater = contentDate >= moment().startOf('day');
       const streamIsToday = moment().isSame(liveStream.eventStartTime, 'day');
-      if (messageIsTodayOrLater || streamIsToday) {
+      if ((messageIsTodayOrLater && isMessage) || streamIsToday) {
         // then show the upcoming live event on the home feed.
         // Otherwise, we won't show the upcoming message (as it may be an old message still)
         liveStreamIsInCampaign = true; // used to prevent live stream for showing twice
@@ -156,15 +159,31 @@ class WCCFeatures extends baseFeatures.dataSource {
         if (tzDate < new Date()) dayLabel = `Last ${dayOfStream}`;
         if (streamIsToday) dayLabel = `Today at ${timeOfStream}`;
 
-        campaignItems.push({
-          id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
-          labelText: dayLabel,
-          title: contentItem.title,
-          relatedNode: { ...contentItem, __type: 'WCCMessage' },
-          image: WCCMessage.getCoverImage(contentItem),
-          action: 'READ_CONTENT',
-          summary: WCCMessage.createSummary(contentItem),
-        });
+        if (contentItem) {
+          campaignItems.push({
+            id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
+            labelText: dayLabel,
+            title: contentItem.title,
+            relatedNode: { ...contentItem, __type: 'WCCMessage' },
+            image: WCCMessage.getCoverImage(contentItem),
+            action: 'READ_CONTENT',
+            summary: WCCMessage.createSummary(contentItem),
+          });
+        } else {
+          campaignItems.push({
+            id: createGlobalId(
+              `${liveStream.id}${campaignItems.length}`,
+              'ActionListAction'
+            ),
+            labelText: dayLabel,
+            title: liveStream.title,
+            relatedNode: { __typename: 'LiveStream', ...liveStream },
+            image: LiveStream.getCoverImage(liveStream),
+            action: 'READ_CONTENT',
+            hasAction: false,
+            summary: liveStream.description,
+          });
+        }
       }
     }
 
