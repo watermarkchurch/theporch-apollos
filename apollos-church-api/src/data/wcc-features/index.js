@@ -138,9 +138,9 @@ class WCCFeatures extends baseFeatures.dataSource {
     }
 
     const tzDate = moment(liveStream?.eventStartTime).tz('America/Chicago');
-
     if (liveStream) {
       const contentItem = await liveStream.contentItem;
+
       const isMessage = !(
         contentItem?.current_event || contentItem?.next_event
       );
@@ -159,7 +159,7 @@ class WCCFeatures extends baseFeatures.dataSource {
         if (tzDate < new Date()) dayLabel = `Last ${dayOfStream}`;
         if (streamIsToday) dayLabel = `Today at ${timeOfStream}`;
 
-        if (contentItem) {
+        if (isMessage) {
           campaignItems.push({
             id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
             labelText: dayLabel,
@@ -176,12 +176,18 @@ class WCCFeatures extends baseFeatures.dataSource {
               'ActionListAction'
             ),
             labelText: dayLabel,
-            title: liveStream.title,
-            relatedNode: { __typename: 'LiveStream', ...liveStream },
+            title:
+              liveStream?.current_event?.title ||
+              liveStream?.next_event?.title ||
+              liveStream.title,
+            relatedNode: { __typename: 'LiveStream', ...contentItem },
             image: LiveStream.getCoverImage(liveStream),
             action: 'READ_CONTENT',
             hasAction: false,
-            summary: liveStream.description,
+            summary:
+              liveStream?.current_event?.description ||
+              liveStream?.next_event?.description ||
+              liveStream.description,
           });
         }
       }

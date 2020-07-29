@@ -21,6 +21,7 @@ ApollosConfig.loadJs({
     `,
     LIVE_STREAM_FRAGMENT: gql`
       fragment LiveStreamFragment on LiveStream {
+        id
         isLive
         eventStartTime
         media {
@@ -31,23 +32,32 @@ ApollosConfig.loadJs({
         webViewUrl
 
         contentItem {
-          ... on WCCMessage {
+          ... on ContentItem {
             id
           }
         }
       }
     `,
     CONTENT_MEDIA_FRAGMENT: gql`
-      fragment contentMediaFragment on WCCMessage {
+      fragment contentMediaFragment on ContentItem {
         id
         title
         parentChannel {
           id
           name
         }
-        coverImage: videoThumbnailImage {
-          sources {
-            uri
+        ... on LiveStream {
+          coverImage {
+            sources {
+              uri
+            }
+          }
+        }
+        ... on WCCMessage {
+          coverImage: videoThumbnailImage {
+            sources {
+              uri
+            }
           }
         }
         videos {

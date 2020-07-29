@@ -7,22 +7,33 @@ import { resolverMerge, createGlobalId } from '@apollosproject/server-core';
 
 if (LiveStream.resolver.Query) delete LiveStream.resolver.Query.liveStream;
 
+const withCurrentEvent = (curried) => (node, ...otherArgs) =>
+  curried(
+    {
+      ...node,
+      ...(node?.current_event || node?.next_event || {}),
+    },
+    ...otherArgs
+  );
+
 const resolver = resolverMerge(
   {
     LiveStream: {
       id: ({ id }, args, context, { parentType }) =>
         createGlobalId(`${id}`, parentType.name),
-      title: ContentItem.resolver.ContentItem.title,
-      coverImage: (contentItem, _, { dataSources }) =>
-        dataSources.LiveStream.getCoverImage(contentItem),
-      summary: ({ description }) => description,
-      htmlContent: ({ description }) => description,
-      images: ({ images } = {}) =>
+      title: withCurrentEvent(ContentItem.resolver.ContentItem.title),
+      coverImage: withCurrentEvent((contentItem, _, { dataSources }) =>
+        dataSources.LiveStream.getCoverImage(contentItem)
+      ),
+      summary: withCurrentEvent(({ description }) => description),
+      htmlContent: withCurrentEvent(({ description }) => description),
+      images: withCurrentEvent(({ images } = {}) =>
         Object.keys(images).map((key) => ({
           sources: [{ uri: images[key].url }],
           name: images[key].type_name,
           key,
-        })),
+        }))
+      ),
       parentChannel: (input, args, { dataSources }) =>
         dataSources.ContentChannel.getSeriesChannel(), // TODO
       theme: () => null, // TODO

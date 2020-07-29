@@ -43,13 +43,14 @@ class dataSource extends WCCMediaAPIDataSource {
   // }
   // return null;
 
-  async contentItemForEvent({ current_event, next_event }) {
+  async contentItemForEvent({ id, current_event, next_event }) {
     const url = current_event?._links?.message || next_event?._links?.message;
+
     if (!url) {
-      // so... this is a fun, potentially recursive loop. Technically,
-      // a LiveStream is a content item. If there's no "message" for a LiveStream,
-      // then we want to fallback to using the LiveStream as the content Item 😇
-      return this.getFromId(current_event?.id || next_event?.id);
+      // so... this is a fun. Technically, a LiveStream is a content item.
+      // If there's no "message" for a LiveStream, then we want to fallback
+      // to using the LiveStream as the content Item 😇
+      return this.getFromId(id);
     }
     return this.context.dataSources.WCCMessage.getFromId(url);
   }
@@ -62,6 +63,7 @@ class dataSource extends WCCMediaAPIDataSource {
     const { streams } = await this.get('', { target: 'the_porch' });
     return streams.map((stream) => ({
       ...(stream.current_event || stream.next_event),
+      id: stream.id,
       isLive: !!stream.current_event,
       eventStartTime:
         stream.current_event?.starts_at || stream.next_event?.starts_at,

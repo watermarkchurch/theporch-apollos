@@ -23,8 +23,9 @@ class dataSource extends RESTDataSource {
       typeof result !== 'object' ||
       result.error ||
       !result[this.objectType]
-    )
+    ) {
       throw new ApolloError(result?.error?.message, result?.error?.code);
+    }
     return result[this.objectType];
   }
 

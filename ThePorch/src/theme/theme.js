@@ -169,7 +169,7 @@ const overrides = {
     Component: () => ({ __typename, labelText, ...otherArgs }) => {
       const _labelText =
         labelText === otherArgs?.parentChannel?.name ? null : labelText;
-      return __typename === 'WCCMessage' ? (
+      return __typename === 'WCCMessage' || otherArgs.isLive ? (
         <PorchCard
           __typename={__typename}
           labelText={_labelText}
