@@ -19,6 +19,11 @@ class dataSource extends RESTDataSource {
     return result;
   }
 
+  willSendRequest = (options) => {
+    if (!options.cacheOptions) options.cacheOptions = {};
+    options.cacheOptions.ttl = 0;
+  };
+
   getShareUrl = async ({ slug }) => `https://www.theporch.live/blogs${slug}`;
 
   getCoverImage = ({ heroImage, thumbnailImage }) => {
