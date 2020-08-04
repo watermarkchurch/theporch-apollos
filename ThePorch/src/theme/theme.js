@@ -108,28 +108,28 @@ export const buttons = ({ colors: themeColors, alpha: themeAlpha }) => ({
 
 const overrides = {
   // Typography
-  H1: {
+  'ui-kit.Typography.H1': {
     fontFamily: typography.sans.montserrat.default,
   },
-  H2: {
+  'ui-kit.Typography.H2': {
     fontFamily: typography.sans.bebas.default,
     fontWeight: '700',
     fontSize: 54,
     lineHeight: 54,
   },
-  H3: {
+  'ui-kit.Typography.H3': {
     fontFamily: typography.sans.regular.default,
     fontWeight: '600',
   },
-  H4: {
+  'ui-kit.Typography.H4': {
     fontFamily: typography.sans.regular.default,
     fontWeight: '600',
   },
-  H5: {
+  'ui-kit.Typography.H5': {
     fontFamily: typography.sans.regular.default,
     fontWeight: '600',
   },
-  H6: {
+  'ui-kit.Typography.H6': {
     fontFamily: typography.sans.regular.default,
     fontWeight: '600',
   },
@@ -139,15 +139,15 @@ const overrides = {
   },
 
   // UI-Kit
-  'ui-kit.inputs.Search.InputWrapper': {
+  'ui-kit.inputs.Search.styles.InputWrapper': {
     backgroundColor: colors.screen,
   },
-  'ui-kit.inputs.Search.ClearSearchButtonBackground': {
+  'ui-kit.inputs.Search.styles.ClearSearchButtonBackground': {
     backgroundColor: colors.screen,
   },
 
   // Onboarding
-  'Onboarding.SlideContent.Title': ({
+  'ui-onboarding.Slide.SlideContent.Title': ({
     colors: themeColors,
     sizing: themeSizing,
   }) => ({
@@ -155,17 +155,17 @@ const overrides = {
     color: themeColors.paper,
     marginBottom: themeSizing.baseUnit,
   }),
-  'Onboarding.SlideContent.Description': ({ sizing: themeSizing }) => ({
+  'ui-onboarding.Slde.SlideContent.Description': ({ sizing: themeSizing }) => ({
     textAlign: 'center',
     maxWidth: '80%',
     lineHeight: themeSizing.baseUnit * 1.5,
     alignSelf: 'center',
   }),
-  'Onboarding.SlideContent.BrandIcon': {
+  'ui-onboarding.Slide.SlideContent.BrandIcon': {
     alignSelf: 'center',
   },
 
-  ContentCardComponentMapper: {
+  'ui-connected.ContentCardConnected.ContentCardComponentMapper': {
     Component: () => ({ __typename, labelText, ...otherArgs }) => {
       const _labelText =
         labelText === otherArgs?.parentChannel?.name ? null : labelText;
@@ -185,12 +185,16 @@ const overrides = {
     },
   },
 
-  'ui-connected.WebviewFeature.StyledCard': ({ shadows: themeShadows }) => ({
+  'ui-connected.ContentSingleFeaturesConnected.WebviewFeature.StyledCard': ({
+    shadows: themeShadows,
+  }) => ({
     borderRadius: 0,
     marginHorizontal: 0,
     ...Platform.select(themeShadows.none),
   }),
-  'ui-connected.WebviewFeature.StyledH3': ({ sizing: themeSizing }) => ({
+  'ui-connected.ContentSingleFeaturesConnected.WebviewFeature.StyledH3': ({
+    sizing: themeSizing,
+  }) => ({
     fontFamily: typography.sans.bebas.default,
     fontSize: themeSizing.baseUnit * 1.75,
     fontWeight: '700',

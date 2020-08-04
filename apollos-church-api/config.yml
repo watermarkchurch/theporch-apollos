@@ -23,6 +23,10 @@ CONTENTFUL:
     SPACE: 3ewlji0hjgzj
     API_KEY: ${CONTENTFUL_PORCH_KEY}
 
+BUGSNAG:
+  ## Optional, but you'll need to remove references to @apollosproject/bugsnag if you don't wish to use.
+  API_KEY: ${BUGSNAG_KEY}
+
 ROCK:
   API_URL: https://rock.theporch.live/api
   API_TOKEN: ${ROCK_TOKEN}

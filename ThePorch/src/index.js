@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { isNil } from 'lodash';
 import RNBootSplash from 'react-native-bootsplash';
-import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
+import React, { useEffect } from 'react';
+import { isNil } from 'lodash';
+
+import {
+  AnalyticsConsumer,
+  CoreNavigationAnalytics,
+} from '@apollosproject/ui-analytics';
 
 import {
   BackgroundView,
@@ -13,8 +17,8 @@ import {
 import Passes from '@apollosproject/ui-passes';
 import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
-import Location from './location';
 
+import Location from './location';
 import Providers from './Providers';
 import ContentSingle from './content-single';
 import Event from './event';
@@ -101,23 +105,32 @@ const App = () => (
   <Providers>
     <BackgroundView>
       <AppStatusBar />
-      <AnalyticsConsumer>
-        {({ track }) => (
-          <>
-            <AppStateTracker track={track} />
-            <AppContainer
-              onNavigationStateChange={(prevState, currentState) => {
-                const currentScreen = getActiveRouteName(currentState);
-                const prevScreen = getActiveRouteName(prevState);
+      <CoreNavigationAnalytics>
+        {({ onNavigationStateChange, ...otherProps }) => (
+          <AnalyticsConsumer>
+            {({ track }) => (
+              <>
+                <AppStateTracker track={track} />
+                <AppContainer
+                  onNavigationStateChange={(prevState, currentState) => {
+                    const currentScreen = getActiveRouteName(currentState);
+                    const prevScreen = getActiveRouteName(prevState);
 
-                if (prevScreen !== currentScreen) {
-                  track({ eventName: `Viewed ${currentScreen}` });
-                }
-              }}
-            />
-          </>
+                    if (prevScreen !== currentScreen) {
+                      track({ eventName: `Viewed ${currentScreen}` });
+                    }
+
+                    if (onNavigationStateChange) {
+                      onNavigationStateChange(prevState, currentState);
+                    }
+                  }}
+                  {...otherProps}
+                />
+              </>
+            )}
+          </AnalyticsConsumer>
         )}
-      </AnalyticsConsumer>
+      </CoreNavigationAnalytics>
       <MediaPlayer />
     </BackgroundView>
   </Providers>
