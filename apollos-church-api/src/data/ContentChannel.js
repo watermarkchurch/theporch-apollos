@@ -3,6 +3,7 @@ import { createGlobalId } from '@apollosproject/server-core';
 import { ApolloError } from 'apollo-server';
 import { RESTDataSource } from 'apollo-datasource-rest';
 import ApollosConfig from '@apollosproject/config';
+import { snakeCase } from 'lodash';
 
 // export const dataSource = ContentChannel.dataSource;
 
@@ -74,7 +75,7 @@ export class dataSource extends RESTDataSource {
 
   getTopicsChannels = async () => {
     const indice = this.context.dataSources.Search.indice(
-      this.context.dataSources.Search.messagesIndex
+      this.context.dataSources.Search.messagesTopicRankedIndex
     );
     const { facets: { topics = {} } = {} } = await indice.search({
       query: '',
@@ -85,8 +86,9 @@ export class dataSource extends RESTDataSource {
     return Object.keys(topics).map((name) =>
       this.getFromId(
         JSON.stringify({
-          search: this.context.dataSources.Search.messagesPopularIndex,
+          search: this.context.dataSources.Search.messagesTopicRankedIndex,
           name,
+          query: snakeCase(`topic ${name}`),
           filters: `ministries:"The Porch" AND topics:"${name}"`,
         })
       )
@@ -152,6 +154,7 @@ export const resolver = {
         const results = await dataSources.Search.byPaginatedQuery({
           ...pagination,
           index: node.search,
+          ...(node.query ? { query: node.query } : {}),
           ...(node.filters ? { filters: node.filters } : {}),
           ...(node.facetFilters ? { facetFilters: node.facetFilters } : {}),
         });

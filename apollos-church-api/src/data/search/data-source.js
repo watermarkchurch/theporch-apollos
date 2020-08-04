@@ -28,6 +28,8 @@ export default class Search {
 
   messagesPopularIndex = ApollosConfig.ALGOLIA.MESSAGES_POPULAR_INDEX;
 
+  messagesTopicRankedIndex = ApollosConfig.ALGOLIA.MESSAGES_TOPIC_RANKED_INDEX;
+
   blogIndex = ApollosConfig.ALGOLIA.BLOG_INDEX;
 
   peopleIndex = ApollosConfig.ALGOLIA.PEOPLE_INDEX;

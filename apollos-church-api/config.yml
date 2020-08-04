@@ -63,6 +63,7 @@ ALGOLIA:
   PEOPLE_INDEX: people_production
   MESSAGES_INDEX: Messages_production_rev_chron
   MESSAGES_POPULAR_INDEX: messages_production_trending
+  MESSAGES_TOPIC_RANKED_INDEX: porchapp_production_messages_force_ranked
   # Configure Algolia custom settings here
   # https://www.algolia.com/doc/api-reference/settings-api-parameters/
   CONFIGURATION:
