@@ -25,7 +25,7 @@ CONTENTFUL:
 
 BUGSNAG:
   ## Optional, but you'll need to remove references to @apollosproject/bugsnag if you don't wish to use.
-  API_KEY: ${BUGSNAG_KEY}
+  API_KEY: 7ffed442dcec30138c5ea7cbdfd72698
 
 ROCK:
   API_URL: https://rock.theporch.live/api
