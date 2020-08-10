@@ -403,7 +403,6 @@ const resolver = {
     relatedNode: ({ action, relatedNode }, args, context) => {
       if (action === 'OPEN_CAMPUS'){
         const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${context.campusId}`
-        console.warn(url)
         return {
           id: createGlobalId(url, 'Url'),
           __typename: 'Url',
