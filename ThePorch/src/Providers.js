@@ -17,10 +17,10 @@ const AppProviders = (props) => (
   <ClientProvider {...props}>
     <OnboardProvider>
       <CampusProvider>
-        {/* <NotificationsProvider */}
-        {/*   oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY} */}
-        {/*   navigate={NavigationService.navigate} */}
-        {/* > */}
+        <NotificationsProvider
+          oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY}
+          navigate={NavigationService.navigate}
+        >
         <MediaPlayerProvider>
           <AnalyticsProvider
             trackFunctions={[track]}
@@ -36,7 +36,7 @@ const AppProviders = (props) => (
             </LiveProvider>
           </AnalyticsProvider>
         </MediaPlayerProvider>
-        {/* </NotificationsProvider> */}
+        </NotificationsProvider>
       </CampusProvider>
     </OnboardProvider>
   </ClientProvider>

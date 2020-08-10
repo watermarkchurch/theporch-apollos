@@ -399,6 +399,21 @@ const resolver = {
       return null;
     },
   },
+  FeatureAction: {
+    relatedNode: ({ action, relatedNode }, args, context) => {
+      if (action === 'OPEN_CAMPUS'){
+        const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${context.campusId}`
+        console.warn(url)
+        return {
+          id: createGlobalId(url, 'Url'),
+          __typename: 'Url',
+          url
+        }
+      }
+      return relatedNode;
+    },
+    action: ({ action }) => action === 'OPEN_CAMPUS' ? 'OPEN_URL' : action,
+  },
   CardListItem: {
     coverImage: ({ image }) => image,
     hasAction: (root, args, { dataSources: { ContentItem } }) => {
