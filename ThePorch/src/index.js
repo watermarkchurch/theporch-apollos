@@ -106,25 +106,13 @@ const App = () => (
     <BackgroundView>
       <AppStatusBar />
       <CoreNavigationAnalytics>
-        {({ onNavigationStateChange, ...otherProps }) => (
+        {({ ...props }) => (
           <AnalyticsConsumer>
             {({ track }) => (
               <>
                 <AppStateTracker track={track} />
                 <AppContainer
-                  onNavigationStateChange={(prevState, currentState) => {
-                    const currentScreen = getActiveRouteName(currentState);
-                    const prevScreen = getActiveRouteName(prevState);
-
-                    if (prevScreen !== currentScreen) {
-                      track({ eventName: `Viewed ${currentScreen}` });
-                    }
-
-                    if (onNavigationStateChange) {
-                      onNavigationStateChange(prevState, currentState);
-                    }
-                  }}
-                  {...otherProps}
+                  {...props}
                 />
               </>
             )}

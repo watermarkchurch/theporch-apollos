@@ -169,7 +169,7 @@ class WCCFeatures extends baseFeatures.dataSource {
         if (tzDate < new Date()) dayLabel = `Last ${dayOfStream}`;
         if (streamIsToday) dayLabel = `Today at ${timeOfStream}`;
 
-        if (isMessage) {
+        if (isMessage && messageIsTodayOrLater) {
           campaignItems.push({
             id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
             labelText: dayLabel,
@@ -401,17 +401,19 @@ const resolver = {
   },
   FeatureAction: {
     relatedNode: ({ action, relatedNode }, args, context) => {
-      if (action === 'OPEN_CAMPUS'){
-        const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${context.campusId}`
+      if (action === 'OPEN_CAMPUS') {
+        const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${
+          context.campusId
+        }`;
         return {
           id: createGlobalId(url, 'Url'),
           __typename: 'Url',
-          url
-        }
+          url,
+        };
       }
       return relatedNode;
     },
-    action: ({ action }) => action === 'OPEN_CAMPUS' ? 'OPEN_URL' : action,
+    action: ({ action }) => (action === 'OPEN_CAMPUS' ? 'OPEN_URL' : action),
   },
   CardListItem: {
     coverImage: ({ image }) => image,
