@@ -156,7 +156,7 @@ class WCCFeatures extends baseFeatures.dataSource {
           .startOf('day');
       const streamIsToday = moment()
         .tz('America/Chicago')
-        .isSame(contentDate, 'day');
+        .isSame(tzDate, 'day');
       if ((messageIsTodayOrLater && isMessage) || streamIsToday) {
         // then show the upcoming live event on the home feed.
         // Otherwise, we won't show the upcoming message (as it may be an old message still)
