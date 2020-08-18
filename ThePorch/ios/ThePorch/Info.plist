@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key></key>
-	<string></string>
+	<key/>
+	<string/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -91,6 +91,7 @@
 		<string>Lato-Italic.ttf</string>
 		<string>Lato-Regular.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
+		<string>bebas.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
