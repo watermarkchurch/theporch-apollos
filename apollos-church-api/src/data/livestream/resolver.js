@@ -4,6 +4,7 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
 import { resolverMerge, createGlobalId } from '@apollosproject/server-core';
+import md from 'marked';
 
 if (LiveStream.resolver.Query) delete LiveStream.resolver.Query.liveStream;
 
@@ -25,8 +26,10 @@ const resolver = resolverMerge(
       coverImage: withCurrentEvent((contentItem, _, { dataSources }) =>
         dataSources.LiveStream.getCoverImage(contentItem)
       ),
-      summary: withCurrentEvent(({ description }) => description),
-      htmlContent: withCurrentEvent(({ description }) => description),
+      summary: withCurrentEvent(({ description }, _, { dataSources }) =>
+        dataSources.ContentItem.createSummary(md(description))
+      ),
+      htmlContent: withCurrentEvent(({ description }) => md(description)),
       images: withCurrentEvent(({ images } = {}) =>
         Object.keys(images).map((key) => ({
           sources: [{ uri: images[key].url }],
