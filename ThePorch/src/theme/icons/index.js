@@ -14,3 +14,5 @@ export Facebook from './Facebook';
 export Youtube from './Youtube';
 export Twitter from './Twitter';
 export Instagram from './Instagram';
+
+export Merch from './Merch';
