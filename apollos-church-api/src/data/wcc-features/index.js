@@ -4,6 +4,7 @@ import { createGlobalId, parseGlobalId } from '@apollosproject/server-core';
 import { startCase, get } from 'lodash';
 import gql from 'graphql-tag';
 import moment from 'moment-timezone';
+import md from 'marked';
 
 const getSpotifyEmbed = (url) => {
   const playlistParts = url.split('playlist/');
@@ -190,14 +191,17 @@ class WCCFeatures extends baseFeatures.dataSource {
               liveStream?.current_event?.title ||
               liveStream?.next_event?.title ||
               liveStream.title,
-            relatedNode: { __typename: 'LiveStream', ...contentItem },
+            relatedNode: { __typename: 'LiveStream', ...liveStream },
             image: LiveStream.getCoverImage(liveStream),
             action: 'READ_CONTENT',
             hasAction: false,
-            summary:
-              liveStream?.current_event?.description ||
-              liveStream?.next_event?.description ||
-              liveStream.description,
+            summary: this.context.dataSources.ContentItem.createSummary({
+              content: md(
+                liveStream?.current_event?.description ||
+                  liveStream?.next_event?.description ||
+                  liveStream.description
+              ),
+            }),
           });
         }
       }

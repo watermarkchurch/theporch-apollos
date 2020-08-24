@@ -46,6 +46,7 @@
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		FCB3069DB5DD4170B2CAEFC4 /* Inter-UI-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A460FD7884FD4574A818005A /* Inter-UI-MediumItalic.otf */; };
+		23454272168A481499AD78AA /* bebas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD50525A75E844AEB95251EF /* bebas.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,7 @@
 				DE456D2B54C8477CBD70E2A3 /* Lato-Italic.ttf */,
 				EC770D21C1834A52AC462B54 /* Lato-Regular.ttf */,
 				3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */,
+				DD50525A75E844AEB95251EF /* bebas.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -449,6 +451,7 @@
 				5D7DD547D49D4920BC68FD31 /* Lato-Italic.ttf in Resources */,
 				7F5BD94A7890471CB5F1D2E8 /* Lato-Regular.ttf in Resources */,
 				266A7142AF334F8CA499DF01 /* Montserrat-Bold.ttf in Resources */,
+				23454272168A481499AD78AA /* bebas.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

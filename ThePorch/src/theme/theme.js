@@ -113,29 +113,30 @@ const overrides = {
   },
   'ui-kit.Typography.H2': {
     fontFamily: typography.sans.bebas.default,
-    fontWeight: '700',
+    ...(Platform.OS === 'ios' ? { fontWeight: '700' } : {}),
     fontSize: 54,
+    textTransform: 'uppercase',
     lineHeight: 54,
   },
   'ui-kit.Typography.H3': {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
+    ...(Platform.OS === 'ios' ? { fontWeight: '600' } : {}),
   },
   'ui-kit.Typography.H4': {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
+    ...(Platform.OS === 'ios' ? { fontWeight: '600' } : {}),
   },
   'ui-kit.Typography.H5': {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
+    ...(Platform.OS === 'ios' ? { fontWeight: '600' } : {}),
   },
   'ui-kit.Typography.H6': {
     fontFamily: typography.sans.regular.default,
-    fontWeight: '600',
+    ...(Platform.OS === 'ios' ? { fontWeight: '600' } : {}),
   },
   LabelText: {
     fontFamily: typography.sans.bebas.default,
-    fontWeight: '700',
+    ...(Platform.OS === 'ios' ? { fontWeight: '700' } : {}),
   },
 
   // UI-Kit

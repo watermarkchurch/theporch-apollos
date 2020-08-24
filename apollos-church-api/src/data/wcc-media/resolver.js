@@ -27,7 +27,7 @@ const resolver = {
         htmlContent += `<H6>${moment(date).format('MM/DD/YYYY')}</H6>`;
       }
 
-      htmlContent += `<p>${description}</p>`;
+      htmlContent += `<p>${marked(description)}</p>`;
 
       if (sermon_guide && sermon_guide.markdown) {
         htmlContent += marked(sermon_guide.markdown);
