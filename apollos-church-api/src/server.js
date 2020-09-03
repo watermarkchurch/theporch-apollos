@@ -55,6 +55,8 @@ const apolloServer = new ApolloServer({
   engine: {
     apiKey: ENGINE.API_KEY,
     schemaTag: ENGINE.SCHEMA_TAG,
+    reportSchema: true,
+    variant: "current",
   },
 });
 
