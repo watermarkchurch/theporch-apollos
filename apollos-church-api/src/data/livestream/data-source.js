@@ -44,7 +44,8 @@ class dataSource extends WCCMediaAPIDataSource {
   // return null;
 
   async contentItemForEvent({ id, current_event, next_event }) {
-    const url = current_event?._links?.message || next_event?._links?.message;
+    // const url = current_event?._links?.message || next_event?._links?.message;
+    const url = false;
 
     if (!url) {
       // so... this is a fun. Technically, a LiveStream is a content item.
