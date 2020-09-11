@@ -65,7 +65,7 @@ export class dataSource extends RESTDataSource {
     // );
     this.getFromId(
       JSON.stringify({
-        name: 'View from the Porch',
+        name: 'Views from the Porch',
         messages: true,
         filters: {
           'filter[series_id]': '562',
