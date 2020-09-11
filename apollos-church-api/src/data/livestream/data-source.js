@@ -1,6 +1,7 @@
 import { values } from 'lodash';
 
 import ApollosConfig from '@apollosproject/config';
+import moment from 'moment';
 import WCCMediaAPIDataSource from '../WCCMediaAPIDataSource';
 
 class dataSource extends WCCMediaAPIDataSource {
@@ -44,16 +45,28 @@ class dataSource extends WCCMediaAPIDataSource {
   // return null;
 
   async contentItemForEvent({ id, current_event, next_event }) {
-    // const url = current_event?._links?.message || next_event?._links?.message;
-    const url = false;
+    const url = current_event?._links?.message || next_event?._links?.message;
 
-    if (!url) {
-      // so... this is a fun. Technically, a LiveStream is a content item.
-      // If there's no "message" for a LiveStream, then we want to fallback
-      // to using the LiveStream as the content Item 😇
-      return this.getFromId(id);
+    if (url) {
+      const message = await this.context.dataSources.WCCMessage.getFromId(url);
+      const contentDate = moment(message?.date)
+        .tz('America/Chicago')
+        .startOf('day'); // content dates don't have timestamps on them anyways
+      const messageIsTodayOrLater =
+        contentDate >=
+        moment()
+          .tz('America/Chicago')
+          .startOf('day');
+
+      if (messageIsTodayOrLater) {
+        return message;
+      }
     }
-    return this.context.dataSources.WCCMessage.getFromId(url);
+
+    // so... this is a fun. Technically, a LiveStream is a content item.
+    // If there's no "message" for a LiveStream, then we want to fallback
+    // to using the LiveStream as the content Item 😇
+    return this.getFromId(id);
   }
 
   async getLiveStreams() {

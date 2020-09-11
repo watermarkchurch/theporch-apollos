@@ -119,7 +119,12 @@ class WCCFeatures extends baseFeatures.dataSource {
   }
 
   async campaignItemsAlgorithm({ limit = 1, skip = 0 } = {}) {
-    const { WCCMessage, LiveStream, ConnectScreen } = this.context.dataSources;
+    const {
+      WCCMessage,
+      LiveStream,
+      ConnectScreen,
+      ContentItem,
+    } = this.context.dataSources;
 
     let campaignItems = [];
 
@@ -145,20 +150,12 @@ class WCCFeatures extends baseFeatures.dataSource {
       const isMessage = !(
         contentItem?.current_event || contentItem?.next_event
       );
-      const contentDate = moment(
-        contentItem?.date || liveStream?.eventStartTime
-      )
-        .tz('America/Chicago')
-        .startOf('day'); // content dates don't have timestamps on them anyways
-      const messageIsTodayOrLater =
-        contentDate >=
-        moment()
-          .tz('America/Chicago')
-          .startOf('day');
+
       const streamIsToday = moment()
         .tz('America/Chicago')
         .isSame(tzDate, 'day');
-      if ((messageIsTodayOrLater && isMessage) || streamIsToday) {
+
+      if (isMessage || streamIsToday) {
         // then show the upcoming live event on the home feed.
         // Otherwise, we won't show the upcoming message (as it may be an old message still)
         liveStreamIsInCampaign = true; // used to prevent live stream for showing twice
@@ -170,40 +167,36 @@ class WCCFeatures extends baseFeatures.dataSource {
         if (tzDate < new Date()) dayLabel = `Last ${dayOfStream}`;
         if (streamIsToday) dayLabel = `Today at ${timeOfStream}`;
 
-        if (isMessage && messageIsTodayOrLater) {
-          campaignItems.push({
-            id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
-            labelText: dayLabel,
-            title: contentItem.title,
-            relatedNode: { ...contentItem, __type: 'WCCMessage' },
-            image: WCCMessage.getCoverImage(contentItem),
-            action: 'READ_CONTENT',
-            summary: WCCMessage.createSummary(contentItem),
-          });
-        } else {
-          campaignItems.push({
-            id: createGlobalId(
-              `${liveStream.id}${campaignItems.length}`,
-              'ActionListAction'
-            ),
-            labelText: dayLabel,
-            title:
-              liveStream?.current_event?.title ||
-              liveStream?.next_event?.title ||
-              liveStream.title,
-            relatedNode: { __typename: 'LiveStream', ...liveStream },
-            image: LiveStream.getCoverImage(liveStream),
-            action: 'READ_CONTENT',
-            hasAction: false,
-            summary: this.context.dataSources.ContentItem.createSummary({
+        const title = isMessage
+          ? contentItem.title
+          : liveStream?.current_event?.title ||
+            liveStream?.next_event?.title ||
+            liveStream.title;
+
+        const summary = isMessage
+          ? WCCMessage.createSummary(contentItem)
+          : ContentItem.createSummary({
               content: md(
                 liveStream?.current_event?.description ||
                   liveStream?.next_event?.description ||
                   liveStream.description
               ),
-            }),
-          });
-        }
+            });
+
+        campaignItems.push({
+          id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
+          labelText: dayLabel,
+          title,
+          relatedNode: isMessage
+            ? { ...contentItem, __type: 'WCCMessage' }
+            : { __typename: 'LiveStream', ...liveStream },
+          image: isMessage
+            ? WCCMessage.getCoverImage(contentItem)
+            : LiveStream.getCoverImage(liveStream),
+          action: 'READ_CONTENT',
+          summary,
+          hasAction: liveStream.isLive,
+        });
       }
     }
 
