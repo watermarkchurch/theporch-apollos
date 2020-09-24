@@ -75,7 +75,7 @@ class dataSource extends WCCMediaAPIDataSource {
     // If we have data in the sermon feed, and the `getLiveStream.isLive` is true
     // this returns an array of livestreams
     const { streams } = await this.get('', { target: 'the_porch' });
-    return streams.map((stream) => ({
+    return streams.filter((stream) => stream.current_event || stream.next_event).map((stream) => ({
       ...(stream.current_event || stream.next_event),
       id: stream.id,
       isLive: !!stream.current_event,
