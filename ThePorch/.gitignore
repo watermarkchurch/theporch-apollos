@@ -145,3 +145,16 @@ project.xcworkspace
 /ios/Pods/
 /ios/.bundle
 /ios/.bundle/*
+
+# Fastlane
+fastlane/report.xml
+
+# symbols
+ThePorch.app.dSYM.zip
+
+# Google Play authentication key
+key.json
+*.keystore
+
+# shared secrets
+.env.shared
