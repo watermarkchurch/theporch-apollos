@@ -19,8 +19,8 @@ import Passes from '@apollosproject/ui-passes';
 import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
 
-// import Location from './location';
-import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
+import Location from './location';
+// import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import Providers from './Providers';
 import ContentSingle from './content-single';
 import Event from './event';

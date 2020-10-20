@@ -377,6 +377,17 @@ const resolver = {
         ...args
       );
     },
+    homeFeedFeatures: (
+      root,
+      { campusId },
+      { dataSources: { FeatureFeed } }
+    ) => {
+      context.campusId = campusId;
+      return FeatureFeed.getFeed({
+        type: 'apollosConfig',
+        args: { section: 'HOME_FEATURES', campusId },
+      });
+    },
   },
   WebviewFeature: {
     id: ({ id }) => createGlobalId(id, 'WebviewFeature'),
@@ -464,6 +475,7 @@ const schema = gql`
 
   extend type Query {
     userFeedFeaturesWithCampus(campusId: ID): [Feature]
+    homeFeedFeaturesWithCampus(campusId: ID): FeatureFeed
   }
 `;
 
