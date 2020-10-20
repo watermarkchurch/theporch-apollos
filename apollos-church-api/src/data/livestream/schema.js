@@ -1,6 +1,10 @@
 import gql from 'graphql-tag';
 
 const schema = gql`
+  interface LiveNode {
+    liveStream: LiveStream
+  }
+
   type LiveStream implements ContentItem & Node {
     id: ID!
     title(hyphenated: Boolean): String

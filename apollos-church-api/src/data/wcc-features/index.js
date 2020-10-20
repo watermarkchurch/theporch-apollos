@@ -34,16 +34,13 @@ class WCCFeatures extends baseFeatures.dataSource {
     return method(funcArgs);
   }
 
-  createFeatureId({ args, type }) {
-    return createGlobalId(
-      JSON.stringify({ campusId: this.context.campusId, ...args }),
-      type
-    );
+  createFeatureId({ args }) {
+    return JSON.stringify({ campusId: this.context.campusId, ...args });
   }
 
   createSpeakerFeature = ({ name, id }) => ({
     name,
-    id: createGlobalId(id, 'SpeakerFeature'),
+    id,
     __typename: 'SpeakerFeature',
   });
 
@@ -51,12 +48,12 @@ class WCCFeatures extends baseFeatures.dataSource {
     title: 'Worship Set',
     // linkText: 'Open in Spotify',
     url: getSpotifyEmbed(external_playlist),
-    id: createGlobalId(id, 'WebviewFeature'),
+    id,
     __typename: 'WebviewFeature',
   });
 
   createSocialIconsFeature = ({ title }) => ({
-    id: createGlobalId('SocialIconsFeature', 'SocialIconsFeature'),
+    id: 'SocialIconsFeature',
     socialIcons: [
       { icon: 'instagram', url: 'https://www.instagram.com/theporch/' },
       { icon: 'facebook', url: 'https://www.facebook.com/theporchdallas/' },
@@ -68,7 +65,7 @@ class WCCFeatures extends baseFeatures.dataSource {
   });
 
   createLinkTableFeature = ({ id, links, title }) => ({
-    id: createGlobalId(id, 'LinkTableFeature'),
+    id,
     title,
     links: links.map(({ fields, sys }) => ({
       id: createGlobalId(sys.id, 'Link'),
@@ -86,7 +83,7 @@ class WCCFeatures extends baseFeatures.dataSource {
 
     return [
       {
-        id: createGlobalId(`${item.id}`, 'ActionListAction'),
+        id: `${item.id}`,
         labelText: 'All Episodes',
         title: item.title,
         relatedNode: { ...item, __type: 'WCCSeries' },
@@ -108,7 +105,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     });
 
     return messages.map(({ node: item }, i) => ({
-      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      id: `${item.id}${i}`,
       // labelText: 'Latest Message',
       title: item.title,
       relatedNode: { ...item, __type: 'WCCMessage' },
@@ -184,7 +181,7 @@ class WCCFeatures extends baseFeatures.dataSource {
             });
 
         campaignItems.push({
-          id: createGlobalId(`${contentItem.id}${0}`, 'ActionListAction'),
+          id: `${contentItem.id}${0}`,
           labelText: dayLabel,
           title,
           relatedNode: isMessage
@@ -221,10 +218,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     campaignItems = [
       ...campaignItems,
       ...currentMessages.map(({ node: item }, i) => ({
-        id: createGlobalId(
-          `${item.id}${i + campaignItems.length}`,
-          'ActionListAction'
-        ),
+        id: `${item.id}${i + campaignItems.length}`,
         labelText: 'Latest Message',
         title: item.title,
         relatedNode: { ...item, __type: 'WCCMessage' },
@@ -245,10 +239,7 @@ class WCCFeatures extends baseFeatures.dataSource {
 
     if (liveStream && !liveStreamIsInCampaign) {
       campaignItems.push({
-        id: createGlobalId(
-          `${liveStream.id}${campaignItems.length}`,
-          'ActionListAction'
-        ),
+        id: `${liveStream.id}${campaignItems.length}`,
         labelText: `${tzDate < new Date() ? 'Last' : 'Next'} ${tzDate.format(
           'ddd'
         )} at ${tzDate.format('ha')} CT`,
@@ -272,7 +263,7 @@ class WCCFeatures extends baseFeatures.dataSource {
           .map((item, i) => {
             const type = startCase(item.sys.contentType.sys.id);
             return {
-              id: createGlobalId(`${item.id}${i}`, 'CardListItem'),
+              id: `${item.id}${i}`,
               title: item.fields.title,
               subtitle: item.fields.summary,
               relatedNode: {
@@ -300,7 +291,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     });
 
     const items = edges.map(({ node: item }, i) => ({
-      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      id: `${item.id}${i}`,
       title: item.title,
       relatedNode: { ...item, __type: 'WCCBlog' },
       image: WCCBlog.getCoverImage(item),
@@ -329,7 +320,7 @@ class WCCFeatures extends baseFeatures.dataSource {
     const items = await itemsCursor.get();
 
     return items.map((item, i) => ({
-      id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+      id: `${item.id}${i}`,
       title: item.title,
       subtitle: get(item, 'attributeValues.eventStartsOn.value')
         ? moment
@@ -356,7 +347,7 @@ class WCCFeatures extends baseFeatures.dataSource {
       .map((item, i) => {
         const type = startCase(item.sys.contentType.sys.id);
         return {
-          id: createGlobalId(`${item.id}${i}`, 'ActionListAction'),
+          id: `${item.id}${i}`,
           title: item.fields.title,
           subtitle: item.fields.summary,
           relatedNode: {
@@ -387,7 +378,17 @@ const resolver = {
       );
     },
   },
+  WebviewFeature: {
+    id: ({ id }) => createGlobalId(id, 'WebviewFeature'),
+  },
+  SocialIconsFeature: {
+    id: ({ id }) => createGlobalId(id, 'SocialIconsFeature'),
+  },
+  LinkTableFeature: {
+    id: ({ id }) => createGlobalId(id, 'LinkTableFeature'),
+  },
   SpeakerFeature: {
+    id: ({ id }) => createGlobalId(id, 'SpeakerFeature'),
     profileImage: async ({ name }, args, { dataSources }) => {
       const speaker = await dataSources.WCCSpeaker.getByName({ name });
       if (speaker?.image) {

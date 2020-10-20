@@ -37,9 +37,6 @@ export const schema = gql`
     label: String
 
     theme: Theme
-
-    isLiked: Boolean @cacheControl(maxAge: 0)
-    likedCount: Int @cacheControl(maxAge: 0)
   }
 `;
 
