@@ -1,4 +1,3 @@
-
 import { StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import RNBootSplash from 'react-native-bootsplash';
@@ -7,10 +6,8 @@ import { isNil } from 'lodash';
 
 import {
   CoreNavigationAnalytics,
+  AnalyticsConsumer,
 } from '@apollosproject/ui-analytics';
-
-import hoistNonReactStatic from 'hoist-non-react-statics';
-
 
 import {
   BackgroundView,
@@ -23,6 +20,7 @@ import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
 
 // import Location from './location';
+import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import Providers from './Providers';
 import ContentSingle from './content-single';
 import Event from './event';
@@ -38,9 +36,6 @@ import {
   useOnboardDispatch,
   useOnboardState,
 } from './OnboardProvider';
-
-import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
-import Auth, { ProtectedRoute } from '@apollosproject/ui-auth';
 
 import NodeSingle from './node-single';
 // import PersonalDetails from './user-settings/PersonalDetails';
@@ -101,7 +96,6 @@ const AppContainer = (props) => {
   );
 };
 
-
 const App = () => (
   <Providers>
     <BackgroundView>
@@ -112,9 +106,7 @@ const App = () => (
             {({ track }) => (
               <>
                 <AppStateTracker track={track} />
-                <AppContainer
-                  {...props}
-                />
+                <AppContainer {...props} />
               </>
             )}
           </AnalyticsConsumer>

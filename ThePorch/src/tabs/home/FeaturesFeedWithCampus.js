@@ -7,28 +7,52 @@ import { FeedView } from '@apollosproject/ui-kit';
 import { FeaturesFeedConnected } from '@apollosproject/ui-connected';
 import { CampusConsumer } from '../../CampusProvider';
 
-const GET_FEED_FEATURES = gql`
-  query getFeedFeatures($campusId: ID) {
-    userFeedFeaturesWithCampus(campusId: $campusId) {
-      ...FeedFeaturesFragment
+const GET_FEATURE_FEED = gql`
+  query getFeatureFeed($featureFeedId: ID!) {
+    node(id: $featureFeedId) {
+      id
+      ... on FeatureFeed {
+        features {
+          ...FeedFeaturesFragment
+        }
+      }
     }
   }
   ${ApollosConfig.FRAGMENTS.FEED_FEATURES_FRAGMENT}
+  ${ApollosConfig.FRAGMENTS.TEXT_FEATURE_FRAGMENT}
+  ${ApollosConfig.FRAGMENTS.SCRIPTURE_FEATURE_FRAGMENT}
+  ${ApollosConfig.FRAGMENTS.WEBVIEW_FEATURE_FRAGMENT}
 `;
 
 class FeaturesFeedWithCampus extends FeaturesFeedConnected {
   render() {
-    const { Component, onPressActionItem, ...props } = this.props;
+    const {
+      featureFeedId,
+      Component,
+      onPressActionItem,
+      ...props
+    } = this.props;
+    if (!featureFeedId) {
+      return (
+        <FeedView
+          loadingStateData={this.loadingStateData}
+          renderItem={this.renderFeatures}
+          loading
+          refetch={this.refetch}
+          {...props}
+        />
+      );
+    }
     return (
       <CampusConsumer>
         {({ userCampus }) => (
           <Query
-            query={GET_FEED_FEATURES}
+            query={GET_FEATURE_FEED}
+            variables={{ featureFeedId }}
             fetchPolicy="cache-and-network"
-            variables={{ campusId: userCampus?.id }}
           >
             {({ error, data, loading, refetch }) => {
-              const features = get(data, 'userFeedFeaturesWithCampus', []);
+              const features = get(data, 'node.features', []);
               this.refetchRef({ refetch, id: 'feed' });
               return (
                 <FeedView

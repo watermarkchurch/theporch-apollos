@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
 import { LiveConsumer } from '@apollosproject/ui-connected';
-import GET_CONTENT_MEDIA from '@apollosproject/ui-connected/src/MediaControlsConnected/getContentMedia';
+import GET_MEDIA from '@apollosproject/ui-connected/src/MediaControlsConnected/getMedia';
 
 import MediaControls from './MediaControls';
 
@@ -14,7 +14,7 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
     <LiveConsumer contentId={contentId}>
       {(liveStream) => (
         <Query
-          query={GET_CONTENT_MEDIA}
+          query={GET_MEDIA}
           fetchPolicy="cache-and-network"
           variables={{ contentId }}
         >
