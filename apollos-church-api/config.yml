@@ -224,7 +224,7 @@ HOME_FEATURES:
         arguments:
           filters:
             filter[series_id][]: 562
-    type: HeroListFeature
+    type: HeroList
   - algorithms: [USER_FEED]
     subtitle: From the Blog
     type: ActionList

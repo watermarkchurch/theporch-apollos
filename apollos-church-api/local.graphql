@@ -689,6 +689,7 @@ type Query {
   homeFeedFeatures: FeatureFeed
   discoverFeedFeatures: FeatureFeed
   userFeedFeaturesWithCampus(campusId: ID): [Feature]
+  homeFeedFeaturesWithCampus(campusId: ID): FeatureFeed
   messages(first: Int, after: String): ContentItemsConnection
   blogs(first: Int, after: String): ContentItemsConnection
 }

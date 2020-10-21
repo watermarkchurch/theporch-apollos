@@ -7,13 +7,12 @@ import { Query } from 'react-apollo';
 
 import { styled, BackgroundView } from '@apollosproject/ui-kit';
 
-import { RockAuthedWebBrowser } from '@apollosproject/ui-connected';
-import FeaturesFeedWithCampus from './FeaturesFeedWithCampus';
-
 import {
+  RockAuthedWebBrowser,
   FEATURE_FEED_ACTION_MAP,
+  FeaturesFeedConnected,
 } from '@apollosproject/ui-connected';
-
+import { CampusConsumer } from '../../CampusProvider';
 
 const LogoTitle = styled(({ theme }) => ({
   height: theme.sizing.baseUnit * 2,
@@ -25,7 +24,7 @@ const LogoTitle = styled(({ theme }) => ({
 const feedActionMap = {
   OPEN_CONTENT_CHANNEL: FEATURE_FEED_ACTION_MAP.OPEN_CHANNEL,
   ...FEATURE_FEED_ACTION_MAP,
-}
+};
 
 function handleOnPress({ action, ...props }) {
   if (feedActionMap[action]) {
@@ -40,8 +39,8 @@ function handleOnPress({ action, ...props }) {
 // You can also hardcode an ID if you are confident it will never change
 // Or use some other strategy to get a FeatureFeed.id
 const GET_HOME_FEED = gql`
-  query getHomeFeatureFeed {
-    homeFeedFeatures {
+  query getHomeFeatureFeed($campusId: ID) {
+    homeFeedFeaturesWithCampus(campusId: $campusId) {
       id
     }
   }
@@ -66,19 +65,26 @@ class Home extends PureComponent {
         {(openUrl) => (
           <BackgroundView>
             <SafeAreaView>
-              <Query query={GET_HOME_FEED}>
-                {({ data }) => (
-                  <FeaturesFeedWithCampus
-                    openUrl={openUrl}
-                    navigation={this.props.navigation}
-                    featureFeedId={data?.homeFeedFeatures?.id}
-                    onPressActionItem={handleOnPress}
-                    ListHeaderComponent={
-                      <LogoTitle source={require('./wordmark.png')} />
-                    }
-                  />
+              <CampusConsumer>
+                {({ userCampus }) => (
+                  <Query
+                    variables={{ campusId: userCampus?.id }}
+                    query={GET_HOME_FEED}
+                  >
+                    {({ data }) => (
+                      <FeaturesFeedConnected
+                        openUrl={openUrl}
+                        navigation={this.props.navigation}
+                        featureFeedId={data?.homeFeedFeaturesWithCampus?.id}
+                        onPressActionItem={handleOnPress}
+                        ListHeaderComponent={
+                          <LogoTitle source={require('./wordmark.png')} />
+                        }
+                      />
+                    )}
+                  </Query>
                 )}
-              </Query>
+              </CampusConsumer>
             </SafeAreaView>
           </BackgroundView>
         )}
