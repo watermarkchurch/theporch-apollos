@@ -98,6 +98,7 @@ const resolver = {
     },
   },
   FeatureAction: {
+    ...baseFeatures.resolver.FeatureAction,
     relatedNode: ({ action, relatedNode }, args, context) => {
       if (action === 'OPEN_CAMPUS') {
         const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${
@@ -114,6 +115,7 @@ const resolver = {
     action: ({ action }) => (action === 'OPEN_CAMPUS' ? 'OPEN_URL' : action),
   },
   CardListItem: {
+    ...baseFeatures.resolver.CardListItem,
     coverImage: ({ image }) => image,
     hasAction: (root, args, { dataSources: { ContentItem } }) => {
       if (root.hasAction !== undefined) return root.hasAction;

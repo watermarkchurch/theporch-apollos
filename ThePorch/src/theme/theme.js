@@ -1,5 +1,9 @@
 import React from 'react';
-import { HighlightCard } from '@apollosproject/ui-kit';
+import {
+  HighlightCard,
+  HorizontalDefaultCard,
+  HorizontalHighlightCard,
+} from '@apollosproject/ui-kit';
 import Color from 'color';
 import { Platform } from 'react-native';
 import PorchCard from '../ui/PorchFeaturedCard';
@@ -184,6 +188,9 @@ const overrides = {
         />
       );
     },
+  },
+  'ui-connected.HorizontalContentCardConnected.HorizontalContentCardComponentMapper': {
+    Component: () => (props) => <HorizontalHighlightCard {...props} />,
   },
 
   'ui-connected.ContentSingleFeaturesConnected.WebviewFeature.StyledCard': ({

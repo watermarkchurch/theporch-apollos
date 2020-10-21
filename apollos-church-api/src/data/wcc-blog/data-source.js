@@ -34,7 +34,11 @@ class dataSource extends RESTDataSource {
     return uri ? { sources: [{ uri }] } : null;
   };
 
-  async paginate({ pagination: { after } = {} } = {}) {
+  createSummary({ subtitle }) {
+    return subtitle;
+  }
+
+  async paginate({ pagination: { after, first } = {} } = {}) {
     let requestPath = this.channelPath;
 
     // parse the incoming cursor
@@ -53,8 +57,11 @@ class dataSource extends RESTDataSource {
 
     const getTotalCount = () => null;
 
+    const limitedItems =
+      first != null ? (result.items || []).slice(0, first) : result.items || [];
+
     // build the edges - translate messages to { edges: [{ node, cursor }] } format
-    const edges = (result.items || []).map((node, i) => ({
+    const edges = limitedItems.map((node, i) => ({
       node,
       cursor: null,
     }));

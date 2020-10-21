@@ -39,6 +39,10 @@ class dataSource extends WCCMediaAPIDataSource {
 
     return features;
   }
+
+  createSummary({ subtitle }) {
+    return subtitle;
+  }
 }
 
 export default dataSource;

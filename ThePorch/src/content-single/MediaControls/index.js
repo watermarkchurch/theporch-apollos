@@ -18,24 +18,13 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
           fetchPolicy="cache-and-network"
           variables={{ contentId }}
         >
-          {({
-            data: {
-              node: {
-                videos,
-                audios,
-                title,
-                parentChannel = {},
-                coverImage = {},
-              } = {},
-            } = {},
-            loading,
-            error,
-          }) => {
-            const coverImageSources = (coverImage && coverImage.sources) || [];
+          {({ data, loading, error }) => {
+            const coverImageSources =
+              (data?.node?.coverImage && data.node.coverImage.sources) || [];
             const liveStreamSource =
               get(liveStream, 'isLive') && get(liveStream, 'media.sources[0]');
-            const videoSource = get(videos, '[0].sources[0]', null);
-            const audioSource = get(audios, '[0].sources[0]', null);
+            const videoSource = get(data, 'node.videos.[0].sources[0]', null);
+            const audioSource = get(data, 'node.audios.[0].sources[0]', null);
             const webViewUrl = get(liveStream, 'webViewUrl');
 
             const hasMedia =
@@ -49,13 +38,13 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
 
             return (
               <Component
-                coverImage={coverImage}
+                coverImage={data?.node?.coverImage}
                 coverImageSources={coverImageSources}
                 error={error}
                 liveStreamSource={liveStreamSource}
                 loading={shouldShowLoadingState}
-                parentChannelName={parentChannel.name}
-                title={title}
+                parentChannelName={data?.node?.parentChannel?.name}
+                title={data?.node?.title}
                 videoSource={videoSource}
                 audioSource={audioSource}
                 webViewUrl={webViewUrl}

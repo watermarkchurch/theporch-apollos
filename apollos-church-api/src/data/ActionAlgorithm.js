@@ -7,10 +7,11 @@ import { parseGlobalId } from '@apollosproject/server-core';
 class dataSource extends ActionAlgorithm.dataSource {
   ACTION_ALGORITHMS = Object.entries({
     ...this.ACTION_ALGORITHMS,
-    CONNECT_SCREEN: this.connectScreenAlgorithm.bind(this),
-    WCC_MESSAGES: this.mediaMessages.bind(this),
-    CAMPUS_ITEMS: this.campusItemsAlgorithm.bind(this),
-    WCC_SERIES: this.mediaSeries.bind(this),
+    CONNECT_SCREEN: this.connectScreenAlgorithm,
+    WCC_MESSAGES: this.mediaMessages,
+    CAMPUS_ITEMS: this.campusItemsAlgorithm,
+    WCC_SERIES: this.mediaSeries,
+    CONTENT_CHANNEL_CHILDREN: this.contentChannelChildrenAlgorithm,
   }).reduce((accum, [key, value]) => {
     // convenciance code to make sure all methods are bound to the Features dataSource
     // eslint-disable-next-line
@@ -35,6 +36,38 @@ class dataSource extends ActionAlgorithm.dataSource {
         summary: item.subtitle,
       },
     ];
+  }
+
+  async contentChannelChildrenAlgorithm({ id, limit }) {
+    const { ContentChannel, ContentItem } = this.context.dataSources;
+    const channel = await ContentChannel.getFromId(id);
+    const { edges } = await ContentChannel.getChildContentItems({
+      channel,
+      pagination: { first: limit },
+    });
+
+    const items = edges.map(({ node }) => node);
+
+    // this is gonna suck....
+    const dataSourceMap = {
+      WCCBlog: this.context.dataSources.WCCBlog,
+      WCCMessage: this.context.dataSources.WCCMessage,
+      WCCSeries: this.context.dataSources.WCCSeries,
+    };
+
+    // return children;
+    return items.map((item, i) => {
+      const __type = ContentItem.resolveType(item);
+      return {
+        id: `${item.id || item.slug}${i}`,
+        // labelText: 'Latest Message',
+        title: item.title,
+        relatedNode: { ...item, __type },
+        image: dataSourceMap[__type].getCoverImage(item),
+        action: 'READ_CONTENT',
+        summary: dataSourceMap[__type].createSummary(item),
+      };
+    });
   }
 
   async mediaMessages({ filters = {}, limit = 3 } = {}) {
