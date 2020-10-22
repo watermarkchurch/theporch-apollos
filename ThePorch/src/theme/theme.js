@@ -192,7 +192,6 @@ const overrides = {
   'ui-connected.HorizontalContentCardConnected.HorizontalContentCardComponentMapper': {
     Component: () => (props) => <HorizontalHighlightCard {...props} />,
   },
-
   'ui-connected.ContentSingleFeaturesConnected.WebviewFeature.StyledCard': ({
     shadows: themeShadows,
   }) => ({

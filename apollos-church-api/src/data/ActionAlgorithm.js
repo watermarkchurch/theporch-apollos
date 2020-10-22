@@ -66,6 +66,7 @@ class dataSource extends ActionAlgorithm.dataSource {
         image: dataSourceMap[__type].getCoverImage(item),
         action: 'READ_CONTENT',
         summary: dataSourceMap[__type].createSummary(item),
+        hasAction: __type === 'WCCMessage' || __type === 'WCCSeries',
       };
     });
   }

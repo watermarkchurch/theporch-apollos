@@ -16,7 +16,7 @@ const MediaControlsConnected = ({ Component, contentId, ...props }) => {
         <Query
           query={GET_MEDIA}
           fetchPolicy="cache-and-network"
-          variables={{ contentId }}
+          variables={{ nodeId: contentId }}
         >
           {({ data, loading, error }) => {
             const coverImageSources =
