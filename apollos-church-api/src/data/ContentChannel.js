@@ -83,7 +83,6 @@ export class dataSource extends RESTDataSource {
       filters: 'ministries:"The Porch"',
     });
 
-    console.log(topics);
 
     return Object.keys(topics).map((name) =>
       this.getFromId(
