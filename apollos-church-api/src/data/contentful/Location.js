@@ -31,9 +31,6 @@ export const schema = gql`
     media: VideoMediaSource
 
     parentChannel: ContentChannel
-
-    isLiked: Boolean @cacheControl(maxAge: 0)
-    likedCount: Int @cacheControl(maxAge: 0)
   }
 `;
 

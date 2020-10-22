@@ -5,8 +5,8 @@ import React, { useEffect } from 'react';
 import { isNil } from 'lodash';
 
 import {
-  AnalyticsConsumer,
   CoreNavigationAnalytics,
+  AnalyticsConsumer,
 } from '@apollosproject/ui-analytics';
 
 import {
@@ -15,10 +15,12 @@ import {
   NavigationService,
 } from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
+
 import { MediaPlayer } from '@apollosproject/ui-media-player';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Location from './location';
+// import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import Providers from './Providers';
 import ContentSingle from './content-single';
 import Event from './event';
@@ -34,6 +36,10 @@ import {
   useOnboardDispatch,
   useOnboardState,
 } from './OnboardProvider';
+
+import NodeSingle from './node-single';
+// import PersonalDetails from './user-settings/PersonalDetails';
+// import ChangePassword from './user-settings/ChangePassword';
 
 const AppStatusBar = withTheme(({ theme }) => ({
   barStyle: theme.barStyle,
@@ -62,6 +68,7 @@ const AppContainer = (props) => {
     {
       Tabs,
       ContentSingle,
+      NodeSingle,
       Event,
       Location,
       Passes,
@@ -89,18 +96,6 @@ const AppContainer = (props) => {
   );
 };
 
-function getActiveRouteName(navigationState) {
-  if (!navigationState) {
-    return null;
-  }
-  const route = navigationState.routes[navigationState.index];
-  // dive into nested navigators
-  if (route.routes) {
-    return getActiveRouteName(route);
-  }
-  return route.routeName;
-}
-
 const App = () => (
   <Providers>
     <BackgroundView>
@@ -111,9 +106,7 @@ const App = () => (
             {({ track }) => (
               <>
                 <AppStateTracker track={track} />
-                <AppContainer
-                  {...props}
-                />
+                <AppContainer {...props} />
               </>
             )}
           </AnalyticsConsumer>

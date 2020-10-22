@@ -1,0 +1,6 @@
+git_url("https://github.com/ApollosProject/certificates")
+
+storage_mode("git")
+
+app_identifier(["com.subsplash.thechurchapp.s_8XHRPK"])
+username("apps@apollos.app")

@@ -224,7 +224,7 @@ HOME_FEATURES:
         arguments:
           filters:
             filter[series_id][]: 562
-    type: HeroListFeature
+    type: HeroList
   - algorithms: [USER_FEED]
     subtitle: From the Blog
     type: ActionList
@@ -235,6 +235,185 @@ HOME_FEATURES:
         __typename: ContentChannel
         id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
         name: 'From the Blog'
+
+DISCOVER_FEATURES:
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"messages_production_trending","name":"Crowd Favorites","filters":"ministries:\"The Porch\""}'
+          limit: 3
+    type: HorizontalCardList
+    subtitle: Crowd Favorites
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"messages_production_trending","name":"Crowd Favorites","filters":"ministries:\"The Porch\""}'
+        name: Crowd Favorites
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Love & Dating","query":"topic_love_dating","filters":"ministries:\"The Porch\" AND topics:\"Love & Dating\""}'
+          limit: 5
+    type: ActionList
+    subtitle: Top 10 on Dating
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Love & Dating","query":"topic_love_dating","filters":"ministries:\"The Porch\" AND topics:\"Love & Dating\""}'
+        name: Top 10 on Dating
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: 'https://media.watermark.org/api/v1/series?filter[tag_id]=4'
+          limit: 3
+    type: HorizontalCardList
+    subtitle: Series
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: 'https://media.watermark.org/api/v1/series?filter[tag_id]=4'
+        name: Series
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Anxiety","query":"topic_anxiety","filters":"ministries:\"The Porch\" AND topics:\"Anxiety\""}'
+          limit: 5
+    type: ActionList
+    subtitle: Anxiety
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Anxiety","query":"topic_anxiety","filters":"ministries:\"The Porch\" AND topics:\"Anxiety\""}'
+        name: Anxiety
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"name":"Views from the Porch","messages":true,"filters":{"filter[series_id]":"562"}}'
+          limit: 3
+    type: HorizontalCardList
+    subtitle: Views from the Porch
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"name":"Views from the Porch","messages":true,"filters":{"filter[series_id]":"562"}'
+        name: Views from the Porch
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
+          limit: 5
+    type: HeroList
+    subtitle: From the Blog
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
+        name: From the Blog
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Books of the Bible","query":"topic_books_of_the_bible","filters":"ministries:\"The Porch\" AND topics:\"Books of the Bible\""}'
+          limit: 5
+    type: ActionList
+    subtitle: Books of the Bible
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Books of the Bible","query":"topic_books_of_the_bible","filters":"ministries:\"The Porch\" AND topics:\"Books of the Bible\""}'
+        name: Books of the Bible
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Sex","query":"topic_sex","filters":"ministries:\"The Porch\" AND topics:\"Sex\""}'
+          limit: 5
+    type: HorizontalCardList
+    subtitle: Sex
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Sex","query":"topic_sex","filters":"ministries:\"The Porch\" AND topics:\"Sex\""}'
+        name: Sex
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Culture","query":"topic_culture","filters":"ministries:\"The Porch\" AND topics:\"Culture\""}'
+          limit: 5
+    type: HorizontalCardList
+    subtitle: Culture
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Culture","query":"topic_culture","filters":"ministries:\"The Porch\" AND topics:\"Culture\""}'
+        name: Culture
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Money","query":"topic_money","filters":"ministries:\"The Porch\" AND topics:\"Money\""}'
+          limit: 5
+    type: HorizontalCardList
+    subtitle: Money
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Money","query":"topic_money","filters":"ministries:\"The Porch\" AND topics:\"Money\""}'
+        name: Money  
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Work & Career","query":"topic_work_career","filters":"ministries:\"The Porch\" AND topics:\"Work & Career\""}'
+          limit: 5
+    type: HorizontalCardList
+    subtitle: Work & Career
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Work & Career","query":"topic_work_career","filters":"ministries:\"The Porch\" AND topics:\"Work & Career\""}'
+        name: Work & Career
+  - algorithms:
+      - type: CONTENT_CHANNEL_CHILDREN
+        arguments:
+          id: '{"search":"porchapp_production_messages_force_ranked","name":"Faith","query":"topic_faith","filters":"ministries:\"The Porch\" AND topics:\"Faith\""}'
+          limit: 5
+    type: HorizontalCardList
+    subtitle: Faith
+    primaryAction:
+      action: OPEN_CHANNEL
+      title: 'Read More'
+      relatedNode:
+        __typename: ContentChannel
+        id: '{"search":"porchapp_production_messages_force_ranked","name":"Faith","query":"topic_faith","filters":"ministries:\"The Porch\" AND topics:\"Faith\""}'
+        name: Faith
+
+# apollos-church-api: { Faith: 207,
+# apollos-church-api:   'Books of the Bible': 116,
+# apollos-church-api:   Culture: 54,
+# apollos-church-api:   Anxiety: 35,
+# apollos-church-api:   Sex: 19,
+# apollos-church-api:   Money: 14,
+# apollos-church-api:   'Work & Career': 8 }
+
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

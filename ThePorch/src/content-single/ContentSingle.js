@@ -8,13 +8,12 @@ import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
 import { TrackEventWhenLoaded } from '@apollosproject/ui-analytics';
 import { InteractWhenLoadedConnected } from '@apollosproject/ui-connected';
 
+import NavigationHeader from '../ui/NavigationHeader';
 import ActionContainer from './ActionContainer';
 import GET_CONTENT_ITEM from './getContentItem';
 
 import UniversalContentItem from './UniversalContentItem';
 import ConferenceContentItem from './ConferenceContentItem';
-
-import NavigationHeader from './NavigationHeader';
 
 import Location from './Location';
 

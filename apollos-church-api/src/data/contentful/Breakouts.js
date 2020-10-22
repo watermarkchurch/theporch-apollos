@@ -43,9 +43,6 @@ export const schema = gql`
 
     startTime: String
     endTime: String
-
-    isLiked: Boolean @cacheControl(maxAge: 0)
-    likedCount: Int @cacheControl(maxAge: 0)
   }
 `;
 

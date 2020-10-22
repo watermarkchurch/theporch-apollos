@@ -1,6 +1,9 @@
 import { gql } from 'apollo-server';
 
-import { createApolloServerConfig } from '@apollosproject/server-core';
+import {
+  createApolloServerConfig,
+  Interfaces,
+} from '@apollosproject/server-core';
 
 import * as Analytics from '@apollosproject/data-connector-analytics';
 import * as Scripture from '@apollosproject/data-connector-bible';
@@ -10,7 +13,7 @@ import * as Pass from '@apollosproject/data-connector-passes';
 import * as Cache from '@apollosproject/data-connector-redis-cache';
 import * as Sms from '@apollosproject/data-connector-twilio';
 import {
-  // Followings,
+  Followings,
   Interactions,
   RockConstants,
   Person,
@@ -24,6 +27,9 @@ import {
   Group,
   BinaryFiles,
   // Feature,
+  // FeatureFeed,
+  // Event,
+  // ActionAlgorithm,
   PrayerRequest,
 } from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
@@ -39,13 +45,16 @@ import * as ContentChannel from './ContentChannel';
 import * as Search from './search';
 import * as WCCSpeaker from './WCCSpeaker';
 import * as Campus from './Campus';
+import * as FeatureFeed from './FeatureFeed';
+import * as ActionAlgorithm from './ActionAlgorithm';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
 import * as OneSignalWithRock from './oneSignalWithRock';
 
 const data = {
-  // Followings,
+  Followings,
+  Interfaces,
   ContentChannel,
   ContentItem,
   ...ContentfulData,
@@ -74,11 +83,14 @@ const data = {
   // WCCFeatures,
   // Event,
   Feature,
+  FeatureFeed,
+  // Event,
   Cache,
   WCCMessage,
   WCCBlog,
   WCCSeries,
   WCCSpeaker,
+  ActionAlgorithm,
 };
 
 const {

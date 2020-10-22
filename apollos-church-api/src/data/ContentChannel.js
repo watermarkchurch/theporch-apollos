@@ -83,6 +83,7 @@ export class dataSource extends RESTDataSource {
       filters: 'ministries:"The Porch"',
     });
 
+
     return Object.keys(topics).map((name) =>
       this.getFromId(
         JSON.stringify({
@@ -103,6 +104,56 @@ export class dataSource extends RESTDataSource {
     this.getBlogChannel(),
     ...(await this.getTopicsChannels()),
   ];
+
+  getChildContentItems = async ({ channel, pagination }) => {
+    const {
+      WCCSpeaker,
+      Search,
+      WCCSeries,
+      WCCMessage,
+      WCCBlog,
+    } = this.context.dataSources;
+    if (channel.speakers) {
+      return WCCSpeaker.paginate({ pagination });
+      // return {
+      //   edges: node.speakers.map((speaker) => ({
+      //     node: {
+      //       name: speaker,
+      //       __typename: 'WCCSpeaker',
+      //     },
+      //   })),
+      // };
+    }
+    if (channel.search) {
+      const results = await Search.byPaginatedQuery({
+        ...pagination,
+        index: channel.search,
+        ...(channel.query ? { query: channel.query } : {}),
+        ...(channel.filters ? { filters: channel.filters } : {}),
+        ...(channel.facetFilters ? { facetFilters: channel.facetFilters } : {}),
+      });
+      return {
+        edges: results.map(({ cursor, ...result }) => ({
+          node: result,
+          cursor,
+        })),
+      };
+    }
+    if (channel.series) {
+      return WCCSeries.paginate({
+        pagination,
+        filters: { filter: channel.pagination.filter },
+      });
+    }
+    if (channel.messages)
+      return WCCMessage.paginate({
+        pagination,
+        filters: channel.filters || {},
+      });
+    return WCCBlog.paginate({
+      pagination,
+    });
+  };
 }
 
 export const { schema } = ContentChannel;
@@ -138,48 +189,11 @@ export const resolver = {
     },
     description: () => null,
     childContentChannels: () => [],
-    childContentItemsConnection: async (node, pagination, { dataSources }) => {
-      if (node.speakers) {
-        return dataSources.WCCSpeaker.paginate({ pagination });
-        // return {
-        //   edges: node.speakers.map((speaker) => ({
-        //     node: {
-        //       name: speaker,
-        //       __typename: 'WCCSpeaker',
-        //     },
-        //   })),
-        // };
-      }
-      if (node.search) {
-        const results = await dataSources.Search.byPaginatedQuery({
-          ...pagination,
-          index: node.search,
-          ...(node.query ? { query: node.query } : {}),
-          ...(node.filters ? { filters: node.filters } : {}),
-          ...(node.facetFilters ? { facetFilters: node.facetFilters } : {}),
-        });
-        return {
-          edges: results.map(({ cursor, ...result }) => ({
-            node: result,
-            cursor,
-          })),
-        };
-      }
-      if (node.series) {
-        return dataSources.WCCSeries.paginate({
-          pagination,
-          filters: { filter: node.pagination.filter },
-        });
-      }
-      if (node.messages)
-        return dataSources.WCCMessage.paginate({
-          pagination,
-          filters: node.filters || {},
-        });
-      return dataSources.WCCBlog.paginate({
+    childContentItemsConnection: (node, pagination, { dataSources }) =>
+      dataSources.ContentChannel.getChildContentItems({
+        channel: node,
         pagination,
-      });
-    },
+      }),
     iconName: () => 'text', // TODO
   },
 };

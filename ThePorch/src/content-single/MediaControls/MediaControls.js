@@ -18,7 +18,7 @@ const MediaControls = ({
   webViewUrl,
   ...props
 }) => {
-  if (error) return null;
+  if (loading || error) return null;
 
   let Control = null;
 
