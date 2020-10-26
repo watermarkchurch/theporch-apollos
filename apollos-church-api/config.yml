@@ -260,7 +260,7 @@ DISCOVER_FEATURES:
     subtitle: Top 10 on Dating
     primaryAction:
       action: OPEN_CHANNEL
-      title: 'Read More'
+      title: 'View More'
       relatedNode:
         __typename: ContentChannel
         id: '{"search":"porchapp_production_messages_force_ranked","name":"Love & Dating","query":"topic_love_dating","filters":"ministries:\"The Porch\" AND topics:\"Love & Dating\""}'
@@ -288,7 +288,7 @@ DISCOVER_FEATURES:
     subtitle: Anxiety
     primaryAction:
       action: OPEN_CHANNEL
-      title: 'Read More'
+      title: 'View More'
       relatedNode:
         __typename: ContentChannel
         id: '{"search":"porchapp_production_messages_force_ranked","name":"Anxiety","query":"topic_anxiety","filters":"ministries:\"The Porch\" AND topics:\"Anxiety\""}'
@@ -316,7 +316,7 @@ DISCOVER_FEATURES:
     subtitle: From the Blog
     primaryAction:
       action: OPEN_CHANNEL
-      title: 'Read More'
+      title: 'View More'
       relatedNode:
         __typename: ContentChannel
         id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
@@ -330,7 +330,7 @@ DISCOVER_FEATURES:
     subtitle: Books of the Bible
     primaryAction:
       action: OPEN_CHANNEL
-      title: 'Read More'
+      title: 'View More'
       relatedNode:
         __typename: ContentChannel
         id: '{"search":"porchapp_production_messages_force_ranked","name":"Books of the Bible","query":"topic_books_of_the_bible","filters":"ministries:\"The Porch\" AND topics:\"Books of the Bible\""}'
