@@ -62,6 +62,39 @@ class WCCFeatures extends baseFeatures.dataSource {
     })),
     __typename: 'LinkTableFeature',
   });
+
+  createTextFeature({ text }) {
+    return {
+      body: text,
+      id: this.createFeatureId({ args: { text } }),
+      __typename: 'TextFeature',
+    };
+  }
+
+  async createActionBarFeature({ actions = [], title, algorithms = [] }) {
+    const { ActionAlgorithm } = this.context.dataSources;
+
+    // Run algorithms if we have them, otherwise pull from the config
+    const compiledActions = () =>
+      actions.length
+        ? actions.map((action) => this.attachRelatedNodeId(action))
+        : ActionAlgorithm.runAlgorithms({ algorithms: [] });
+
+    return {
+      // The Feature ID is based on all of the action ids, added together.
+      // This is naive, and could be improved.
+      id: this.createFeatureId({
+        args: {
+          title,
+          algorithms,
+          actions,
+        },
+      }),
+      actions: compiledActions,
+      title: () => title || ActionAlgorithm.homeFeedTitle(),
+      __typename: 'ActionBarFeature',
+    };
+  }
 }
 
 const resolver = {

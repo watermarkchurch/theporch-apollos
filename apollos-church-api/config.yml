@@ -196,6 +196,7 @@ ROCK_MAPPINGS:
   MOBILE_DEVICE_TYPE_ID: 671
 
 HOME_FEATURES:
+  - type: ActionBar
   - algorithms:
       - type: CAMPAIGN_ITEMS
         arguments:

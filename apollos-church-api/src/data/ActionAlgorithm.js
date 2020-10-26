@@ -339,6 +339,16 @@ class dataSource extends ActionAlgorithm.dataSource {
         };
       });
   }
+
+  async homeFeedTitle() {
+    const { ConnectScreen } = this.context.dataSources;
+    // Connect screen here is misleading. The scope of this contetnful model has been expanded.
+    const screen = await ConnectScreen.getFromReferenceId('home feed');
+    if (screen) {
+      return screen.fields.title;
+    }
+    return '';
+  }
 }
 
 export { dataSource };
