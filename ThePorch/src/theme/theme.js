@@ -110,6 +110,13 @@ export const buttons = ({ colors: themeColors, alpha: themeAlpha }) => ({
   },
 });
 
+const featureFeedLabels = ({ helpers }) => ({
+  fontSize: helpers.rem(1.5),
+  lineHeight: helpers.verticalRhythm(1.5, 1.15),
+  fontFamily: typography.sans.bebas.default,
+  ...(Platform.OS === 'ios' ? { fontWeight: '700' } : {}),
+});
+
 const overrides = {
   // Typography
   'ui-kit.Typography.H1': {
@@ -206,6 +213,10 @@ const overrides = {
     fontSize: themeSizing.baseUnit * 1.75,
     fontWeight: '700',
   }),
+  'ui-connected.ActionListFeatureConnected.ActionListFeature.Subtitle': featureFeedLabels,
+  'ui-connected.HeroListFeatureConnected.HeroListFeature.Subtitle': featureFeedLabels,
+  'ui-connected.HorizontalCardListFeatureConnected.HorizontalCardListFeature.Subtitle': featureFeedLabels,
+  'ui-connected.VerticalCardListFeatureConnected.VerticalCardListFeature.Subtitle': featureFeedLabels,
 };
 
 // const overrides = {

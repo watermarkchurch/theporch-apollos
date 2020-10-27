@@ -12,20 +12,6 @@ const getSpotifyEmbed = (url) => {
 };
 
 class WCCFeatures extends baseFeatures.dataSource {
-  getFromId(args, id) {
-    const type = id.split(':')[0];
-    const funcArgs = JSON.parse(args);
-    const method = this[`create${type}`].bind(this);
-    if (funcArgs.campusId) {
-      this.context.campusId = funcArgs.campusId;
-    }
-    return method(funcArgs);
-  }
-
-  createFeatureId({ args }) {
-    return JSON.stringify({ campusId: this.context.campusId, ...args });
-  }
-
   createSpeakerFeature = ({ name, id }) => ({
     name,
     id,
@@ -71,6 +57,18 @@ class WCCFeatures extends baseFeatures.dataSource {
     };
   }
 
+  async createActionListFeature(args) {
+    const feature = await super.createActionListFeature(args);
+
+    if (feature.primaryAction) {
+      // Need to provide CampusID for an AppLink.
+      // There's a better way to do this on the front end, but we have to do this for backwards compat.
+      feature.primaryAction.campusId = args.campusId;
+    }
+
+    return feature;
+  }
+
   async createActionBarFeature({ actions = [], title, algorithms = [] }) {
     const { ActionAlgorithm } = this.context.dataSources;
 
@@ -99,18 +97,6 @@ class WCCFeatures extends baseFeatures.dataSource {
 
 const resolver = {
   ...baseFeatures.resolver,
-  Query: {
-    ...baseFeatures.resolver.Query,
-    userFeedFeaturesWithCampus: (root, { campusId }, context, ...args) => {
-      context.campusId = campusId;
-      return baseFeatures.resolver.Query.userFeedFeatures(
-        root,
-        null,
-        context,
-        ...args
-      );
-    },
-  },
   WebviewFeature: {
     id: ({ id }) => createGlobalId(id, 'WebviewFeature'),
   },
@@ -132,11 +118,9 @@ const resolver = {
   },
   FeatureAction: {
     ...baseFeatures.resolver.FeatureAction,
-    relatedNode: ({ action, relatedNode }, args, context) => {
+    relatedNode: ({ action, relatedNode, campusId }, args, context) => {
       if (action === 'OPEN_CAMPUS') {
-        const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${
-          context.campusId
-        }`;
+        const url = `ThePorch://ThePorch/app-link/AboutCampus?itemId=${campusId}`;
         return {
           id: createGlobalId(url, 'Url'),
           __typename: 'Url',
@@ -146,6 +130,22 @@ const resolver = {
       return relatedNode;
     },
     action: ({ action }) => (action === 'OPEN_CAMPUS' ? 'OPEN_URL' : action),
+  },
+  ActionListFeature: {
+    ...baseFeatures.resolver.ActionListFeature,
+    subtitle: ({ subtitle }) => subtitle?.toUpperCase(),
+  },
+  VerticalCardListFeature: {
+    ...baseFeatures.resolver.VerticalCardListFeature,
+    subtitle: ({ subtitle }) => subtitle?.toUpperCase(),
+  },
+  HorizontalCardListFeature: {
+    ...baseFeatures.resolver.HorizontalCardListFeature,
+    subtitle: ({ subtitle }) => subtitle?.toUpperCase(),
+  },
+  HeroListFeature: {
+    ...baseFeatures.resolver.HeroListFeature,
+    subtitle: ({ subtitle }) => subtitle?.toUpperCase(),
   },
   CardListItem: {
     ...baseFeatures.resolver.CardListItem,
@@ -199,7 +199,6 @@ const schema = gql`
 
   extend type Query {
     userFeedFeaturesWithCampus(campusId: ID): [Feature]
-    homeFeedFeaturesWithCampus(campusId: ID): FeatureFeed
   }
 `;
 

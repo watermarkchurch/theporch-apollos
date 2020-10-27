@@ -40,7 +40,7 @@ function handleOnPress({ action, ...props }) {
 // Or use some other strategy to get a FeatureFeed.id
 const GET_HOME_FEED = gql`
   query getHomeFeatureFeed($campusId: ID) {
-    homeFeedFeaturesWithCampus(campusId: $campusId) {
+    homeFeedFeatures(campusId: $campusId) {
       id
     }
   }
@@ -71,11 +71,11 @@ class Home extends PureComponent {
                     variables={{ campusId: userCampus?.id }}
                     query={GET_HOME_FEED}
                   >
-                    {({ data }) => (
+                    {({ data, ...rest }) => (
                       <FeaturesFeedConnected
                         openUrl={openUrl}
                         navigation={this.props.navigation}
-                        featureFeedId={data?.homeFeedFeaturesWithCampus?.id}
+                        featureFeedId={data?.homeFeedFeatures?.id}
                         onPressActionItem={handleOnPress}
                         ListHeaderComponent={
                           <LogoTitle source={require('./wordmark.png')} />

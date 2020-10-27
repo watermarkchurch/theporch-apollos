@@ -27,7 +27,7 @@ import {
   Group,
   BinaryFiles,
   // Feature,
-  // FeatureFeed,
+  FeatureFeed,
   // Event,
   // ActionAlgorithm,
   PrayerRequest,
@@ -45,7 +45,6 @@ import * as ContentChannel from './ContentChannel';
 import * as Search from './search';
 import * as WCCSpeaker from './WCCSpeaker';
 import * as Campus from './Campus';
-import * as FeatureFeed from './FeatureFeed';
 import * as ActionAlgorithm from './ActionAlgorithm';
 
 // This module is used to attach Rock User updating to the OneSignal module.

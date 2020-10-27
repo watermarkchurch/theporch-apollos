@@ -280,9 +280,8 @@ class dataSource extends ActionAlgorithm.dataSource {
     return items.slice(0, limit);
   }
 
-  async campusItemsAlgorithm() {
+  async campusItemsAlgorithm({ campusId }) {
     const {
-      campusId,
       dataSources: { ContentItem },
     } = this.context;
     if (!campusId) {
