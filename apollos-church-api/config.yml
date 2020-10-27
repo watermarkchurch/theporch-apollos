@@ -306,7 +306,7 @@ DISCOVER_FEATURES:
       title: 'View More'
       relatedNode:
         __typename: ContentChannel
-        id: '{"name":"Views from the Porch","messages":true,"filters":{"filter[series_id]":"562"}'
+        id: '{"name":"Views from the Porch","messages":true,"filters":{"filter[series_id]":"562"}}'
         name: Views from the Porch
   - algorithms:
       - type: CONTENT_CHANNEL_CHILDREN
