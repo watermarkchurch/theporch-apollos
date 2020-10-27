@@ -217,6 +217,25 @@ const overrides = {
   'ui-connected.HeroListFeatureConnected.HeroListFeature.Subtitle': featureFeedLabels,
   'ui-connected.HorizontalCardListFeatureConnected.HorizontalCardListFeature.Subtitle': featureFeedLabels,
   'ui-connected.VerticalCardListFeatureConnected.VerticalCardListFeature.Subtitle': featureFeedLabels,
+  'ui-connected.HorizontalCardListFeatureConnected.HorizontalCardListFeature.Header': ({
+    sizing,
+  }) => ({
+    paddingBottom: 0,
+  }),
+  'ui-connected.HorizontalCardListFeatureConnected.HorizontalCardListFeature.ButtonLinkSpacing': ({
+    sizing,
+  }) => ({
+    padding: sizing.baseUnit * 0.5,
+  }),
+  'ui-kit.HorizontalTileFeed.TileFeed': ({ sizing }) => ({
+    contentContainerStyle: {
+      // The horizontal padding keeps cards on grid (the other half of the baseUnit lives on the
+      // card). The vertical padding is purly stylistic.
+      paddingTop: 0,
+      paddingHorizontal: sizing.baseUnit / 2,
+      paddingBottom: 0,
+    },
+  }),
 };
 
 // const overrides = {
