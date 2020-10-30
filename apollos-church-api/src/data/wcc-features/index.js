@@ -97,6 +97,18 @@ class WCCFeatures extends baseFeatures.dataSource {
 
 const resolver = {
   ...baseFeatures.resolver,
+  Query: {
+    ...baseFeatures.resolver.Query,
+    userFeedFeaturesWithCampus: (root, { campusId }, context, ...args) => {
+      context.campusId = campusId;
+      return baseFeatures.resolver.Query.userFeedFeatures(
+        root,
+        null,
+        context,
+        ...args
+      );
+    },
+  },
   WebviewFeature: {
     id: ({ id }) => createGlobalId(id, 'WebviewFeature'),
   },
