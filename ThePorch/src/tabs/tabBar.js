@@ -1,4 +1,5 @@
 import { compose } from 'recompose';
+import { Platform } from 'react-native';
 import { BottomTabBar } from 'react-navigation';
 
 import { withTabBarMediaSpacer } from '@apollosproject/ui-media-player';
@@ -15,6 +16,7 @@ const ThemedBottomTabBar = compose(
     borderTopWidth: 0,
     backgroundColor: theme.colors.background.paper,
     marginTop: theme.sizing.baseUnit * 0.3125,
+    ...(Platform.OS === 'android' ? { marginBottom: theme.sizing.baseUnit * 0.3125 } : {}),
   })),
   withTabBarMediaSpacer
 )(BottomTabBar);
