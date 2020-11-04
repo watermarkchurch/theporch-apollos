@@ -12,7 +12,17 @@ import {
   FeaturesFeedConnected,
   FEATURE_FEED_ACTION_MAP,
   RockAuthedWebBrowser,
+  ActionListFeatureConnected,
 } from '@apollosproject/ui-connected';
+
+import ActionListFeature from '../../ui/ActionListFeature';
+
+const ActionListFeatureWithActionListComponent = (props) => (
+  <ActionListFeatureConnected
+    {...props}
+    Component={ActionListFeature}
+  />
+);
 
 function handleOnPress({ action, ...props }) {
   if (FEATURE_FEED_ACTION_MAP[action]) {
@@ -47,6 +57,9 @@ function Discover({ navigation }) {
                   navigation={navigation}
                   featureFeedId={data?.discoverFeedFeatures?.id}
                   onPressActionItem={handleOnPress}
+                  additionalFeatures={{
+                    ActionListFeature: ActionListFeatureWithActionListComponent
+                  }}
                 />
               )}
             </Query>
