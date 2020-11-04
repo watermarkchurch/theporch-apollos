@@ -127,16 +127,6 @@ const ActionListFeature = memo(
         <ActionList
           isLoading={isLoading}
           key={id}
-          // header={
-          //   <HeaderWrapper>
-          //     {isLoading || title ? ( // we check for isloading here so that they are included in the loading state
-          //       <Title numberOfLines={1}>{title}</Title>
-          //     ) : null}
-          //     {isLoading || subtitle ? (
-          //       <Subtitle>{subtitle}</Subtitle>
-          //     ) : null}
-          //   </HeaderWrapper>
-          // }
           actions={isLoading && !actions.length ? loadingStateObject : actions}
           onPressActionItem={onPressItem}
           onPressActionListButton={() => onPressActionListButton(primaryAction)}
