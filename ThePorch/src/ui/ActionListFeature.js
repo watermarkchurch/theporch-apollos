@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
@@ -116,22 +116,24 @@ const ActionListFeature = memo(
     // Only render if loading or if you have actions
     return (
       !!(isLoading || actions.length) && (
-        <HeaderWrapper>
-        {isLoading || title ? ( // we check for isloading here so that they are included in the loading state
-          <Title numberOfLines={1}>{title}</Title>
-        ) : null}
-        {isLoading || subtitle ? (
-          <Subtitle>{subtitle}</Subtitle>
-        ) : null}
-      </HeaderWrapper>
-        <ActionList
-          isLoading={isLoading}
-          key={id}
-          actions={isLoading && !actions.length ? loadingStateObject : actions}
-          onPressActionItem={onPressItem}
-          onPressActionListButton={() => onPressActionListButton(primaryAction)}
-          actionListButtonTitle={get(primaryAction, 'title')}
-        />
+        <Fragment>
+          <HeaderWrapper>
+            {isLoading || title ? ( // we check for isloading here so that they are included in the loading state
+              <Title numberOfLines={1}>{title}</Title>
+            ) : null}
+            {isLoading || subtitle ? (
+              <Subtitle>{subtitle}</Subtitle>
+            ) : null}
+          </HeaderWrapper>
+          <ActionList
+            isLoading={isLoading}
+            key={id}
+            actions={isLoading && !actions.length ? loadingStateObject : actions}
+            onPressActionItem={onPressItem}
+            onPressActionListButton={() => onPressActionListButton(primaryAction)}
+            actionListButtonTitle={get(primaryAction, 'title')}
+          />
+        </Fragment>
       )
     );
   }
