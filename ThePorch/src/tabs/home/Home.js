@@ -11,8 +11,11 @@ import {
   RockAuthedWebBrowser,
   FEATURE_FEED_ACTION_MAP,
   FeaturesFeedConnected,
+  ActionListFeatureConnected,
 } from '@apollosproject/ui-connected';
 import { CampusConsumer } from '../../CampusProvider';
+
+import ActionListFeature from '../../ui/ActionListFeature';
 
 const LogoTitle = styled(({ theme }) => ({
   height: theme.sizing.baseUnit * 2,
@@ -20,6 +23,13 @@ const LogoTitle = styled(({ theme }) => ({
   alignSelf: 'center',
   resizeMode: 'contain',
 }))(Image);
+
+const ActionListFeatureWithActionListComponent = (props) => (
+  <ActionListFeatureConnected
+    {...props}
+    Component={ActionListFeature}
+  />
+);
 
 const feedActionMap = {
   OPEN_CONTENT_CHANNEL: FEATURE_FEED_ACTION_MAP.OPEN_CHANNEL,
@@ -77,6 +87,9 @@ class Home extends PureComponent {
                         navigation={this.props.navigation}
                         featureFeedId={data?.homeFeedFeatures?.id}
                         onPressActionItem={handleOnPress}
+                        additionalFeatures={{
+                          ActionListFeature: ActionListFeatureWithActionListComponent
+                        }}
                         ListHeaderComponent={
                           <LogoTitle source={require('./wordmark.png')} />
                         }
