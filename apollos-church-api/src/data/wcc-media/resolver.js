@@ -18,7 +18,7 @@ const resolver = {
     title: ContentItem.resolver.ContentItem.title,
     coverImage: (contentItem, _, { dataSources }) =>
       dataSources.WCCMessage.getCoverImage(contentItem),
-    htmlContent: ({ description, sermon_guide, transcript, date }) => {
+    htmlContent: ({ description, sermon_guide, transcript, date, assets }) => {
       // combine props in order as html: description, sermon_guide, transcript
       // todo: this shuold reall be improved or extrapolated into our features schema long-term
       let htmlContent = '';
@@ -35,6 +35,12 @@ const resolver = {
 
       if (transcript && transcript.markdown) {
         htmlContent += marked(transcript.markdown);
+      }
+
+      if (assets && assets.progressive_video) {
+        htmlContent += `<a href="${
+          assets.progressive_video.url
+        }">Download Video</a>`;
       }
 
       return htmlContent;
