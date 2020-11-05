@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Platform, StatusBar } from 'react-native';
 
 import {
   CampusCard,
@@ -39,10 +38,6 @@ const LocationFinder = memo(
     onPressPrimary,
     ...props
   }) => (
-    <>
-    <StatusBar
-      Platform.OS === 'android' ? StatusBar.currentHeight : 0
-    />
     <Slide onPressPrimary={onPressPrimary} {...props}>
       {BackgroundComponent}
       <StyledSlideContent
@@ -68,7 +63,6 @@ const LocationFinder = memo(
         )}
       </StyledSlideContent>
     </Slide>
-    </>
   )
 );
 
