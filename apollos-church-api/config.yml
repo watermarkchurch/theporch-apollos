@@ -243,7 +243,7 @@ DISCOVER_FEATURES:
         arguments:
           id: '{"search":"messages_production_trending","name":"Crowd Favorites","filters":"ministries:\"The Porch\""}'
           limit: 3
-    type: HorizontalCardList
+    type: ActionList
     subtitle: Crowd Favorites
     primaryAction:
       action: OPEN_CHANNEL
@@ -253,19 +253,18 @@ DISCOVER_FEATURES:
         id: '{"search":"messages_production_trending","name":"Crowd Favorites","filters":"ministries:\"The Porch\""}'
         name: Crowd Favorites
   - algorithms:
-      - type: CONTENT_CHANNEL_CHILDREN
+      - type: CONTENT_CHANNELS
         arguments:
-          id: '{"search":"porchapp_production_messages_force_ranked","name":"Love & Dating","query":"topic_love_dating","filters":"ministries:\"The Porch\" AND topics:\"Love & Dating\""}'
-          limit: 5
-    type: ActionList
-    subtitle: Top 10 on Dating
-    primaryAction:
-      action: OPEN_CHANNEL
-      title: 'View More'
-      relatedNode:
-        __typename: ContentChannel
-        id: '{"search":"porchapp_production_messages_force_ranked","name":"Love & Dating","query":"topic_love_dating","filters":"ministries:\"The Porch\" AND topics:\"Love & Dating\""}'
-        name: Top 10 on Dating
+          ids:
+            - 852
+            - 665
+            - 581
+            - 510
+            - 457
+            - 406
+            - 342
+    type: VerticalCardList
+    subtitle: Top Series' on Dating
   - algorithms:
       - type: CONTENT_CHANNEL_CHILDREN
         arguments:
@@ -294,34 +293,6 @@ DISCOVER_FEATURES:
         __typename: ContentChannel
         id: '{"search":"porchapp_production_messages_force_ranked","name":"Anxiety","query":"topic_anxiety","filters":"ministries:\"The Porch\" AND topics:\"Anxiety\""}'
         name: Anxiety
-  - algorithms:
-      - type: CONTENT_CHANNEL_CHILDREN
-        arguments:
-          id: '{"name":"Views from the Porch","messages":true,"filters":{"filter[series_id]":"562"}}'
-          limit: 3
-    type: HorizontalCardList
-    subtitle: Views from the Porch
-    primaryAction:
-      action: OPEN_CHANNEL
-      title: 'View More'
-      relatedNode:
-        __typename: ContentChannel
-        id: '{"name":"Views from the Porch","messages":true,"filters":{"filter[series_id]":"562"}}'
-        name: Views from the Porch
-  - algorithms:
-      - type: CONTENT_CHANNEL_CHILDREN
-        arguments:
-          id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
-          limit: 5
-    type: HeroList
-    subtitle: From the Blog
-    primaryAction:
-      action: OPEN_CHANNEL
-      title: 'View More'
-      relatedNode:
-        __typename: ContentChannel
-        id: 'https://di0v2frwtdqnv.cloudfront.net/api/v1/property/theporch-app'
-        name: From the Blog
   - algorithms:
       - type: CONTENT_CHANNEL_CHILDREN
         arguments:
@@ -377,7 +348,7 @@ DISCOVER_FEATURES:
       relatedNode:
         __typename: ContentChannel
         id: '{"search":"porchapp_production_messages_force_ranked","name":"Money","query":"topic_money","filters":"ministries:\"The Porch\" AND topics:\"Money\""}'
-        name: Money  
+        name: Money
   - algorithms:
       - type: CONTENT_CHANNEL_CHILDREN
         arguments:
