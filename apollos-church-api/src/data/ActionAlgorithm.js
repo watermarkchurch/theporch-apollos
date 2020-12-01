@@ -12,6 +12,7 @@ class dataSource extends ActionAlgorithm.dataSource {
     CAMPUS_ITEMS: this.campusItemsAlgorithm,
     WCC_SERIES: this.mediaSeries,
     CONTENT_CHANNEL_CHILDREN: this.contentChannelChildrenAlgorithm,
+    CONTENT_CHANNELS: this.contentChannelsAlgorithm,
   }).reduce((accum, [key, value]) => {
     // convenciance code to make sure all methods are bound to the Features dataSource
     // eslint-disable-next-line
@@ -67,6 +68,27 @@ class dataSource extends ActionAlgorithm.dataSource {
         action: 'READ_CONTENT',
         summary: dataSourceMap[__type].createSummary(item),
         hasAction: __type === 'WCCMessage' || __type === 'WCCSeries',
+      };
+    });
+  }
+
+  async contentChannelsAlgorithm({ ids }) {
+    const { WCCSeries } = this.context.dataSources;
+    const channels = await Promise.all(
+      ids.map(async (id) => WCCSeries.getFromId(id))
+    );
+
+    return channels.map((channel) => {
+      const __type = 'WCCSeries';
+      const { id, title } = channel;
+      return {
+        id,
+        title,
+        relatedNode: { ...channel, __type },
+        image: WCCSeries.getCoverImage(channel),
+        action: 'READ_CONTENT',
+        summary: WCCSeries.createSummary(channel),
+        hasAction: true,
       };
     });
   }
