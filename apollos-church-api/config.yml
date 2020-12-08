@@ -263,7 +263,8 @@ DISCOVER_FEATURES:
             - 457
             - 406
             - 342
-    type: VerticalCardList
+          limit: 7
+    type: ActionList
     subtitle: Top Series' on Dating
   - algorithms:
       - type: CONTENT_CHANNEL_CHILDREN
