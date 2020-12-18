@@ -53,7 +53,7 @@ const OnboardingVideo = memo(
     const handleOnEnd = () => {
       setPlayAgain(false);
       setVideoEnded(true);
-      setVisibleStatusBar(false);
+      setVisibleStatusBar(true);
     };
 
     const handleOnPlayAgain = () => {
@@ -65,7 +65,7 @@ const OnboardingVideo = memo(
     const handleOnSkip = () => {
       onPressPrimary();
       setSkipVideo(true);
-      setVisibleStatusBar(false);
+      setVisibleStatusBar(true);
     };
 
     return (
