@@ -57,7 +57,7 @@ export const resolver = {
         .slice(0, first),
     }),
     mediaSeries: (a, b, { dataSources }) =>
-      dataSources.WCCSeries.getFromId('644'),
+      dataSources.WCCSeries.getFromId('1017'),
     upNext: ({ fields }, { likedIds = [] }) => {
       const currentTime = moment();
 

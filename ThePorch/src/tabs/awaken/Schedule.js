@@ -25,6 +25,8 @@ import ScheduleItem from '../../ui/ScheduleItem';
 
 import headerOptions from '../headerOptions';
 
+import Media from './Media';
+
 const getDays = gql`
   query {
     conference {
@@ -195,7 +197,8 @@ const Schedule = class Schedule extends PureComponent {
           <Query query={getDays} fetchPolicy="cache-and-network">
             {({ loading, data, error, refetch }) => {
               if (error) return <ErrorCard error={error} />;
-
+              if (!data?.conference?.days)
+                return <Media navigation={this.props.navigation} />;
               return this.renderSchedule({ loading, data, error, refetch });
             }}
           </Query>
