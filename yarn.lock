@@ -223,11 +223,6 @@
   resolved "https://registry.yarnpkg.com/@apollosproject/eslint-config/-/eslint-config-1.7.0-beta.2.tgz#5d6089e44ce94bb0eb9dced478215df6d4c0e5d6"
   integrity sha512-8Fo/6li34bzFVtiNQ6O2L9bBkvT8s9GabEgT+fjq+AJGzvwiI7yKdOepWDb9btG+63sFlJaaGN9jvU0EwaWsKg==
 
-"@apollosproject/metarouter-analytics-react-native@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@apollosproject/metarouter-analytics-react-native/-/metarouter-analytics-react-native-1.1.5.tgz#1d75a95f124ecbd3f9f8ce348b6f9f0ef99b3cf2"
-  integrity sha512-NlZeZDJsUXsmtOgqn5uNQgWE8XwadOYhtb5kS7rwALGvVwqis8yA2T0kw/HhZye/JMzRjY+ybj9gT+Td5nCSow==
-
 "@apollosproject/react-native-airplay-btn@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@apollosproject/react-native-airplay-btn/-/react-native-airplay-btn-0.2.0.tgz#19c1c7154e6c04fd4d5a5587faf6a69cb34d8a79"
@@ -257,10 +252,10 @@
     graphql-tag "^2.10.0"
     lodash "^4.17.11"
 
-"@apollosproject/ui-analytics@^1.7.0-beta.2":
-  version "1.7.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@apollosproject/ui-analytics/-/ui-analytics-1.7.0-beta.2.tgz#5b380e977fb06d3e235253800760b6abdd438dc6"
-  integrity sha512-NWFai1ca2opMtaNUWWWwyg9LTvG/tTiaDbUvzq9tyNsDWGNbLrNxJRXcdprfBFFU7GPAkTkiA3hk72ydaW8hFg==
+"@apollosproject/ui-analytics@1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@apollosproject/ui-analytics/-/ui-analytics-1.4.3.tgz#fc5e67316c5e7fe9e8bebbf0dbfd5546fddae8ed"
+  integrity sha512-s8EFfhl6tIWRc5lNxm7CpLM03LiUF5Vho6v1T7LJqQLLuiIkUbBKv4amOupaP5fA3SMIjY2VcYxRVDcUo8lUrA==
   dependencies:
     graphql-tag "2.9.2"
     react-native-device-info "^4.0.1"
@@ -3020,11 +3015,6 @@
   dependencies:
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
-
-"@metarouter/analytics-react-native@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@metarouter/analytics-react-native/-/analytics-react-native-1.1.5.tgz#a2e4f7679793be21eb7a396588ee0e09420a95e6"
-  integrity sha512-xEyazUyK/Dm7jthSRms/CGWJ5RGmYfyBLT93Uv4snb78xVgsBLF7I6pp4fa5j6Eo/LBWFMtp59k1CObCwt9ySQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

@@ -4,10 +4,7 @@ import RNBootSplash from 'react-native-bootsplash';
 import React, { useEffect } from 'react';
 import { isNil } from 'lodash';
 
-import {
-  CoreNavigationAnalytics,
-  AnalyticsConsumer,
-} from '@apollosproject/ui-analytics';
+import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
 
 import {
   BackgroundView,
@@ -100,18 +97,14 @@ const App = () => (
   <Providers>
     <BackgroundView>
       <AppStatusBar />
-      <CoreNavigationAnalytics>
-        {({ ...props }) => (
-          <AnalyticsConsumer>
-            {({ track }) => (
-              <>
-                <AppStateTracker track={track} />
-                <AppContainer {...props} />
-              </>
-            )}
-          </AnalyticsConsumer>
+      <AnalyticsConsumer>
+        {({ track }) => (
+          <>
+            <AppStateTracker track={track} />
+            <AppContainer />
+          </>
         )}
-      </CoreNavigationAnalytics>
+      </AnalyticsConsumer>
       <MediaPlayer />
     </BackgroundView>
   </Providers>
