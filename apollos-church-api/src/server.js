@@ -67,6 +67,26 @@ app.get('/health', (req, res) => {
   res.send('ok');
 });
 
+function appendStaleWhileRevalidate(header) {
+  return `${header}, stale-while-revalidate=600, stale-if-error=86400`;
+}
+
+app.use((req, res, next) => {
+  // Set a constant surrogate key for soft purging
+  res.setHeader('Surrogate-Key', 'all');
+
+  const prevSetHeader = res.setHeader;
+  res.setHeader = (...args) => {
+    // eslint-disable-next-line prefer-const
+    let [name, value] = args;
+    if (name && name.toLowerCase() === 'cache-control') {
+      value = appendStaleWhileRevalidate(value.toString());
+    }
+    prevSetHeader.apply(res, [name, value]);
+  };
+  next();
+});
+
 applyServerMiddleware({ app, dataSources, context });
 setupJobs({ app, dataSources, context });
 // Comment out if you don't want the API serving apple-app-site-association or assetlinks manifests.
