@@ -113,10 +113,6 @@ ApollosConfig.loadJs({
               uri
             }
           }
-          parentChannel {
-            id
-            name
-          }
           series {
             coverImage {
               sources {
@@ -153,10 +149,6 @@ ApollosConfig.loadJs({
             sources {
               uri
             }
-          }
-          parentChannel {
-            id
-            name
           }
           series {
             coverImage {
