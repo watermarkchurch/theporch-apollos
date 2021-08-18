@@ -57,6 +57,11 @@ class Speakers extends PureComponent {
 
   render() {
     const { contentId } = this.props;
+
+    if (!contentId) {
+      return null;
+    }
+
     return (
       <Query
         query={query}
