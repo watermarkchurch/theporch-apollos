@@ -89,7 +89,8 @@ const HeaderImage = styled({
   marginBottom: 16,
   paddingLeft: 16,
   paddingRight: 16,
-  aspectRatio: 1920 / 1080,
+  aspectRatio: 21 / 9,
+  // aspectRatio: 1920 / 1080,
   resizeMode: 'contain',
   alignSelf: 'center',
 })(Image);
