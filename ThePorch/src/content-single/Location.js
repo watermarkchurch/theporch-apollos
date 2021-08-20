@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled, H4, ConnectedImage } from '@apollosproject/ui-kit';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
 
@@ -13,11 +13,14 @@ const Title = styled({
   textAlign: 'center',
 })(H4);
 
+const HeaderBackground = styled(({ theme }) => ({
+  backgroundColor: theme.colors.background.paper,
+}))(View);
+
 const SizedImage = styled({
   resizeMode: 'contain',
   width: '100%',
   height: '100%',
-  backgroundColor: 'white',
 })(ConnectedImage);
 
 const ImageZoomView = styled({
@@ -27,9 +30,11 @@ const ImageZoomView = styled({
 
 const Location = ({ content }) => (
   <>
-    <SafeAreaView forceInset={{ top: 'always' }}>
-      <Title>{content.title}</Title>
-    </SafeAreaView>
+    <HeaderBackground>
+      <SafeAreaView forceInset={{ top: 'always' }}>
+        <Title>{content.title}</Title>
+      </SafeAreaView>
+    </HeaderBackground>
     <ImageZoomView
       horizontal
       directionalLockEnabled={false}
@@ -40,7 +45,7 @@ const Location = ({ content }) => (
       contentContainerStyle={styles.contentContainerStyle}
       bouncesZoom
     >
-      <SizedImage source={get(content, 'map.sources') || []} />
+      <SizedImage source={get(content, 'coverImage.sources') || []} />
     </ImageZoomView>
   </>
 );

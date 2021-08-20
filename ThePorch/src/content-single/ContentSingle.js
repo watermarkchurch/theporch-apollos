@@ -46,7 +46,6 @@ class ContentSingle extends PureComponent {
     }
     switch (__typename) {
       case 'Event':
-      case 'Location':
       case 'Speaker':
       case 'Breakouts':
         return (
@@ -57,6 +56,8 @@ class ContentSingle extends PureComponent {
             error={error}
           />
         );
+      case 'Location':
+        return <Location id={this.itemId} content={content} />;
       case 'UniversalContentItem':
       default:
         return (
