@@ -23,7 +23,13 @@ const ActionContainer = ({ itemId }) => (
     <MediaPlayerSpacer>
       <PositioningView>
         <LikeButtonConnected itemId={itemId} />
-        <ShareButtonConnected itemId={itemId} />
+        {itemId &&
+        (itemId.includes('Event') ||
+          itemId.includes('Speaker') ||
+          itemId.includes('Breakouts') ||
+          itemId.includes('Location')) ? null : (
+          <ShareButtonConnected itemId={itemId} />
+        )}
       </PositioningView>
     </MediaPlayerSpacer>
   </Container>
