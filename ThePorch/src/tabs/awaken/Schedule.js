@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { SectionList, Image, SafeAreaView } from 'react-native';
 import ApollosConfig from '@apollosproject/config';
+import OneSignal from 'react-native-onesignal';
 
 import {
   BackgroundView,
@@ -142,6 +143,10 @@ const Schedule = class Schedule extends PureComponent {
       </ThemeMixin>
     ),
   });
+
+  componentDidMount() {
+    OneSignal.sendTag('visitedAwakenTab', 'YES');
+  }
 
   renderSchedule = ({ loading, data, refetch }) => {
     const sections = (data?.conference?.days || [])
