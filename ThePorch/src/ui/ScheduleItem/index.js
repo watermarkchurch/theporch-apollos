@@ -75,7 +75,9 @@ const ScheduleItem = ({
         {startTime ? (
           <TimeContainer>
             <UIText>{formatTime(startTime)}</UIText>
-            <SecondaryText>{formatTime(endTime)}</SecondaryText>
+            <SecondaryText>
+              {endTime && endTime !== startTime ? formatTime(endTime) : null}
+            </SecondaryText>
           </TimeContainer>
         ) : null}
         <EventInfo>
