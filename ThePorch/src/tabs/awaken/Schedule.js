@@ -85,7 +85,7 @@ const loadingStateObject = {
 };
 
 const HeaderImage = styled({
-  height: 120,
+  height: 125,
   marginTop: 16,
   marginBottom: 16,
   paddingLeft: 16,
