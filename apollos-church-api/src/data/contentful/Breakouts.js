@@ -48,8 +48,10 @@ export const schema = gql`
 
 export const resolver = {
   Breakouts: {
-    id: ({ sys }, args, context, { parentType }) =>
-      createGlobalId(sys.id, parentType.name),
+    id: (entry, args, context, { parentType }) => {
+      const id = entry && (entry.sys && entry.sys.id || entry.id)
+      return createGlobalId(id, parentType.name)
+    },
     title: ({ fields }) => fields.title,
     summary: (node, args, { dataSources }) =>
       dataSources.ContentfulContentItem.createSummary(node),
