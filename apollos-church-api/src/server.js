@@ -87,18 +87,6 @@ app.use((req, res, next) => {
   next();
 });
 
-/** Band-aid: set a caching header on bad requests from client */
-app.use((req, res, next) => {
-  const prevSend = res.send
-  res.send = (...args) => {
-    if (res.statusCode == 400 && !res.getHeader('cache-control')) {
-      res.setHeader('cache-control', 'max-age=10, public')
-    }
-    prevSend.apply(res, args)
-  }
-  next();
-});
-
 applyServerMiddleware({ app, dataSources, context });
 setupJobs({ app, dataSources, context });
 // Comment out if you don't want the API serving apple-app-site-association or assetlinks manifests.
