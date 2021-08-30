@@ -24,7 +24,8 @@ const ActionContainer = ({ itemId }) => (
       <PositioningView>
         <LikeButtonConnected itemId={itemId} />
         {itemId &&
-        (itemId.includes('Event') ||
+        (itemId.includes('Announcement') ||
+          itemId.includes('Event') ||
           itemId.includes('Speaker') ||
           itemId.includes('Breakouts') ||
           itemId.includes('Location')) ? null : (
