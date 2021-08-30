@@ -41,7 +41,7 @@ const Location = ({ content }) => (
       scrollEventThrottle={100}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      maximumZoomScale={1.0001}
+      maximumZoomScale={3}
       contentContainerStyle={styles.contentContainerStyle}
       bouncesZoom
     >
