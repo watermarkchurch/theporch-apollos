@@ -5,7 +5,7 @@ import TabBar from './tabBar';
 import Connect from './connect';
 import Home from './home';
 import Discover from './discover';
-import Merch from './merch';
+// import Merch from './merch';
 import Awaken from './awaken';
 
 const TabNavigator = createBottomTabNavigator(
@@ -13,7 +13,7 @@ const TabNavigator = createBottomTabNavigator(
     Home,
     Discover,
     Awaken,
-    Merch,
+    // Merch,
     Connect,
   },
   {
