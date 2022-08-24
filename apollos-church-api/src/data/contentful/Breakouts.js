@@ -58,7 +58,7 @@ export const resolver = {
     htmlContent: ({ fields }) =>
       fields.description ? marked(fields.description) : null,
     childContentItemsConnection: ({ fields }) => ({
-      edges: fields.breakouts.map((node) => ({ node })),
+      edges: fields?.breakouts?.map((node) => ({ node })) || [],
     }),
     startTime: ({ fields }) => fields.startTime,
     endTime: ({ fields }) => fields.endTime,
