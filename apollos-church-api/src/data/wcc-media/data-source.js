@@ -97,7 +97,7 @@ class dataSource extends WCCMediaAPIDataSource {
           get(images, 'square.url') ||
           values(images).find(({ url } = {}) => url)?.url ||
           thumbnail_url ||
-          (series && seriesResolver.WCCSeries.coverImage(series)),
+          (series && seriesResolver.WCCSeries.coverImage(series, null, this.context)),
       },
     ],
   });
