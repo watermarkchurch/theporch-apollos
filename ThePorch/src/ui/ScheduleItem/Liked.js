@@ -22,8 +22,9 @@ const LikedIcon = compose(
   withTheme(({ theme }) => ({
     size: theme.sizing.baseUnit,
     fill: theme.colors.secondary,
+    secondaryFill: theme.colors.secondary,
   }))
-)((props) => <Icon name="star-solid" {...props} />);
+)((props) => <Icon name="FavoriteAlt" focused {...props} />);
 
 const Liked = ({ id }) => (
   <Query query={query} variables={{ id }}>
