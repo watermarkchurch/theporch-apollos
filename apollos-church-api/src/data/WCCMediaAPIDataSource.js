@@ -8,14 +8,16 @@ class dataSource extends RESTDataSource {
 
   objectTypePlural = 'series';
 
-  baseURL = `${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/`;
+  baseURL = `${ApollosConfig.WATERMARK.MEDIA_API}/api/v1/${
+    this.objectTypePlural
+  }`;
 
   willSendRequest = (request) => {
     request.params.set('target', 'the_porch');
   };
 
   async getFromId(id) {
-    const result = await this.get(`${this.objectTypePlural}/${String(id)}`);
+    const result = await this.get(String(id));
     if (
       !result ||
       typeof result !== 'object' ||
@@ -57,7 +59,7 @@ class dataSource extends RESTDataSource {
       });
     }
 
-    const result = await this.get(this.objectTypePlural, requestParams);
+    const result = await this.get('', requestParams);
     if (!result || result.error)
       throw new ApolloError(result?.error?.message, result?.error?.code);
 
