@@ -84,8 +84,6 @@ PODS:
     - React
   - react-native-image-picker (0.28.0):
     - React
-  - react-native-maps (0.26.1):
-    - React
   - react-native-music-control (0.10.8):
     - React
   - react-native-onesignal (3.9.1):
@@ -135,16 +133,16 @@ PODS:
     - React
   - RNBootSplash (2.2.4):
     - React
-  - RNCAsyncStorage (1.10.0):
-    - React
+  - RNCAsyncStorage (1.12.1):
+    - React-Core
   - RNDateTimePicker (3.0.4):
     - React-Core
   - RNDeviceInfo (4.0.1):
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNInAppBrowser (3.4.0):
-    - React
+  - RNInAppBrowser (3.7.0):
+    - React-Core
   - RNPermissions (2.1.4):
     - React
   - RNScreens (1.0.0-alpha.23):
@@ -171,7 +169,6 @@ DEPENDENCIES:
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-cast/NoBluetooth (from `../node_modules/react-native-google-cast/ios/`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
-  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-music-control (from `../node_modules/react-native-music-control`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-passkit-wallet (from `../node_modules/react-native-passkit-wallet`)
@@ -246,8 +243,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-google-cast/ios/"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
-  react-native-maps:
-    :path: "../node_modules/react-native-maps"
   react-native-music-control:
     :path: "../node_modules/react-native-music-control"
   react-native-onesignal:
@@ -332,7 +327,6 @@ SPEC CHECKSUMS:
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-google-cast: 410619ef162b8b91815ecf7271502224998dee8e
   react-native-image-picker: e6e06d4315e3c85bad17e4b2002cd29f11d202c8
-  react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
   react-native-music-control: dcfe5b61e56a15898c4618579cb8ce612c9d21a8
   react-native-onesignal: ad2eaab1517951e50d19fa3eccd16d3048167181
   react-native-passkit-wallet: 51e3babdaeec4c10b5736786ebd1bfb470fcaa36
@@ -354,16 +348,16 @@ SPEC CHECKSUMS:
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNAirplay: 75777dd55dafbd3687703c3eb9c290ea6cc43248
   RNBootSplash: 7cb9b4fe7e94177edc0d11010f7631d79db2f5e9
-  RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
+  RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNDateTimePicker: 3d1931e387248cb8f1d1d33740d4a1a82dfe622a
   RNDeviceInfo: 687c1b2ab6d86ff1ca1208783320cd144138c7f2
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNInAppBrowser: c1a0dad2734458d79bcb6c8f4297ba8658a1da9f
+  RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
   RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: 40a88fb3ffcb9c8e5d543e8ed77e035caff0932d
+PODFILE CHECKSUM: d3ff8b870128790915aa2101ef0c0b1bd401d6d1
 
 COCOAPODS: 1.9.0

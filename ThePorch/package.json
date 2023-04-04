@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "android": "SIM=\"$($HOME/Library/Android/sdk/emulator/emulator -list-avds | sed -n 1p)\" && $HOME/Library/Android/sdk/emulator/emulator -avd \"${SIM}\" & react-native run-android --appId com.ThePorch.app",
+    "android": "SIM=\"$($HOME/Library/Android/sdk/emulator/emulator -list-avds | sed -n 1p)\" && $HOME/Library/Android/sdk/emulator/emulator -avd \"${SIM}\" & react-native run-android",
     "codecov": "cat ./coverage/lcov.info | codecov",
     "fixlint": "eslint ./src --fix",
     "ios": "react-native run-ios --simulator=\"iPhone 11\"",
@@ -22,7 +22,7 @@
     "version": "node ../../scripts/update-apollos-version.js && git add apollos.json",
     "postversion": "react-native-version --never-amend --never-increment-build --android android/app/build.gradle --ios ios/",
     "prestart": "yarn generate-stories & node ./scripts/get-introspection-data.js",
-    "postinstall": "jetify",
+    "postinstall": "npx patch-package && jetify && yarn pods",
     "pods": "(cd ios && bundle install && bundle exec pod install)",
     "start": "react-native start",
     "test": "TZ=UTC jest"
@@ -100,10 +100,9 @@
     "react-native-image-picker": "0.28.0",
     "react-native-inappbrowser-reborn": "^3.7.0",
     "react-native-linear-gradient": "^2.5.4",
-    "react-native-maps": "0.30.2",
     "react-native-modal-datetime-picker": "9.0.0",
     "react-native-music-control": "0.10.8",
-    "react-native-onesignal": "3.9.1",
+    "react-native-onesignal": "3.9.3",
     "react-native-passkit-wallet": "^0.1.4",
     "react-native-permissions": "^2.0.5",
     "react-native-safari-view": "2.1.0",

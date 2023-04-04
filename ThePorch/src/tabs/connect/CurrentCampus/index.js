@@ -46,10 +46,6 @@ const Content = styled(({ theme }) => ({
   paddingVertical: theme.sizing.baseUnit * 1.5,
 }))(CardContent);
 
-const StyledButtonLink = styled(({ theme }) => ({
-  alignSelf: 'center',
-  color: theme.colors.tertiary,
-}))(ButtonLink);
 
 const StyledCardTitle = styled(({ theme }) => ({
   color: theme.colors.tertiary,
@@ -60,7 +56,6 @@ const CurrentCampus = withIsLoading(
     cardButtonText,
     cardTitle,
     coverImage,
-    headerActionText,
     headerBackgroundColor,
     headerTintColor,
     headerTitleColor,
@@ -93,17 +88,6 @@ const CurrentCampus = withIsLoading(
         <PaddedView vertical={false}>
           <SideBySideView>
             <Label padded>{sectionTitle}</Label>
-            <StyledButtonLink
-              onPress={() => {
-                navigation.navigate('Location', {
-                  headerBackgroundColor,
-                  headerTintColor,
-                  headerTitleColor,
-                });
-              }}
-            >
-              {headerActionText}
-            </StyledButtonLink>
           </SideBySideView>
 
           <StyledCard isLoading={isLoading}>
@@ -113,7 +97,7 @@ const CurrentCampus = withIsLoading(
               source={coverImage}
             />
             <Content>
-              <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
+              <StyledCardTitle numberOfLines={2}>{cardTitle}</StyledCardTitle>
               <Button
                 onPress={() => handleOnPressItem()}
                 loading={isLoading}
