@@ -93,7 +93,7 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -204,8 +204,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'com.facebook.fresco:animated-gif:2.0.0'
-    api 'androidx.work:work-runtime:[2.1.0, 2.7.99]'
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
+//    implementation"com.squareup.okhttp3:okhttp:4.9.0"
 
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
