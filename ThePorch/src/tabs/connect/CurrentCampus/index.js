@@ -3,7 +3,6 @@ import { get } from 'lodash';
 
 import {
   Button,
-  ButtonLink,
   CardContent,
   CardImage,
   H2,
@@ -16,8 +15,8 @@ import {
   withIsLoading,
   withTheme,
 } from '@apollosproject/ui-kit';
-
-import { View } from 'react-native';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
+import { View, Linking } from 'react-native';
 import Label from '../../../ui/LabelText';
 
 const StyledCard = withTheme(({ theme }) => ({
@@ -56,9 +55,6 @@ const CurrentCampus = withIsLoading(
     cardButtonText,
     cardTitle,
     coverImage,
-    headerBackgroundColor,
-    headerTintColor,
-    headerTitleColor,
     isLoading,
     itemId,
     navigation,
@@ -71,11 +67,7 @@ const CurrentCampus = withIsLoading(
           itemId,
         });
       } else {
-        navigation.navigate('Location', {
-          headerBackgroundColor,
-          headerTintColor,
-          headerTitleColor,
-        });
+        InAppBrowser.open('https://www.theporch.live/locations');
       }
     };
     return (

@@ -107,10 +107,6 @@ const Name = styled({
 const LinkTableFeature = ({
   links,
   title,
-  navigation,
-  headerBackgroundColor,
-  headerTintColor,
-  headerTitleColor,
 }) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
@@ -129,27 +125,6 @@ const LinkTableFeature = ({
               </Cell>
             </Touchable>
           ))}
-          <CampusConsumer>
-            {({ userCampus }) =>
-              !userCampus && (
-                <Touchable
-                  key={'select-campus'}
-                  onPress={() =>
-                    navigation.navigate('Location', {
-                      headerBackgroundColor,
-                      headerTintColor,
-                      headerTitleColor,
-                    })
-                  }
-                >
-                  <Cell>
-                    <CellText>{'Select a Campus'}</CellText>
-                    <CellIcon name="arrow-next" />
-                  </Cell>
-                </Touchable>
-              )
-            }
-          </CampusConsumer>
         </TableView>
       </View>
     )}
