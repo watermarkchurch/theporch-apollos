@@ -6,10 +6,8 @@ import { Query } from "react-apollo";
 import { get } from "lodash";
 
 import { PaddedView, BackgroundView } from "@apollosproject/ui-kit";
-import { CampusConsumer } from "../../CampusProvider";
 import HorizontalLikedContentFeedConnected from "./HorizontalLikedContentFeedConnected";
 
-import ActionTable from "./ActionTable";
 import GET_CONNECT_SCREEN from "./getConnectScreen";
 import Features from "./ConnectScreenFeatures";
 import CurrentCampus from "./CurrentCampus";

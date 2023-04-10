@@ -16,7 +16,7 @@ import {
   withTheme,
 } from '@apollosproject/ui-kit';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
-import { View, Linking } from 'react-native';
+import { View } from 'react-native';
 import Label from '../../../ui/LabelText';
 
 const StyledCard = withTheme(({ theme }) => ({

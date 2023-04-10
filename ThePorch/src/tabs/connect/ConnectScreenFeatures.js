@@ -17,7 +17,6 @@ import {
 } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
 import Label from '../../ui/LabelText';
-import { CampusConsumer } from '../../CampusProvider';
 
 const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
