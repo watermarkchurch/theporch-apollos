@@ -338,16 +338,13 @@
   dependencies:
     graphql-tag "^2.10.1"
 
-"@apollosproject/ui-notifications@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@apollosproject/ui-notifications/-/ui-notifications-1.8.0.tgz#e8f5b12410b577d1985cca1d862feb2f5326a798"
-  integrity sha512-7XyidOt5IFkDv7eL1dFteVrBCRgSJYmiRw2RqsaAoII7hKHqYG2pybnmG+PKraS5YiT9pyQiIapNZZrmby23nA==
+"@apollosproject/ui-notifications@^2.47.9":
+  version "2.47.9"
+  resolved "https://registry.yarnpkg.com/@apollosproject/ui-notifications/-/ui-notifications-2.47.9.tgz#6a1edd3b31f9b88627dedf3631ff223032cb761d"
+  integrity sha512-67/ffYwyIaltcqzGaJYN3FQ0m2SB2cNBQyv7GA1+7pFPVM8BHVZQjE0btVr7ezUftnTpCEIJf4gcYZ2T6FnCMg==
   dependencies:
-    apollo-cache-inmemory "^1.5.1"
-    apollo-link-context "1.0.14"
-    apollo-link-http "^1.5.14"
-    graphql-tag "2.9.2"
     lodash "^4.17.11"
+    react-native-permissions "^2.0.5"
     url "^0.11.0"
 
 "@apollosproject/ui-onboarding@^1.8.0":
@@ -14617,10 +14614,10 @@ react-native-music-control@0.10.8:
   resolved "https://registry.yarnpkg.com/react-native-music-control/-/react-native-music-control-0.10.8.tgz#72272bf9cb1fc0142dc38c99e5f2142fece3c37a"
   integrity sha512-MRPdHpRwl4E2xS4JP2S+XtlFznGrYhizHERKrqE0GnpF/Osei+0fBtOdjHBVu/PkiYS/cwNeUxWdymmpmyQVpg==
 
-react-native-onesignal@3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.1.tgz#b47c2ab61e84dcc7fce63cd565574760c01b1f46"
-  integrity sha512-m511mn6Kgh6AbU8TiGvA5u1yp7od1b/0rVK4m3pz13Yp8PDceGEBd8IxoghLSZRR1/HHBxxe+CWZS9Tsa/IKsg==
+react-native-onesignal@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-4.5.1.tgz#f46007d0a30a7c4e42a531b7c4940f0bfdfbc326"
+  integrity sha512-9XtRwW/Hn3dTD7jxQiKIW4+o1bWNgm1jCUPK1SkjyPd7TiH4cnGuL9JGaAMCUvAWUAp9KC8ejShr6v8K0dGVGQ==
   dependencies:
     invariant "^2.2.2"
 
