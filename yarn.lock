@@ -176,10 +176,10 @@
     passkit-generator "1.5.9"
     qrcode "^1.3.3"
 
-"@apollosproject/data-connector-redis-cache@^1.7.0-beta.2":
-  version "1.7.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@apollosproject/data-connector-redis-cache/-/data-connector-redis-cache-1.7.0-beta.2.tgz#710bd2ccfbc271a85d59e34c268d6f5d2b2be659"
-  integrity sha512-CIjCSnnzKxEF7RIvNz+xqjilsKVih5tSit0rpKMG5v9vfRO/jKlbvAGEJ+3QCDt9awd4u91s+s2nU+jCpSIwVw==
+"@apollosproject/data-connector-redis-cache@^2.43.1":
+  version "2.43.1"
+  resolved "https://registry.yarnpkg.com/@apollosproject/data-connector-redis-cache/-/data-connector-redis-cache-2.43.1.tgz#e8b4303c87de7158afd46fa586aeeda6adc59aa2"
+  integrity sha512-qEdtjii816I2sudonMfoRMJg0A/7TgVXXTAaG2NZE8DkQTL1TLa0Qg6K21KYHj+ldFg1ilZU6wsF/9MwLjxGqw==
   dependencies:
     apollo-datasource "^0.2.0"
     ioredis "4.14.1"
