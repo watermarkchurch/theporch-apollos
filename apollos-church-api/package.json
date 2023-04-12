@@ -46,7 +46,7 @@
     "@apollosproject/data-connector-cloudinary": "^1.7.0-beta.2",
     "@apollosproject/data-connector-onesignal": "^1.7.0-beta.2",
     "@apollosproject/data-connector-passes": "^1.7.0-beta.2",
-    "@apollosproject/data-connector-redis-cache": "^1.7.0-beta.2",
+    "@apollosproject/data-connector-redis-cache": "^2.43.1",
     "@apollosproject/data-connector-rock": "^1.7.0-beta.2",
     "@apollosproject/data-connector-twilio": "^1.7.0-beta.2",
     "@apollosproject/data-schema": "^1.7.0-beta.2",
