@@ -3,7 +3,6 @@ import { get } from 'lodash';
 
 import {
   Button,
-  ButtonLink,
   CardContent,
   CardImage,
   H2,
@@ -16,7 +15,7 @@ import {
   withIsLoading,
   withTheme,
 } from '@apollosproject/ui-kit';
-
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 import { View } from 'react-native';
 import Label from '../../../ui/LabelText';
 
@@ -46,10 +45,6 @@ const Content = styled(({ theme }) => ({
   paddingVertical: theme.sizing.baseUnit * 1.5,
 }))(CardContent);
 
-const StyledButtonLink = styled(({ theme }) => ({
-  alignSelf: 'center',
-  color: theme.colors.tertiary,
-}))(ButtonLink);
 
 const StyledCardTitle = styled(({ theme }) => ({
   color: theme.colors.tertiary,
@@ -60,10 +55,6 @@ const CurrentCampus = withIsLoading(
     cardButtonText,
     cardTitle,
     coverImage,
-    headerActionText,
-    headerBackgroundColor,
-    headerTintColor,
-    headerTitleColor,
     isLoading,
     itemId,
     navigation,
@@ -76,11 +67,7 @@ const CurrentCampus = withIsLoading(
           itemId,
         });
       } else {
-        navigation.navigate('Location', {
-          headerBackgroundColor,
-          headerTintColor,
-          headerTitleColor,
-        });
+        InAppBrowser.open('https://www.theporch.live/locations');
       }
     };
     return (
@@ -93,17 +80,6 @@ const CurrentCampus = withIsLoading(
         <PaddedView vertical={false}>
           <SideBySideView>
             <Label padded>{sectionTitle}</Label>
-            <StyledButtonLink
-              onPress={() => {
-                navigation.navigate('Location', {
-                  headerBackgroundColor,
-                  headerTintColor,
-                  headerTitleColor,
-                });
-              }}
-            >
-              {headerActionText}
-            </StyledButtonLink>
           </SideBySideView>
 
           <StyledCard isLoading={isLoading}>
@@ -113,7 +89,7 @@ const CurrentCampus = withIsLoading(
               source={coverImage}
             />
             <Content>
-              <StyledCardTitle numberOfLines={1}>{cardTitle}</StyledCardTitle>
+              <StyledCardTitle numberOfLines={2}>{cardTitle}</StyledCardTitle>
               <Button
                 onPress={() => handleOnPressItem()}
                 loading={isLoading}

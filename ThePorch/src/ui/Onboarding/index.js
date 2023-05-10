@@ -19,8 +19,6 @@ import { useOnboardDispatch, hideOnboarding } from '../../OnboardProvider';
 import BackgroundTexture from '../BackgroundTexture';
 
 import AskNotifications from './AskNotifications';
-import AskLocation from './AskLocation';
-import LocationFinderConnected from './LocationFinderConnected';
 import OnboardingVideo from './OnboardingVideo';
 
 function Onboarding({
@@ -42,17 +40,6 @@ function Onboarding({
           {({ swipeForward }) => (
             <>
               <OnboardingVideo onPressPrimary={swipeForward} />
-              <LocationFinderConnected
-                onPressPrimary={swipeForward}
-                onNavigate={() => {
-                  navigation.navigate('Location', {
-                    headerBackgroundColor,
-                    headerTitleColor,
-                    headerTintColor,
-                  });
-                }}
-                Component={AskLocation}
-              />
               <AskNotificationsConnected
                 onRequestPushPermissions={(update) => {
                   checkNotifications().then((checkRes) => {

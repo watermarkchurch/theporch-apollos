@@ -1,18 +1,16 @@
-import React, { PureComponent } from 'react';
-import { ScrollView, Animated } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
-import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
-import { get } from 'lodash';
+import React, { PureComponent } from "react";
+import { ScrollView, Animated } from "react-native";
+import { SafeAreaView } from "react-navigation";
+import PropTypes from "prop-types";
+import { Query } from "react-apollo";
+import { get } from "lodash";
 
-import { PaddedView, BackgroundView } from '@apollosproject/ui-kit';
-import { CampusConsumer } from '../../CampusProvider';
-import HorizontalLikedContentFeedConnected from './HorizontalLikedContentFeedConnected';
+import { PaddedView, BackgroundView } from "@apollosproject/ui-kit";
+import HorizontalLikedContentFeedConnected from "./HorizontalLikedContentFeedConnected";
 
-import ActionTable from './ActionTable';
-import GET_CONNECT_SCREEN from './getConnectScreen';
-import Features from './ConnectScreenFeatures';
-import CurrentCampus from './CurrentCampus';
+import GET_CONNECT_SCREEN from "./getConnectScreen";
+import Features from "./ConnectScreenFeatures";
+import CurrentCampus from "./CurrentCampus";
 
 const flex = { flex: 1 };
 
@@ -47,42 +45,22 @@ class Connect extends PureComponent {
         >
           <SafeAreaView style={flex}>
             <PaddedView horizontal={false}>
-              <CampusConsumer>
-                {({ userCampus }) =>
-                  userCampus ? (
-                    <CurrentCampus
-                      cardButtonText={'Location Details'}
-                      cardTitle={userCampus.name}
-                      coverImage={userCampus.image}
-                      headerActionText={'Change Location'}
-                      headerBackgroundColor={screenProps.headerBackgroundColor}
-                      headerTintColor={screenProps.headerTintColor}
-                      headerTitleColor={screenProps.headerTitleStyle.color}
-                      itemId={userCampus.id}
-                      navigation={navigation}
-                      sectionTitle={'Your Porch Location'}
-                    />
-                  ) : (
-                    <CurrentCampus
-                      cardButtonText={'Select a location'}
-                      cardTitle={'No location'}
-                      headerActionText={'Select a Location'}
-                      navigation={navigation}
-                      sectionTitle={'Your Porch Location'}
-                      headerBackgroundColor={screenProps.headerBackgroundColor}
-                      headerTintColor={screenProps.headerTintColor}
-                      headerTitleColor={screenProps.headerTitleStyle.color}
-                    />
-                  )
-                }
-              </CampusConsumer>
+              <CurrentCampus
+                cardButtonText={"Locations"}
+                cardTitle={"Come hang\nwith us"}
+                navigation={navigation}
+                headerBackgroundColor={screenProps.headerBackgroundColor}
+                headerTintColor={screenProps.headerTintColor}
+                headerTitleColor={screenProps.headerTitleStyle.color}
+                coverImage={'https://res.cloudinary.com/hwwbvfvlv/image/upload/v1680634159/online_itvz5v.png'}
+              />
               <HorizontalLikedContentFeedConnected />
               <Query
                 query={GET_CONNECT_SCREEN}
-                fetchPolicy={'cache-and-network'}
+                fetchPolicy={"cache-and-network"}
               >
                 {({ data }) => {
-                  const features = get(data, 'connectScreen.features', []);
+                  const features = get(data, "connectScreen.features", []);
                   return (
                     <Features
                       features={features}

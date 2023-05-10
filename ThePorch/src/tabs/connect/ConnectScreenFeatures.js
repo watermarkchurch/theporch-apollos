@@ -17,7 +17,6 @@ import {
 } from '@apollosproject/ui-kit';
 import { withNavigation } from 'react-navigation';
 import Label from '../../ui/LabelText';
-import { CampusConsumer } from '../../CampusProvider';
 
 const HorizontalView = styled(({ theme }) => ({
   flexDirection: 'row',
@@ -107,10 +106,6 @@ const Name = styled({
 const LinkTableFeature = ({
   links,
   title,
-  navigation,
-  headerBackgroundColor,
-  headerTintColor,
-  headerTitleColor,
 }) => (
   <RockAuthedWebBrowser>
     {(openUrl) => (
@@ -129,27 +124,6 @@ const LinkTableFeature = ({
               </Cell>
             </Touchable>
           ))}
-          <CampusConsumer>
-            {({ userCampus }) =>
-              !userCampus && (
-                <Touchable
-                  key={'select-campus'}
-                  onPress={() =>
-                    navigation.navigate('Location', {
-                      headerBackgroundColor,
-                      headerTintColor,
-                      headerTitleColor,
-                    })
-                  }
-                >
-                  <Cell>
-                    <CellText>{'Select a Campus'}</CellText>
-                    <CellIcon name="arrow-next" />
-                  </Cell>
-                </Touchable>
-              )
-            }
-          </CampusConsumer>
         </TableView>
       </View>
     )}
