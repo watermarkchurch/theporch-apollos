@@ -203,12 +203,6 @@ HOME_FEATURES:
           limit: 1
     type: VerticalCardList
     isFeatured: true
-  - subtitle: Your Porch Location
-    algorithms: [CAMPUS_ITEMS]
-    type: ActionList
-    primaryAction:
-      action: OPEN_CAMPUS # Implemented as a resolver, which creates a relatedNode of Url
-      title: 'More info'
   - algorithms:
       - type: CAMPAIGN_ITEMS
         arguments:
