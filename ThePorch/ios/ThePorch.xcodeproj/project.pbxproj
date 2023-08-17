@@ -13,11 +13,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		183A85B09F81E1B5FA84AC41 /* libPods-ThePorch-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3DCEB36C13D1302EC72F5 /* libPods-ThePorch-tvOS.a */; };
 		1C48DCDE11AC47C48E918489 /* Inter-UI-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DC74A378C1CC40E4B6192D7F /* Inter-UI-Medium.otf */; };
-		23454272168A481499AD78AA /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		23454272168A481499AD78AA /* (null) in Resources */ = {isa = PBXBuildFile; };
 		266A7142AF334F8CA499DF01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */; };
-		293874F69013A1378FC21A2A /* libPods-ThePorch-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AC9B07E5CEC6660C0E4276 /* libPods-ThePorch-tvOSTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -40,12 +38,14 @@
 		90743C40BF544F10A810C43C /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADC3D2DB245545ADB1CAB3FE /* DroidSerif-Italic.ttf */; };
 		93A2B0A9328A46A4B7DD5EFA /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E007B33EDD74B82AEF02C24 /* DroidSerif-Regular.ttf */; };
 		A80A006C299D4EB3A431BB1F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F78EBB17E4867ACFE4682 /* Lato-Bold.ttf */; };
-		AAA35A4071008C7C45245E59 /* libPods-ThePorchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9056BA4FA5C8A28421EA4556 /* libPods-ThePorchTests.a */; };
 		AB3BD177B8A14193A5EEDDF8 /* Inter-UI-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A613256118404CB691DE2C8E /* Inter-UI-Regular.otf */; };
 		B02F194A3F6A4FE29AC799B4 /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A93F9D112A034626A9421759 /* DroidSerif-BoldItalic.ttf */; };
-		E94C92386EA17F5F35068D38 /* libPods-ThePorch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FAC7F6344B60BB900B53FE3 /* libPods-ThePorch.a */; };
+		CDF24AAD496BE4145FD4EDD2 /* libPods-ThePorchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE1FD2ACDADCEF11648C780 /* libPods-ThePorchTests.a */; };
+		DAB6952575535D82D5D2AAA3 /* libPods-ThePorch-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDC2E5D21E800CED203F0DD /* libPods-ThePorch-tvOSTests.a */; };
+		DB1234A7211FDAED1EE45C9B /* libPods-ThePorch-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E33C1C916CC9656EFF475A6E /* libPods-ThePorch-tvOS.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		F456FC0695420186372F0547 /* libPods-ThePorch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A218104F76A6EE5AF38467 /* libPods-ThePorch.a */; };
 		FCB3069DB5DD4170B2CAEFC4 /* Inter-UI-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A460FD7884FD4574A818005A /* Inter-UI-MediumItalic.otf */; };
 /* End PBXBuildFile section */
 
@@ -71,50 +71,49 @@
 		00E356EE1AD99517003FC87E /* ThePorchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThePorchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ThePorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePorchTests.m; sourceTree = "<group>"; };
-		0D480D95FC7F4569B8B934E3 /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
+		0DE1FD2ACDADCEF11648C780 /* libPods-ThePorchTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorchTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* The Porch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Porch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ThePorch/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ThePorch/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ThePorch/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ThePorch/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ThePorch/main.m; sourceTree = "<group>"; };
-		1933BC0B1F14F2767F162020 /* Pods-ThePorch-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		19D7DBDD1083582D49B43237 /* Pods-ThePorch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.debug.xcconfig"; sourceTree = "<group>"; };
+		1A17B66741A5730E8B93F812 /* Pods-ThePorch-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		1C5EB751CB9E75D29E509209 /* Pods-ThePorchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorchTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorchTests/Pods-ThePorchTests.release.xcconfig"; sourceTree = "<group>"; };
 		24AF4617EBA64C968003C4C5 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		282F78EBB17E4867ACFE4682 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* ThePorch-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ThePorch-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ThePorch-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ThePorch-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F5410F239E9477B9C2E86BD /* Inter-UI-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-BoldItalic.otf"; path = "../assets/fonts/Inter-UI-BoldItalic.otf"; sourceTree = "<group>"; };
-		2FAC7F6344B60BB900B53FE3 /* libPods-ThePorch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		354C55BA38A74F98B42A5BB0 /* Pods-ThePorch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.debug.xcconfig"; sourceTree = "<group>"; };
-		359E41C13383501B09B149D4 /* Pods-ThePorch-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOS/Pods-ThePorch-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		37DE57EB709CD1B2AEDF5A18 /* Pods-ThePorch-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOS/Pods-ThePorch-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		3F1F9717BB1743BF9D05DFB4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		4E007B33EDD74B82AEF02C24 /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Regular.ttf"; path = "../assets/fonts/DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
 		5A5A2BC2998547F4816B82E4 /* Inter-UI-BlackItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-BlackItalic.otf"; path = "../assets/fonts/Inter-UI-BlackItalic.otf"; sourceTree = "<group>"; };
+		5D001F65ACF391381E132659 /* Pods-ThePorch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.release.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.release.xcconfig"; sourceTree = "<group>"; };
 		63F6EE53A9B44B4388B5F1C2 /* Inter-UI-Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Italic.otf"; path = "../assets/fonts/Inter-UI-Italic.otf"; sourceTree = "<group>"; };
-		6802EBFA226283C47233AA1E /* Pods-ThePorchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorchTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorchTests/Pods-ThePorchTests.release.xcconfig"; sourceTree = "<group>"; };
-		7D95BAFAA7E6EB3F8624611F /* Pods-ThePorch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.release.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.release.xcconfig"; sourceTree = "<group>"; };
+		714528F611EBC8C434E4E4F4 /* Pods-ThePorchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorchTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorchTests/Pods-ThePorchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		82AAE52D24187BB500D1EEC7 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = ThePorch/BootSplash.storyboard; sourceTree = "<group>"; };
-		8FEE16F312A515F4C8FABA9E /* Pods-ThePorch-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOS/Pods-ThePorch-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		9056BA4FA5C8A28421EA4556 /* libPods-ThePorchTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorchTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EDC2E5D21E800CED203F0DD /* libPods-ThePorch-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B167306EA44017A1CF3B6F /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BebasNeue-Regular.ttf"; path = "../assets/fonts/BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		A460FD7884FD4574A818005A /* Inter-UI-MediumItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-MediumItalic.otf"; path = "../assets/fonts/Inter-UI-MediumItalic.otf"; sourceTree = "<group>"; };
 		A613256118404CB691DE2C8E /* Inter-UI-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Regular.otf"; path = "../assets/fonts/Inter-UI-Regular.otf"; sourceTree = "<group>"; };
 		A93F9D112A034626A9421759 /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-BoldItalic.ttf"; path = "../assets/fonts/DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
 		ADC3D2DB245545ADB1CAB3FE /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Italic.ttf"; path = "../assets/fonts/DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
-		BA1A52A39ABE4462287DBBBF /* Pods-ThePorchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorchTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorchTests/Pods-ThePorchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF421F17248E66DD0058F3A0 /* The Porch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "The Porch.entitlements"; path = "ThePorch/The Porch.entitlements"; sourceTree = "<group>"; };
-		D03DC4B188A90E5758DDBB7B /* Pods-ThePorch-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C2A218104F76A6EE5AF38467 /* libPods-ThePorch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5157D807E164356ADE87867 /* Inter-UI-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Bold.otf"; path = "../assets/fonts/Inter-UI-Bold.otf"; sourceTree = "<group>"; };
 		DC74A378C1CC40E4B6192D7F /* Inter-UI-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Medium.otf"; path = "../assets/fonts/Inter-UI-Medium.otf"; sourceTree = "<group>"; };
 		DE456D2B54C8477CBD70E2A3 /* Lato-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Italic.ttf"; path = "../assets/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		E33C1C916CC9656EFF475A6E /* libPods-ThePorch-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B8A0AC5A6B4FABB3BDF6CB /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Bold.ttf"; path = "../assets/fonts/DroidSerif-Bold.ttf"; sourceTree = "<group>"; };
-		EAF3DCEB36C13D1302EC72F5 /* libPods-ThePorch-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC21254B449443F99016EBFD /* Inter-UI-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Black.otf"; path = "../assets/fonts/Inter-UI-Black.otf"; sourceTree = "<group>"; };
 		EC770D21C1834A52AC462B54 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F5AC9B07E5CEC6660C0E4276 /* libPods-ThePorch-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED451B5CFC9F6E857D3F0E64 /* Pods-ThePorch-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOS/Pods-ThePorch-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		F23E7A2736B6D59260C8376E /* Pods-ThePorch-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-tvOSTests/Pods-ThePorch-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAA35A4071008C7C45245E59 /* libPods-ThePorchTests.a in Frameworks */,
+				CDF24AAD496BE4145FD4EDD2 /* libPods-ThePorchTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
-				E94C92386EA17F5F35068D38 /* libPods-ThePorch.a in Frameworks */,
+				F456FC0695420186372F0547 /* libPods-ThePorch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +140,7 @@
 			files = (
 				ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */,
-				183A85B09F81E1B5FA84AC41 /* libPods-ThePorch-tvOS.a in Frameworks */,
+				DB1234A7211FDAED1EE45C9B /* libPods-ThePorch-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				293874F69013A1378FC21A2A /* libPods-ThePorch-tvOSTests.a in Frameworks */,
+				DAB6952575535D82D5D2AAA3 /* libPods-ThePorch-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,10 +193,10 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				2FAC7F6344B60BB900B53FE3 /* libPods-ThePorch.a */,
-				EAF3DCEB36C13D1302EC72F5 /* libPods-ThePorch-tvOS.a */,
-				F5AC9B07E5CEC6660C0E4276 /* libPods-ThePorch-tvOSTests.a */,
-				9056BA4FA5C8A28421EA4556 /* libPods-ThePorchTests.a */,
+				C2A218104F76A6EE5AF38467 /* libPods-ThePorch.a */,
+				E33C1C916CC9656EFF475A6E /* libPods-ThePorch-tvOS.a */,
+				8EDC2E5D21E800CED203F0DD /* libPods-ThePorch-tvOSTests.a */,
+				0DE1FD2ACDADCEF11648C780 /* libPods-ThePorchTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -230,24 +229,16 @@
 		76EC01CF690166B3232686FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				354C55BA38A74F98B42A5BB0 /* Pods-ThePorch.debug.xcconfig */,
-				7D95BAFAA7E6EB3F8624611F /* Pods-ThePorch.release.xcconfig */,
-				359E41C13383501B09B149D4 /* Pods-ThePorch-tvOS.debug.xcconfig */,
-				8FEE16F312A515F4C8FABA9E /* Pods-ThePorch-tvOS.release.xcconfig */,
-				1933BC0B1F14F2767F162020 /* Pods-ThePorch-tvOSTests.debug.xcconfig */,
-				D03DC4B188A90E5758DDBB7B /* Pods-ThePorch-tvOSTests.release.xcconfig */,
-				BA1A52A39ABE4462287DBBBF /* Pods-ThePorchTests.debug.xcconfig */,
-				6802EBFA226283C47233AA1E /* Pods-ThePorchTests.release.xcconfig */,
+				19D7DBDD1083582D49B43237 /* Pods-ThePorch.debug.xcconfig */,
+				5D001F65ACF391381E132659 /* Pods-ThePorch.release.xcconfig */,
+				37DE57EB709CD1B2AEDF5A18 /* Pods-ThePorch-tvOS.debug.xcconfig */,
+				ED451B5CFC9F6E857D3F0E64 /* Pods-ThePorch-tvOS.release.xcconfig */,
+				F23E7A2736B6D59260C8376E /* Pods-ThePorch-tvOSTests.debug.xcconfig */,
+				1A17B66741A5730E8B93F812 /* Pods-ThePorch-tvOSTests.release.xcconfig */,
+				714528F611EBC8C434E4E4F4 /* Pods-ThePorchTests.debug.xcconfig */,
+				1C5EB751CB9E75D29E509209 /* Pods-ThePorchTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		79CEBF9D223011FC00D8F685 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				0D480D95FC7F4569B8B934E3 /* libRCTOneSignal.a */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -266,7 +257,6 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				58D6A3E05A234CD89DC0BCE1 /* Resources */,
-				79CEBF9D223011FC00D8F685 /* Recovered References */,
 				76EC01CF690166B3232686FE /* Pods */,
 			);
 			indentWidth = 2;
@@ -292,7 +282,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ThePorchTests" */;
 			buildPhases = (
-				8B91C522060422EAF00DA043 /* [CP] Check Pods Manifest.lock */,
+				61493ECD1C0D713D8B8D5E0A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -311,14 +301,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ThePorch" */;
 			buildPhases = (
-				BB1ED3414AA03E8F3508B9A3 /* [CP] Check Pods Manifest.lock */,
-				2BEF1AF9536AD5D75205FC48 /* [CP] Prepare Artifacts */,
+				B0307CB87D06A72C122E5EF9 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				55AD242991869D4F825F66EA /* [CP] Copy Pods Resources */,
-				2D30EF83C8F11FAB2F582683 /* [CP] Embed Pods Frameworks */,
+				5F08B250DE017EF1DC567879 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,7 +321,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ThePorch-tvOS" */;
 			buildPhases = (
-				48F672B05B087CA6E7F15C67 /* [CP] Check Pods Manifest.lock */,
+				2C57C1001803972A863CFE9E /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
@@ -352,7 +340,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ThePorch-tvOSTests" */;
 			buildPhases = (
-				A27A7F8DADB48CCDAA01C983 /* [CP] Check Pods Manifest.lock */,
+				A96B0BD8D59E3A23889DCBC7 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -452,7 +440,7 @@
 				5D7DD547D49D4920BC68FD31 /* Lato-Italic.ttf in Resources */,
 				7F5BD94A7890471CB5F1D2E8 /* Lato-Regular.ttf in Resources */,
 				266A7142AF334F8CA499DF01 /* Montserrat-Bold.ttf in Resources */,
-				23454272168A481499AD78AA /* BuildFile in Resources */,
+				23454272168A481499AD78AA /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,59 +479,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		2BEF1AF9536AD5D75205FC48 /* [CP] Prepare Artifacts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ThePorch/Pods-ThePorch-artifacts.sh",
-				"${PODS_ROOT}/OneSignalXCFramework/iOS_SDK/OneSignalSDK/OneSignal_XCFramework/OneSignal.xcframework",
-				"${PODS_ROOT}/OneSignalXCFramework/iOS_SDK/OneSignalSDK/OneSignal_Core/OneSignalCore.xcframework",
-				"${PODS_ROOT}/OneSignalXCFramework/iOS_SDK/OneSignalSDK/OneSignal_Extension/OneSignalExtension.xcframework",
-				"${PODS_ROOT}/OneSignalXCFramework/iOS_SDK/OneSignalSDK/OneSignal_Outcomes/OneSignalOutcomes.xcframework",
-			);
-			name = "[CP] Prepare Artifacts";
-			outputPaths = (
-				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThePorch/Pods-ThePorch-artifacts.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		2D30EF83C8F11FAB2F582683 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ThePorch/Pods-ThePorch-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThePorch/Pods-ThePorch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48F672B05B087CA6E7F15C67 /* [CP] Check Pods Manifest.lock */ = {
+		2C57C1001803972A863CFE9E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -565,7 +501,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		55AD242991869D4F825F66EA /* [CP] Copy Pods Resources */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		5F08B250DE017EF1DC567879 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -585,7 +535,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThePorch/Pods-ThePorch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B91C522060422EAF00DA043 /* [CP] Check Pods Manifest.lock */ = {
+		61493ECD1C0D713D8B8D5E0A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -607,7 +557,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A27A7F8DADB48CCDAA01C983 /* [CP] Check Pods Manifest.lock */ = {
+		A96B0BD8D59E3A23889DCBC7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -629,7 +579,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BB1ED3414AA03E8F3508B9A3 /* [CP] Check Pods Manifest.lock */ = {
+		B0307CB87D06A72C122E5EF9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -706,7 +656,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA1A52A39ABE4462287DBBBF /* Pods-ThePorchTests.debug.xcconfig */;
+			baseConfigurationReference = 714528F611EBC8C434E4E4F4 /* Pods-ThePorchTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5Z8S3JU749;
@@ -734,7 +684,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6802EBFA226283C47233AA1E /* Pods-ThePorchTests.release.xcconfig */;
+			baseConfigurationReference = 1C5EB751CB9E75D29E509209 /* Pods-ThePorchTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -759,7 +709,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 354C55BA38A74F98B42A5BB0 /* Pods-ThePorch.debug.xcconfig */;
+			baseConfigurationReference = 19D7DBDD1083582D49B43237 /* Pods-ThePorch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ThePorch/The Porch.entitlements";
@@ -772,7 +722,7 @@
 				);
 				INFOPLIST_FILE = ThePorch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 6.2.5;
+				MARKETING_VERSION = 6.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -788,7 +738,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D95BAFAA7E6EB3F8624611F /* Pods-ThePorch.release.xcconfig */;
+			baseConfigurationReference = 5D001F65ACF391381E132659 /* Pods-ThePorch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ThePorch/The Porch.entitlements";
@@ -800,7 +750,7 @@
 				);
 				INFOPLIST_FILE = ThePorch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 6.2.5;
+				MARKETING_VERSION = 6.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -816,7 +766,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 359E41C13383501B09B149D4 /* Pods-ThePorch-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 37DE57EB709CD1B2AEDF5A18 /* Pods-ThePorch-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -848,7 +798,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FEE16F312A515F4C8FABA9E /* Pods-ThePorch-tvOS.release.xcconfig */;
+			baseConfigurationReference = ED451B5CFC9F6E857D3F0E64 /* Pods-ThePorch-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -880,7 +830,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1933BC0B1F14F2767F162020 /* Pods-ThePorch-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = F23E7A2736B6D59260C8376E /* Pods-ThePorch-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -911,7 +861,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D03DC4B188A90E5758DDBB7B /* Pods-ThePorch-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 1A17B66741A5730E8B93F812 /* Pods-ThePorch-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

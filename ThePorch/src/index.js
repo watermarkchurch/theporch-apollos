@@ -22,7 +22,7 @@ import Event from './event';
 import Tabs from './tabs';
 import LandingScreen from './LandingScreen';
 import UserWebBrowser from './user-web-browser';
-import Onboarding from './ui/Onboarding';
+// import Onboarding from './ui/Onboarding';
 import AboutCampus from './AboutCampus';
 import AppStateTracker from './AppStateTracker';
 
@@ -67,12 +67,13 @@ const AppContainer = (props) => {
       Event,
       Passes,
       UserWebBrowser,
-      Onboarding,
+      // Onboarding,
       LandingScreen,
       AboutCampus,
     },
     {
-      initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',
+      // initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',
+      initialRouteName: 'Tabs',
       mode: 'modal',
       headerMode: 'screen',
     }

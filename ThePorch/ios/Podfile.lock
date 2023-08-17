@@ -18,16 +18,6 @@ PODS:
     - Protobuf (~> 3.13)
   - google-cast-sdk-no-bluetooth/Core (4.6.1):
     - Protobuf (~> 3.13)
-  - OneSignalXCFramework (3.12.4):
-    - OneSignalXCFramework/OneSignalCore (= 3.12.4)
-    - OneSignalXCFramework/OneSignalExtension (= 3.12.4)
-    - OneSignalXCFramework/OneSignalOutcomes (= 3.12.4)
-  - OneSignalXCFramework/OneSignalCore (3.12.4)
-  - OneSignalXCFramework/OneSignalExtension (3.12.4):
-    - OneSignalXCFramework/OneSignalCore
-    - OneSignalXCFramework/OneSignalOutcomes
-  - OneSignalXCFramework/OneSignalOutcomes (3.12.4):
-    - OneSignalXCFramework/OneSignalCore
   - Permission-Notifications (2.1.4):
     - RNPermissions
   - Permission-PhotoLibrary (2.1.4):
@@ -92,9 +82,6 @@ PODS:
     - React
   - react-native-music-control (0.10.8):
     - React
-  - react-native-onesignal (4.5.1):
-    - OneSignalXCFramework (= 3.12.4)
-    - React (< 1.0.0, >= 0.13.0)
   - react-native-passkit-wallet (0.1.4):
     - React
   - react-native-safari-view (1.0.0):
@@ -176,7 +163,6 @@ DEPENDENCIES:
   - react-native-google-cast/NoBluetooth (from `../node_modules/react-native-google-cast/ios`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-music-control (from `../node_modules/react-native-music-control`)
-  - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-passkit-wallet (from `../node_modules/react-native-passkit-wallet`)
   - react-native-safari-view (from `../node_modules/react-native-safari-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -210,7 +196,6 @@ SPEC REPOS:
   trunk:
     - boost-for-react-native
     - google-cast-sdk-no-bluetooth
-    - OneSignalXCFramework
     - Protobuf
 
 EXTERNAL SOURCES:
@@ -250,8 +235,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-picker"
   react-native-music-control:
     :path: "../node_modules/react-native-music-control"
-  react-native-onesignal:
-    :path: "../node_modules/react-native-onesignal"
   react-native-passkit-wallet:
     :path: "../node_modules/react-native-passkit-wallet"
   react-native-safari-view:
@@ -316,7 +299,6 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   google-cast-sdk-no-bluetooth: b3037c14fdf07a794326502e799beb0875ab2029
-  OneSignalXCFramework: 087934ab0d4d7445fcf1c015c7c782359e26c020
   Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
   Permission-PhotoLibrary: d98d4dcf5da6bb811fac27abdd441e6a2facc53c
   Protobuf: d7f7c8329edf5eb8af65547a8ba3e9c1cee927d5
@@ -332,7 +314,6 @@ SPEC CHECKSUMS:
   react-native-google-cast: 9ead682d0026c857318efa8ea9c6f58b6142651a
   react-native-image-picker: e6e06d4315e3c85bad17e4b2002cd29f11d202c8
   react-native-music-control: dcfe5b61e56a15898c4618579cb8ce612c9d21a8
-  react-native-onesignal: 7bd44dbd031d8d57110c0203836ffc37ddead526
   react-native-passkit-wallet: 51e3babdaeec4c10b5736786ebd1bfb470fcaa36
   react-native-safari-view: 955d7160d159241b8e9395d12d10ea0ef863dcdd
   react-native-safe-area-context: e380a6f783ccaec848e2f3cc8eb205a62362950d

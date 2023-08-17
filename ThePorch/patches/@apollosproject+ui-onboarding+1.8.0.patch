@@ -1,0 +1,739 @@
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/index.js b/node_modules/@apollosproject/ui-onboarding/src/index.js
+index 0d3a2c1..fd5d377 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/index.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/index.js
+@@ -4,8 +4,8 @@ export {
+   AboutYouConnected,
+   AskName,
+   AskNameConnected,
+-  AskNotifications,
+-  AskNotificationsConnected,
++  // AskNotifications,
++  // AskNotificationsConnected,
+   LocationFinder,
+   LocationFinderConnected,
+   Features,
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.js
+index 18451f0..f251179 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.js
+@@ -1,72 +1,72 @@
+-import React, { memo } from 'react';
+-import PropTypes from 'prop-types';
+-import { styled, PaddedView, Button } from '@apollosproject/ui-kit';
++// import React, { memo } from 'react';
++// import PropTypes from 'prop-types';
++// import { styled, PaddedView, Button } from '@apollosproject/ui-kit';
+ 
+-import Slide, { SlideContent } from '../../Slide';
++// import Slide, { SlideContent } from '../../Slide';
+ 
+-const StyledSlideContent = styled(
+-  {
+-    flex: 1,
+-    justifyContent: 'space-between',
+-  },
+-  'ui-onboarding.slides.AskNotifications.AskNotifications.StyledSlideContent'
+-)(SlideContent);
++// const StyledSlideContent = styled(
++//   {
++//     flex: 1,
++//     justifyContent: 'space-between',
++//   },
++//   'ui-onboarding.slides.AskNotifications.AskNotifications.StyledSlideContent'
++// )(SlideContent);
+ 
+-// memo = sfc PureComponent 💥
+-// eslint-disable-next-line react/display-name
+-const AskNotifications = memo(
+-  ({
+-    BackgroundComponent,
+-    slideTitle,
+-    description,
+-    buttonText,
+-    buttonDisabled,
+-    onPressButton,
+-    isLoading,
+-    ...props
+-  }) => (
+-    <Slide {...props}>
+-      {BackgroundComponent}
+-      <StyledSlideContent title={slideTitle} description={description}>
+-        {buttonDisabled || onPressButton ? (
+-          <PaddedView horizontal={false}>
+-            <Button
+-              title={buttonText}
+-              onPress={onPressButton}
+-              disabled={buttonDisabled || isLoading}
+-              pill={false}
+-            />
+-          </PaddedView>
+-        ) : null}
+-      </StyledSlideContent>
+-    </Slide>
+-  )
+-);
++// // memo = sfc PureComponent 💥
++// // eslint-disable-next-line react/display-name
++// const AskNotifications = memo(
++//   ({
++//     BackgroundComponent,
++//     slideTitle,
++//     description,
++//     buttonText,
++//     buttonDisabled,
++//     onPressButton,
++//     isLoading,
++//     ...props
++//   }) => (
++//     <Slide {...props}>
++//       {BackgroundComponent}
++//       <StyledSlideContent title={slideTitle} description={description}>
++//         {buttonDisabled || onPressButton ? (
++//           <PaddedView horizontal={false}>
++//             <Button
++//               title={buttonText}
++//               onPress={onPressButton}
++//               disabled={buttonDisabled || isLoading}
++//               pill={false}
++//             />
++//           </PaddedView>
++//         ) : null}
++//       </StyledSlideContent>
++//     </Slide>
++//   )
++// );
+ 
+-AskNotifications.displayName = 'AskNotifications';
++// AskNotifications.displayName = 'AskNotifications';
+ 
+-AskNotifications.propTypes = {
+-  BackgroundComponent: PropTypes.oneOfType([
+-    PropTypes.arrayOf(PropTypes.node),
+-    PropTypes.node,
+-  ]),
+-  /* The `Swiper` component used in `<onBoarding>` looks for and hijacks the title prop of it's
+-   * children. Thus we have to use a more unique name.
+-   */
+-  slideTitle: PropTypes.string,
+-  description: PropTypes.string,
+-  buttonText: PropTypes.string,
+-  buttonDisabled: PropTypes.bool,
+-  onPressButton: PropTypes.func,
+-  isLoading: PropTypes.bool,
+-};
++// AskNotifications.propTypes = {
++//   BackgroundComponent: PropTypes.oneOfType([
++//     PropTypes.arrayOf(PropTypes.node),
++//     PropTypes.node,
++//   ]),
++//   /* The `Swiper` component used in `<onBoarding>` looks for and hijacks the title prop of it's
++//    * children. Thus we have to use a more unique name.
++//    */
++//   slideTitle: PropTypes.string,
++//   description: PropTypes.string,
++//   buttonText: PropTypes.string,
++//   buttonDisabled: PropTypes.bool,
++//   onPressButton: PropTypes.func,
++//   isLoading: PropTypes.bool,
++// };
+ 
+-AskNotifications.defaultProps = {
+-  slideTitle: 'Can we keep you informed?',
+-  description:
+-    "We'll let you know when important things are happening and keep you in the loop",
+-  buttonText: 'Yes, enable notifications',
+-  buttonDisabled: false,
+-};
++// AskNotifications.defaultProps = {
++//   slideTitle: 'Can we keep you informed?',
++//   description:
++//     "We'll let you know when important things are happening and keep you in the loop",
++//   buttonText: 'Yes, enable notifications',
++//   buttonDisabled: false,
++// };
+ 
+-export default AskNotifications;
++// export default AskNotifications;
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.stories.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.stories.js
+index 3b099ce..be02f58 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.stories.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.stories.js
+@@ -1,33 +1,33 @@
+-import React from 'react';
+-import { storiesOf } from '@apollosproject/ui-storybook';
+-import { GradientOverlayImage } from '@apollosproject/ui-kit';
++// import React from 'react';
++// import { storiesOf } from '@apollosproject/ui-storybook';
++// import { GradientOverlayImage } from '@apollosproject/ui-kit';
+ 
+-import AskNotifications from './AskNotifications';
++// import AskNotifications from './AskNotifications';
+ 
+-storiesOf('ui-onboarding/slides/AskNotifications', module)
+-  .add('default', () => <AskNotifications />)
+-  .add('BackgroundComponent', () => (
+-    <AskNotifications
+-      BackgroundComponent={
+-        <GradientOverlayImage
+-          source={'https://picsum.photos/640/640/?random'}
+-        />
+-      }
+-    />
+-  ))
+-  .add('slideTitle', () => (
+-    <AskNotifications slideTitle={'Custom title text'} />
+-  ))
+-  .add('description', () => (
+-    <AskNotifications description={'Custom description text'} />
+-  ))
+-  .add('buttonDisabled', () => <AskNotifications buttonDisabled />)
+-  .add('buttonText', () => (
+-    <AskNotifications
+-      onPressButton={() => {}}
+-      buttonText={'Custom button text'}
+-    />
+-  ))
+-  .add('SlideWrapper props', () => (
+-    <AskNotifications onPressSecondary={() => {}} />
+-  ));
++// storiesOf('ui-onboarding/slides/AskNotifications', module)
++//   .add('default', () => <AskNotifications />)
++//   .add('BackgroundComponent', () => (
++//     <AskNotifications
++//       BackgroundComponent={
++//         <GradientOverlayImage
++//           source={'https://picsum.photos/640/640/?random'}
++//         />
++//       }
++//     />
++//   ))
++//   .add('slideTitle', () => (
++//     <AskNotifications slideTitle={'Custom title text'} />
++//   ))
++//   .add('description', () => (
++//     <AskNotifications description={'Custom description text'} />
++//   ))
++//   .add('buttonDisabled', () => <AskNotifications buttonDisabled />)
++//   .add('buttonText', () => (
++//     <AskNotifications
++//       onPressButton={() => {}}
++//       buttonText={'Custom button text'}
++//     />
++//   ))
++//   .add('SlideWrapper props', () => (
++//     <AskNotifications onPressSecondary={() => {}} />
++//   ));
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.tests.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.tests.js
+index 98a0b09..c3e48e4 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.tests.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotifications.tests.js
+@@ -1,86 +1,86 @@
+-import React from 'react';
+-import renderer from 'react-test-renderer';
+-import { GradientOverlayImage } from '@apollosproject/ui-kit';
++// import React from 'react';
++// import renderer from 'react-test-renderer';
++// import { GradientOverlayImage } from '@apollosproject/ui-kit';
+ 
+-import { Providers } from '../../testUtils';
++// import { Providers } from '../../testUtils';
+ 
+-import AskNotifications from './AskNotifications';
++// import AskNotifications from './AskNotifications';
+ 
+-describe('The Onboarding AskNotifications component', () => {
+-  it('should render', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render a BackgroundComponent', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications
+-          BackgroundComponent={
+-            <GradientOverlayImage
+-              source={'https://picsum.photos/640/640/?random'}
+-            />
+-          }
+-        />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render a custom title', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications slideTitle={'Custom title text'} />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render a custom description', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications description={'Custom description text'} />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render with a button', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications onPressButton={jest.fn()} />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render the button disabled', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications onPressButton={jest.fn()} buttonDisabled />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render a button with custom text', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications
+-          onPressButton={jest.fn()}
+-          buttonText={'Custom button text'}
+-        />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should pass additional props to Slide component', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotifications
+-          onPressSecondary={jest.fn()}
+-          secondaryNavText={'Later'}
+-        />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-});
++// describe('The Onboarding AskNotifications component', () => {
++//   it('should render', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render a BackgroundComponent', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications
++//           BackgroundComponent={
++//             <GradientOverlayImage
++//               source={'https://picsum.photos/640/640/?random'}
++//             />
++//           }
++//         />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render a custom title', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications slideTitle={'Custom title text'} />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render a custom description', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications description={'Custom description text'} />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render with a button', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications onPressButton={jest.fn()} />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render the button disabled', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications onPressButton={jest.fn()} buttonDisabled />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render a button with custom text', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications
++//           onPressButton={jest.fn()}
++//           buttonText={'Custom button text'}
++//         />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should pass additional props to Slide component', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotifications
++//           onPressSecondary={jest.fn()}
++//           secondaryNavText={'Later'}
++//         />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++// });
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js
+index 96d2f2a..9c6da3f 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js
+@@ -1,82 +1,82 @@
+-import React, { memo } from 'react';
+-import PropTypes from 'prop-types';
+-import { NotificationsConsumer } from '@apollosproject/ui-notifications';
++// import React, { memo } from 'react';
++// import PropTypes from 'prop-types';
++// // import { NotificationsConsumer } from '@apollosproject/ui-notifications';
+ 
+-import AskNotifications from './AskNotifications';
++// import AskNotifications from './AskNotifications';
+ 
+-function defaultGetButtonText({ hasPushPermission, hasPrompted }) {
+-  if (hasPushPermission) {
+-    return 'Notifications Enabled!';
+-  }
+-  // iOS only, hasPrompted is undefined in Android
+-  if (hasPrompted) {
+-    return 'Enable Notifications in Settings';
+-  }
+-  return 'Yes, enable notifications';
+-}
++// function defaultGetButtonText({ hasPushPermission, hasPrompted }) {
++//   if (hasPushPermission) {
++//     return 'Notifications Enabled!';
++//   }
++//   // iOS only, hasPrompted is undefined in Android
++//   if (hasPrompted) {
++//     return 'Enable Notifications in Settings';
++//   }
++//   return 'Yes, enable notifications';
++// }
+ 
+-// eslint-disable-next-line react/display-name
+-const AskNotificationsConnected = memo(
+-  ({
+-    Component,
+-    onPressPrimary,
+-    onPressSecondary,
+-    onRequestPushPermissions,
+-    getButtonText,
+-    ...props
+-  }) => (
+-    <NotificationsConsumer>
+-      {(value) => {
+-        // Android has no concept of push prompt, notifications enabled by default.
+-        // so we'll just show them it's enabled and allow to proceed
+-        const ready =
+-          value.hasPrompted === undefined
+-            ? value.hasPushPermission || value.hasPrompted
+-            : value.hasPushPermission;
++// // eslint-disable-next-line react/display-name
++// const AskNotificationsConnected = memo(
++//   ({
++//     Component,
++//     onPressPrimary,
++//     onPressSecondary,
++//     onRequestPushPermissions,
++//     getButtonText,
++//     ...props
++//   }) => (
++//     <NotificationsConsumer>
++//       {(value) => {
++//         // Android has no concept of push prompt, notifications enabled by default.
++//         // so we'll just show them it's enabled and allow to proceed
++//         const ready =
++//           value.hasPrompted === undefined
++//             ? value.hasPushPermission || value.hasPrompted
++//             : value.hasPushPermission;
+ 
+-        return (
+-          <Component
+-            isLoading={value.loading}
+-            onPressButton={() =>
+-              onRequestPushPermissions(value.checkPermissions)
+-            }
+-            buttonDisabled={value.hasPushPermission}
+-            buttonText={getButtonText({
+-              hasPrompted: value.hasPrompted,
+-              hasPushPermission: value.hasPushPermission,
+-            })}
+-            onPressPrimary={ready ? onPressPrimary : null}
+-            onPressSecondary={
+-              // if onPressSecondary exists use it else default onPressPrimary
+-              !ready ? onPressSecondary || onPressPrimary : null
+-            }
+-            pressPrimaryEventName={'Ask Notifications Completed'}
+-            pressSecondaryEventName={'Ask Notifications Skipped'}
+-            {...props}
+-          />
+-        );
+-      }}
+-    </NotificationsConsumer>
+-  )
+-);
++//         return (
++//           <Component
++//             isLoading={value.loading}
++//             onPressButton={() =>
++//               onRequestPushPermissions(value.checkPermissions)
++//             }
++//             buttonDisabled={value.hasPushPermission}
++//             buttonText={getButtonText({
++//               hasPrompted: value.hasPrompted,
++//               hasPushPermission: value.hasPushPermission,
++//             })}
++//             onPressPrimary={ready ? onPressPrimary : null}
++//             onPressSecondary={
++//               // if onPressSecondary exists use it else default onPressPrimary
++//               !ready ? onPressSecondary || onPressPrimary : null
++//             }
++//             pressPrimaryEventName={'Ask Notifications Completed'}
++//             pressSecondaryEventName={'Ask Notifications Skipped'}
++//             {...props}
++//           />
++//         );
++//       }}
++//     </NotificationsConsumer>
++//   )
++// );
+ 
+-AskNotificationsConnected.propTypes = {
+-  Component: PropTypes.oneOfType([
+-    PropTypes.node,
+-    PropTypes.func,
+-    PropTypes.object, // type check for React fragments
+-  ]),
+-  onPressPrimary: PropTypes.func,
+-  onPressSecondary: PropTypes.func,
+-  onRequestPushPermissions: PropTypes.func.isRequired,
+-  getButtonText: PropTypes.func,
+-};
++// AskNotificationsConnected.propTypes = {
++//   Component: PropTypes.oneOfType([
++//     PropTypes.node,
++//     PropTypes.func,
++//     PropTypes.object, // type check for React fragments
++//   ]),
++//   onPressPrimary: PropTypes.func,
++//   onPressSecondary: PropTypes.func,
++//   onRequestPushPermissions: PropTypes.func.isRequired,
++//   getButtonText: PropTypes.func,
++// };
+ 
+-AskNotificationsConnected.defaultProps = {
+-  Component: AskNotifications,
+-  getButtonText: defaultGetButtonText,
+-};
++// AskNotificationsConnected.defaultProps = {
++//   Component: AskNotifications,
++//   getButtonText: defaultGetButtonText,
++// };
+ 
+-AskNotificationsConnected.displayName = 'AskNotificationsConnected';
++// AskNotificationsConnected.displayName = 'AskNotificationsConnected';
+ 
+-export default AskNotificationsConnected;
++// export default AskNotificationsConnected;
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.tests.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.tests.js
+index 2594fb1..53ed377 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.tests.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.tests.js
+@@ -1,76 +1,76 @@
+-import React from 'react';
+-import renderer from 'react-test-renderer';
+-import { Text } from 'react-native';
++// import React from 'react';
++// import renderer from 'react-test-renderer';
++// import { Text } from 'react-native';
+ 
+-import { PushContext } from '@apollosproject/ui-notifications';
+-import { renderWithApolloData, Providers } from '../../testUtils';
++// import { PushContext } from '@apollosproject/ui-notifications';
++// import { renderWithApolloData, Providers } from '../../testUtils';
+ 
+-import AskNotificationsConnected from './AskNotificationsConnected';
++// import AskNotificationsConnected from './AskNotificationsConnected';
+ 
+-describe('The Onboarding AskNotificationsConnected component', () => {
+-  it('should render with a user not having granted push notifications permissions', async () => {
+-    const component = (
+-      <Providers>
+-        <PushContext.Provider
+-          value={{
+-            loading: false,
+-            hasPushPermission: false,
+-            hasPrompted: false,
+-          }}
+-        >
+-          <AskNotificationsConnected
+-            onPressPrimary={jest.fn()}
+-            onRequestPushPermissions={jest.fn()}
+-          />
+-        </PushContext.Provider>
+-      </Providers>
+-    );
++// describe('The Onboarding AskNotificationsConnected component', () => {
++//   it('should render with a user not having granted push notifications permissions', async () => {
++//     const component = (
++//       <Providers>
++//         <PushContext.Provider
++//           value={{
++//             loading: false,
++//             hasPushPermission: false,
++//             hasPrompted: false,
++//           }}
++//         >
++//           <AskNotificationsConnected
++//             onPressPrimary={jest.fn()}
++//             onRequestPushPermissions={jest.fn()}
++//           />
++//         </PushContext.Provider>
++//       </Providers>
++//     );
+ 
+-    const tree = await renderWithApolloData(component);
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render as if a user had granted push notifications permissions', async () => {
+-    const component = (
+-      <Providers>
+-        <PushContext.Provider
+-          value={{ loading: false, hasPushPermission: true, hasPrompted: true }}
+-        >
+-          <AskNotificationsConnected
+-            onPressPrimary={jest.fn()}
+-            onRequestPushPermissions={jest.fn()}
+-          />
+-        </PushContext.Provider>
+-      </Providers>
+-    );
++//     const tree = await renderWithApolloData(component);
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render as if a user had granted push notifications permissions', async () => {
++//     const component = (
++//       <Providers>
++//         <PushContext.Provider
++//           value={{ loading: false, hasPushPermission: true, hasPrompted: true }}
++//         >
++//           <AskNotificationsConnected
++//             onPressPrimary={jest.fn()}
++//             onRequestPushPermissions={jest.fn()}
++//           />
++//         </PushContext.Provider>
++//       </Providers>
++//     );
+ 
+-    const tree = await renderWithApolloData(component);
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render a custom Component', async () => {
+-    const CustomComponent = (
+-      { buttonDisabled } // eslint-disable-line react/prop-types
+-    ) => (
+-      // `notificationsEnabled` is passed to the `buttonDisabled` prop thus it is equal to `true` from the mock query above.
+-      <Text>{`Skyline is better than Goldstar === ${buttonDisabled}`}</Text>
+-    );
++//     const tree = await renderWithApolloData(component);
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render a custom Component', async () => {
++//     const CustomComponent = (
++//       { buttonDisabled } // eslint-disable-line react/prop-types
++//     ) => (
++//       // `notificationsEnabled` is passed to the `buttonDisabled` prop thus it is equal to `true` from the mock query above.
++//       <Text>{`Skyline is better than Goldstar === ${buttonDisabled}`}</Text>
++//     );
+ 
+-    const tree = await renderWithApolloData(
+-      <Providers>
+-        <AskNotificationsConnected
+-          Component={CustomComponent}
+-          onPressPrimary={jest.fn()}
+-          onRequestPushPermissions={jest.fn()}
+-        />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-  it('should render with no data in the cache', () => {
+-    const tree = renderer.create(
+-      <Providers>
+-        <AskNotificationsConnected onRequestPushPermissions={jest.fn()} />
+-      </Providers>
+-    );
+-    expect(tree).toMatchSnapshot();
+-  });
+-});
++//     const tree = await renderWithApolloData(
++//       <Providers>
++//         <AskNotificationsConnected
++//           Component={CustomComponent}
++//           onPressPrimary={jest.fn()}
++//           onRequestPushPermissions={jest.fn()}
++//         />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++//   it('should render with no data in the cache', () => {
++//     const tree = renderer.create(
++//       <Providers>
++//         <AskNotificationsConnected onRequestPushPermissions={jest.fn()} />
++//       </Providers>
++//     );
++//     expect(tree).toMatchSnapshot();
++//   });
++// });
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/index.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/index.js
+index 865e500..0423aef 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/index.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/index.js
+@@ -1,4 +1,4 @@
+-import AskNotifications from './AskNotifications';
++// import AskNotifications from './AskNotifications';
+ 
+-export AskNotificationsConnected from './AskNotificationsConnected';
+-export default AskNotifications;
++// export AskNotificationsConnected from './AskNotificationsConnected';
++// export default AskNotifications;
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/index.js b/node_modules/@apollosproject/ui-onboarding/src/slides/index.js
+index 1378702..5675ff5 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/index.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/index.js
+@@ -1,7 +1,7 @@
+ export AboutYou, { AboutYouConnected } from './AboutYou';
+ export AskName, { AskNameConnected } from './AskName';
+-export AskNotifications, {
+-  AskNotificationsConnected,
+-} from './AskNotifications';
++// export AskNotifications, {
++//   AskNotificationsConnected,
++// } from './AskNotifications';
+ export LocationFinder, { LocationFinderConnected } from './LocationFinder';
+ export Features, { FeaturesConnected } from './Features';
