@@ -22,7 +22,6 @@
     "version": "node ../../scripts/update-apollos-version.js && git add apollos.json",
     "postversion": "react-native-version --never-amend --never-increment-build --android android/app/build.gradle --ios ios/",
     "prestart": "yarn generate-stories & node ./scripts/get-introspection-data.js",
-    "postinstall": "yarn patch && jetify && yarn pods",
     "patch": "cp ../yarn.lock yarn.lock && npx patch-package",
     "pods": "(cd ios && bundle install && bundle exec pod install)",
     "start": "react-native start",
