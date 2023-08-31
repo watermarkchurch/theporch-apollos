@@ -3,7 +3,6 @@ import ApollosConfig from '@apollosproject/config';
 import { Providers, NavigationService } from '@apollosproject/ui-kit';
 import { AnalyticsProvider } from '@apollosproject/ui-analytics';
 import { MediaPlayerProvider } from '@apollosproject/ui-media-player';
-import { NotificationsProvider } from '@apollosproject/ui-notifications';
 import { LiveProvider } from '@apollosproject/ui-connected';
 import OnboardProvider from './OnboardProvider';
 import { CampusProvider } from './CampusProvider';
@@ -16,10 +15,6 @@ const AppProviders = (props) => (
   <ClientProvider {...props}>
     <OnboardProvider>
       <CampusProvider>
-        <NotificationsProvider
-          oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY}
-          navigate={NavigationService.navigate}
-        >
         <MediaPlayerProvider>
           <AnalyticsProvider
             trackFunctions={[track]}
@@ -35,7 +30,6 @@ const AppProviders = (props) => (
             </LiveProvider>
           </AnalyticsProvider>
         </MediaPlayerProvider>
-        </NotificationsProvider>
       </CampusProvider>
     </OnboardProvider>
   </ClientProvider>

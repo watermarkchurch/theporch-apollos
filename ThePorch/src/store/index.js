@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 import { schema as mediaPlayerSchema } from '@apollosproject/ui-media-player';
-import { updatePushId } from '@apollosproject/ui-notifications';
+// import { updatePushId } from '@apollosproject/ui-notifications';
 import CACHE_LOADED from '../client/getCacheLoaded'; // eslint-disable-line
 import ApollosConfig from '@apollosproject/config';
 

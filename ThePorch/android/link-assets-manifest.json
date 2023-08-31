@@ -1,0 +1,97 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/BebasNeue-Regular.ttf",
+      "sha1": "76057d206a498d40aa4779d0d5a382ad7554dd80"
+    },
+    {
+      "path": "assets/fonts/DroidSerif-Bold.ttf",
+      "sha1": "294fa99ceaf6077ab633b5a7c7db761e2f76cf8c"
+    },
+    {
+      "path": "assets/fonts/DroidSerif-BoldItalic.ttf",
+      "sha1": "b7f2d37c3a062be671774ff52f4fd95cbef813ce"
+    },
+    {
+      "path": "assets/fonts/DroidSerif-Italic.ttf",
+      "sha1": "bdd8aad5e6ac546d11e7378bdfabeac7ccbdadfc"
+    },
+    {
+      "path": "assets/fonts/DroidSerif-Regular.ttf",
+      "sha1": "805c5f975e02f488fa1dd1dd0d44ed4f93b0fab4"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-Black.otf",
+      "sha1": "8484b1af8852933b62381cf801863bf31bf382aa"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-BlackItalic.otf",
+      "sha1": "5cf46cde10cfe8792ad2fc8483fea549c0140ae8"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-Bold.otf",
+      "sha1": "112c88bd42727fd9eff5869e3de43488aba0f2af"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-BoldItalic.otf",
+      "sha1": "ff31c32bf7688ca06fc61b4be65b1879d5a01ca8"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-Italic.otf",
+      "sha1": "bc21ee7b4d8410fee02767eaa90052e2eab5bf48"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-Medium.otf",
+      "sha1": "54e29c7c9bbd35610eef8fdb127870c054e8612b"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-MediumItalic.otf",
+      "sha1": "b7552ef8a43b6d4fbe68d43e014144522378b8e4"
+    },
+    {
+      "path": "assets/fonts/Inter-UI-Regular.otf",
+      "sha1": "587875feff77716758830762f50f574492378136"
+    },
+    {
+      "path": "assets/fonts/Lato-Bold.ttf",
+      "sha1": "d67fee08c79a82ce375ab9629ae5a903da8bb321"
+    },
+    {
+      "path": "assets/fonts/Lato-BoldItalic.ttf",
+      "sha1": "2bf1b50c9b2173944aec0662d16701f0964440f2"
+    },
+    {
+      "path": "assets/fonts/Lato-Italic.ttf",
+      "sha1": "ebf006602bcfc0467d29735fdf3481bb6121860e"
+    },
+    {
+      "path": "assets/fonts/Lato-Regular.ttf",
+      "sha1": "83dc5921761a7c3d1ee7badba3fc7e1e1f5ed803"
+    },
+    {
+      "path": "assets/fonts/Licenses/BebasNeue-OFL.txt",
+      "sha1": "c0c8adf427f0cc64e2a4bb425e4b7938fd889867"
+    },
+    {
+      "path": "assets/fonts/Licenses/DroidSerif.txt",
+      "sha1": "26add7f7fb98fea4f180937290743d1b7ca03ea5"
+    },
+    {
+      "path": "assets/fonts/Licenses/InterUI.txt",
+      "sha1": "0476bdae8407f9ad372cf0a83d5a6e4dc8cb875c"
+    },
+    {
+      "path": "assets/fonts/Licenses/Lato-OFL.txt",
+      "sha1": "dced1a41948e9968f9026cbc7ddabbf88e65423b"
+    },
+    {
+      "path": "assets/fonts/Licenses/Montserrat-OFL.txt",
+      "sha1": "05be88ec92c1a8edab8a17ea1aa988d13154c994"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Bold.ttf",
+      "sha1": "3a54407a2b26ff4718708a4726b10cb070d16534"
+    }
+  ]
+}

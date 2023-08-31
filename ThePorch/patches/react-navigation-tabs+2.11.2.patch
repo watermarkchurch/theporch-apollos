@@ -1,0 +1,18 @@
+diff --git a/node_modules/react-navigation-tabs/lib/module/utils/withDimensions.js b/node_modules/react-navigation-tabs/lib/module/utils/withDimensions.js
+index 50bb8e7..ce9a4a2 100644
+--- a/node_modules/react-navigation-tabs/lib/module/utils/withDimensions.js
++++ b/node_modules/react-navigation-tabs/lib/module/utils/withDimensions.js
+@@ -50,11 +50,11 @@ export default function withDimensions(WrappedComponent) {
+     }
+ 
+     componentDidMount() {
+-      Dimensions.addEventListener('change', this.handleOrientationChange);
++      self.listener = Dimensions.addEventListener('change', this.handleOrientationChange);
+     }
+ 
+     componentWillUnmount() {
+-      Dimensions.removeEventListener('change', this.handleOrientationChange);
++      self.listener?.remove()
+     }
+ 
+     render() {

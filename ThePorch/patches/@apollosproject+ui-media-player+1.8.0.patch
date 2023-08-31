@@ -1,0 +1,152 @@
+diff --git a/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js b/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js
+index b49f1c5..26bdf0f 100644
+--- a/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js
++++ b/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js
+@@ -1,7 +1,7 @@
+ import PropTypes from 'prop-types';
+ import React, { Component } from 'react';
+ import { Animated, Platform } from 'react-native';
+-import MusicControl from 'react-native-music-control';
++// import MusicControl from 'react-native-music-control';
+ import { withApollo, Query } from 'react-apollo';
+ import { throttle, get } from 'lodash';
+ 
+@@ -47,8 +47,8 @@ class MusicControls extends Component {
+   }
+ 
+   componentWillUnmount() {
+-    MusicControl.enableBackgroundMode(false);
+-    MusicControl.stopControl();
++    // MusicControl.enableBackgroundMode(false);
++    // MusicControl.stopControl();
+     if (this.listener)
+       this.props.currentTimeAnimated.removeListener(this.listener);
+   }
+@@ -67,68 +67,68 @@ class MusicControls extends Component {
+   };
+ 
+   configureMusicControl = () => {
+-    // Initialize MusicControl settings
+-    MusicControl.enableBackgroundMode(true);
+-
+-    // Play
+-    MusicControl.enableControl('play', true);
+-    MusicControl.on('play', this.handleOnPlay);
+-
+-    // Pause/Stop
+-    MusicControl.enableControl('pause', true);
+-    MusicControl.enableControl('stop', false);
+-    MusicControl.on('pause', this.handleOnPause);
+-    MusicControl.on('stop', this.handleOnPause);
+-
+-    // Skip
+-    MusicControl.enableControl('previousTrack', false);
+-    MusicControl.enableControl('nextTrack', false);
+-
+-    // Seeking
+-    if (this.props.skip) {
+-      MusicControl.enableControl('skipForward', true);
+-      MusicControl.enableControl('skipBackward', true);
+-      MusicControl.on('skipForward', this.handleOnFastForward);
+-      MusicControl.on('skipBackward', this.handleOnRewind);
+-    }
+-
+-    // Scrubber
+-    MusicControl.enableControl('seek', true); // Android
+-    MusicControl.enableControl('changePlaybackPosition', true); // iOS
+-    MusicControl.on('seek', this.handleOnSeek);
+-    MusicControl.on('changePlaybackPosition', this.handleOnSeek);
+-
+-    // Remote (headphones) play/pause
+-    MusicControl.enableControl('togglePlayPause', true);
+-    MusicControl.on('togglePlayPause', () =>
+-      this.props.isPlaying ? this.handleOnPause() : this.handleOnPlay()
+-    );
+-
+-    // Remote (headphones) fast forward/rewind (iOS only) (disabled)
+-    MusicControl.enableControl('seekForward', false);
+-    MusicControl.enableControl('seekBackward', false);
+-
+-    // Swipe to dismiss native control (Android only)
+-    MusicControl.enableControl('closeNotification', true, { when: 'paused' });
+-
+-    // Configure the visuals
+-    const { currentTrack = {} } = this.props;
+-    MusicControl.setNowPlaying({
+-      title: currentTrack.title,
+-      artist: currentTrack.artist,
+-      artwork: get(currentTrack, 'posterSources[0].uri'),
+-      elapsedTime: this.props.currentTime,
+-      duration: this.props.duration,
+-    });
++    // // Initialize MusicControl settings
++    // MusicControl.enableBackgroundMode(true);
++
++    // // Play
++    // MusicControl.enableControl('play', true);
++    // MusicControl.on('play', this.handleOnPlay);
++
++    // // Pause/Stop
++    // MusicControl.enableControl('pause', true);
++    // MusicControl.enableControl('stop', false);
++    // MusicControl.on('pause', this.handleOnPause);
++    // MusicControl.on('stop', this.handleOnPause);
++
++    // // Skip
++    // MusicControl.enableControl('previousTrack', false);
++    // MusicControl.enableControl('nextTrack', false);
++
++    // // Seeking
++    // if (this.props.skip) {
++    //   MusicControl.enableControl('skipForward', true);
++    //   MusicControl.enableControl('skipBackward', true);
++    //   MusicControl.on('skipForward', this.handleOnFastForward);
++    //   MusicControl.on('skipBackward', this.handleOnRewind);
++    // }
++
++    // // Scrubber
++    // MusicControl.enableControl('seek', true); // Android
++    // MusicControl.enableControl('changePlaybackPosition', true); // iOS
++    // MusicControl.on('seek', this.handleOnSeek);
++    // MusicControl.on('changePlaybackPosition', this.handleOnSeek);
++
++    // // Remote (headphones) play/pause
++    // MusicControl.enableControl('togglePlayPause', true);
++    // MusicControl.on('togglePlayPause', () =>
++    //   this.props.isPlaying ? this.handleOnPause() : this.handleOnPlay()
++    // );
++
++    // // Remote (headphones) fast forward/rewind (iOS only) (disabled)
++    // MusicControl.enableControl('seekForward', false);
++    // MusicControl.enableControl('seekBackward', false);
++
++    // // Swipe to dismiss native control (Android only)
++    // MusicControl.enableControl('closeNotification', true, { when: 'paused' });
++
++    // // Configure the visuals
++    // const { currentTrack = {} } = this.props;
++    // MusicControl.setNowPlaying({
++    //   title: currentTrack.title,
++    //   artist: currentTrack.artist,
++    //   artwork: get(currentTrack, 'posterSources[0].uri'),
++    //   elapsedTime: this.props.currentTime,
++    //   duration: this.props.duration,
++    // });
+   };
+ 
+   updatePlayback = () => {
+-    MusicControl.updatePlayback({
+-      state: this.props.isPlaying
+-        ? MusicControl.STATE_PLAYING
+-        : MusicControl.STATE_PAUSED,
+-      elapsedTime: this.props.currentTime,
+-    });
++    // MusicControl.updatePlayback({
++    //   state: this.props.isPlaying
++    //     ? MusicControl.STATE_PLAYING
++    //     : MusicControl.STATE_PAUSED,
++    //   elapsedTime: this.props.currentTime,
++    // });
+   };
+ 
+   handleOnPlay = () => this.props.client.mutate({ mutation: PLAY });

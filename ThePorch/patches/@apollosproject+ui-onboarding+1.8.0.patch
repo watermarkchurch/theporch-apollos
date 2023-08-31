@@ -1,0 +1,302 @@
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js
+index 96d2f2a..6bf3fd4 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/AskNotifications/AskNotificationsConnected.js
+@@ -1,82 +1,82 @@
+-import React, { memo } from 'react';
+-import PropTypes from 'prop-types';
+-import { NotificationsConsumer } from '@apollosproject/ui-notifications';
++// import React, { memo } from 'react';
++// import PropTypes from 'prop-types';
++// import { NotificationsConsumer } from '@apollosproject/ui-notifications';
+ 
+-import AskNotifications from './AskNotifications';
++// import AskNotifications from './AskNotifications';
+ 
+-function defaultGetButtonText({ hasPushPermission, hasPrompted }) {
+-  if (hasPushPermission) {
+-    return 'Notifications Enabled!';
+-  }
+-  // iOS only, hasPrompted is undefined in Android
+-  if (hasPrompted) {
+-    return 'Enable Notifications in Settings';
+-  }
+-  return 'Yes, enable notifications';
+-}
++// function defaultGetButtonText({ hasPushPermission, hasPrompted }) {
++//   if (hasPushPermission) {
++//     return 'Notifications Enabled!';
++//   }
++//   // iOS only, hasPrompted is undefined in Android
++//   if (hasPrompted) {
++//     return 'Enable Notifications in Settings';
++//   }
++//   return 'Yes, enable notifications';
++// }
+ 
+-// eslint-disable-next-line react/display-name
+-const AskNotificationsConnected = memo(
+-  ({
+-    Component,
+-    onPressPrimary,
+-    onPressSecondary,
+-    onRequestPushPermissions,
+-    getButtonText,
+-    ...props
+-  }) => (
+-    <NotificationsConsumer>
+-      {(value) => {
+-        // Android has no concept of push prompt, notifications enabled by default.
+-        // so we'll just show them it's enabled and allow to proceed
+-        const ready =
+-          value.hasPrompted === undefined
+-            ? value.hasPushPermission || value.hasPrompted
+-            : value.hasPushPermission;
++// // eslint-disable-next-line react/display-name
++// const AskNotificationsConnected = memo(
++//   ({
++//     Component,
++//     onPressPrimary,
++//     onPressSecondary,
++//     onRequestPushPermissions,
++//     getButtonText,
++//     ...props
++//   }) => (
++//     <NotificationsConsumer>
++//       {(value) => {
++//         // Android has no concept of push prompt, notifications enabled by default.
++//         // so we'll just show them it's enabled and allow to proceed
++//         const ready =
++//           value.hasPrompted === undefined
++//             ? value.hasPushPermission || value.hasPrompted
++//             : value.hasPushPermission;
+ 
+-        return (
+-          <Component
+-            isLoading={value.loading}
+-            onPressButton={() =>
+-              onRequestPushPermissions(value.checkPermissions)
+-            }
+-            buttonDisabled={value.hasPushPermission}
+-            buttonText={getButtonText({
+-              hasPrompted: value.hasPrompted,
+-              hasPushPermission: value.hasPushPermission,
+-            })}
+-            onPressPrimary={ready ? onPressPrimary : null}
+-            onPressSecondary={
+-              // if onPressSecondary exists use it else default onPressPrimary
+-              !ready ? onPressSecondary || onPressPrimary : null
+-            }
+-            pressPrimaryEventName={'Ask Notifications Completed'}
+-            pressSecondaryEventName={'Ask Notifications Skipped'}
+-            {...props}
+-          />
+-        );
+-      }}
+-    </NotificationsConsumer>
+-  )
+-);
++//         return (
++//           <Component
++//             isLoading={value.loading}
++//             onPressButton={() =>
++//               onRequestPushPermissions(value.checkPermissions)
++//             }
++//             buttonDisabled={value.hasPushPermission}
++//             buttonText={getButtonText({
++//               hasPrompted: value.hasPrompted,
++//               hasPushPermission: value.hasPushPermission,
++//             })}
++//             onPressPrimary={ready ? onPressPrimary : null}
++//             onPressSecondary={
++//               // if onPressSecondary exists use it else default onPressPrimary
++//               !ready ? onPressSecondary || onPressPrimary : null
++//             }
++//             pressPrimaryEventName={'Ask Notifications Completed'}
++//             pressSecondaryEventName={'Ask Notifications Skipped'}
++//             {...props}
++//           />
++//         );
++//       }}
++//     </NotificationsConsumer>
++//   )
++// );
+ 
+-AskNotificationsConnected.propTypes = {
+-  Component: PropTypes.oneOfType([
+-    PropTypes.node,
+-    PropTypes.func,
+-    PropTypes.object, // type check for React fragments
+-  ]),
+-  onPressPrimary: PropTypes.func,
+-  onPressSecondary: PropTypes.func,
+-  onRequestPushPermissions: PropTypes.func.isRequired,
+-  getButtonText: PropTypes.func,
+-};
++// AskNotificationsConnected.propTypes = {
++//   Component: PropTypes.oneOfType([
++//     PropTypes.node,
++//     PropTypes.func,
++//     PropTypes.object, // type check for React fragments
++//   ]),
++//   onPressPrimary: PropTypes.func,
++//   onPressSecondary: PropTypes.func,
++//   onRequestPushPermissions: PropTypes.func.isRequired,
++//   getButtonText: PropTypes.func,
++// };
+ 
+-AskNotificationsConnected.defaultProps = {
+-  Component: AskNotifications,
+-  getButtonText: defaultGetButtonText,
+-};
++// AskNotificationsConnected.defaultProps = {
++//   Component: AskNotifications,
++//   getButtonText: defaultGetButtonText,
++// };
+ 
+-AskNotificationsConnected.displayName = 'AskNotificationsConnected';
++// AskNotificationsConnected.displayName = 'AskNotificationsConnected';
+ 
+-export default AskNotificationsConnected;
++// export default AskNotificationsConnected;
+diff --git a/node_modules/@apollosproject/ui-onboarding/src/slides/LocationFinder/LocationFinderConnected.js b/node_modules/@apollosproject/ui-onboarding/src/slides/LocationFinder/LocationFinderConnected.js
+index 8917f71..2f4e943 100644
+--- a/node_modules/@apollosproject/ui-onboarding/src/slides/LocationFinder/LocationFinderConnected.js
++++ b/node_modules/@apollosproject/ui-onboarding/src/slides/LocationFinder/LocationFinderConnected.js
+@@ -1,73 +1,73 @@
+-import React, { PureComponent } from 'react';
+-import PropTypes from 'prop-types';
+-import { Query } from 'react-apollo';
+-import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
+-import { hasLocationPermission } from '@apollosproject/ui-mapview';
+-import GET_USER_CAMPUS from './getUserCampus';
+-import LocationFinder from './LocationFinder';
++// import React, { PureComponent } from 'react';
++// import PropTypes from 'prop-types';
++// import { Query } from 'react-apollo';
++// import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
++// import { hasLocationPermission } from '@apollosproject/ui-mapview';
++// import GET_USER_CAMPUS from './getUserCampus';
++// import LocationFinder from './LocationFinder';
+ 
+-class LocationFinderConnected extends PureComponent {
+-  state = { locationPermission: false };
++// class LocationFinderConnected extends PureComponent {
++//   state = { locationPermission: false };
+ 
+-  async checkPermission() {
+-    const locationPermission = await hasLocationPermission();
+-    this.setState({ locationPermission });
+-  }
++//   async checkPermission() {
++//     const locationPermission = await hasLocationPermission();
++//     this.setState({ locationPermission });
++//   }
+ 
+-  render() {
+-    return (
+-      <Query query={GET_USER_CAMPUS} fetchPolicy="cache-and-network">
+-        {({
+-          data: { currentUser: { profile: { campus } = {} } = {} } = {},
+-        }) => (
+-          <AnalyticsConsumer>
+-            {({ track }) => {
+-              const { onPressPrimary, ...otherProps } = this.props;
+-              const showNextBtn = !!(campus && this.state.locationPermission);
++//   render() {
++//     return (
++//       <Query query={GET_USER_CAMPUS} fetchPolicy="cache-and-network">
++//         {({
++//           data: { currentUser: { profile: { campus } = {} } = {} } = {},
++//         }) => (
++//           <AnalyticsConsumer>
++//             {({ track }) => {
++//               const { onPressPrimary, ...otherProps } = this.props;
++//               const showNextBtn = !!(campus && this.state.locationPermission);
+ 
+-              const { Component: MapViewComponent } = this.props;
++//               const { Component: MapViewComponent } = this.props;
+ 
+-              return (
+-                <MapViewComponent
+-                  onPressButton={async () => {
+-                    await this.checkPermission();
+-                    this.props.onNavigate();
++//               return (
++//                 <MapViewComponent
++//                   onPressButton={async () => {
++//                     await this.checkPermission();
++//                     this.props.onNavigate();
+ 
+-                    track({ eventName: 'LocationFinder Opened MapView' });
+-                  }}
+-                  // next button
+-                  onPressPrimary={showNextBtn ? onPressPrimary : null}
+-                  // skip button
+-                  onPressSecondary={!showNextBtn ? onPressPrimary : null}
+-                  pressPrimaryEventName={'Ask Location Completed'}
+-                  pressSecondaryEventName={'Ask Location Skipped'}
+-                  buttonText={'Yes, find my local campus'}
+-                  campus={campus}
+-                  {...otherProps}
+-                />
+-              );
+-            }}
+-          </AnalyticsConsumer>
+-        )}
+-      </Query>
+-    );
+-  }
+-}
++//                     track({ eventName: 'LocationFinder Opened MapView' });
++//                   }}
++//                   // next button
++//                   onPressPrimary={showNextBtn ? onPressPrimary : null}
++//                   // skip button
++//                   onPressSecondary={!showNextBtn ? onPressPrimary : null}
++//                   pressPrimaryEventName={'Ask Location Completed'}
++//                   pressSecondaryEventName={'Ask Location Skipped'}
++//                   buttonText={'Yes, find my local campus'}
++//                   campus={campus}
++//                   {...otherProps}
++//                 />
++//               );
++//             }}
++//           </AnalyticsConsumer>
++//         )}
++//       </Query>
++//     );
++//   }
++// }
+ 
+-LocationFinderConnected.propTypes = {
+-  Component: PropTypes.oneOfType([
+-    PropTypes.node,
+-    PropTypes.func,
+-    PropTypes.object, // type check for React fragments
+-  ]),
+-  onPressPrimary: PropTypes.func,
+-  onNavigate: PropTypes.func.isRequired,
+-};
++// LocationFinderConnected.propTypes = {
++//   Component: PropTypes.oneOfType([
++//     PropTypes.node,
++//     PropTypes.func,
++//     PropTypes.object, // type check for React fragments
++//   ]),
++//   onPressPrimary: PropTypes.func,
++//   onNavigate: PropTypes.func.isRequired,
++// };
+ 
+-LocationFinderConnected.defaultProps = {
+-  Component: LocationFinder,
+-};
++// LocationFinderConnected.defaultProps = {
++//   Component: LocationFinder,
++// };
+ 
+-LocationFinderConnected.displayName = 'LocationFinderConnected';
++// LocationFinderConnected.displayName = 'LocationFinderConnected';
+ 
+-export default LocationFinderConnected;
++// export default LocationFinderConnected;

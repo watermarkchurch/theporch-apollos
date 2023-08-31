@@ -69,16 +69,17 @@ class Home extends PureComponent {
     }),
   };
 
+  
+
   render() {
+    console.log(FeaturesFeedConnected, 'features feed');
     return (
       <RockAuthedWebBrowser>
         {(openUrl) => (
           <BackgroundView>
             <SafeAreaView>
-              <CampusConsumer>
-                {({ userCampus }) => (
                   <Query
-                    variables={{ campusId: userCampus?.id }}
+                    variables={{}}
                     query={GET_HOME_FEED}
                   >
                     {({ data, ...rest }) => (
@@ -96,8 +97,6 @@ class Home extends PureComponent {
                       />
                     )}
                   </Query>
-                )}
-              </CampusConsumer>
             </SafeAreaView>
           </BackgroundView>
         )}

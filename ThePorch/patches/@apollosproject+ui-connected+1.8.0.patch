@@ -1,0 +1,232 @@
+diff --git a/node_modules/@apollosproject/ui-connected/src/LikeButtonConnected/LikeButton/index.js b/node_modules/@apollosproject/ui-connected/src/LikeButtonConnected/LikeButton/index.js
+index d46fa97..b3375dc 100644
+--- a/node_modules/@apollosproject/ui-connected/src/LikeButtonConnected/LikeButton/index.js
++++ b/node_modules/@apollosproject/ui-connected/src/LikeButtonConnected/LikeButton/index.js
+@@ -5,6 +5,7 @@ import { Icon, withTheme } from '@apollosproject/ui-kit';
+ import { ProtectedTouchable } from '@apollosproject/ui-auth';
+ 
+ import { withNavigation } from 'react-navigation';
++import { Touchable } from 'react-native';
+ 
+ const LikeIcon = withTheme(
+   ({ theme: { colors: { secondary } = {} } = {}, isLiked } = {}) => ({
+@@ -20,7 +21,7 @@ LikeIcon.propTypes = {
+ 
+ // TODO: deprecate itemId prop
+ const LikeButton = withNavigation(({ isLiked, toggleLike, nodeId, itemId }) => (
+-  <ProtectedTouchable
++  <Touchable
+     onPress={() =>
+       toggleLike({
+         nodeId: nodeId || itemId,
+@@ -29,7 +30,7 @@ const LikeButton = withNavigation(({ isLiked, toggleLike, nodeId, itemId }) => (
+     }
+   >
+     <LikeIcon isLiked={isLiked} />
+-  </ProtectedTouchable>
++  </Touchable>
+ ));
+ 
+ LikeButton.propTypes = {
+diff --git a/node_modules/@apollosproject/ui-connected/src/utils/uploadPhoto/index.js b/node_modules/@apollosproject/ui-connected/src/utils/uploadPhoto/index.js
+index 819d50a..8db774f 100644
+--- a/node_modules/@apollosproject/ui-connected/src/utils/uploadPhoto/index.js
++++ b/node_modules/@apollosproject/ui-connected/src/utils/uploadPhoto/index.js
+@@ -1,102 +1,102 @@
+-import { Platform } from 'react-native';
++// import { Platform } from 'react-native';
+ 
+-import { ReactNativeFile } from 'apollo-upload-client';
+-import gql from 'graphql-tag';
+-import ImagePicker from 'react-native-image-picker';
+-import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
++// import { ReactNativeFile } from 'apollo-upload-client';
++// import gql from 'graphql-tag';
++// import ImagePicker from 'react-native-image-picker';
++// import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
+ 
+-import GET_USER_PHOTO from '../../UserAvatarConnected/getUserPhoto';
++// import GET_USER_PHOTO from '../../UserAvatarConnected/getUserPhoto';
+ 
+-const options = {
+-  title: 'Select Profile Image',
+-  quality: 0.7,
+-  storageOptions: {
+-    skipBackup: true,
+-    path: 'images',
+-    waitUntilSaved: true,
+-    cameraRoll: true,
+-  },
+-};
++// const options = {
++//   title: 'Select Profile Image',
++//   quality: 0.7,
++//   storageOptions: {
++//     skipBackup: true,
++//     path: 'images',
++//     waitUntilSaved: true,
++//     cameraRoll: true,
++//   },
++// };
+ 
+-async function handleIOSPermissions() {
+-  let cameraPermissionStatus = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
+-  let hasPermission = cameraPermissionStatus === RESULTS.GRANTED;
+-  if (!hasPermission) {
+-    cameraPermissionStatus = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
+-    hasPermission = cameraPermissionStatus === RESULTS.GRANTED;
+-    if (!hasPermission) {
+-      return false;
+-    }
+-  }
+-  return true;
+-}
++// async function handleIOSPermissions() {
++//   let cameraPermissionStatus = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
++//   let hasPermission = cameraPermissionStatus === RESULTS.GRANTED;
++//   if (!hasPermission) {
++//     cameraPermissionStatus = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
++//     hasPermission = cameraPermissionStatus === RESULTS.GRANTED;
++//     if (!hasPermission) {
++//       return false;
++//     }
++//   }
++//   return true;
++// }
+ 
+-async function showImagePicker() {
+-  if (Platform.OS === 'ios' && !(await handleIOSPermissions())) {
+-    return null;
+-  }
+-  return new Promise((resolve, reject) => {
+-    ImagePicker.showImagePicker(options, (response) => {
+-      if (response.didCancel) {
+-        reject(response.didCancel);
+-      } else if (response.error) {
+-        reject(response.error);
+-      } else {
+-        resolve(response);
+-      }
+-    });
+-  });
+-}
++// async function showImagePicker() {
++//   if (Platform.OS === 'ios' && !(await handleIOSPermissions())) {
++//     return null;
++//   }
++//   return new Promise((resolve, reject) => {
++//     ImagePicker.showImagePicker(options, (response) => {
++//       if (response.didCancel) {
++//         reject(response.didCancel);
++//       } else if (response.error) {
++//         reject(response.error);
++//       } else {
++//         resolve(response);
++//       }
++//     });
++//   });
++// }
+ 
+-export default async ({ client, onUpload = () => ({}) }) => {
+-  try {
+-    const image = await showImagePicker();
+-    const file = new ReactNativeFile({
+-      uri: image.uri,
+-      name: image.fileName,
+-      type: 'image/jpeg',
+-    });
+-    onUpload();
+-    return client.mutate({
+-      mutation: gql`
+-        mutation uploadProfileImage($file: Upload!, $size: Int!) {
+-          uploadProfileImage(file: $file, size: $size) {
+-            id
+-            firstName
+-            lastName
+-            photo {
+-              uri
+-            }
+-          }
+-        }
+-      `,
+-      variables: { file, size: image.fileSize },
+-      update: (
+-        cache,
+-        {
+-          data: {
+-            uploadProfileImage: { photo },
+-          },
+-        }
+-      ) => {
+-        const data = cache.readQuery({ query: GET_USER_PHOTO });
++// export default async ({ client, onUpload = () => ({}) }) => {
++//   try {
++//     const image = await showImagePicker();
++//     const file = new ReactNativeFile({
++//       uri: image.uri,
++//       name: image.fileName,
++//       type: 'image/jpeg',
++//     });
++//     onUpload();
++//     return client.mutate({
++//       mutation: gql`
++//         mutation uploadProfileImage($file: Upload!, $size: Int!) {
++//           uploadProfileImage(file: $file, size: $size) {
++//             id
++//             firstName
++//             lastName
++//             photo {
++//               uri
++//             }
++//           }
++//         }
++//       `,
++//       variables: { file, size: image.fileSize },
++//       update: (
++//         cache,
++//         {
++//           data: {
++//             uploadProfileImage: { photo },
++//           },
++//         }
++//       ) => {
++//         const data = cache.readQuery({ query: GET_USER_PHOTO });
+ 
+-        cache.writeQuery({
+-          query: GET_USER_PHOTO,
+-          data: {
+-            currentUser: {
+-              ...data.currentUser,
+-              profile: {
+-                ...data.currentUser.profile,
+-                photo,
+-              },
+-            },
+-          },
+-        });
+-      },
+-    });
+-  } catch (e) {
+-    console.warn(e);
+-    return null;
+-  }
+-};
++//         cache.writeQuery({
++//           query: GET_USER_PHOTO,
++//           data: {
++//             currentUser: {
++//               ...data.currentUser,
++//               profile: {
++//                 ...data.currentUser.profile,
++//                 photo,
++//               },
++//             },
++//           },
++//         });
++//       },
++//     });
++//   } catch (e) {
++//     console.warn(e);
++//     return null;
++//   }
++// };
