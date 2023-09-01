@@ -4,12 +4,14 @@ import ApollosConfig from '@apollosproject/config';
 import { split } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
 import { getMainDefinition } from 'apollo-utilities';
+import Config from 'react-native-config'
 
-let uri = ApollosConfig.APP_DATA_URL;
-const androidUri = ApollosConfig.ANDROID_URL || '10.0.2.2';
-
+// let uri = ApollosConfig.APP_DATA_URL;
+// const androidUri = ApollosConfig.ANDROID_URL || '10.0.2.2';
+// console.warn(Config)
 // Android's emulator requires localhost network traffic to go through 10.0.2.2
-if (Platform.OS === 'android') uri = uri.replace('localhost', androidUri);
+// if (Platform.OS === 'android') uri = uri.replace('localhost', androidUri);
+const uri = 'https://wcc-theporch-app-herokuapp-com.global.ssl.fastly.net/'
 
 export default split(
   ({ query }) => {

@@ -8177,10 +8177,10 @@ react-native-bootsplash@^2.0.5:
     jimp "0.14.0"
     prompts "2.3.2"
 
-react-native-config@^0.11.7:
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.11.7.tgz#a2b323f2ecd76a4df88cbb6bc86eaa2ef9febee7"
-  integrity sha512-dn5s+zhwLyE25vRT/vaEtLk/j8ZL1UZKvejORNDWakSwpOnLmFurFeaZV83IqkPlfWHXHFdsYe2IRYG1WN4WkQ==
+react-native-config@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.5.1.tgz#73c94f511493e9b7ff9350cdf351d203a1b05acc"
+  integrity sha512-g1xNgt1tV95FCX+iWz6YJonxXkQX0GdD3fB8xQtR1GUBEqweB9zMROW77gi2TygmYmUkBI7LU4pES+zcTyK4HA==
 
 react-native-device-info@^4.0.1:
   version "4.0.1"
@@ -8241,16 +8241,6 @@ react-native-modal-datetime-picker@9.0.0:
   integrity sha512-8856SLrlVokhBaNWQmkwKbrwjfZP0AfRFIaA4CGXtXq83Hd+mvdmGbwKSfrAGQspAsqFMi7CYxSf4s0n16xCeg==
   dependencies:
     prop-types "^15.7.2"
-
-react-native-music-control@0.10.8:
-  version "0.10.8"
-  resolved "https://registry.yarnpkg.com/react-native-music-control/-/react-native-music-control-0.10.8.tgz#72272bf9cb1fc0142dc38c99e5f2142fece3c37a"
-  integrity sha512-MRPdHpRwl4E2xS4JP2S+XtlFznGrYhizHERKrqE0GnpF/Osei+0fBtOdjHBVu/PkiYS/cwNeUxWdymmpmyQVpg==
-
-react-native-passkit-wallet@^0.1.4:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/react-native-passkit-wallet/-/react-native-passkit-wallet-0.1.6.tgz#9fa8b641886556120f349ecc07ece66730723fce"
-  integrity sha512-XPxIinDFyxmcx+obwwzeXx1djchTm2CCffqI48lrmQsNEUOQWWo0pYkKhsmP6GOTFXmDo8EnI4ayhldMT1O2CA==
 
 react-native-reanimated@^3.4.2:
   version "3.4.2"
