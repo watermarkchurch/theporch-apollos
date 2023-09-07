@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
 
 import { TrackEventWhenLoaded } from '@apollosproject/ui-analytics';
-import { InteractWhenLoadedConnected } from '@apollosproject/ui-connected';
 
 import NavigationHeader from '../ui/NavigationHeader';
 import ActionContainer from './ActionContainer';
@@ -85,11 +84,6 @@ class ContentSingle extends PureComponent {
           colors: get(theme, 'colors'),
         }}
       >
-        {/* <InteractWhenLoadedConnected */}
-        {/*   isLoading={loading} */}
-        {/*   nodeId={this.itemId} */}
-        {/*   action={'COMPLETE'} */}
-        {/* /> */}
         <TrackEventWhenLoaded
           isLoading={loading}
           eventName={'View Content'}

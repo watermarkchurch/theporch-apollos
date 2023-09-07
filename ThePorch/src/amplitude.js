@@ -1,11 +1,11 @@
 import amplitude from 'amplitude-js';
-import Config from 'react-native-config';
+// import Config from 'react-native-config';
 // import gql from 'graphql-tag';
 // import { get } from 'lodash';
 // import { getVersion } from 'react-native-device-info';
 // import { client } from './client';
 
-amplitude.getInstance().init(Config.AMPLITUDE_KEY, null, {
+amplitude.getInstance().init('c8cc74801bceaa675d44261b21f48eab', null, {
   useNativeDeviceInfo: true,
 });
 

@@ -1,20 +1,19 @@
-import { StatusBar } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import {StatusBar} from 'react-native';
+import {createAppContainer} from 'react-navigation';
 import RNBootSplash from 'react-native-bootsplash';
-import React, { useEffect } from 'react';
-import { isNil } from 'lodash';
-
-import { AnalyticsConsumer } from '@apollosproject/ui-analytics';
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import { OneSignal, LogLevel } from 'react-native-onesignal';
+import {AnalyticsConsumer} from '@apollosproject/ui-analytics';
 
 import {
   BackgroundView,
   withTheme,
   NavigationService,
 } from '@apollosproject/ui-kit';
-import Passes from '@apollosproject/ui-passes';
+// import Passes from '@apollosproject/ui-passes';
 
-import { MediaPlayer } from '@apollosproject/ui-media-player';
-import AsyncStorage from '@react-native-community/async-storage';
+import {MediaPlayer} from '@apollosproject/ui-media-player';
 
 import Providers from './Providers';
 import ContentSingle from './content-single';
@@ -22,42 +21,43 @@ import Event from './event';
 import Tabs from './tabs';
 import LandingScreen from './LandingScreen';
 import UserWebBrowser from './user-web-browser';
-import Onboarding from './ui/Onboarding';
+// import Onboarding from './ui/Onboarding';
 import AboutCampus from './AboutCampus';
 import AppStateTracker from './AppStateTracker';
 
-import {
-  readOnboardingFromStorage,
-  useOnboardDispatch,
-  useOnboardState,
-} from './OnboardProvider';
 
 import NodeSingle from './node-single';
 // import PersonalDetails from './user-settings/PersonalDetails';
 // import ChangePassword from './user-settings/ChangePassword';
 
-const AppStatusBar = withTheme(({ theme }) => ({
+OneSignal.initialize('977d590f-3563-4291-8105-ff1495cef4da');
+OneSignal.Debug.setLogLevel(LogLevel.Verbose);
+
+const AppStatusBar = withTheme(({theme}) => ({
   barStyle: theme.barStyle,
   backgroundColor: theme.colors.background.paper,
 }))(StatusBar);
 
-const AppContainer = (props) => {
-  const dispatch = useOnboardDispatch();
+const AppContainer = props => {
+  // const dispatch = useOnboardDispatch();
 
-  useEffect(() => {
-    async function isOnboarded() {
-      const token = await AsyncStorage.getItem('hideOnboard');
-      dispatch(readOnboardingFromStorage(token));
-    }
-    isOnboarded();
-  }, []);
+  // useEffect(() => {
+  //   async function isOnboarded() {
+  //     const token = await AsyncStorage.getItem('hideOnboard');
+  //     dispatch(readOnboardingFromStorage(token));
+  //   }
+  //   isOnboarded();
+  // }, []);
 
-  const { onboarded } = useOnboardState();
+  // const { onboarded } = useOnboardState();
 
   // This setup flashes because it is waiting on props possible solution `isLoading`
-  if (isNil(onboarded)) return null; // TODO: should we show a loading state or something?
+  // if (isNil(onboarded)) return null; // TODO: should we show a loading state or something?
 
-  RNBootSplash.hide({ duration: 250 });
+  // return null;
+
+  RNBootSplash.hide({duration: 250});
+  OneSignal.Notifications.requestPermission(true);
 
   const AppNavigator = createStackNavigator(
     {
@@ -65,17 +65,18 @@ const AppContainer = (props) => {
       ContentSingle,
       NodeSingle,
       Event,
-      Passes,
+      // Passes,
       UserWebBrowser,
-      Onboarding,
+      // Onboarding,
       LandingScreen,
       AboutCampus,
     },
     {
-      initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',
+      // initialRouteName: onboarded === 'true' ? 'Tabs' : 'LandingScreen',
+      initialRouteName: 'Tabs',
       mode: 'modal',
       headerMode: 'screen',
-    }
+    },
   );
 
   const Container = createAppContainer(AppNavigator);
@@ -83,7 +84,7 @@ const AppContainer = (props) => {
   return (
     <Container
       {...props}
-      ref={(navigatorRef) => {
+      ref={navigatorRef => {
         NavigationService.setTopLevelNavigator(navigatorRef);
       }}
     />
@@ -95,7 +96,7 @@ const App = () => (
     <BackgroundView>
       <AppStatusBar />
       <AnalyticsConsumer>
-        {({ track }) => (
+        {({track}) => (
           <>
             <AppStateTracker track={track} />
             <AppContainer />

@@ -59,7 +59,8 @@ const LandingScreen = ({ navigation }) => (
         <PaddedView>
           <Button
             title={'Come On In!'}
-            onPress={() => navigation.push('Onboarding')}
+            // onPress={() => navigation.push('Onboarding')}
+            onPress={() => navigation.push('Tabs')}
             pill={false}
           />
         </PaddedView>

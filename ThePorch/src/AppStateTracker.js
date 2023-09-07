@@ -10,11 +10,11 @@ class AppStateTracker extends Component {
 
   componentDidMount() {
     this.props.track({ eventName: 'App Opened' });
-    AppState.addEventListener('change', this.handleAppStateChange);
+    this.tracker = AppState.addEventListener('change', this.handleAppStateChange);
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener('change', this.handleAppStateChange);
+    this.tracker?.remove();
   }
 
   handleAppStateChange = (nextAppState) => {

@@ -1,6 +1,6 @@
 import { compose } from 'recompose';
 import { Platform } from 'react-native';
-import { BottomTabBar } from 'react-navigation';
+import { BottomTabBar } from 'react-navigation-tabs';
 
 import { withTabBarMediaSpacer } from '@apollosproject/ui-media-player';
 import { styled, withTheme } from '@apollosproject/ui-kit';

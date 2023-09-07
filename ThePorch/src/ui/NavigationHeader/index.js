@@ -6,7 +6,7 @@ const NavigationHeader = ({ scene, navigation }) => {
   let onBack = null;
   if (scene.index > 0) onBack = () => navigation.pop();
   const onClose = () => {
-    navigation.goBack();
+    navigation.pop();
   };
 
   return <ModalViewHeader onClose={onClose} onBack={onBack} navigationHeader />;

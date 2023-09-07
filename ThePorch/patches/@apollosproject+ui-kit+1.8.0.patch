@@ -1,0 +1,63 @@
+diff --git a/node_modules/@apollosproject/ui-kit/src/MediaQuery/withWindow.js b/node_modules/@apollosproject/ui-kit/src/MediaQuery/withWindow.js
+index ed926d0..eaf9e0f 100644
+--- a/node_modules/@apollosproject/ui-kit/src/MediaQuery/withWindow.js
++++ b/node_modules/@apollosproject/ui-kit/src/MediaQuery/withWindow.js
+@@ -11,11 +11,11 @@ export default function withWindow(ComponentToWrap) {
+     };
+ 
+     componentDidMount() {
+-      Dimensions.addEventListener('change', this.handler);
++      this.listener = Dimensions.addEventListener('change', this.handler);
+     }
+ 
+     componentWillUnmount() {
+-      Dimensions.removeEventListener('change', this.handler);
++      this.listener?.remove();
+     }
+ 
+     handler = ({ window }) => {
+diff --git a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js
+index f185132..62d1522 100644
+--- a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js
++++ b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js
+@@ -1,6 +1,8 @@
+ import React from 'react';
+ import PropTypes from 'prop-types';
+-import { Modal, StyleSheet, View, Picker as NativePicker } from 'react-native';
++import { Modal, StyleSheet, View } from 'react-native';
++
++import { Picker as NativePicker } from '@react-native-picker/picker';
+ 
+ import styled from '../../styled';
+ import { ButtonLink } from '../../Button';
+diff --git a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js
+index 8703f8c..cdcab0f 100644
+--- a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js
++++ b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js
+@@ -1,7 +1,8 @@
+ import React from 'react';
+ import PropTypes from 'prop-types';
+-import { Animated, Picker as NativePicker } from 'react-native';
++import { Animated } from 'react-native';
+ import { mapProps } from 'recompose';
++import { Picker as NativePicker } from '@react-native-picker/picker';
+ 
+ import InputUnderline from '../InputUnderline';
+ import InputWrapper from '../InputWrapper';
+diff --git a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.js b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.js
+index 368feef..922d210 100644
+--- a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.js
++++ b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.js
+@@ -2,10 +2,11 @@ import React, { PureComponent } from 'react';
+ import PropTypes from 'prop-types';
+ import {
+   Animated,
+-  Picker as NativePicker,
+   TouchableOpacity,
+ } from 'react-native';
+ 
++import { Picker as NativePicker } from '@react-native-picker/picker';
++
+ import styled from '../../styled';
+ import { H6 } from '../../typography';
+ import Icon from '../../Icon';
