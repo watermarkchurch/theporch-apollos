@@ -9,34 +9,34 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ThePorchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ThePorchTests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-ThePorch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-ThePorch.a */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-ThePorch-ThePorchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ThePorch-ThePorchTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		777128527A68420EA41F9134 /* Inter-UI-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E63F292DA6E4D84AC4D9C5E /* Inter-UI-Black.otf */; };
-		C56310CD52D547848B710D84 /* Inter-UI-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D8A4CE19AD8D4CB4A20A91B6 /* Inter-UI-BlackItalic.otf */; };
-		8722838854B04F8BBA5528A5 /* Inter-UI-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03BEC1EE7FA240628A70A24F /* Inter-UI-Bold.otf */; };
-		7C5C8BAD9AE3446ABCBDAC21 /* Inter-UI-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D90353F646064988B7CC22B5 /* Inter-UI-BoldItalic.otf */; };
-		472068ABB5F74C6F93D3B2D2 /* Inter-UI-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6DCE9735C124E58931B05EF /* Inter-UI-Italic.otf */; };
-		1457BED090CF4E1AA2E8AA5F /* Inter-UI-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0CF7E9EE1B94540BE092D92 /* Inter-UI-Medium.otf */; };
-		3E999AB07A6347B6A21837F9 /* Inter-UI-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 156EB78067A94D909F9A012D /* Inter-UI-MediumItalic.otf */; };
-		23AF5ACB356F4B8798A9CA3A /* Inter-UI-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78C903C9D72D4CBE93209DB8 /* Inter-UI-Regular.otf */; };
-		CC76FD4F2EA14D1892709D80 /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06DC5907521F48DAA124C941 /* BebasNeue-Regular.ttf */; };
-		AE63641623A0442FB786F3E6 /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8761A3685472BBD628300 /* DroidSerif-Bold.ttf */; };
-		28AC422241DA44E3A785001C /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9162871795554DF495DA1702 /* DroidSerif-BoldItalic.ttf */; };
-		D8C5603801F94A65868F1F3D /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E6B9787A68E4D0CB1384E51 /* DroidSerif-Italic.ttf */; };
 		0CDBFF1EB8C14BDDA706A16A /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8326D024380416E9AC147C8 /* DroidSerif-Regular.ttf */; };
-		95AD1416F7CB49249EE78DDA /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A7303AC54BA419A969CC056 /* Lato-Bold.ttf */; };
-		59A80B44074E4FBA8DFB1510 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84176171C7B44224B57782F8 /* Lato-BoldItalic.ttf */; };
-		DEB2B6EBF3144A298714703C /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CEC66FB7E684CE0852EC09B /* Lato-Italic.ttf */; };
-		4290155ADD76498687FA8BFE /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EF984841F0644B59F23C584 /* Lato-Regular.ttf */; };
-		D98477496C3F441A93B24E46 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8A38BCECF5B483B9C6E9068 /* Montserrat-Bold.ttf */; };
 		117F4211924846E28BF862F1 /* BebasNeue-OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = CEA6268DFA58428C937AF8F7 /* BebasNeue-OFL.txt */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1457BED090CF4E1AA2E8AA5F /* Inter-UI-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0CF7E9EE1B94540BE092D92 /* Inter-UI-Medium.otf */; };
+		23AF5ACB356F4B8798A9CA3A /* Inter-UI-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78C903C9D72D4CBE93209DB8 /* Inter-UI-Regular.otf */; };
+		28AC422241DA44E3A785001C /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9162871795554DF495DA1702 /* DroidSerif-BoldItalic.ttf */; };
 		350F7C4BE54E4F809987F5AD /* DroidSerif.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42A27103A05D499EB2D97D11 /* DroidSerif.txt */; };
-		6D50991CF33649DC948E9D55 /* InterUI.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8A230A7F851242C49312D3E6 /* InterUI.txt */; };
+		3E999AB07A6347B6A21837F9 /* Inter-UI-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 156EB78067A94D909F9A012D /* Inter-UI-MediumItalic.otf */; };
+		4290155ADD76498687FA8BFE /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EF984841F0644B59F23C584 /* Lato-Regular.ttf */; };
+		472068ABB5F74C6F93D3B2D2 /* Inter-UI-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B6DCE9735C124E58931B05EF /* Inter-UI-Italic.otf */; };
 		51AA385AC3FD47FAA47E5AED /* Lato-OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA98A90AC70E403ABCBBB4E9 /* Lato-OFL.txt */; };
+		59A80B44074E4FBA8DFB1510 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84176171C7B44224B57782F8 /* Lato-BoldItalic.ttf */; };
+		6D50991CF33649DC948E9D55 /* InterUI.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8A230A7F851242C49312D3E6 /* InterUI.txt */; };
 		705224A25DE44DE1AA16EF58 /* Montserrat-OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7713A615C89465FBB5CF6FA /* Montserrat-OFL.txt */; };
+		7699B88040F8A987B510C191 /* libPods-ThePorch-ThePorchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ThePorch-ThePorchTests.a */; };
+		777128527A68420EA41F9134 /* Inter-UI-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E63F292DA6E4D84AC4D9C5E /* Inter-UI-Black.otf */; };
+		7C5C8BAD9AE3446ABCBDAC21 /* Inter-UI-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D90353F646064988B7CC22B5 /* Inter-UI-BoldItalic.otf */; };
+		8722838854B04F8BBA5528A5 /* Inter-UI-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03BEC1EE7FA240628A70A24F /* Inter-UI-Bold.otf */; };
+		95AD1416F7CB49249EE78DDA /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A7303AC54BA419A969CC056 /* Lato-Bold.ttf */; };
+		AE63641623A0442FB786F3E6 /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8761A3685472BBD628300 /* DroidSerif-Bold.ttf */; };
+		BF2FC85A2AA95EFF003E1AAC /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2FC8592AA95EFF003E1AAC /* BootSplash.storyboard */; };
+		BF2FC85C2AA95F0F003E1AAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2FC85B2AA95F0F003E1AAC /* Images.xcassets */; };
+		C56310CD52D547848B710D84 /* Inter-UI-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D8A4CE19AD8D4CB4A20A91B6 /* Inter-UI-BlackItalic.otf */; };
+		CC76FD4F2EA14D1892709D80 /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06DC5907521F48DAA124C941 /* BebasNeue-Regular.ttf */; };
+		D8C5603801F94A65868F1F3D /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E6B9787A68E4D0CB1384E51 /* DroidSerif-Italic.ttf */; };
+		D98477496C3F441A93B24E46 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8A38BCECF5B483B9C6E9068 /* Montserrat-Bold.ttf */; };
+		DEB2B6EBF3144A298714703C /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CEC66FB7E684CE0852EC09B /* Lato-Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,43 +53,44 @@
 		00E356EE1AD99517003FC87E /* ThePorchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThePorchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ThePorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePorchTests.m; sourceTree = "<group>"; };
+		03BEC1EE7FA240628A70A24F /* Inter-UI-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Bold.otf"; path = "../assets/fonts/Inter-UI-Bold.otf"; sourceTree = "<group>"; };
+		06DC5907521F48DAA124C941 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BebasNeue-Regular.ttf"; path = "../assets/fonts/BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
+		0CEC66FB7E684CE0852EC09B /* Lato-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Italic.ttf"; path = "../assets/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		0E63F292DA6E4D84AC4D9C5E /* Inter-UI-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Black.otf"; path = "../assets/fonts/Inter-UI-Black.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ThePorch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePorch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ThePorch/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ThePorch/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ThePorch/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ThePorch/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ThePorch/main.m; sourceTree = "<group>"; };
+		156EB78067A94D909F9A012D /* Inter-UI-MediumItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-MediumItalic.otf"; path = "../assets/fonts/Inter-UI-MediumItalic.otf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ThePorch-ThePorchTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch-ThePorchTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A7303AC54BA419A969CC056 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-ThePorch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.debug.xcconfig"; sourceTree = "<group>"; };
+		42A27103A05D499EB2D97D11 /* DroidSerif.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DroidSerif.txt; path = ../assets/fonts/Licenses/DroidSerif.txt; sourceTree = "<group>"; };
+		4EF984841F0644B59F23C584 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-ThePorch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch.release.xcconfig"; path = "Target Support Files/Pods-ThePorch/Pods-ThePorch.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ThePorch-ThePorchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-ThePorchTests.debug.xcconfig"; path = "Target Support Files/Pods-ThePorch-ThePorchTests/Pods-ThePorch-ThePorchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ThePorch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThePorch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ThePorch/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		78C903C9D72D4CBE93209DB8 /* Inter-UI-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Regular.otf"; path = "../assets/fonts/Inter-UI-Regular.otf"; sourceTree = "<group>"; };
+		84176171C7B44224B57782F8 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ThePorch-ThePorchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePorch-ThePorchTests.release.xcconfig"; path = "Target Support Files/Pods-ThePorch-ThePorchTests/Pods-ThePorch-ThePorchTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A230A7F851242C49312D3E6 /* InterUI.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = InterUI.txt; path = ../assets/fonts/Licenses/InterUI.txt; sourceTree = "<group>"; };
+		8E6B9787A68E4D0CB1384E51 /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Italic.ttf"; path = "../assets/fonts/DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
+		9162871795554DF495DA1702 /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-BoldItalic.ttf"; path = "../assets/fonts/DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A0CF7E9EE1B94540BE092D92 /* Inter-UI-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Medium.otf"; path = "../assets/fonts/Inter-UI-Medium.otf"; sourceTree = "<group>"; };
+		A7713A615C89465FBB5CF6FA /* Montserrat-OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-OFL.txt"; path = "../assets/fonts/Licenses/Montserrat-OFL.txt"; sourceTree = "<group>"; };
+		A9D8761A3685472BBD628300 /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Bold.ttf"; path = "../assets/fonts/DroidSerif-Bold.ttf"; sourceTree = "<group>"; };
+		AA98A90AC70E403ABCBBB4E9 /* Lato-OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-OFL.txt"; path = "../assets/fonts/Licenses/Lato-OFL.txt"; sourceTree = "<group>"; };
+		B6DCE9735C124E58931B05EF /* Inter-UI-Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-Italic.otf"; path = "../assets/fonts/Inter-UI-Italic.otf"; sourceTree = "<group>"; };
+		B8A38BCECF5B483B9C6E9068 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		BF2FC8592AA95EFF003E1AAC /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BootSplash.storyboard; sourceTree = "<group>"; };
+		BF2FC85B2AA95F0F003E1AAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BF2FC85D2AA9616E003E1AAC /* ThePorch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ThePorch.entitlements; path = ThePorch/ThePorch.entitlements; sourceTree = "<group>"; };
+		CEA6268DFA58428C937AF8F7 /* BebasNeue-OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BebasNeue-OFL.txt"; path = "../assets/fonts/Licenses/BebasNeue-OFL.txt"; sourceTree = "<group>"; };
+		D8A4CE19AD8D4CB4A20A91B6 /* Inter-UI-BlackItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-BlackItalic.otf"; path = "../assets/fonts/Inter-UI-BlackItalic.otf"; sourceTree = "<group>"; };
+		D90353F646064988B7CC22B5 /* Inter-UI-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-UI-BoldItalic.otf"; path = "../assets/fonts/Inter-UI-BoldItalic.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		0E63F292DA6E4D84AC4D9C5E /* Inter-UI-Black.otf */ = {isa = PBXFileReference; name = "Inter-UI-Black.otf"; path = "../assets/fonts/Inter-UI-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D8A4CE19AD8D4CB4A20A91B6 /* Inter-UI-BlackItalic.otf */ = {isa = PBXFileReference; name = "Inter-UI-BlackItalic.otf"; path = "../assets/fonts/Inter-UI-BlackItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		03BEC1EE7FA240628A70A24F /* Inter-UI-Bold.otf */ = {isa = PBXFileReference; name = "Inter-UI-Bold.otf"; path = "../assets/fonts/Inter-UI-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D90353F646064988B7CC22B5 /* Inter-UI-BoldItalic.otf */ = {isa = PBXFileReference; name = "Inter-UI-BoldItalic.otf"; path = "../assets/fonts/Inter-UI-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B6DCE9735C124E58931B05EF /* Inter-UI-Italic.otf */ = {isa = PBXFileReference; name = "Inter-UI-Italic.otf"; path = "../assets/fonts/Inter-UI-Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A0CF7E9EE1B94540BE092D92 /* Inter-UI-Medium.otf */ = {isa = PBXFileReference; name = "Inter-UI-Medium.otf"; path = "../assets/fonts/Inter-UI-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		156EB78067A94D909F9A012D /* Inter-UI-MediumItalic.otf */ = {isa = PBXFileReference; name = "Inter-UI-MediumItalic.otf"; path = "../assets/fonts/Inter-UI-MediumItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		78C903C9D72D4CBE93209DB8 /* Inter-UI-Regular.otf */ = {isa = PBXFileReference; name = "Inter-UI-Regular.otf"; path = "../assets/fonts/Inter-UI-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		06DC5907521F48DAA124C941 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; name = "BebasNeue-Regular.ttf"; path = "../assets/fonts/BebasNeue-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A9D8761A3685472BBD628300 /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; name = "DroidSerif-Bold.ttf"; path = "../assets/fonts/DroidSerif-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9162871795554DF495DA1702 /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; name = "DroidSerif-BoldItalic.ttf"; path = "../assets/fonts/DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8E6B9787A68E4D0CB1384E51 /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; name = "DroidSerif-Italic.ttf"; path = "../assets/fonts/DroidSerif-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F8326D024380416E9AC147C8 /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; name = "DroidSerif-Regular.ttf"; path = "../assets/fonts/DroidSerif-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3A7303AC54BA419A969CC056 /* Lato-Bold.ttf */ = {isa = PBXFileReference; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		84176171C7B44224B57782F8 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0CEC66FB7E684CE0852EC09B /* Lato-Italic.ttf */ = {isa = PBXFileReference; name = "Lato-Italic.ttf"; path = "../assets/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4EF984841F0644B59F23C584 /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B8A38BCECF5B483B9C6E9068 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CEA6268DFA58428C937AF8F7 /* BebasNeue-OFL.txt */ = {isa = PBXFileReference; name = "BebasNeue-OFL.txt"; path = "../assets/fonts/Licenses/BebasNeue-OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		42A27103A05D499EB2D97D11 /* DroidSerif.txt */ = {isa = PBXFileReference; name = "DroidSerif.txt"; path = "../assets/fonts/Licenses/DroidSerif.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8A230A7F851242C49312D3E6 /* InterUI.txt */ = {isa = PBXFileReference; name = "InterUI.txt"; path = "../assets/fonts/Licenses/InterUI.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		AA98A90AC70E403ABCBBB4E9 /* Lato-OFL.txt */ = {isa = PBXFileReference; name = "Lato-OFL.txt"; path = "../assets/fonts/Licenses/Lato-OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A7713A615C89465FBB5CF6FA /* Montserrat-OFL.txt */ = {isa = PBXFileReference; name = "Montserrat-OFL.txt"; path = "../assets/fonts/Licenses/Montserrat-OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F8326D024380416E9AC147C8 /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Regular.ttf"; path = "../assets/fonts/DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +133,12 @@
 		13B07FAE1A68108700A75B9A /* ThePorch */ = {
 			isa = PBXGroup;
 			children = (
+				BF2FC85D2AA9616E003E1AAC /* ThePorch.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				BF2FC85B2AA95F0F003E1AAC /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				BF2FC8592AA95EFF003E1AAC /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = ThePorch;
@@ -150,6 +152,36 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-ThePorch-ThePorchTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D0B2DFA630549A98B956649 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E63F292DA6E4D84AC4D9C5E /* Inter-UI-Black.otf */,
+				D8A4CE19AD8D4CB4A20A91B6 /* Inter-UI-BlackItalic.otf */,
+				03BEC1EE7FA240628A70A24F /* Inter-UI-Bold.otf */,
+				D90353F646064988B7CC22B5 /* Inter-UI-BoldItalic.otf */,
+				B6DCE9735C124E58931B05EF /* Inter-UI-Italic.otf */,
+				A0CF7E9EE1B94540BE092D92 /* Inter-UI-Medium.otf */,
+				156EB78067A94D909F9A012D /* Inter-UI-MediumItalic.otf */,
+				78C903C9D72D4CBE93209DB8 /* Inter-UI-Regular.otf */,
+				06DC5907521F48DAA124C941 /* BebasNeue-Regular.ttf */,
+				A9D8761A3685472BBD628300 /* DroidSerif-Bold.ttf */,
+				9162871795554DF495DA1702 /* DroidSerif-BoldItalic.ttf */,
+				8E6B9787A68E4D0CB1384E51 /* DroidSerif-Italic.ttf */,
+				F8326D024380416E9AC147C8 /* DroidSerif-Regular.ttf */,
+				3A7303AC54BA419A969CC056 /* Lato-Bold.ttf */,
+				84176171C7B44224B57782F8 /* Lato-BoldItalic.ttf */,
+				0CEC66FB7E684CE0852EC09B /* Lato-Italic.ttf */,
+				4EF984841F0644B59F23C584 /* Lato-Regular.ttf */,
+				B8A38BCECF5B483B9C6E9068 /* Montserrat-Bold.ttf */,
+				CEA6268DFA58428C937AF8F7 /* BebasNeue-OFL.txt */,
+				42A27103A05D499EB2D97D11 /* DroidSerif.txt */,
+				8A230A7F851242C49312D3E6 /* InterUI.txt */,
+				AA98A90AC70E403ABCBBB4E9 /* Lato-OFL.txt */,
+				A7713A615C89465FBB5CF6FA /* Montserrat-OFL.txt */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -194,37 +226,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		5D0B2DFA630549A98B956649 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				0E63F292DA6E4D84AC4D9C5E /* Inter-UI-Black.otf */,
-				D8A4CE19AD8D4CB4A20A91B6 /* Inter-UI-BlackItalic.otf */,
-				03BEC1EE7FA240628A70A24F /* Inter-UI-Bold.otf */,
-				D90353F646064988B7CC22B5 /* Inter-UI-BoldItalic.otf */,
-				B6DCE9735C124E58931B05EF /* Inter-UI-Italic.otf */,
-				A0CF7E9EE1B94540BE092D92 /* Inter-UI-Medium.otf */,
-				156EB78067A94D909F9A012D /* Inter-UI-MediumItalic.otf */,
-				78C903C9D72D4CBE93209DB8 /* Inter-UI-Regular.otf */,
-				06DC5907521F48DAA124C941 /* BebasNeue-Regular.ttf */,
-				A9D8761A3685472BBD628300 /* DroidSerif-Bold.ttf */,
-				9162871795554DF495DA1702 /* DroidSerif-BoldItalic.ttf */,
-				8E6B9787A68E4D0CB1384E51 /* DroidSerif-Italic.ttf */,
-				F8326D024380416E9AC147C8 /* DroidSerif-Regular.ttf */,
-				3A7303AC54BA419A969CC056 /* Lato-Bold.ttf */,
-				84176171C7B44224B57782F8 /* Lato-BoldItalic.ttf */,
-				0CEC66FB7E684CE0852EC09B /* Lato-Italic.ttf */,
-				4EF984841F0644B59F23C584 /* Lato-Regular.ttf */,
-				B8A38BCECF5B483B9C6E9068 /* Montserrat-Bold.ttf */,
-				CEA6268DFA58428C937AF8F7 /* BebasNeue-OFL.txt */,
-				42A27103A05D499EB2D97D11 /* DroidSerif.txt */,
-				8A230A7F851242C49312D3E6 /* InterUI.txt */,
-				AA98A90AC70E403ABCBBB4E9 /* Lato-OFL.txt */,
-				A7713A615C89465FBB5CF6FA /* Montserrat-OFL.txt */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -320,8 +321,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				777128527A68420EA41F9134 /* Inter-UI-Black.otf in Resources */,
 				C56310CD52D547848B710D84 /* Inter-UI-BlackItalic.otf in Resources */,
 				8722838854B04F8BBA5528A5 /* Inter-UI-Bold.otf in Resources */,
@@ -329,12 +328,14 @@
 				472068ABB5F74C6F93D3B2D2 /* Inter-UI-Italic.otf in Resources */,
 				1457BED090CF4E1AA2E8AA5F /* Inter-UI-Medium.otf in Resources */,
 				3E999AB07A6347B6A21837F9 /* Inter-UI-MediumItalic.otf in Resources */,
+				BF2FC85C2AA95F0F003E1AAC /* Images.xcassets in Resources */,
 				23AF5ACB356F4B8798A9CA3A /* Inter-UI-Regular.otf in Resources */,
 				CC76FD4F2EA14D1892709D80 /* BebasNeue-Regular.ttf in Resources */,
 				AE63641623A0442FB786F3E6 /* DroidSerif-Bold.ttf in Resources */,
 				28AC422241DA44E3A785001C /* DroidSerif-BoldItalic.ttf in Resources */,
 				D8C5603801F94A65868F1F3D /* DroidSerif-Italic.ttf in Resources */,
 				0CDBFF1EB8C14BDDA706A16A /* DroidSerif-Regular.ttf in Resources */,
+				BF2FC85A2AA95EFF003E1AAC /* BootSplash.storyboard in Resources */,
 				95AD1416F7CB49249EE78DDA /* Lato-Bold.ttf in Resources */,
 				59A80B44074E4FBA8DFB1510 /* Lato-BoldItalic.ttf in Resources */,
 				DEB2B6EBF3144A298714703C /* Lato-Italic.ttf in Resources */,
@@ -586,23 +587,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ThePorch/ThePorch.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z8S3JU749;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ThePorch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "The Porch";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 6.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.subsplashconsulting.8XHRPK;
 				PRODUCT_NAME = ThePorch;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -613,21 +622,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ThePorch/ThePorch.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z8S3JU749;
 				INFOPLIST_FILE = ThePorch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "The Porch";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 6.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.subsplashconsulting.8XHRPK;
 				PRODUCT_NAME = ThePorch;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

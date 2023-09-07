@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, View, FlatList } from 'react-native';
+import { Animated, View } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
@@ -82,7 +82,7 @@ const UniversalContentItemComponent = ({ id, content, loading }) => (
           <AnimatedFeedView
             {...scrollViewProps}
             {...feedViewProps}
-            fetchMore={feedViewProps.onEndReached}
+            fetchMore={(...args) => content.length && feedViewProps.onEndReached(...args)}
             initialNumToRender={3}
             getItemLayout={(itemData, index) => ({
               length: 72, // todo: this is a "magic" number of ListItem height

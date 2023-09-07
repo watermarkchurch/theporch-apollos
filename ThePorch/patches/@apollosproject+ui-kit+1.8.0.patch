@@ -16,6 +16,20 @@ index ed926d0..eaf9e0f 100644
      }
  
      handler = ({ window }) => {
+diff --git a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js
+index f185132..62d1522 100644
+--- a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js
++++ b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/PickerList.js
+@@ -1,6 +1,8 @@
+ import React from 'react';
+ import PropTypes from 'prop-types';
+-import { Modal, StyleSheet, View, Picker as NativePicker } from 'react-native';
++import { Modal, StyleSheet, View } from 'react-native';
++
++import { Picker as NativePicker } from '@react-native-picker/picker';
+ 
+ import styled from '../../styled';
+ import { ButtonLink } from '../../Button';
 diff --git a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js b/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js
 index 8703f8c..cdcab0f 100644
 --- a/node_modules/@apollosproject/ui-kit/src/inputs/Picker/index.android.js

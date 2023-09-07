@@ -1,5 +1,133 @@
+diff --git a/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/GoogleCastController.js b/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/GoogleCastController.js
+index 1d9dce0..3c290f8 100644
+--- a/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/GoogleCastController.js
++++ b/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/GoogleCastController.js
+@@ -45,68 +45,68 @@ class Controller extends React.Component {
+ 
+   componentDidMount() {
+     // get Google Cast state on mount
+-    GoogleCast.getCastState().then((state) => {
+-      const noDevices = state === 'NoDevicesAvailable';
+-      this.props.client.mutate({
+-        mutation: UPDATE_CAST_AVAILABLE,
+-        variables: { isCastAvailable: !noDevices },
+-      });
+-      if (state === 'Connected') {
+-        this.props.client.mutate({ mutation: CAST_CONNECTED });
+-        this.props.onLoad({ duration: 0 });
+-      }
+-    });
++    // GoogleCast.getCastState().then((state) => {
++    //   const noDevices = state === 'NoDevicesAvailable';
++    //   this.props.client.mutate({
++    //     mutation: UPDATE_CAST_AVAILABLE,
++    //     variables: { isCastAvailable: !noDevices },
++    //   });
++    //   if (state === 'Connected') {
++    //     this.props.client.mutate({ mutation: CAST_CONNECTED });
++    //     this.props.onLoad({ duration: 0 });
++    //   }
++    // });
+ 
+     // Google Cast Connection established
+-    GoogleCast.EventEmitter.addListener(GoogleCast.SESSION_STARTED, () => {
+-      const { playerPositionAnimation, media, client } = this.props;
+-      playerPositionAnimation.stopAnimation((value) => {
+-        GoogleCast.castMedia({
+-          mediaUrl: get(media, 'currentTrack.mediaSource.uri', ''),
+-          imageUrl: get(media, 'currentTrack.posterSources[0].uri', ''),
+-          title: get(media, 'currentTrack.title', ''),
+-          subtitle: get(media, 'currentTrack.artist', ''),
+-          // TODO, get this information from API
+-          // studio: 'Apollos Church',
+-          // streamDuration: 596,
+-          // contentType: 'video/mp4', // Optional, default is "video/mp4"
+-          playPosition: value,
+-        });
+-      });
+-      client.mutate({ mutation: CAST_CONNECTED });
+-      // client.mutate({ mutation: PLAY });
+-    });
++    // GoogleCast.EventEmitter.addListener(GoogleCast.SESSION_STARTED, () => {
++    //   const { playerPositionAnimation, media, client } = this.props;
++    //   playerPositionAnimation.stopAnimation((value) => {
++    //     GoogleCast.castMedia({
++    //       mediaUrl: get(media, 'currentTrack.mediaSource.uri', ''),
++    //       imageUrl: get(media, 'currentTrack.posterSources[0].uri', ''),
++    //       title: get(media, 'currentTrack.title', ''),
++    //       subtitle: get(media, 'currentTrack.artist', ''),
++    //       // TODO, get this information from API
++    //       // studio: 'Apollos Church',
++    //       // streamDuration: 596,
++    //       // contentType: 'video/mp4', // Optional, default is "video/mp4"
++    //       playPosition: value,
++    //     });
++    //   });
++    //   client.mutate({ mutation: CAST_CONNECTED });
++    //   // client.mutate({ mutation: PLAY });
++    // });
+ 
+     // Google Cast Disconnected (error provides explanation if ended forcefully)
+-    GoogleCast.EventEmitter.addListener(GoogleCast.SESSION_ENDED, () => {
+-      // this.props.client.mutate({ mutation: PAUSE });
+-      this.props.client.mutate({ mutation: CAST_DISCONNECTED });
+-    });
++    // GoogleCast.EventEmitter.addListener(GoogleCast.SESSION_ENDED, () => {
++    //   // this.props.client.mutate({ mutation: PAUSE });
++    //   this.props.client.mutate({ mutation: CAST_DISCONNECTED });
++    // });
+ 
+     // Google Cast media status update
+-    GoogleCast.EventEmitter.addListener(
+-      GoogleCast.MEDIA_STATUS_UPDATED,
+-      ({ mediaStatus }) => {
+-        // update seeker head
+-        // NOTE: only updates on a 10 sec interval
+-        this.props.onProgress({
+-          currentTime: mediaStatus.streamPosition,
+-          playableDuration: mediaStatus.streamDuration,
+-          seekableDuration: mediaStatus.streamDuration,
+-        });
+-        this.props.skipTo(mediaStatus.streamPosition);
++    // GoogleCast.EventEmitter.addListener(
++    //   GoogleCast.MEDIA_STATUS_UPDATED,
++    //   ({ mediaStatus }) => {
++    //     // update seeker head
++    //     // NOTE: only updates on a 10 sec interval
++    //     this.props.onProgress({
++    //       currentTime: mediaStatus.streamPosition,
++    //       playableDuration: mediaStatus.streamDuration,
++    //       seekableDuration: mediaStatus.streamDuration,
++    //     });
++    //     this.props.skipTo(mediaStatus.streamPosition);
+ 
+-        // NOTE: need to investigate if this is happening too often
+-        // may just need to check if player is already playing before hitting play again
+-        //
+-        // I'm sure the library has these as constants but I couldn't find
+-        // them in the documentation
+-        if (mediaStatus.playerState === 2)
+-          this.props.client.mutate({ mutation: PLAY });
+-        if (mediaStatus.playerState === 3)
+-          this.props.client.mutate({ mutation: PAUSE });
+-      }
+-    );
++    //     // NOTE: need to investigate if this is happening too often
++    //     // may just need to check if player is already playing before hitting play again
++    //     //
++    //     // I'm sure the library has these as constants but I couldn't find
++    //     // them in the documentation
++    //     if (mediaStatus.playerState === 2)
++    //       this.props.client.mutate({ mutation: PLAY });
++    //     if (mediaStatus.playerState === 3)
++    //       this.props.client.mutate({ mutation: PAUSE });
++    //   }
++    // );
+   }
+ 
+   render() {
 diff --git a/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js b/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js
-index b49f1c5..26bdf0f 100644
+index b49f1c5..dcf3c56 100644
 --- a/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js
 +++ b/node_modules/@apollosproject/ui-media-player/src/MediaPlayer/MusicControls.js
 @@ -1,7 +1,7 @@
@@ -11,19 +139,53 @@ index b49f1c5..26bdf0f 100644
  import { withApollo, Query } from 'react-apollo';
  import { throttle, get } from 'lodash';
  
-@@ -47,8 +47,8 @@ class MusicControls extends Component {
+@@ -24,7 +24,7 @@ class MusicControls extends Component {
+     super(...args);
+     // iOS is the only platform that displays currentTime and Android is notorious bad at handling
+     // the JS thread.
+-    if (Platform.OS === 'ios') this.currentTimeSubscription();
++    // if (Platform.OS === 'ios') this.currentTimeSubscription();
+   }
+ 
+   componentDidUpdate(oldProps) {
+@@ -47,88 +47,88 @@ class MusicControls extends Component {
    }
  
    componentWillUnmount() {
 -    MusicControl.enableBackgroundMode(false);
 -    MusicControl.stopControl();
+-    if (this.listener)
+-      this.props.currentTimeAnimated.removeListener(this.listener);
 +    // MusicControl.enableBackgroundMode(false);
 +    // MusicControl.stopControl();
-     if (this.listener)
-       this.props.currentTimeAnimated.removeListener(this.listener);
++    // if (this.listener)
++    //   this.props.currentTimeAnimated.removeListener(this.listener);
    }
-@@ -67,68 +67,68 @@ class MusicControls extends Component {
-   };
+ 
+-  currentTimeSubscription = () => {
+-    this.listener = this.props.currentTimeAnimated.addListener(
+-      throttle(({ value }) => {
+-        MusicControl.updatePlayback({
+-          state: this.props.isPlaying
+-            ? MusicControl.STATE_PLAYING
+-            : MusicControl.STATE_PAUSED,
+-          elapsedTime: value,
+-        });
+-      }, 1000)
+-    );
+-  };
++  // currentTimeSubscription = () => {
++  //   this.listener = this.props.currentTimeAnimated.addListener(
++  //     throttle(({ value }) => {
++  //       MusicControl.updatePlayback({
++  //         state: this.props.isPlaying
++  //           ? MusicControl.STATE_PLAYING
++  //           : MusicControl.STATE_PAUSED,
++  //         elapsedTime: value,
++  //       });
++  //     }, 1000)
++  //   );
++  // };
  
    configureMusicControl = () => {
 -    // Initialize MusicControl settings
