@@ -1,10 +1,9 @@
 import {StatusBar} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import RNBootSplash from 'react-native-bootsplash';
-import React, {useEffect} from 'react';
-import {isNil} from 'lodash';
+import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
-
+import { OneSignal, LogLevel } from 'react-native-onesignal';
 import {AnalyticsConsumer} from '@apollosproject/ui-analytics';
 
 import {
@@ -15,7 +14,6 @@ import {
 // import Passes from '@apollosproject/ui-passes';
 
 import {MediaPlayer} from '@apollosproject/ui-media-player';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import Providers from './Providers';
 import ContentSingle from './content-single';
@@ -27,15 +25,13 @@ import UserWebBrowser from './user-web-browser';
 import AboutCampus from './AboutCampus';
 import AppStateTracker from './AppStateTracker';
 
-import {
-  readOnboardingFromStorage,
-  useOnboardDispatch,
-  useOnboardState,
-} from './OnboardProvider';
 
 import NodeSingle from './node-single';
 // import PersonalDetails from './user-settings/PersonalDetails';
 // import ChangePassword from './user-settings/ChangePassword';
+
+OneSignal.initialize('977d590f-3563-4291-8105-ff1495cef4da');
+OneSignal.Debug.setLogLevel(LogLevel.Verbose);
 
 const AppStatusBar = withTheme(({theme}) => ({
   barStyle: theme.barStyle,
@@ -60,9 +56,8 @@ const AppContainer = props => {
 
   // return null;
 
-  console.log(Tabs, 'tabs here');
-
   RNBootSplash.hide({duration: 250});
+  OneSignal.Notifications.requestPermission(true);
 
   const AppNavigator = createStackNavigator(
     {
